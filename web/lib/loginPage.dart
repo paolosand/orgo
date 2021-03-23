@@ -111,20 +111,20 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               Container(
-              height: 40.0,
-              width: 120.0,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: TextButton(
-                onPressed: () => login(_email, _password),
-                child: Text(
-                  'SIGN UP',
-                  style: TextStyle(
-                      color: Color.fromRGBO(0xC7, 0x00, 0x39, 1),
-                      fontSize: 15.0),
+                height: 40.0,
+                width: 120.0,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(0xC7, 0x00, 0x39, 1), borderRadius: BorderRadius.circular(20)),
+                child: TextButton(
+                  onPressed: () => login(_email, _password),
+                  child: Text(
+                    'Log in',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0),
+                  ),
                 ),
               ),
-            ),
             ],
           ),
         ),
