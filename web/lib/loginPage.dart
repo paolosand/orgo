@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:page_router/page_router.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -19,9 +11,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _username = "";
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String _email = "";
   String _password = "";
   bool _obscureText = true;
+
+  void login(String email, String password) async {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in')));
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success!')));
+      await new Future.delayed(const Duration(seconds : 5));
+      Navigator.pop(context); // use this command for now to provide a visual change
+      // PageRouter.of(context).pushNamed('/mainpage'); add this code to route to the main page with all the profiles
+
+      
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('No user found for that email.')));
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Wrong password provided for that user.')));
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +75,11 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.fromLTRB(50, 50, 50, 10),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    icon: Icon(Icons.person),
-                    labelText: 'Username',
+                    icon: Icon(Icons.email),
+                    labelText: 'Email',
                   ),
                   onChanged: (text) {
-                    _username = text;
+                    _email = text;
                   },
                 ),
               ),
@@ -91,18 +110,18 @@ class _LoginPageState extends State<LoginPage> {
                   });
                 },
               ),
-              GestureDetector(
-                onTap: () => _LoginPageState(),
-                child: Card(
-                  color: Color(0xffC70039),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  margin: EdgeInsets.fromLTRB(50, 10, 50, 10),
+              Container(
+                height: 40.0,
+                width: 120.0,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(0xC7, 0x00, 0x39, 1), borderRadius: BorderRadius.circular(20)),
+                child: TextButton(
+                  onPressed: () => login(_email, _password),
                   child: Text(
-                    "       \n     LOG IN     \n       ",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    'Log in',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0),
                   ),
                 ),
               ),
