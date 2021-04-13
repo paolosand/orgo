@@ -16,11 +16,17 @@ class _LoginPageState extends State<LoginPage> {
   String _password = "";
   bool _obscureText = true;
 
+  @override
+  void initState() { 
+    super.initState();
+    auth.setPersistence(Persistence.LOCAL);
+  }
+
   void login(String email, String password) async {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in')));
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
         email: email,
         password: password
       );
@@ -28,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success!')));
       await new Future.delayed(const Duration(seconds : 5));
       Navigator.pop(context); // use this command for now to provide a visual change
-      // PageRouter.of(context).pushNamed('/mainpage'); add this code to route to the main page with all the profiles
+      PageRouter.of(context).pushNamed('/mainpage'); //add this code to route to the main page with all the profiles
 
       
     } on FirebaseAuthException catch (e) {

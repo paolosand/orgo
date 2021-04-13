@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:page_router/page_router.dart';
+import 'package:web/mainProfile.dart';
 
 import 'entryPage.dart';
 import 'signupPage.dart';
@@ -24,6 +25,13 @@ class _MyAppState extends State<MyApp> {
         child: EntryPage(),
       )
     ),
+    
+    '/entry' : RoutePath(
+      builder: (context, params) => FadeTransitionPage(
+        key: ValueKey('/'),
+        child: EntryPage(),
+      )
+    ),
 
     '/signup' : RoutePath(
       builder: (context, params) => FadeTransitionPage(
@@ -39,6 +47,13 @@ class _MyAppState extends State<MyApp> {
       )
     ),
 
+    '/mainpage' : RoutePath(
+      builder: (context, params) => FadeTransitionPage(
+        key: ValueKey('/mainpage'),
+        child: MainProfile(),
+      )
+    ),
+
   });
 
 
@@ -46,7 +61,7 @@ class _MyAppState extends State<MyApp> {
   // Set default `_initialized` and `_error` state to false
   bool _initialized = false;
   bool _error = false;
-
+  
   // Define an async function to initialize FlutterFire
   void initializeFlutterFire() async {
     try {

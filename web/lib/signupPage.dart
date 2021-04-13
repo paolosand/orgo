@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key key}) : super(key: key);
@@ -47,12 +48,28 @@ class _SignupPageState extends State<SignupPage> {
 
   void signup(String email, String password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email,
         password: password
       );
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success!')));
+      CollectionReference users = FirebaseFirestore.instance.collection(auth.currentUser.uid);
+      print(auth.currentUser.uid);
+      Future<void> addUser() {
+        // Call the user's CollectionReference to add a new user
+        return users
+            .doc('profiles')
+            .set({
+              'profile_count' : 0,
+              'profile_names' : []
+            })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+
+      addUser();
+
       await new Future.delayed(const Duration(seconds : 5));
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
