@@ -54,6 +54,22 @@ class _MainProfileState extends State<MainProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool panelVisible =
       false; // to hide the contents of the panel when collapsed.
+  String _accountNameTemp = "";
+  // function to add class to class list
+  void addToAccountList(String _accountNameTemp) {
+    setState(() {
+      classes.add(_accountNameTemp);
+    });
+    Navigator.pop(context);
+  }
+
+  void deleteAccount(String _accountNameTemp) {
+    setState(() {
+      classes.remove(_accountNameTemp);
+    });
+    Navigator.pop(context);
+  }
+
   // function to call when the user wants to add an account.
   Future<void> addAccountPopup() async {
     await showDialog(
@@ -83,7 +99,11 @@ class _MainProfileState extends State<MainProfile> {
                           }
                           return null;
                         },
-                        onChanged: (text) {},
+                        // temporary to see if we can update the page when adding
+                        // a new class
+                        onChanged: (text) {
+                          _accountNameTemp = text;
+                        },
                       ),
                       InputAccountCard(
                         hintText: "Email",
@@ -131,7 +151,7 @@ class _MainProfileState extends State<MainProfile> {
                               ),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () => addToAccountList(_accountNameTemp),
                           child: Text(
                             'Add',
                             style: TextStyle(
@@ -162,7 +182,11 @@ class _MainProfileState extends State<MainProfile> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.settings, color: Colors.white),
+                IconButton(
+                  icon: Icon(Icons.delete),
+                  color: Colors.white,
+                  onPressed: () => deleteAccount(accountTitle),
+                ),
                 Text(
                   accountTitle,
                   style: TextStyle(
@@ -402,7 +426,7 @@ class _MainProfileState extends State<MainProfile> {
                             child: TextButton(
                               onPressed: () {
                                 viewAccountPopup(
-                                    'CS 194',
+                                    item,
                                     'username',
                                     'password',
                                     'website URL',
@@ -421,32 +445,7 @@ class _MainProfileState extends State<MainProfile> {
                       .toList(),
                 ),
               ),
-              // part of the placeholder which the user clicks to add an account
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100.0),
-                          side: BorderSide(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {
-                      addAccountPopup();
-                    },
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              // added so the main content will not be blocked by the pull up widget.
+              // // added so the main content will not be blocked by the pull up widget.
               Expanded(
                 flex: 1,
                 child: SizedBox(
@@ -457,6 +456,17 @@ class _MainProfileState extends State<MainProfile> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          addAccountPopup();
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
     );
   }
 }
