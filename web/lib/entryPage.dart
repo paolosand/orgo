@@ -1,7 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:page_router/page_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class EntryPage extends StatelessWidget {
+class EntryPage extends StatefulWidget {
+  EntryPage({Key key}) : super(key: key);
+
+  @override
+  _EntryPageState createState() => _EntryPageState();
+}
+
+class _EntryPageState extends State<EntryPage> {
+  FirebaseAuth auth;
+
+  @override
+  void initState() { 
+    super.initState();
+    auth = FirebaseAuth.instance;
+    auth.setPersistence(Persistence.LOCAL);
+    getLandingPage(auth);
+  }
+
+
+  Future<void> getLandingPage(FirebaseAuth auth) async {
+    if (auth.currentUser != null){
+      PageRouter.of(context).pushNamed('/mainpage');
+      print(auth.currentUser);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
