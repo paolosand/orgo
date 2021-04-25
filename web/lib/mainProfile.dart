@@ -338,11 +338,12 @@ class _MainProfileState extends State<MainProfile> {
                           ),
                         ),
                         onPressed: () async {
-                          // const url = 'https://www.geeksforgeeks.org/';
                           if (await canLaunch(websiteURL)) {
                             await launch(websiteURL,
                                 forceSafariVC: true, forceWebView: true);
                           } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('Website could not be reached')));
                             throw 'Could not launch $websiteURL';
                           }
                         },
