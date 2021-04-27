@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:encrypt/encrypt.dart' as en;
+// prefix 'en' used to access methods in the encrypt library
 
 // A constant body textstyle used in the view account popup
 const TextStyle kViewBody =
@@ -26,6 +28,28 @@ class _MainProfileState extends State<MainProfile> {
 
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
+
+  // for encryption
+  //
+  en.Encrypted encryptPass(String password) {
+    var key = en.Key.fromUtf8("cs192orgo.......................");
+    var iv = en.IV.fromLength(16);
+    final encrypter = en.Encrypter(en.AES(key));
+
+    final encrypted = encrypter.encrypt(password, iv: iv);
+    print("successful encryption");
+    return encrypted;
+  }
+
+  String decryptPass(en.Encrypted password) {
+    var key = en.Key.fromUtf8("cs192orgo.......................");
+    var iv = en.IV.fromLength(16);
+    final encrypter = en.Encrypter(en.AES(key));
+
+    final decrypted = encrypter.decrypt(password, iv: iv);
+    print("Resulting Decrypted Password: " + decrypted);
+    return decrypted;
+  }
 
   bool panelVisible =
       false; // to hide the contents of the panel when collapsed.
@@ -483,7 +507,7 @@ class _MainProfileState extends State<MainProfile> {
         .update({
           addAccName: {
             'email': addEmail,
-            'password': addPass,
+            'password': encryptPass(addPass),
             'website url': addURL
           }
         })
@@ -503,7 +527,7 @@ class _MainProfileState extends State<MainProfile> {
         .update({
           accName: {
             'email': editEmail,
-            'password': editPass,
+            'password': encryptPass(editPass),
             'website url': editURL
           }
         })
@@ -662,16 +686,6 @@ class _MainProfileState extends State<MainProfile> {
       currentColorIndex += 1;
     } else {
       currentColorIndex = 0;
-    }
-  }
-
-  // function to launch URL in app
-  _launchURLBrowser() async {
-    const url = 'https://www.geeksforgeeks.org/';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
     }
   }
 
@@ -902,7 +916,7 @@ class _MainProfileState extends State<MainProfile> {
                                 viewAccountPopup(
                                     accName,
                                     accData[accName]['email'],
-                                    accData[accName]['password'],
+                                    decryptPass(accData[accName]['password']),
                                     accData[accName]['website url'],
                                     'https://i.insider.com/5abb9eb43216742a008b45cc?width=1200&format=jpeg');
                               },
