@@ -1,20 +1,28 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__painting__alignment_dart(dart_sdk, packages__flutter__src__foundation__object$46dart) {
+define(['dart_sdk', 'packages/smooth_page_indicator/src/effects/indicator_effect.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart'], (function load__packages__smooth_page_indicator__src__painters__scrolling_dots_painter_with_fixed_center_dart(dart_sdk, packages__smooth_page_indicator__src__effects__indicator_effect$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  var alignment = Object.create(dart.library);
-  var $truncate = dartx.truncate;
-  var $toDouble = dartx.toDouble;
+  const indicator_painter = packages__smooth_page_indicator__src__effects__indicator_effect$46dart.src__painters__indicator_painter;
+  const indicator_effect = packages__smooth_page_indicator__src__effects__indicator_effect$46dart.src__effects__indicator_effect;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  var scrolling_dots_painter_with_fixed_center = Object.create(dart.library);
+  var scrolling_dots_painter = Object.create(dart.library);
+  var scrolling_dots_effect = Object.create(dart.library);
+  var color_transition_painter = Object.create(dart.library);
+  var color_transition_effect = Object.create(dart.library);
+  var smooth_page_indicator = Object.create(dart.library);
+  var $floor = dartx.floor;
+  var $toInt = dartx.toInt;
   var $modulo = dartx['%'];
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $runtimeType = dartx.runtimeType;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _: () => T
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    numL: () => (T.numL = dart.constFn(dart.legacy(core.num)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -29,691 +37,570 @@ define(['dart_sdk', 'packages/flutter/src/foundation/object.dart'], (function lo
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: -1
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 0
-      });
-    },
     get C2() {
       return C[2] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294638330.0
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: -1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294309365.0
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293848814.0
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292927712.0
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: -1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292269782.0
       });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290624957.0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288585374.0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.rtl",
-        index: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887861.0
       });
     },
     get C10() {
       return C[10] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.ltr",
-        index: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284572001.0
       });
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: -1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282532418.0
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281348144.0
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280361249.0
       });
     },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: -1
-      });
+    get C1() {
+      return C[1] = dart.constMap(T.intL(), T.ColorL(), [50, C[2] || CT.C2, 100, C[3] || CT.C3, 200, C[4] || CT.C4, 300, C[5] || CT.C5, 350, C[6] || CT.C6, 400, C[7] || CT.C7, 500, C[8] || CT.C8, 600, C[9] || CT.C9, 700, C[10] || CT.C10, 800, C[11] || CT.C11, 850, C[12] || CT.C12, 900, C[13] || CT.C13]);
     },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 0
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4288585374.0,
+        [ColorSwatch__swatch]: C[1] || CT.C1
       });
     },
     get C16() {
       return C[16] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293454582.0
       });
     },
     get C17() {
       return C[17] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: -1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291152617.0
       });
     },
     get C18() {
       return C[18] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288653530.0
       });
     },
     get C19() {
       return C[19] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286154443.0
       });
     },
     get C20() {
       return C[20] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: -1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284246976.0
       });
     },
     get C21() {
       return C[21] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282339765.0
       });
     },
     get C22() {
       return C[22] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281944491.0
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281352095.0
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280825235.0
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279903102.0
+      });
+    },
+    get C15() {
+      return C[15] = dart.constMap(T.intL(), T.ColorL(), [50, C[16] || CT.C16, 100, C[17] || CT.C17, 200, C[18] || CT.C18, 300, C[19] || CT.C19, 400, C[20] || CT.C20, 500, C[21] || CT.C21, 600, C[22] || CT.C22, 700, C[23] || CT.C23, 800, C[24] || CT.C24, 900, C[25] || CT.C25]);
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4282339765.0,
+        [ColorSwatch__swatch]: C[15] || CT.C15
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: ui.PaintingStyle.prototype,
+        [_name]: "PaintingStyle.fill",
+        index: 0
       });
     }
   }, false);
-  var C = Array(23).fill(void 0);
+  var C = Array(27).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/painting/alignment.dart",
-    "package:flutter/src/painting/alignment.dart"
+    "package:smooth_page_indicator/src/painters/scrolling_dots_painter_with_fixed_center.dart",
+    "package:smooth_page_indicator/src/painters/scrolling_dots_painter.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/smooth_page_indicator-0.2.3/lib/src/effects/scrolling_dots_effect.dart",
+    "package:smooth_page_indicator/src/effects/scrolling_dots_effect.dart",
+    "package:smooth_page_indicator/src/painters/color_transition_painter.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/smooth_page_indicator-0.2.3/lib/src/effects/color_transition_effect.dart",
+    "package:smooth_page_indicator/src/effects/color_transition_effect.dart"
   ];
-  var _x = dart.privateName(alignment, "_x");
-  var _start = dart.privateName(alignment, "_start");
-  var _y = dart.privateName(alignment, "_y");
-  alignment.AlignmentGeometry = class AlignmentGeometry extends core.Object {
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 43, 43, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) + dart.notNull(other[_x]), dart.notNull(this[_start]) + dart.notNull(other[_start]), dart.notNull(this[_y]) + dart.notNull(other[_y]));
+  var effect$ = dart.privateName(scrolling_dots_painter_with_fixed_center, "ScrollingDotsWithFixedCenterPainter.effect");
+  var _calcBounds = dart.privateName(scrolling_dots_painter_with_fixed_center, "_calcBounds");
+  scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter = class ScrollingDotsWithFixedCenterPainter extends indicator_painter.IndicatorPainter {
+    get effect() {
+      return this[effect$];
     }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 90, 85, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 91, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - dart.notNull(t));
-      if (alignment.Alignment.is(a) && alignment.Alignment.is(b)) return alignment.Alignment.lerp(a, b, t);
-      if (alignment.AlignmentDirectional.is(a) && alignment.AlignmentDirectional.is(b)) return alignment.AlignmentDirectional.lerp(a, b, t);
-      return new alignment._MixedAlignment.new(dart.nullCheck(ui.lerpDouble(a[_x], b[_x], t)), dart.nullCheck(ui.lerpDouble(a[_start], b[_start], t)), dart.nullCheck(ui.lerpDouble(a[_y], b[_y], t)));
+    set effect(value) {
+      super.effect = value;
     }
-    toString() {
-      if (this[_start] === 0.0) return alignment.Alignment._stringify(this[_x], this[_y]);
-      if (this[_x] === 0.0) return alignment.AlignmentDirectional._stringify(this[_start], this[_y]);
-      return dart.notNull(alignment.Alignment._stringify(this[_x], this[_y])) + " + " + dart.notNull(alignment.AlignmentDirectional._stringify(this[_start], 0.0));
+    paint(canvas, size) {
+      let t0, t0$, t0$0;
+      let current = this.offset[$floor]();
+      let dotOffset = dart.notNull(this.offset) - current;
+      let dotPaint = (t0 = ui.Paint.new(), (() => {
+        t0.strokeWidth = this.effect.strokeWidth;
+        t0.style = this.effect.paintStyle;
+        return t0;
+      })());
+      for (let index = 0; index < dart.notNull(this.count); index = index + 1) {
+        let color = this.effect.dotColor;
+        if (index === current) {
+          color = ui.Color.lerp(this.effect.activeDotColor, this.effect.dotColor, dotOffset);
+        } else if (index - 1 === current) {
+          color = ui.Color.lerp(this.effect.activeDotColor, this.effect.dotColor, 1 - dotOffset);
+        }
+        let scale = 1.0;
+        let smallDotScale = 0.66;
+        let revDotOffset = 1 - dotOffset;
+        let switchPoint = (dart.notNull(this.effect.maxVisibleDots) - 1) / 2;
+        if (dart.notNull(this.count) > dart.notNull(this.effect.maxVisibleDots)) {
+          if (index >= current - switchPoint && index <= current + (switchPoint + 1)) {
+            if (index === current + switchPoint) {
+              scale = smallDotScale + (1 - smallDotScale) * dotOffset;
+            } else if (index === current - (switchPoint - 1)) {
+              scale = 1 - (1 - smallDotScale) * dotOffset;
+            } else if (index === current - switchPoint) {
+              scale = smallDotScale * revDotOffset;
+            } else if (index === current + (switchPoint + 1)) {
+              scale = smallDotScale * dotOffset;
+            }
+          } else {
+            continue;
+          }
+        }
+        let rRect = this[_calcBounds](size.height, dart.notNull(size.width) / 2 - dart.notNull(this.offset) * (dart.notNull(this.effect.dotWidth) + dart.notNull(this.effect.spacing)), index, scale);
+        canvas.drawRRect(rRect, (t0$ = dotPaint, (() => {
+          t0$.color = color;
+          return t0$;
+        })()));
+      }
+      let rRect = this[_calcBounds](size.height, dart.notNull(size.width) / 2, 0, this.effect.activeDotScale);
+      canvas.drawRRect(rRect, (t0$0 = ui.Paint.new(), (() => {
+        t0$0.color = this.effect.activeDotColor;
+        t0$0.strokeWidth = this.effect.activeStrokeWidth;
+        t0$0.style = ui.PaintingStyle.stroke;
+        return t0$0;
+      })()));
     }
-    _equals(other) {
-      if (other == null) return false;
-      return alignment.AlignmentGeometry.is(other) && other[_x] == this[_x] && other[_start] == this[_start] && other[_y] == this[_y];
-    }
-    get hashCode() {
-      return ui.hashValues(this[_x], this[_start], this[_y]);
-    }
-  };
-  (alignment.AlignmentGeometry.new = function() {
-    ;
-  }).prototype = alignment.AlignmentGeometry.prototype;
-  dart.addTypeTests(alignment.AlignmentGeometry);
-  dart.addTypeCaches(alignment.AlignmentGeometry);
-  dart.setMethodSignature(alignment.AlignmentGeometry, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentGeometry.__proto__),
-    add: dart.fnType(alignment.AlignmentGeometry, [alignment.AlignmentGeometry])
-  }));
-  dart.setLibraryUri(alignment.AlignmentGeometry, I[1]);
-  dart.defineExtensionMethods(alignment.AlignmentGeometry, ['toString', '_equals']);
-  dart.defineExtensionAccessors(alignment.AlignmentGeometry, ['hashCode']);
-  var x$ = dart.privateName(alignment, "Alignment.x");
-  var y$ = dart.privateName(alignment, "Alignment.y");
-  alignment.Alignment = class Alignment extends alignment.AlignmentGeometry {
-    get x() {
-      return this[x$];
-    }
-    set x(value) {
-      super.x = value;
-    }
-    get y() {
-      return this[y$];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    get [_x]() {
-      return this.x;
-    }
-    get [_start]() {
-      return 0.0;
-    }
-    get [_y]() {
-      return this.y;
-    }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 243, 43, "other");
-      if (alignment.Alignment.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 250, 34, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) - dart.notNull(other.x), dart.notNull(this.y) - dart.notNull(other.y));
-    }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 255, 34, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) + dart.notNull(other.x), dart.notNull(this.y) + dart.notNull(other.y));
-    }
-    _negate() {
-      return new alignment.Alignment.new(-dart.notNull(this.x), -dart.notNull(this.y));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 267, 31, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) * dart.notNull(other), dart.notNull(this.y) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 273, 31, "other");
-      return new alignment.Alignment.new(dart.notNull(this.x) / dart.notNull(other), dart.notNull(this.y) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 279, 32, "other");
-      return new alignment.Alignment.new((dart.notNull(this.x) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.y) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 285, 31, "other");
-      return new alignment.Alignment.new(this.x[$modulo](other), this.y[$modulo](other));
-    }
-    alongOffset(other) {
-      if (other == null) dart.nullFailed(I[0], 290, 29, "other");
-      let centerX = dart.notNull(other.dx) / 2.0;
-      let centerY = dart.notNull(other.dy) / 2.0;
-      return new ui.Offset.new(centerX + dart.notNull(this.x) * centerX, centerY + dart.notNull(this.y) * centerY);
-    }
-    alongSize(other) {
-      if (other == null) dart.nullFailed(I[0], 297, 25, "other");
-      let centerX = dart.notNull(other.width) / 2.0;
-      let centerY = dart.notNull(other.height) / 2.0;
-      return new ui.Offset.new(centerX + dart.notNull(this.x) * centerX, centerY + dart.notNull(this.y) * centerY);
-    }
-    withinRect(rect) {
-      if (rect == null) dart.nullFailed(I[0], 304, 26, "rect");
-      let halfWidth = dart.notNull(rect.width) / 2.0;
-      let halfHeight = dart.notNull(rect.height) / 2.0;
-      return new ui.Offset.new(dart.notNull(rect.left) + halfWidth + dart.notNull(this.x) * halfWidth, dart.notNull(rect.top) + halfHeight + dart.notNull(this.y) * halfHeight);
-    }
-    inscribe(size, rect) {
-      if (size == null) dart.nullFailed(I[0], 319, 22, "size");
-      if (rect == null) dart.nullFailed(I[0], 319, 33, "rect");
-      let halfWidthDelta = (dart.notNull(rect.width) - dart.notNull(size.width)) / 2.0;
-      let halfHeightDelta = (dart.notNull(rect.height) - dart.notNull(size.height)) / 2.0;
-      return new ui.Rect.fromLTWH(dart.notNull(rect.left) + halfWidthDelta + dart.notNull(this.x) * halfWidthDelta, dart.notNull(rect.top) + halfHeightDelta + dart.notNull(this.y) * halfHeightDelta, size.width, size.height);
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 335, 61, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 336, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).x, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, b.x, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      return this;
-    }
-    static _stringify(x, y) {
-      if (x == null) dart.nullFailed(I[0], 349, 35, "x");
-      if (y == null) dart.nullFailed(I[0], 349, 45, "y");
-      if (x === -1.0 && y === -1.0) return "Alignment.topLeft";
-      if (x === 0.0 && y === -1.0) return "Alignment.topCenter";
-      if (x === 1.0 && y === -1.0) return "Alignment.topRight";
-      if (x === -1.0 && y === 0.0) return "Alignment.centerLeft";
-      if (x === 0.0 && y === 0.0) return "Alignment.center";
-      if (x === 1.0 && y === 0.0) return "Alignment.centerRight";
-      if (x === -1.0 && y === 1.0) return "Alignment.bottomLeft";
-      if (x === 0.0 && y === 1.0) return "Alignment.bottomCenter";
-      if (x === 1.0 && y === 1.0) return "Alignment.bottomRight";
-      return "Alignment(" + x[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.Alignment._stringify(this.x, this.y);
+    [_calcBounds](canvasHeight, startingPoint, i, scale = 1) {
+      let scaledWidth = dart.notNull(this.effect.dotWidth) * dart.notNull(scale);
+      let scaledHeight = dart.notNull(this.effect.dotHeight) * dart.notNull(scale);
+      let xPos = dart.notNull(startingPoint) + (dart.notNull(this.effect.dotWidth) + dart.notNull(this.effect.spacing)) * dart.notNull(i);
+      let yPos = dart.notNull(canvasHeight) / 2;
+      return new ui.RRect.fromLTRBR(xPos - scaledWidth / 2, yPos - scaledHeight / 2, xPos + scaledWidth / 2, yPos + scaledHeight / 2, this.dotRadius['*'](scale));
     }
   };
-  (alignment.Alignment.new = function(x, y) {
-    if (x == null) dart.nullFailed(I[0], 185, 24, "x");
-    if (y == null) dart.nullFailed(I[0], 185, 32, "y");
-    this[x$] = x;
-    this[y$] = y;
-    if (!(x != null)) dart.assertFailed(null, I[0], 186, 14, "x != null");
-    if (!(y != null)) dart.assertFailed(null, I[0], 187, 14, "y != null");
-    alignment.Alignment.__proto__.new.call(this);
+  (scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.new = function(opts) {
+    let effect = opts && 'effect' in opts ? opts.effect : null;
+    let count = opts && 'count' in opts ? opts.count : null;
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    this[effect$] = effect;
+    scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.__proto__.new.call(this, offset, count, effect);
     ;
-  }).prototype = alignment.Alignment.prototype;
-  dart.addTypeTests(alignment.Alignment);
-  dart.addTypeCaches(alignment.Alignment);
-  dart.setMethodSignature(alignment.Alignment, () => ({
-    __proto__: dart.getMethods(alignment.Alignment.__proto__),
-    '-': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    '+': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    _negate: dart.fnType(alignment.Alignment, []),
-    '*': dart.fnType(alignment.Alignment, [core.double]),
-    '/': dart.fnType(alignment.Alignment, [core.double]),
-    '~/': dart.fnType(alignment.Alignment, [core.double]),
-    '%': dart.fnType(alignment.Alignment, [core.double]),
-    alongOffset: dart.fnType(ui.Offset, [ui.Offset]),
-    alongSize: dart.fnType(ui.Offset, [ui.Size]),
-    withinRect: dart.fnType(ui.Offset, [ui.Rect]),
-    inscribe: dart.fnType(ui.Rect, [ui.Size, ui.Rect]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
+  }).prototype = scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.prototype;
+  dart.addTypeTests(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter);
+  dart.addTypeCaches(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter);
+  dart.setMethodSignature(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter, () => ({
+    __proto__: dart.getMethods(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.__proto__),
+    paint: dart.fnType(dart.void, [dart.legacy(ui.Canvas), dart.legacy(ui.Size)]),
+    [_calcBounds]: dart.fnType(dart.legacy(ui.RRect), [dart.legacy(core.double), dart.legacy(core.double), dart.legacy(core.num)], [dart.legacy(core.double)])
   }));
-  dart.setGetterSignature(alignment.Alignment, () => ({
-    __proto__: dart.getGetters(alignment.Alignment.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
+  dart.setLibraryUri(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter, I[0]);
+  dart.setFieldSignature(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter, () => ({
+    __proto__: dart.getFields(scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.__proto__),
+    effect: dart.finalFieldType(dart.legacy(scrolling_dots_effect.ScrollingDotsEffect))
   }));
-  dart.setLibraryUri(alignment.Alignment, I[1]);
-  dart.setFieldSignature(alignment.Alignment, () => ({
-    __proto__: dart.getFields(alignment.Alignment.__proto__),
-    x: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.Alignment, ['toString']);
-  dart.defineLazy(alignment.Alignment, {
-    /*alignment.Alignment.topLeft*/get topLeft() {
-      return C[0] || CT.C0;
-    },
-    /*alignment.Alignment.topCenter*/get topCenter() {
-      return C[1] || CT.C1;
-    },
-    /*alignment.Alignment.topRight*/get topRight() {
-      return C[2] || CT.C2;
-    },
-    /*alignment.Alignment.centerLeft*/get centerLeft() {
-      return C[3] || CT.C3;
-    },
-    /*alignment.Alignment.center*/get center() {
-      return C[4] || CT.C4;
-    },
-    /*alignment.Alignment.centerRight*/get centerRight() {
-      return C[5] || CT.C5;
-    },
-    /*alignment.Alignment.bottomLeft*/get bottomLeft() {
-      return C[6] || CT.C6;
-    },
-    /*alignment.Alignment.bottomCenter*/get bottomCenter() {
-      return C[7] || CT.C7;
-    },
-    /*alignment.Alignment.bottomRight*/get bottomRight() {
-      return C[8] || CT.C8;
+  var effect$0 = dart.privateName(scrolling_dots_painter, "ScrollingDotsPainter.effect");
+  scrolling_dots_painter.ScrollingDotsPainter = class ScrollingDotsPainter extends indicator_painter.IndicatorPainter {
+    get effect() {
+      return this[effect$0];
     }
-  }, false);
-  var start$ = dart.privateName(alignment, "AlignmentDirectional.start");
-  var y$0 = dart.privateName(alignment, "AlignmentDirectional.y");
+    set effect(value) {
+      super.effect = value;
+    }
+    paint(canvas, size) {
+      let t0, t0$;
+      let current = super.offset[$floor]();
+      let switchPoint = (dart.notNull(this.effect.maxVisibleDots) / 2)[$floor]();
+      let firstVisibleDot = current < switchPoint || dart.notNull(this.count) - 1 < dart.notNull(this.effect.maxVisibleDots) ? 0 : math.min(T.intL(), current - switchPoint, dart.notNull(this.count) - dart.notNull(this.effect.maxVisibleDots));
+      let lastVisibleDot = math.min(T.intL(), firstVisibleDot + dart.notNull(this.effect.maxVisibleDots), dart.notNull(this.count) - 1);
+      let inPreScrollRange = current < switchPoint;
+      let inAfterScrollRange = current >= dart.notNull(this.count) - 1 - switchPoint;
+      let willStartScrolling = current + 1 === switchPoint + 1;
+      let willStopScrolling = current + 1 === dart.notNull(this.count) - 1 - switchPoint;
+      let dotOffset = dart.notNull(this.offset) - this.offset[$toInt]();
+      let dotPaint = (t0 = ui.Paint.new(), (() => {
+        t0.strokeWidth = this.effect.strokeWidth;
+        t0.style = this.effect.paintStyle;
+        return t0;
+      })());
+      let drawingAnchor = inPreScrollRange || inAfterScrollRange ? -(firstVisibleDot * dart.notNull(this.distance)) : -((dart.notNull(this.offset) - switchPoint) * dart.notNull(this.distance));
+      let smallDotScale = 0.66;
+      let activeScale = dart.notNull(this.effect.activeDotScale) - 1.0;
+      for (let index = firstVisibleDot; index <= lastVisibleDot; index = index + 1) {
+        let color = this.effect.dotColor;
+        let scale = 1.0;
+        if (index === current) {
+          color = ui.Color.lerp(this.effect.activeDotColor, this.effect.dotColor, dotOffset);
+          scale = dart.notNull(this.effect.activeDotScale) - activeScale * dotOffset;
+        } else if (index - 1 === current) {
+          color = ui.Color.lerp(this.effect.dotColor, this.effect.activeDotColor, dotOffset);
+          scale = 1.0 + activeScale * dotOffset;
+        } else if (dart.notNull(this.count) - 1 < dart.notNull(this.effect.maxVisibleDots)) {
+          scale = 1.0;
+        } else if (index === firstVisibleDot) {
+          if (willStartScrolling) {
+            scale = 1.0 * (1.0 - dotOffset);
+          } else if (inAfterScrollRange) {
+            scale = smallDotScale;
+          } else if (!inPreScrollRange) {
+            scale = smallDotScale * (1.0 - dotOffset);
+          }
+        } else if (index === firstVisibleDot + 1 && !(inPreScrollRange || inAfterScrollRange)) {
+          scale = 1.0 - dotOffset * (1.0 - smallDotScale);
+        } else if (index === lastVisibleDot - 1.0) {
+          if (inPreScrollRange) {
+            scale = smallDotScale;
+          } else if (!inAfterScrollRange) {
+            scale = smallDotScale + (1.0 - smallDotScale) * dotOffset;
+          }
+        } else if (index === lastVisibleDot) {
+          if (inPreScrollRange) {
+            scale = 0.0;
+          } else if (willStopScrolling) {
+            scale = dotOffset;
+          } else if (!inAfterScrollRange) {
+            scale = smallDotScale * dotOffset;
+          }
+        }
+        let scaledWidth = dart.notNull(this.effect.dotWidth) * scale;
+        let scaledHeight = dart.notNull(this.effect.dotHeight) * scale;
+        let yPos = dart.notNull(size.height) / 2;
+        let xPos = dart.notNull(this.effect.dotWidth) / 2 + drawingAnchor + index * dart.notNull(this.distance);
+        let rRect = new ui.RRect.fromLTRBR(xPos - scaledWidth / 2 + dart.notNull(this.effect.spacing) / 2, yPos - scaledHeight / 2, xPos + scaledWidth / 2 + dart.notNull(this.effect.spacing) / 2, yPos + scaledHeight / 2, this.dotRadius['*'](scale));
+        canvas.drawRRect(rRect, (t0$ = dotPaint, (() => {
+          t0$.color = color;
+          return t0$;
+        })()));
+      }
+    }
+  };
+  (scrolling_dots_painter.ScrollingDotsPainter.new = function(opts) {
+    let effect = opts && 'effect' in opts ? opts.effect : null;
+    let count = opts && 'count' in opts ? opts.count : null;
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    this[effect$0] = effect;
+    scrolling_dots_painter.ScrollingDotsPainter.__proto__.new.call(this, offset, count, effect);
+    ;
+  }).prototype = scrolling_dots_painter.ScrollingDotsPainter.prototype;
+  dart.addTypeTests(scrolling_dots_painter.ScrollingDotsPainter);
+  dart.addTypeCaches(scrolling_dots_painter.ScrollingDotsPainter);
+  dart.setMethodSignature(scrolling_dots_painter.ScrollingDotsPainter, () => ({
+    __proto__: dart.getMethods(scrolling_dots_painter.ScrollingDotsPainter.__proto__),
+    paint: dart.fnType(dart.void, [dart.legacy(ui.Canvas), dart.legacy(ui.Size)])
+  }));
+  dart.setLibraryUri(scrolling_dots_painter.ScrollingDotsPainter, I[1]);
+  dart.setFieldSignature(scrolling_dots_painter.ScrollingDotsPainter, () => ({
+    __proto__: dart.getFields(scrolling_dots_painter.ScrollingDotsPainter.__proto__),
+    effect: dart.finalFieldType(dart.legacy(scrolling_dots_effect.ScrollingDotsEffect))
+  }));
+  var activeStrokeWidth$ = dart.privateName(scrolling_dots_effect, "ScrollingDotsEffect.activeStrokeWidth");
+  var activeDotScale$ = dart.privateName(scrolling_dots_effect, "ScrollingDotsEffect.activeDotScale");
+  var maxVisibleDots$ = dart.privateName(scrolling_dots_effect, "ScrollingDotsEffect.maxVisibleDots");
+  var fixedCenter$ = dart.privateName(scrolling_dots_effect, "ScrollingDotsEffect.fixedCenter");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
   var _name = dart.privateName(ui, "_name");
-  alignment.AlignmentDirectional = class AlignmentDirectional extends alignment.AlignmentGeometry {
-    get start() {
-      return this[start$];
+  scrolling_dots_effect.ScrollingDotsEffect = class ScrollingDotsEffect extends indicator_effect.IndicatorEffect {
+    get activeStrokeWidth() {
+      return this[activeStrokeWidth$];
     }
-    set start(value) {
-      super.start = value;
+    set activeStrokeWidth(value) {
+      super.activeStrokeWidth = value;
     }
-    get y() {
-      return this[y$0];
+    get activeDotScale() {
+      return this[activeDotScale$];
     }
-    set y(value) {
-      super.y = value;
+    set activeDotScale(value) {
+      super.activeDotScale = value;
     }
-    get [_x]() {
-      return 0.0;
+    get maxVisibleDots() {
+      return this[maxVisibleDots$];
     }
-    get [_start]() {
-      return this.start;
+    set maxVisibleDots(value) {
+      super.maxVisibleDots = value;
     }
-    get [_y]() {
-      return this.y;
+    get fixedCenter() {
+      return this[fixedCenter$];
     }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 465, 43, "other");
-      if (alignment.AlignmentDirectional.is(other)) return this['+'](other);
-      return super.add(other);
+    set fixedCenter(value) {
+      super.fixedCenter = value;
     }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 472, 56, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) - dart.notNull(other.start), dart.notNull(this.y) - dart.notNull(other.y));
+    calculateSize(count) {
+      let width = (dart.notNull(this.dotWidth) + dart.notNull(this.spacing)) * math.min(T.numL(), count, this.maxVisibleDots);
+      if (dart.test(this.fixedCenter) && dart.notNull(count) <= dart.notNull(this.maxVisibleDots)) {
+        width = (dart.notNull(count) * 2 - 1) * (dart.notNull(this.dotWidth) + dart.notNull(this.spacing));
+      }
+      return new ui.Size.new(width, dart.notNull(this.dotHeight) * dart.notNull(this.activeDotScale));
     }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 477, 56, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) + dart.notNull(other.start), dart.notNull(this.y) + dart.notNull(other.y));
-    }
-    _negate() {
-      return new alignment.AlignmentDirectional.new(-dart.notNull(this.start), -dart.notNull(this.y));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 489, 42, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) * dart.notNull(other), dart.notNull(this.y) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 495, 42, "other");
-      return new alignment.AlignmentDirectional.new(dart.notNull(this.start) / dart.notNull(other), dart.notNull(this.y) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 501, 43, "other");
-      return new alignment.AlignmentDirectional.new((dart.notNull(this.start) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this.y) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 507, 42, "other");
-      return new alignment.AlignmentDirectional.new(this.start[$modulo](other), this.y[$modulo](other));
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 516, 94, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 517, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).start, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, b.start, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 529, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(-dart.notNull(this.start), this.y);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(this.start, this.y);
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+    hitTestDots(dx, count, current) {
+      let switchPoint = (dart.notNull(this.maxVisibleDots) / 2)[$floor]();
+      if (dart.test(this.fixedCenter)) {
+        return dart.notNull(super.hitTestDots(dx, count, current)) - switchPoint + current[$floor]();
+      } else {
+        let firstVisibleDot = dart.notNull(current) < switchPoint || dart.notNull(count) - 1 < dart.notNull(this.maxVisibleDots) ? 0 : math.min(T.numL(), dart.notNull(current) - switchPoint, dart.notNull(count) - dart.notNull(this.maxVisibleDots))[$floor]();
+        let lastVisibleDot = math.min(T.intL(), firstVisibleDot + dart.notNull(this.maxVisibleDots), dart.notNull(count) - 1)[$floor]();
+        let offset = 0.0;
+        for (let index = firstVisibleDot; index <= lastVisibleDot; index = index + 1) {
+          if (dart.notNull(dx) <= (offset = offset + (dart.notNull(this.dotWidth) + dart.notNull(this.spacing)))) {
+            return index;
+          }
         }
       }
+      return -1;
     }
-    static _stringify(start, y) {
-      if (start == null) dart.nullFailed(I[0], 538, 35, "start");
-      if (y == null) dart.nullFailed(I[0], 538, 49, "y");
-      if (start === -1.0 && y === -1.0) return "AlignmentDirectional.topStart";
-      if (start === 0.0 && y === -1.0) return "AlignmentDirectional.topCenter";
-      if (start === 1.0 && y === -1.0) return "AlignmentDirectional.topEnd";
-      if (start === -1.0 && y === 0.0) return "AlignmentDirectional.centerStart";
-      if (start === 0.0 && y === 0.0) return "AlignmentDirectional.center";
-      if (start === 1.0 && y === 0.0) return "AlignmentDirectional.centerEnd";
-      if (start === -1.0 && y === 1.0) return "AlignmentDirectional.bottomStart";
-      if (start === 0.0 && y === 1.0) return "AlignmentDirectional.bottomCenter";
-      if (start === 1.0 && y === 1.0) return "AlignmentDirectional.bottomEnd";
-      return "AlignmentDirectional(" + start[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.AlignmentDirectional._stringify(this.start, this.y);
-    }
-  };
-  (alignment.AlignmentDirectional.new = function(start, y) {
-    if (start == null) dart.nullFailed(I[0], 391, 35, "start");
-    if (y == null) dart.nullFailed(I[0], 391, 47, "y");
-    this[start$] = start;
-    this[y$0] = y;
-    if (!(start != null)) dart.assertFailed(null, I[0], 392, 14, "start != null");
-    if (!(y != null)) dart.assertFailed(null, I[0], 393, 14, "y != null");
-    alignment.AlignmentDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = alignment.AlignmentDirectional.prototype;
-  dart.addTypeTests(alignment.AlignmentDirectional);
-  dart.addTypeCaches(alignment.AlignmentDirectional);
-  dart.setMethodSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentDirectional.__proto__),
-    '-': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    '+': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    _negate: dart.fnType(alignment.AlignmentDirectional, []),
-    '*': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '~/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '%': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getGetters(alignment.AlignmentDirectional.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
-  }));
-  dart.setLibraryUri(alignment.AlignmentDirectional, I[1]);
-  dart.setFieldSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getFields(alignment.AlignmentDirectional.__proto__),
-    start: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.AlignmentDirectional, ['toString']);
-  dart.defineLazy(alignment.AlignmentDirectional, {
-    /*alignment.AlignmentDirectional.topStart*/get topStart() {
-      return C[11] || CT.C11;
-    },
-    /*alignment.AlignmentDirectional.topCenter*/get topCenter() {
-      return C[12] || CT.C12;
-    },
-    /*alignment.AlignmentDirectional.topEnd*/get topEnd() {
-      return C[13] || CT.C13;
-    },
-    /*alignment.AlignmentDirectional.centerStart*/get centerStart() {
-      return C[14] || CT.C14;
-    },
-    /*alignment.AlignmentDirectional.center*/get center() {
-      return C[15] || CT.C15;
-    },
-    /*alignment.AlignmentDirectional.centerEnd*/get centerEnd() {
-      return C[16] || CT.C16;
-    },
-    /*alignment.AlignmentDirectional.bottomStart*/get bottomStart() {
-      return C[17] || CT.C17;
-    },
-    /*alignment.AlignmentDirectional.bottomCenter*/get bottomCenter() {
-      return C[18] || CT.C18;
-    },
-    /*alignment.AlignmentDirectional.bottomEnd*/get bottomEnd() {
-      return C[19] || CT.C19;
-    }
-  }, false);
-  var _x$ = dart.privateName(alignment, "_MixedAlignment._x");
-  var _start$ = dart.privateName(alignment, "_MixedAlignment._start");
-  var _y$ = dart.privateName(alignment, "_MixedAlignment._y");
-  alignment._MixedAlignment = class _MixedAlignment extends alignment.AlignmentGeometry {
-    get [_x]() {
-      return this[_x$];
-    }
-    set [_x](value) {
-      super[_x] = value;
-    }
-    get [_start]() {
-      return this[_start$];
-    }
-    set [_start](value) {
-      super[_start] = value;
-    }
-    get [_y]() {
-      return this[_y$];
-    }
-    set [_y](value) {
-      super[_y] = value;
-    }
-    _negate() {
-      return new alignment._MixedAlignment.new(-dart.notNull(this[_x]), -dart.notNull(this[_start]), -dart.notNull(this[_y]));
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 587, 37, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) * dart.notNull(other), dart.notNull(this[_start]) * dart.notNull(other), dart.notNull(this[_y]) * dart.notNull(other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 596, 37, "other");
-      return new alignment._MixedAlignment.new(dart.notNull(this[_x]) / dart.notNull(other), dart.notNull(this[_start]) / dart.notNull(other), dart.notNull(this[_y]) / dart.notNull(other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 605, 38, "other");
-      return new alignment._MixedAlignment.new((dart.notNull(this[_x]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_start]) / dart.notNull(other))[$truncate]()[$toDouble](), (dart.notNull(this[_y]) / dart.notNull(other))[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 614, 37, "other");
-      return new alignment._MixedAlignment.new(this[_x][$modulo](other), this[_start][$modulo](other), this[_y][$modulo](other));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 624, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(dart.notNull(this[_x]) - dart.notNull(this[_start]), this[_y]);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(dart.notNull(this[_x]) + dart.notNull(this[_start]), this[_y]);
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
+    buildPainter(count, offset) {
+      if (dart.test(this.fixedCenter)) {
+        return new scrolling_dots_painter_with_fixed_center.ScrollingDotsWithFixedCenterPainter.new({count: count, offset: offset, effect: this});
+      } else {
+        return new scrolling_dots_painter.ScrollingDotsPainter.new({count: count, offset: offset, effect: this});
       }
     }
   };
-  (alignment._MixedAlignment.new = function(_x, _start, _y) {
-    if (_x == null) dart.nullFailed(I[0], 566, 30, "_x");
-    if (_start == null) dart.nullFailed(I[0], 566, 39, "_start");
-    if (_y == null) dart.nullFailed(I[0], 566, 52, "_y");
-    this[_x$] = _x;
-    this[_start$] = _start;
-    this[_y$] = _y;
-    alignment._MixedAlignment.__proto__.new.call(this);
+  (scrolling_dots_effect.ScrollingDotsEffect.new = function(opts) {
+    let activeStrokeWidth = opts && 'activeStrokeWidth' in opts ? opts.activeStrokeWidth : 1.5;
+    let activeDotScale = opts && 'activeDotScale' in opts ? opts.activeDotScale : 1.3;
+    let maxVisibleDots = opts && 'maxVisibleDots' in opts ? opts.maxVisibleDots : 5;
+    let fixedCenter = opts && 'fixedCenter' in opts ? opts.fixedCenter : false;
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    let dotWidth = opts && 'dotWidth' in opts ? opts.dotWidth : 16;
+    let dotHeight = opts && 'dotHeight' in opts ? opts.dotHeight : 16;
+    let spacing = opts && 'spacing' in opts ? opts.spacing : 8;
+    let radius = opts && 'radius' in opts ? opts.radius : 16;
+    let dotColor = opts && 'dotColor' in opts ? opts.dotColor : C[0] || CT.C0;
+    let activeDotColor = opts && 'activeDotColor' in opts ? opts.activeDotColor : C[14] || CT.C14;
+    let strokeWidth = opts && 'strokeWidth' in opts ? opts.strokeWidth : 1;
+    let paintStyle = opts && 'paintStyle' in opts ? opts.paintStyle : C[26] || CT.C26;
+    this[activeStrokeWidth$] = activeStrokeWidth;
+    this[activeDotScale$] = activeDotScale;
+    this[maxVisibleDots$] = maxVisibleDots;
+    this[fixedCenter$] = fixedCenter;
+    if (!(activeStrokeWidth != null)) dart.assertFailed(null, I[2], 41, 16, "activeStrokeWidth != null");
+    if (!(fixedCenter != null)) dart.assertFailed(null, I[2], 42, 16, "fixedCenter != null");
+    if (!(activeDotScale != null)) dart.assertFailed(null, I[2], 43, 16, "activeDotScale != null");
+    if (!(dart.notNull(activeDotScale) >= 0.0)) dart.assertFailed(null, I[2], 44, 16, "activeDotScale >= 0.0");
+    if (!(dart.notNull(maxVisibleDots) >= 5 && maxVisibleDots[$modulo](2) !== 0)) dart.assertFailed(null, I[2], 45, 16, "maxVisibleDots >= 5 && maxVisibleDots % 2 != 0");
+    scrolling_dots_effect.ScrollingDotsEffect.__proto__.new.call(this, {dotWidth: dotWidth, dotHeight: dotHeight, spacing: spacing, radius: radius, strokeWidth: strokeWidth, paintStyle: paintStyle, dotColor: dotColor, activeDotColor: activeDotColor});
     ;
-  }).prototype = alignment._MixedAlignment.prototype;
-  dart.addTypeTests(alignment._MixedAlignment);
-  dart.addTypeCaches(alignment._MixedAlignment);
-  dart.setMethodSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getMethods(alignment._MixedAlignment.__proto__),
-    _negate: dart.fnType(alignment._MixedAlignment, []),
-    '*': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '~/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '%': dart.fnType(alignment._MixedAlignment, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
+  }).prototype = scrolling_dots_effect.ScrollingDotsEffect.prototype;
+  dart.addTypeTests(scrolling_dots_effect.ScrollingDotsEffect);
+  dart.addTypeCaches(scrolling_dots_effect.ScrollingDotsEffect);
+  dart.setMethodSignature(scrolling_dots_effect.ScrollingDotsEffect, () => ({
+    __proto__: dart.getMethods(scrolling_dots_effect.ScrollingDotsEffect.__proto__),
+    buildPainter: dart.fnType(dart.legacy(indicator_painter.IndicatorPainter), [dart.legacy(core.int), dart.legacy(core.double)])
   }));
-  dart.setLibraryUri(alignment._MixedAlignment, I[1]);
-  dart.setFieldSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getFields(alignment._MixedAlignment.__proto__),
-    [_x]: dart.finalFieldType(core.double),
-    [_start]: dart.finalFieldType(core.double),
-    [_y]: dart.finalFieldType(core.double)
+  dart.setLibraryUri(scrolling_dots_effect.ScrollingDotsEffect, I[3]);
+  dart.setFieldSignature(scrolling_dots_effect.ScrollingDotsEffect, () => ({
+    __proto__: dart.getFields(scrolling_dots_effect.ScrollingDotsEffect.__proto__),
+    activeStrokeWidth: dart.finalFieldType(dart.legacy(core.double)),
+    activeDotScale: dart.finalFieldType(dart.legacy(core.double)),
+    maxVisibleDots: dart.finalFieldType(dart.legacy(core.int)),
+    fixedCenter: dart.finalFieldType(dart.legacy(core.bool))
   }));
-  var y$1 = dart.privateName(alignment, "TextAlignVertical.y");
-  alignment.TextAlignVertical = class TextAlignVertical extends core.Object {
-    get y() {
-      return this[y$1];
+  var effect$1 = dart.privateName(color_transition_painter, "TransitionPainter.effect");
+  color_transition_painter.TransitionPainter = class TransitionPainter extends indicator_painter.IndicatorPainter {
+    get effect() {
+      return this[effect$1];
     }
-    set y(value) {
-      super.y = value;
+    set effect(value) {
+      super.effect = value;
     }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "TextAlignVertical")) + "(y: " + dart.str(this.y) + ")";
+    paint(canvas, size) {
+      let t0, t0$;
+      let current = this.offset[$floor]();
+      let dotPaint = (t0 = ui.Paint.new(), (() => {
+        t0.strokeWidth = this.effect.strokeWidth;
+        t0.style = this.effect.paintStyle;
+        return t0;
+      })());
+      let dotOffset = dart.notNull(this.offset) - current;
+      for (let i = 0; i < dart.notNull(this.count); i = i + 1) {
+        let color = this.effect.dotColor;
+        if (i === current) {
+          color = ui.Color.lerp(this.effect.activeDotColor, this.effect.dotColor, dotOffset);
+        } else if (i - 1 === current) {
+          color = ui.Color.lerp(this.effect.activeDotColor, this.effect.dotColor, 1.0 - dotOffset);
+        }
+        let xPos = i * dart.notNull(this.distance);
+        let yPos = dart.notNull(size.height) / 2;
+        let rRect = new ui.RRect.fromLTRBR(xPos, yPos - dart.notNull(this.effect.dotHeight) / 2, xPos + dart.notNull(this.effect.dotWidth), yPos + dart.notNull(this.effect.dotHeight) / 2, this.dotRadius);
+        canvas.drawRRect(rRect, (t0$ = dotPaint, (() => {
+          t0$.color = color;
+          return t0$;
+        })()));
+      }
     }
   };
-  (alignment.TextAlignVertical.new = function(opts) {
-    let y = opts && 'y' in opts ? opts.y : null;
-    if (y == null) dart.nullFailed(I[0], 652, 19, "y");
-    this[y$1] = y;
-    if (!(y != null)) dart.assertFailed(null, I[0], 653, 15, "y != null");
-    if (!(dart.notNull(y) >= -1.0 && dart.notNull(y) <= 1.0)) dart.assertFailed(null, I[0], 654, 15, "y >= -1.0 && y <= 1.0");
+  (color_transition_painter.TransitionPainter.new = function(opts) {
+    let effect = opts && 'effect' in opts ? opts.effect : null;
+    let count = opts && 'count' in opts ? opts.count : null;
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    this[effect$1] = effect;
+    color_transition_painter.TransitionPainter.__proto__.new.call(this, offset, count, effect);
     ;
-  }).prototype = alignment.TextAlignVertical.prototype;
-  dart.addTypeTests(alignment.TextAlignVertical);
-  dart.addTypeCaches(alignment.TextAlignVertical);
-  dart.setLibraryUri(alignment.TextAlignVertical, I[1]);
-  dart.setFieldSignature(alignment.TextAlignVertical, () => ({
-    __proto__: dart.getFields(alignment.TextAlignVertical.__proto__),
-    y: dart.finalFieldType(core.double)
+  }).prototype = color_transition_painter.TransitionPainter.prototype;
+  dart.addTypeTests(color_transition_painter.TransitionPainter);
+  dart.addTypeCaches(color_transition_painter.TransitionPainter);
+  dart.setMethodSignature(color_transition_painter.TransitionPainter, () => ({
+    __proto__: dart.getMethods(color_transition_painter.TransitionPainter.__proto__),
+    paint: dart.fnType(dart.void, [dart.legacy(ui.Canvas), dart.legacy(ui.Size)])
   }));
-  dart.defineExtensionMethods(alignment.TextAlignVertical, ['toString']);
-  dart.defineLazy(alignment.TextAlignVertical, {
-    /*alignment.TextAlignVertical.top*/get top() {
-      return C[20] || CT.C20;
-    },
-    /*alignment.TextAlignVertical.center*/get center() {
-      return C[21] || CT.C21;
-    },
-    /*alignment.TextAlignVertical.bottom*/get bottom() {
-      return C[22] || CT.C22;
+  dart.setLibraryUri(color_transition_painter.TransitionPainter, I[4]);
+  dart.setFieldSignature(color_transition_painter.TransitionPainter, () => ({
+    __proto__: dart.getFields(color_transition_painter.TransitionPainter.__proto__),
+    effect: dart.finalFieldType(dart.legacy(color_transition_effect.ColorTransitionEffect))
+  }));
+  var activeStrokeWidth$0 = dart.privateName(color_transition_effect, "ColorTransitionEffect.activeStrokeWidth");
+  color_transition_effect.ColorTransitionEffect = class ColorTransitionEffect extends indicator_effect.IndicatorEffect {
+    get activeStrokeWidth() {
+      return this[activeStrokeWidth$0];
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/painting/alignment.dart", {
-    "package:flutter/src/painting/alignment.dart": alignment
+    set activeStrokeWidth(value) {
+      super.activeStrokeWidth = value;
+    }
+    buildPainter(count, offset) {
+      return new color_transition_painter.TransitionPainter.new({count: count, offset: offset, effect: this});
+    }
+  };
+  (color_transition_effect.ColorTransitionEffect.new = function(opts) {
+    let activeStrokeWidth = opts && 'activeStrokeWidth' in opts ? opts.activeStrokeWidth : 1.5;
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    let dotWidth = opts && 'dotWidth' in opts ? opts.dotWidth : 16;
+    let dotHeight = opts && 'dotHeight' in opts ? opts.dotHeight : 16;
+    let spacing = opts && 'spacing' in opts ? opts.spacing : 8;
+    let radius = opts && 'radius' in opts ? opts.radius : 16;
+    let dotColor = opts && 'dotColor' in opts ? opts.dotColor : C[0] || CT.C0;
+    let activeDotColor = opts && 'activeDotColor' in opts ? opts.activeDotColor : C[14] || CT.C14;
+    let strokeWidth = opts && 'strokeWidth' in opts ? opts.strokeWidth : 1;
+    let paintStyle = opts && 'paintStyle' in opts ? opts.paintStyle : C[26] || CT.C26;
+    this[activeStrokeWidth$0] = activeStrokeWidth;
+    if (!(activeDotColor != null)) dart.assertFailed(null, I[5], 23, 16, "activeDotColor != null");
+    if (!(activeStrokeWidth != null)) dart.assertFailed(null, I[5], 24, 16, "activeStrokeWidth != null");
+    color_transition_effect.ColorTransitionEffect.__proto__.new.call(this, {dotWidth: dotWidth, dotHeight: dotHeight, spacing: spacing, radius: radius, strokeWidth: strokeWidth, paintStyle: paintStyle, dotColor: dotColor, activeDotColor: activeDotColor});
+    ;
+  }).prototype = color_transition_effect.ColorTransitionEffect.prototype;
+  dart.addTypeTests(color_transition_effect.ColorTransitionEffect);
+  dart.addTypeCaches(color_transition_effect.ColorTransitionEffect);
+  dart.setMethodSignature(color_transition_effect.ColorTransitionEffect, () => ({
+    __proto__: dart.getMethods(color_transition_effect.ColorTransitionEffect.__proto__),
+    buildPainter: dart.fnType(dart.legacy(indicator_painter.IndicatorPainter), [dart.legacy(core.int), dart.legacy(core.double)])
+  }));
+  dart.setLibraryUri(color_transition_effect.ColorTransitionEffect, I[6]);
+  dart.setFieldSignature(color_transition_effect.ColorTransitionEffect, () => ({
+    __proto__: dart.getFields(color_transition_effect.ColorTransitionEffect.__proto__),
+    activeStrokeWidth: dart.finalFieldType(dart.legacy(core.double))
+  }));
+  dart.trackLibraries("packages/smooth_page_indicator/src/painters/scrolling_dots_painter_with_fixed_center.dart", {
+    "package:smooth_page_indicator/src/painters/scrolling_dots_painter_with_fixed_center.dart": scrolling_dots_painter_with_fixed_center,
+    "package:smooth_page_indicator/src/painters/scrolling_dots_painter.dart": scrolling_dots_painter,
+    "package:smooth_page_indicator/src/effects/scrolling_dots_effect.dart": scrolling_dots_effect,
+    "package:smooth_page_indicator/src/painters/color_transition_painter.dart": color_transition_painter,
+    "package:smooth_page_indicator/src/effects/color_transition_effect.dart": color_transition_effect,
+    "package:smooth_page_indicator/smooth_page_indicator.dart": smooth_page_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["alignment.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/painting/alignment.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["scrolling_dots_painter_with_fixed_center.dart","scrolling_dots_painter.dart","../effects/scrolling_dots_effect.dart","color_transition_painter.dart","../effects/color_transition_effect.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAM4B;;;;;;UASR,QAAa;;AACzB,oBAAU,AAAO;AACjB,sBAAmB,aAAP,eAAS,OAAO;AAC5B,2CAAW;AACX,yBAAc,AAAO;AACrB,mBAAQ,AAAO;;;AAEnB,eAAS,QAAQ,GAAG,AAAM,KAAD,gBAAG,aAAO,QAAA,AAAK,KAAA;AAClC,oBAAQ,AAAO;AACnB,YAAI,AAAM,KAAD,KAAI,OAAO;AACmD,UAArE,QAAc,cAAK,AAAO,4BAAgB,AAAO,sBAAU,SAAS;cAC/D,KAAI,AAAM,AAAI,KAAL,GAAG,MAAK,OAAO;AAEwC,UADrE,QACU,cAAK,AAAO,4BAAgB,AAAO,sBAAU,AAAE,IAAE,SAAS;;AAGlE,oBAAQ;AACN,4BAAgB;AAChB,2BAAe,AAAE,IAAE,SAAS;AAC5B,0BAA0C,CAAL,aAAtB,AAAO,8BAAiB,KAAK;AAElD,YAAU,aAAN,2BAAQ,AAAO;AACjB,cAAI,AAAM,KAAD,IAAI,AAAQ,OAAD,GAAG,WAAW,IAC9B,AAAM,KAAD,IAAI,AAAQ,OAAD,IAAI,AAAY,WAAD,GAAG;AACpC,gBAAI,AAAM,KAAD,KAAK,AAAQ,OAAD,GAAG,WAAW;AACwB,cAAzD,QAAQ,AAAc,aAAD,GAAwB,CAAnB,AAAE,IAAE,aAAa,IAAI,SAAS;kBACnD,KAAI,AAAM,KAAD,KAAI,AAAQ,OAAD,IAAI,AAAY,WAAD,GAAG;AACA,cAA3C,QAAQ,AAAE,IAAsB,CAAnB,AAAE,IAAE,aAAa,IAAI,SAAS;kBACtC,KAAI,AAAM,KAAD,KAAI,AAAQ,OAAD,GAAG,WAAW;AACD,cAAtC,QAAS,AAAc,aAAD,GAAG,YAAY;kBAChC,KAAI,AAAM,KAAD,KAAI,AAAQ,OAAD,IAAI,AAAY,WAAD,GAAG;AACR,cAAnC,QAAS,AAAc,aAAD,GAAG,SAAS;;;AAGpC;;;AAIE,oBAAQ,kBACZ,AAAK,IAAD,SACO,AAAI,aAAf,AAAK,IAAD,UAAS,IAAY,aAAP,gBAA0B,aAAhB,AAAO,qCAAW,AAAO,uBACrD,KAAK,EACL,KAAK;AAGyC,QAAhD,AAAO,MAAD,WAAW,KAAK,SAAE,QAAQ,EAAR;AAAU,sBAAQ,KAAK;;;;AAG3C,kBACF,kBAAY,AAAK,IAAD,SAAoB,aAAX,AAAK,IAAD,UAAS,GAAG,GAAG,AAAO;AAMlB,MALrC,AAAO,MAAD,WACF,KAAK,0BACL;AACI,qBAAQ,AAAO;AACf,2BAAc,AAAO;AACrB,qBAAsB;;;IAChC;kBAEyB,cAAqB,eAAmB,GACrD;AACJ,wBAA8B,aAAhB,AAAO,qCAAW,KAAK;AACrC,yBAAgC,aAAjB,AAAO,sCAAY,KAAK;AAEvC,iBAAqB,aAAd,aAAa,IAAsC,CAAlB,aAAhB,AAAO,qCAAW,AAAO,qCAAW,CAAC;AAC7D,iBAAoB,aAAb,YAAY,IAAG;AAC5B,YAAa,wBACX,AAAK,IAAD,GAAG,AAAY,WAAD,GAAG,GACrB,AAAK,IAAD,GAAG,AAAa,YAAD,GAAG,GACtB,AAAK,IAAD,GAAG,AAAY,WAAD,GAAG,GACrB,AAAK,IAAD,GAAG,AAAa,YAAD,GAAG,GACtB,AAAU,oBAAE,KAAK;IAErB;;;QA9EiB;QACD;QACG;IAFF;AAGZ,0GAAM,MAAM,EAAE,KAAK,EAAE,MAAM;;EAAC;;;;;;;;;;;;;;;ICHP;;;;;;UASR,QAAa;;AACvB,oBAAgB,AAAO;AACvB,wBAA0C,CAAL,aAAtB,AAAO,8BAAiB;AACvC,4BACD,AAAQ,AAAc,OAAf,GAAG,WAAW,IAAU,AAAI,aAAV,cAAQ,iBAAI,AAAO,8BACvC,IACA,mBAAI,AAAQ,OAAD,GAAG,WAAW,EAAQ,aAAN,2BAAQ,AAAO;AAC9C,2BACF,mBAAI,AAAgB,eAAD,gBAAG,AAAO,6BAAsB,aAAN,cAAQ;AACnD,6BAAmB,AAAQ,OAAD,GAAG,WAAW;AACxC,+BAAqB,AAAQ,OAAD,IAAW,AAAK,aAAX,cAAQ,IAAK,WAAW;AACzD,+BAAsB,AAAQ,AAAK,OAAN,GAAG,MAAM,AAAY,WAAD,GAAG;AACpD,8BAAoB,AAAQ,AAAI,OAAL,GAAG,MAAY,AAAK,aAAX,cAAQ,IAAK,WAAW;AAE5D,sBAAmB,aAAP,eAAS,AAAO;AAC5B,2CAAW;AACb,yBAAc,AAAO;AACrB,mBAAQ,AAAO;;;AAEb,0BAAiB,AAAiB,gBAAD,IAAI,kBAAkB,GACvD,EAAE,AAAgB,eAAD,gBAAG,kBACpB,EAAyB,CAAf,aAAP,eAAS,WAAW,iBAAI;AAE3B,0BAAgB;AAChB,wBAAoC,aAAtB,AAAO,8BAAiB;AAC5C,eAAS,QAAQ,eAAe,EAAE,AAAM,KAAD,IAAI,cAAc,EAAE,QAAA,AAAK,KAAA;AAC1D,oBAAQ,AAAO;AAEf,oBAAQ;AAEZ,YAAI,AAAM,KAAD,KAAI,OAAO;AACmD,UAArE,QAAc,cAAK,AAAO,4BAAgB,AAAO,sBAAU,SAAS;AACX,UAAzD,QAA8B,aAAtB,AAAO,8BAAkB,AAAY,WAAD,GAAG,SAAS;cACnD,KAAI,AAAM,AAAI,KAAL,GAAG,MAAK,OAAO;AACwC,UAArE,QAAc,cAAK,AAAO,sBAAU,AAAO,4BAAgB,SAAS;AAC7B,UAAvC,QAAQ,AAAI,MAAG,AAAY,WAAD,GAAG,SAAS;cACjC,KAAU,AAAI,aAAV,cAAQ,iBAAI,AAAO;AACjB,UAAX,QAAQ;cACH,KAAI,AAAM,KAAD,KAAI,eAAe;AACjC,cAAI,kBAAkB;AACa,YAAjC,QAAS,AAAI,OAAG,AAAI,MAAE,SAAS;gBAC1B,KAAI,kBAAkB;AACN,YAArB,QAAQ,aAAa;gBAChB,MAAK,gBAAgB;AACe,YAAzC,QAAQ,AAAc,aAAD,IAAI,AAAI,MAAE,SAAS;;cAErC,KAAI,AAAM,KAAD,KAAI,AAAgB,eAAD,GAAG,OAChC,gBAAgB,IAAI,kBAAkB;AACO,UAAjD,QAAQ,AAAI,MAAG,AAAU,SAAD,IAAI,AAAI,MAAE,aAAa;cAC1C,KAAI,AAAM,KAAD,KAAI,AAAe,cAAD,GAAG;AACnC,cAAI,gBAAgB;AACG,YAArB,QAAQ,aAAa;gBAChB,MAAK,kBAAkB;AAC+B,YAA3D,QAAQ,AAAc,aAAD,GAA0B,CAArB,AAAI,MAAE,aAAa,IAAI,SAAS;;cAEvD,KAAI,AAAM,KAAD,KAAI,cAAc;AAChC,cAAI,gBAAgB;AACP,YAAX,QAAQ;gBACH,KAAI,iBAAiB;AACT,YAAjB,QAAQ,SAAS;gBACZ,MAAK,kBAAkB;AACK,YAAjC,QAAQ,AAAc,aAAD,GAAG,SAAS;;;AAI/B,0BAA+B,aAAhB,AAAO,wBAAW,KAAK;AACtC,2BAAgC,aAAjB,AAAO,yBAAY,KAAK;AACvC,mBAAmB,aAAZ,AAAK,IAAD,WAAU;AACrB,mBAAuB,AAAI,AAAgB,aAApC,AAAO,wBAAW,IAAI,aAAa,GAAI,AAAM,KAAD,gBAAG;AAEtD,oBAAc,uBAClB,AAAK,AAAkB,IAAnB,GAAG,AAAY,WAAD,GAAG,IAAmB,aAAf,AAAO,uBAAU,GAC1C,AAAK,IAAD,GAAG,AAAa,YAAD,GAAG,GACtB,AAAK,AAAkB,IAAnB,GAAG,AAAY,WAAD,GAAG,IAAmB,aAAf,AAAO,uBAAU,GAC1C,AAAK,IAAD,GAAG,AAAa,YAAD,GAAG,GACtB,AAAU,oBAAE,KAAK;AAG6B,QAAhD,AAAO,MAAD,WAAW,KAAK,SAAE,QAAQ,EAAR;AAAU,sBAAQ,KAAK;;;;IAEnD;;;QAtFiB;QACD;QACG;IAFF;AAGZ,yEAAM,MAAM,EAAE,KAAK,EAAE,MAAM;;EAAC;;;;;;;;;;;;;;;;;;;;ICHpB;;;;;;IAIA;;;;;;IAKH;;;;;;IAGC;;;;;;kBAiCY;AAEjB,kBAA6B,CAAX,aAAT,8BAAW,iBAAY,mBAAI,KAAK,EAAE;AAC/C,oBAAI,qBAAqB,aAAN,KAAK,kBAAI;AACsB,QAAhD,QAA0B,CAAV,AAAK,aAAX,KAAK,IAAG,IAAK,MAAe,aAAT,8BAAW;;AAE1C,YAAO,iBAAK,KAAK,EAAY,aAAV,+BAAY;IACjC;gBAGuB,IAAQ,OAAc;AACrC,wBAAmC,CAAL,aAAf,uBAAiB;AACtC,oBAAI;AACF,cAA6C,AAC7B,cADH,kBAAY,EAAE,EAAE,KAAK,EAAE,OAAO,KACvC,WAAW,GACX,AAAQ,OAAD;;AAEL,8BACO,AAAc,aAAtB,OAAO,IAAG,WAAW,IAAU,AAAI,aAAV,KAAK,IAAG,iBAAI,uBAChC,IACA,AAAmD,mBAAvC,aAAR,OAAO,IAAG,WAAW,EAAQ,aAAN,KAAK,iBAAG;AACvC,6BACF,AAAiD,mBAA7C,AAAgB,eAAD,gBAAG,sBAAsB,aAAN,KAAK,IAAG;AAC9C,qBAAS;AACb,iBAAS,QAAQ,eAAe,EAAE,AAAM,KAAD,IAAI,cAAc,EAAE,QAAA,AAAK,KAAA;AAC9D,cAAO,aAAH,EAAE,MAAK,SAAA,AAAO,MAAD,IAAa,aAAT,8BAAW;AAC9B,kBAAO,MAAK;;;;AAIlB,YAAO,EAAC;IACV;iBAGkC,OAAc;AAC9C,oBAAI;AACF,cAAO,8FACI,KAAK,UAAU,MAAM,UAAU;;AAE1C,cAAO,6DAA4B,KAAK,UAAU,MAAM,UAAU;;IAEtE;;;QAvEO;QACA;QACA;QACA;QACE;QACA;QACA;QACA;QACA;QACD;QACA;QACC;QACO;IAZT;IACA;IACA;IACA;UAUM,AAAkB,iBAAD;UACjB,AAAY,WAAD;UACX,AAAe,cAAD;UACC,aAAf,cAAc,KAAI;UACH,AAAK,aAApB,cAAc,KAAI,KAAK,AAAe,AAAI,cAAL,UAAG,OAAK;AACpD,kFACY,QAAQ,aACP,SAAS,WACX,OAAO,UACR,MAAM,eACD,WAAW,cACZ,UAAU,YACZ,QAAQ,kBACF,cAAc;;EAC/B;;;;;;;;;;;;;;;;;IC/CqB;;;;;;UASV,QAAa;;AACvB,oBAAU,AAAO;AACjB,2CAAW;AACb,yBAAc,AAAO;AACrB,mBAAQ,AAAO;;;AAEb,sBAAmB,aAAP,eAAS,OAAO;AAClC,eAAS,IAAI,GAAG,AAAE,CAAD,gBAAG,aAAO,IAAA,AAAC,CAAA;AACtB,oBAAQ,AAAO;AACnB,YAAI,AAAE,CAAD,KAAI,OAAO;AACuD,UAArE,QAAc,cAAK,AAAO,4BAAgB,AAAO,sBAAU,SAAS;cAC/D,KAAI,AAAE,AAAI,CAAL,GAAG,MAAK,OAAO;AAE8C,UADvE,QACU,cAAK,AAAO,4BAAgB,AAAO,sBAAU,AAAI,MAAE,SAAS;;AAGlE,mBAAQ,AAAE,CAAD,gBAAG;AACZ,mBAAmB,aAAZ,AAAK,IAAD,WAAU;AACrB,oBAAc,uBAClB,IAAI,EACJ,AAAK,IAAD,GAAoB,aAAjB,AAAO,yBAAY,GAC1B,AAAK,IAAD,gBAAG,AAAO,uBACd,AAAK,IAAD,GAAoB,aAAjB,AAAO,yBAAY,GAC1B;AAG8C,QAAhD,AAAO,MAAD,WAAW,KAAK,SAAE,QAAQ,EAAR;AAAU,sBAAQ,KAAK;;;;IAEnD;;;QAlCiB;QACD;QACG;IAFF;AAGZ,wEAAM,MAAM,EAAE,KAAK,EAAE,MAAM;;EAAC;;;;;;;;;;;;;;ICJpB;;;;;;iBA0BqB,OAAc;AAC9C,YAAO,4DAAyB,KAAK,UAAU,MAAM,UAAU;IACjE;;;QAzBO;QACE;QACA;QACA;QACA;QACA;QACD;QACA;QACC;QACO;IATT;UAUM,AAAe,cAAD;UACd,AAAkB,iBAAD;AACxB,sFACc,QAAQ,aACP,SAAS,WACX,OAAO,UACR,MAAM,eACD,WAAW,cACZ,UAAU,YACZ,QAAQ,kBACF,cAAc;;EAAC","file":"../../../../../../../../../../D:/packages/smooth_page_indicator/src/painters/scrolling_dots_painter_with_fixed_center.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__alignment: alignment
+    src__painters__scrolling_dots_painter_with_fixed_center: scrolling_dots_painter_with_fixed_center,
+    src__painters__scrolling_dots_painter: scrolling_dots_painter,
+    src__effects__scrolling_dots_effect: scrolling_dots_effect,
+    src__painters__color_transition_painter: color_transition_painter,
+    src__effects__color_transition_effect: color_transition_effect,
+    smooth_page_indicator: smooth_page_indicator
   };
 }));
 
-//# sourceMappingURL=alignment.dart.lib.js.map
+//# sourceMappingURL=scrolling_dots_painter_with_fixed_center.dart.lib.js.map

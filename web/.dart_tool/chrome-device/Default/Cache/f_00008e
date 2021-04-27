@@ -1,18 +1,57 @@
-define(['dart_sdk'], (function load__packages__flutter__src__gestures__lsq_solver_dart(dart_sdk) {
+define(['dart_sdk'], (function load__packages__asn1lib__asn1lib_dart(dart_sdk) {
   'use strict';
   const core = dart_sdk.core;
-  const _native_typed_data = dart_sdk._native_typed_data;
-  const math = dart_sdk.math;
   const _internal = dart_sdk._internal;
+  const _native_typed_data = dart_sdk._native_typed_data;
+  const typed_data = dart_sdk.typed_data;
+  const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
+  const _js_helper = dart_sdk._js_helper;
+  const convert = dart_sdk.convert;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  var lsq_solver = Object.create(dart.library);
-  var $_get = dartx._get;
-  var $_set = dartx._set;
+  var asn1lib = Object.create(dart.library);
   var $length = dartx.length;
+  var $_get = dartx._get;
+  var $ceil = dartx.ceil;
+  var $_set = dartx._set;
+  var $sublist = dartx.sublist;
+  var $runtimeType = dartx.runtimeType;
+  var $hashCode = dartx.hashCode;
+  var $setRange = dartx.setRange;
+  var $buffer = dartx.buffer;
+  var $offsetInBytes = dartx.offsetInBytes;
+  var $toRadixString = dartx.toRadixString;
+  var $forEach = dartx.forEach;
+  var $codeUnits = dartx.codeUnits;
+  var $add = dartx.add;
+  var $truncate = dartx.truncate;
+  var $rightShift = dartx['>>'];
+  var $insert = dartx.insert;
+  var $split = dartx.split;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $join = dartx.join;
+  var $toLowerCase = dartx.toLowerCase;
+  var $entries = dartx.entries;
+  var $addAll = dartx.addAll;
+  var $substring = dartx.substring;
+  var $toString = dartx.toString;
+  var $padLeft = dartx.padLeft;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _: () => T
+    Uint8ListN: () => (T.Uint8ListN = dart.constFn(dart.nullable(typed_data.Uint8List)))(),
+    JSArrayOfint: () => (T.JSArrayOfint = dart.constFn(_interceptors.JSArray$(core.int)))(),
+    intTovoid: () => (T.intTovoid = dart.constFn(dart.fnType(dart.void, [core.int])))(),
+    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    JSArrayOfASN1Object: () => (T.JSArrayOfASN1Object = dart.constFn(_interceptors.JSArray$(asn1lib.ASN1Object)))(),
+    ASN1ObjectTovoid: () => (T.ASN1ObjectTovoid = dart.constFn(dart.fnType(dart.void, [asn1lib.ASN1Object])))(),
+    LinkedHashSetOfASN1Object: () => (T.LinkedHashSetOfASN1Object = dart.constFn(collection.LinkedHashSet$(asn1lib.ASN1Object)))(),
+    StringToint: () => (T.StringToint = dart.constFn(dart.fnType(core.int, [core.String])))(),
+    StringAndStringTovoid: () => (T.StringAndStringTovoid = dart.constFn(dart.fnType(dart.void, [core.String, core.String])))(),
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(_js_helper.IdentityMap$(core.String, core.String)))(),
+    IdentityMapOfString$ASN1ObjectIdentifier: () => (T.IdentityMapOfString$ASN1ObjectIdentifier = dart.constFn(_js_helper.IdentityMap$(core.String, asn1lib.ASN1ObjectIdentifier)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -28,272 +67,1662 @@ define(['dart_sdk'], (function load__packages__flutter__src__gestures__lsq_solve
   });
   var C = [];
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/gestures/lsq_solver.dart",
-    "package:flutter/src/gestures/lsq_solver.dart"
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1integer.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1object.dart",
+    "package:asn1lib/asn1lib.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1enumerated.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1util.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1octetstring.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1exception.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1sequence.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1length.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1parser.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1null.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1boolean.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1set.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1objectidentifier.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1bitstring.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1printablestring.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1utf8string.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1ia5string.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1utctime.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1generalizedtime.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1teletextstring.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/asn1lib-1.0.0/lib/asn1ipaddress.dart"
   ];
-  var _offset = dart.privateName(lsq_solver, "_offset");
-  var _length = dart.privateName(lsq_solver, "_length");
-  var _elements = dart.privateName(lsq_solver, "_elements");
-  lsq_solver._Vector = class _Vector extends core.Object {
-    _get(i) {
-      if (i == null) dart.nullFailed(I[0], 29, 26, "i");
-      return this[_elements][$_get](dart.notNull(i) + dart.notNull(this[_offset]));
+  var __ASN1Integer__intValue = dart.privateName(asn1lib, "_#ASN1Integer#_intValue");
+  var __ASN1Integer__intValue_isSet = dart.privateName(asn1lib, "_#ASN1Integer#_intValue#isSet");
+  var _intValue = dart.privateName(asn1lib, "_intValue");
+  var _encode = dart.privateName(asn1lib, "_encode");
+  var _valueByteLength = dart.privateName(asn1lib, "_valueByteLength");
+  var _encodeHeader = dart.privateName(asn1lib, "_encodeHeader");
+  var _setValueBytes = dart.privateName(asn1lib, "_setValueBytes");
+  var _encodedBytes = dart.privateName(asn1lib, "_encodedBytes");
+  var _encodedBytes$ = dart.privateName(asn1lib, "ASN1Object._encodedBytes");
+  var _valueStartPosition$ = dart.privateName(asn1lib, "_valueStartPosition");
+  var _tag = dart.privateName(asn1lib, "_tag");
+  var _initFromBytes = dart.privateName(asn1lib, "_initFromBytes");
+  asn1lib.ASN1Object = class ASN1Object extends core.Object {
+    get [_encodedBytes]() {
+      return this[_encodedBytes$];
     }
-    _set(i, value$) {
-      let value = value$;
-      if (i == null) dart.nullFailed(I[0], 30, 25, "i");
-      if (value == null) dart.nullFailed(I[0], 30, 35, "value");
-      this[_elements][$_set](dart.notNull(i) + dart.notNull(this[_offset]), value);
-      return value$;
+    set [_encodedBytes](value) {
+      this[_encodedBytes$] = value;
     }
-    ['*'](a) {
-      if (a == null) dart.nullFailed(I[0], 34, 29, "a");
-      let result = 0.0;
-      for (let i = 0; i < dart.notNull(this[_length]); i = i + 1)
-        result = result + dart.notNull(this._get(i)) * dart.notNull(a._get(i));
-      return result;
+    get tag() {
+      return this[_tag];
     }
-    norm() {
-      return math.sqrt(this['*'](this));
+    get encodedBytes() {
+      if (this[_encodedBytes] == null) {
+        this[_encode]();
+      }
+      if (this[_encodedBytes] == null) {
+        dart.throw(new asn1lib.ASN1Exception.new("ASN1 Encoding failed. This should never happen"));
+      }
+      return dart.nullCheck(this[_encodedBytes]);
     }
-  };
-  (lsq_solver._Vector.new = function(size) {
-    if (size == null) dart.nullFailed(I[0], 13, 15, "size");
-    this[_offset] = 0;
-    this[_length] = size;
-    this[_elements] = _native_typed_data.NativeFloat64List.new(size);
-    ;
-  }).prototype = lsq_solver._Vector.prototype;
-  (lsq_solver._Vector.fromVOL = function(values, offset, length) {
-    if (values == null) dart.nullFailed(I[0], 18, 32, "values");
-    if (offset == null) dart.nullFailed(I[0], 18, 44, "offset");
-    if (length == null) dart.nullFailed(I[0], 18, 56, "length");
-    this[_offset] = offset;
-    this[_length] = length;
-    this[_elements] = values;
-    ;
-  }).prototype = lsq_solver._Vector.prototype;
-  dart.addTypeTests(lsq_solver._Vector);
-  dart.addTypeCaches(lsq_solver._Vector);
-  dart.setMethodSignature(lsq_solver._Vector, () => ({
-    __proto__: dart.getMethods(lsq_solver._Vector.__proto__),
-    _get: dart.fnType(core.double, [core.int]),
-    _set: dart.fnType(dart.void, [core.int, core.double]),
-    '*': dart.fnType(core.double, [lsq_solver._Vector]),
-    norm: dart.fnType(core.double, [])
-  }));
-  dart.setLibraryUri(lsq_solver._Vector, I[1]);
-  dart.setFieldSignature(lsq_solver._Vector, () => ({
-    __proto__: dart.getFields(lsq_solver._Vector.__proto__),
-    [_offset]: dart.finalFieldType(core.int),
-    [_length]: dart.finalFieldType(core.int),
-    [_elements]: dart.finalFieldType(core.List$(core.double))
-  }));
-  var _columns = dart.privateName(lsq_solver, "_columns");
-  lsq_solver._Matrix = class _Matrix extends core.Object {
-    get(row, col) {
-      if (row == null) dart.nullFailed(I[0], 53, 18, "row");
-      if (col == null) dart.nullFailed(I[0], 53, 27, "col");
-      return this[_elements][$_get](dart.notNull(row) * dart.notNull(this[_columns]) + dart.notNull(col));
+    get isEncoded() {
+      return this[_encodedBytes] != null;
     }
-    set(row, col, value) {
-      if (row == null) dart.nullFailed(I[0], 54, 16, "row");
-      if (col == null) dart.nullFailed(I[0], 54, 25, "col");
-      if (value == null) dart.nullFailed(I[0], 54, 37, "value");
-      this[_elements][$_set](dart.notNull(row) * dart.notNull(this[_columns]) + dart.notNull(col), value);
+    [_initFromBytes]() {
+      let l = asn1lib.ASN1Length.decodeLength(dart.nullCheck(this[_encodedBytes]));
+      this[_valueByteLength] = l.length;
+      this[_valueStartPosition$] = l.valueStartPosition;
     }
-    getRow(row) {
-      if (row == null) dart.nullFailed(I[0], 58, 22, "row");
-      return new lsq_solver._Vector.fromVOL(this[_elements], dart.notNull(row) * dart.notNull(this[_columns]), this[_columns]);
+    get totalEncodedByteLength() {
+      return dart.notNull(this[_valueStartPosition$]) + dart.nullCheck(this[_valueByteLength]);
+    }
+    [_encodeHeader]() {
+      if (this[_encodedBytes] == null) {
+        let lenEnc = asn1lib.ASN1Length.encodeLength(dart.nullCheck(this[_valueByteLength]));
+        this[_encodedBytes] = _native_typed_data.NativeUint8List.new(1 + dart.notNull(lenEnc[$length]) + dart.nullCheck(this[_valueByteLength]));
+        dart.nullCheck(this[_encodedBytes])[$_set](0, this.tag);
+        dart.nullCheck(this[_encodedBytes])[$setRange](1, 1 + dart.notNull(lenEnc[$length]), lenEnc, 0);
+        this[_valueStartPosition$] = 1 + dart.notNull(lenEnc[$length]);
+      }
+      return this[_encodedBytes];
+    }
+    [_encode]() {
+      return this[_encodeHeader]();
+    }
+    valueBytes() {
+      return typed_data.Uint8List.view(dart.nullCheck(this[_encodedBytes])[$buffer], dart.notNull(this[_valueStartPosition$]) + dart.notNull(dart.nullCheck(this[_encodedBytes])[$offsetInBytes]), this[_valueByteLength]);
+    }
+    contentBytes() {
+      return this.valueBytes();
+    }
+    [_setValueBytes](valBytes) {
+      if (valBytes == null) dart.nullFailed(I[1], 158, 33, "valBytes");
+      this.encodedBytes[$setRange](this[_valueStartPosition$], dart.notNull(this[_valueStartPosition$]) + dart.notNull(valBytes[$length]), valBytes);
+    }
+    toHexString() {
+      return asn1lib.ASN1Util.listToString(this.encodedBytes);
+    }
+    toString() {
+      return "ASN1Object(tag=" + this.tag[$toRadixString](16) + " valueByteLength=" + dart.str(this[_valueByteLength]) + ") startpos=" + dart.str(this[_valueStartPosition$]) + " bytes=" + dart.str(this.toHexString());
     }
   };
-  (lsq_solver._Matrix.new = function(rows, cols) {
-    if (rows == null) dart.nullFailed(I[0], 46, 15, "rows");
-    if (cols == null) dart.nullFailed(I[0], 46, 25, "cols");
-    this[_columns] = cols;
-    this[_elements] = _native_typed_data.NativeFloat64List.new(dart.notNull(rows) * dart.notNull(cols));
+  (asn1lib.ASN1Object.new = function(opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 0;
+    if (tag == null) dart.nullFailed(I[1], 47, 19, "tag");
+    this[_encodedBytes$] = null;
+    this[_valueByteLength] = null;
+    this[_valueStartPosition$] = 2;
+    this[_tag] = tag;
     ;
-  }).prototype = lsq_solver._Matrix.prototype;
-  dart.addTypeTests(lsq_solver._Matrix);
-  dart.addTypeCaches(lsq_solver._Matrix);
-  dart.setMethodSignature(lsq_solver._Matrix, () => ({
-    __proto__: dart.getMethods(lsq_solver._Matrix.__proto__),
-    get: dart.fnType(core.double, [core.int, core.int]),
-    set: dart.fnType(dart.void, [core.int, core.int, core.double]),
-    getRow: dart.fnType(lsq_solver._Vector, [core.int])
+  }).prototype = asn1lib.ASN1Object.prototype;
+  (asn1lib.ASN1Object.preEncoded = function(tag, valBytes) {
+    if (tag == null) dart.nullFailed(I[1], 55, 29, "tag");
+    if (valBytes == null) dart.nullFailed(I[1], 55, 44, "valBytes");
+    this[_encodedBytes$] = null;
+    this[_valueByteLength] = null;
+    this[_valueStartPosition$] = 2;
+    this[_tag] = tag;
+    this[_valueByteLength] = valBytes[$length];
+    this[_encodeHeader]();
+    dart.nullCheck(this[_encodedBytes])[$setRange](this[_valueStartPosition$], dart.notNull(this[_valueStartPosition$]) + dart.notNull(valBytes[$length]), valBytes);
+  }).prototype = asn1lib.ASN1Object.prototype;
+  (asn1lib.ASN1Object.fromBytes = function(bytes) {
+    this[_encodedBytes$] = null;
+    this[_valueByteLength] = null;
+    this[_valueStartPosition$] = 2;
+    this[_tag] = core.int.as(dart.dsend(bytes, '_get', [0]));
+    this[_encodedBytes] = T.Uint8ListN().as(bytes);
+    this[_initFromBytes]();
+  }).prototype = asn1lib.ASN1Object.prototype;
+  dart.addTypeTests(asn1lib.ASN1Object);
+  dart.addTypeCaches(asn1lib.ASN1Object);
+  dart.setMethodSignature(asn1lib.ASN1Object, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1Object.__proto__),
+    [_initFromBytes]: dart.fnType(dart.void, []),
+    [_encodeHeader]: dart.fnType(dart.nullable(typed_data.Uint8List), []),
+    [_encode]: dart.fnType(dart.nullable(typed_data.Uint8List), []),
+    valueBytes: dart.fnType(typed_data.Uint8List, []),
+    contentBytes: dart.fnType(dart.nullable(typed_data.Uint8List), []),
+    [_setValueBytes]: dart.fnType(dart.void, [core.List$(core.int)]),
+    toHexString: dart.fnType(core.String, [])
   }));
-  dart.setLibraryUri(lsq_solver._Matrix, I[1]);
-  dart.setFieldSignature(lsq_solver._Matrix, () => ({
-    __proto__: dart.getFields(lsq_solver._Matrix.__proto__),
-    [_columns]: dart.finalFieldType(core.int),
-    [_elements]: dart.finalFieldType(core.List$(core.double))
+  dart.setGetterSignature(asn1lib.ASN1Object, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1Object.__proto__),
+    tag: core.int,
+    encodedBytes: typed_data.Uint8List,
+    isEncoded: core.bool,
+    totalEncodedByteLength: core.int
   }));
-  var coefficients = dart.privateName(lsq_solver, "PolynomialFit.coefficients");
-  var __PolynomialFit_confidence = dart.privateName(lsq_solver, "_#PolynomialFit#confidence");
-  var __PolynomialFit_confidence_isSet = dart.privateName(lsq_solver, "_#PolynomialFit#confidence#isSet");
-  lsq_solver.PolynomialFit = class PolynomialFit extends core.Object {
-    get coefficients() {
-      return this[coefficients];
-    }
-    set coefficients(value) {
-      super.coefficients = value;
-    }
-    get confidence() {
+  dart.setLibraryUri(asn1lib.ASN1Object, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Object, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Object.__proto__),
+    [_tag]: dart.finalFieldType(core.int),
+    [_encodedBytes]: dart.fieldType(dart.nullable(typed_data.Uint8List)),
+    [_valueByteLength]: dart.fieldType(dart.nullable(core.int)),
+    [_valueStartPosition$]: dart.fieldType(core.int)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1Object, ['toString']);
+  asn1lib.ASN1Integer = class ASN1Integer extends asn1lib.ASN1Object {
+    get [_intValue]() {
       let t0;
-      return dart.test(this[__PolynomialFit_confidence_isSet]) ? (t0 = this[__PolynomialFit_confidence], t0) : dart.throw(new _internal.LateError.fieldNI("confidence"));
+      return dart.test(this[__ASN1Integer__intValue_isSet]) ? (t0 = this[__ASN1Integer__intValue], t0) : dart.throw(new _internal.LateError.fieldNI("_intValue"));
     }
-    set confidence(t0) {
-      if (t0 == null) dart.nullFailed(I[0], 78, 15, "null");
-      this[__PolynomialFit_confidence_isSet] = true;
-      this[__PolynomialFit_confidence] = t0;
+    set [_intValue](t0) {
+      if (t0 == null) dart.nullFailed(I[0], 11, 15, "null");
+      this[__ASN1Integer__intValue_isSet] = true;
+      this[__ASN1Integer__intValue] = t0;
     }
-  };
-  (lsq_solver.PolynomialFit.new = function(degree) {
-    if (degree == null) dart.nullFailed(I[0], 70, 21, "degree");
-    this[__PolynomialFit_confidence] = null;
-    this[__PolynomialFit_confidence_isSet] = false;
-    this[coefficients] = _native_typed_data.NativeFloat64List.new(dart.notNull(degree) + 1);
-    ;
-  }).prototype = lsq_solver.PolynomialFit.prototype;
-  dart.addTypeTests(lsq_solver.PolynomialFit);
-  dart.addTypeCaches(lsq_solver.PolynomialFit);
-  dart.setGetterSignature(lsq_solver.PolynomialFit, () => ({
-    __proto__: dart.getGetters(lsq_solver.PolynomialFit.__proto__),
-    confidence: core.double
-  }));
-  dart.setSetterSignature(lsq_solver.PolynomialFit, () => ({
-    __proto__: dart.getSetters(lsq_solver.PolynomialFit.__proto__),
-    confidence: core.double
-  }));
-  dart.setLibraryUri(lsq_solver.PolynomialFit, I[1]);
-  dart.setFieldSignature(lsq_solver.PolynomialFit, () => ({
-    __proto__: dart.getFields(lsq_solver.PolynomialFit.__proto__),
-    coefficients: dart.finalFieldType(core.List$(core.double)),
-    [__PolynomialFit_confidence]: dart.fieldType(dart.nullable(core.double)),
-    [__PolynomialFit_confidence_isSet]: dart.fieldType(core.bool)
-  }));
-  var x$ = dart.privateName(lsq_solver, "LeastSquaresSolver.x");
-  var y$ = dart.privateName(lsq_solver, "LeastSquaresSolver.y");
-  var w$ = dart.privateName(lsq_solver, "LeastSquaresSolver.w");
-  lsq_solver.LeastSquaresSolver = class LeastSquaresSolver extends core.Object {
-    get x() {
-      return this[x$];
+    get intValue() {
+      return this[_intValue].toInt();
     }
-    set x(value) {
-      super.x = value;
+    get valueAsBigInteger() {
+      return this[_intValue];
     }
-    get y() {
-      return this[y$];
+    [_encode]() {
+      let t = asn1lib.ASN1Integer.encodeBigInt(this[_intValue]);
+      this[_valueByteLength] = t[$length];
+      super[_encodeHeader]();
+      this[_setValueBytes](t);
+      return this[_encodedBytes];
     }
-    set y(value) {
-      super.y = value;
+    static encodeInt(x) {
+      if (x == null) dart.nullFailed(I[0], 37, 34, "x");
+      return asn1lib.ASN1Integer.encodeBigInt(core._BigIntImpl.from(x));
     }
-    get w() {
-      return this[w$];
+    static decodeInt(bytes) {
+      if (bytes == null) dart.nullFailed(I[0], 39, 34, "bytes");
+      return asn1lib.ASN1Integer.decodeBigInt(bytes).toInt();
     }
-    set w(value) {
-      super.w = value;
+    toString() {
+      return "ASN1Integer(" + dart.str(this.intValue) + ")";
     }
-    solve(degree) {
-      let t2, t1, t2$, t1$;
-      if (degree == null) dart.nullFailed(I[0], 102, 28, "degree");
-      if (dart.notNull(degree) > dart.notNull(this.x[$length])) return null;
-      let result = new lsq_solver.PolynomialFit.new(degree);
-      let m = this.x[$length];
-      let n = dart.notNull(degree) + 1;
-      let a = new lsq_solver._Matrix.new(n, m);
-      for (let h = 0; h < dart.notNull(m); h = h + 1) {
-        a.set(0, h, this.w[$_get](h));
-        for (let i = 1; i < n; i = i + 1)
-          a.set(i, h, dart.notNull(a.get(i - 1, h)) * dart.notNull(this.x[$_get](h)));
+    static decodeBigInt(bytes) {
+      if (bytes == null) dart.nullFailed(I[0], 50, 40, "bytes");
+      let isNegative = (dart.notNull(bytes[$_get](0)) & 128) !== 0;
+      let result = core.BigInt.zero;
+      for (let i = 0; i < dart.notNull(bytes[$length]); i = i + 1) {
+        result = result['<<'](8);
+        let x = isNegative ? (dart.notNull(bytes[$_get](i)) ^ 255) >>> 0 : bytes[$_get](i);
+        result = result['+'](core._BigIntImpl.from(x));
       }
-      let q = new lsq_solver._Matrix.new(n, m);
-      let r = new lsq_solver._Matrix.new(n, n);
-      for (let j = 0; j < n; j = j + 1) {
-        for (let h = 0; h < dart.notNull(m); h = h + 1)
-          q.set(j, h, a.get(j, h));
-        for (let i = 0; i < j; i = i + 1) {
-          let dot = q.getRow(j)['*'](q.getRow(i));
-          for (let h = 0; h < dart.notNull(m); h = h + 1)
-            q.set(j, h, dart.notNull(q.get(j, h)) - dart.notNull(dot) * dart.notNull(q.get(i, h)));
-        }
-        let norm = q.getRow(j).norm();
-        if (dart.notNull(norm) < 1e-10) {
-          return null;
-        }
-        let inverseNorm = 1.0 / dart.notNull(norm);
-        for (let h = 0; h < dart.notNull(m); h = h + 1)
-          q.set(j, h, dart.notNull(q.get(j, h)) * inverseNorm);
-        for (let i = 0; i < n; i = i + 1)
-          r.set(j, i, i < j ? 0.0 : q.getRow(j)['*'](a.getRow(i)));
-      }
-      let wy = new lsq_solver._Vector.new(m);
-      for (let h = 0; h < dart.notNull(m); h = h + 1)
-        wy._set(h, dart.notNull(this.y[$_get](h)) * dart.notNull(this.w[$_get](h)));
-      for (let i = n - 1; i >= 0; i = i - 1) {
-        result.coefficients[$_set](i, q.getRow(i)['*'](wy));
-        for (let j = n - 1; j > i; j = j - 1) {
-          t1 = result.coefficients;
-          t2 = i;
-          t1[$_set](t2, dart.notNull(t1[$_get](t2)) - dart.notNull(r.get(i, j)) * dart.notNull(result.coefficients[$_get](j)));
-        }
-        t1$ = result.coefficients;
-        t2$ = i;
-        t1$[$_set](t2$, dart.notNull(t1$[$_get](t2$)) / dart.notNull(r.get(i, i)));
-      }
-      let yMean = 0.0;
-      for (let h = 0; h < dart.notNull(m); h = h + 1)
-        yMean = yMean + dart.notNull(this.y[$_get](h));
-      yMean = yMean / dart.notNull(m);
-      let sumSquaredError = 0.0;
-      let sumSquaredTotal = 0.0;
-      for (let h = 0; h < dart.notNull(m); h = h + 1) {
-        let term = 1.0;
-        let err = dart.notNull(this.y[$_get](h)) - dart.notNull(result.coefficients[$_get](0));
-        for (let i = 1; i < n; i = i + 1) {
-          term = term * dart.notNull(this.x[$_get](h));
-          err = err - term * dart.notNull(result.coefficients[$_get](i));
-        }
-        sumSquaredError = sumSquaredError + dart.notNull(this.w[$_get](h)) * dart.notNull(this.w[$_get](h)) * err * err;
-        let v = dart.notNull(this.y[$_get](h)) - yMean;
-        sumSquaredTotal = sumSquaredTotal + dart.notNull(this.w[$_get](h)) * dart.notNull(this.w[$_get](h)) * v * v;
-      }
-      result.confidence = sumSquaredTotal <= 1e-10 ? 1.0 : 1.0 - sumSquaredError / sumSquaredTotal;
+      if (isNegative) return result['+'](core.BigInt.one)['*'](asn1lib.ASN1Integer._minusOne);
       return result;
     }
+    static encodeBigInt(number) {
+      if (number == null) dart.nullFailed(I[0], 78, 40, "number");
+      let orig = number;
+      if (number.bitLength === 0) {
+        if (dart.equals(number, asn1lib.ASN1Integer._negOne)) {
+          return asn1lib.ASN1Integer._negOneArray;
+        } else {
+          return asn1lib.ASN1Integer._zeroList;
+        }
+      }
+      let bytes = (dart.notNull(number.bitLength) / 8)[$ceil]() + 1;
+      let result = _native_typed_data.NativeUint8List.new(bytes);
+      number = number.abs();
+      for (let i = 0, j = bytes - 1; i < bytes; i = i + 1, j = j - 1) {
+        let x = number.remainder(asn1lib.ASN1Integer._b256).toInt();
+        result[$_set](j, x);
+        number = number['>>'](8);
+      }
+      if (dart.test(orig.isNegative)) {
+        asn1lib.ASN1Integer._twosComplement(result);
+        if ((dart.notNull(result[$_get](1)) & 128) === 128) {
+          return result[$sublist](1);
+        }
+      } else {
+        if ((dart.notNull(result[$_get](1)) & 128) !== 128) {
+          return result[$sublist](1);
+        }
+      }
+      return result;
+    }
+    static _twosComplement(result) {
+      let t2, t1, t2$, t1$;
+      if (result == null) dart.nullFailed(I[0], 117, 41, "result");
+      let carry = 1;
+      for (let j = dart.notNull(result[$length]) - 1; j >= 0; j = j - 1) {
+        t1 = result;
+        t2 = j;
+        t1[$_set](t2, (dart.notNull(t1[$_get](t2)) ^ 255) >>> 0);
+        if (result[$_get](j) === 255 && carry === 1) {
+          result[$_set](j, 0);
+          carry = 1;
+        } else {
+          t1$ = result;
+          t2$ = j;
+          t1$[$_set](t2$, dart.notNull(t1$[$_get](t2$)) + carry);
+          carry = 0;
+        }
+      }
+      result[$_set](0, (dart.notNull(result[$_get](0)) | 128) >>> 0);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return this === other || asn1lib.ASN1Integer.is(other) && dart.equals(this[$runtimeType], dart.runtimeType(other)) && dart.equals(this[_intValue], other[_intValue]);
+    }
+    get hashCode() {
+      return dart.hashCode(this[_intValue]);
+    }
   };
-  (lsq_solver.LeastSquaresSolver.new = function(x, y, w) {
-    if (x == null) dart.nullFailed(I[0], 86, 27, "x");
-    if (y == null) dart.nullFailed(I[0], 86, 35, "y");
-    if (w == null) dart.nullFailed(I[0], 86, 43, "w");
-    this[x$] = x;
-    this[y$] = y;
-    this[w$] = w;
-    if (!(x[$length] == y[$length])) dart.assertFailed(null, I[0], 87, 14, "x.length == y.length");
-    if (!(y[$length] == w[$length])) dart.assertFailed(null, I[0], 88, 14, "y.length == w.length");
+  (asn1lib.ASN1Integer.new = function(_intValue, opts) {
+    if (_intValue == null) dart.nullFailed(I[0], 13, 20, "_intValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 2;
+    this[__ASN1Integer__intValue] = null;
+    this[__ASN1Integer__intValue_isSet] = false;
+    this[__ASN1Integer__intValue_isSet] = true;
+    this[__ASN1Integer__intValue] = _intValue;
+    asn1lib.ASN1Integer.__proto__.new.call(this, {tag: core.int.as(tag)});
     ;
-  }).prototype = lsq_solver.LeastSquaresSolver.prototype;
-  dart.addTypeTests(lsq_solver.LeastSquaresSolver);
-  dart.addTypeCaches(lsq_solver.LeastSquaresSolver);
-  dart.setMethodSignature(lsq_solver.LeastSquaresSolver, () => ({
-    __proto__: dart.getMethods(lsq_solver.LeastSquaresSolver.__proto__),
-    solve: dart.fnType(dart.nullable(lsq_solver.PolynomialFit), [core.int])
+  }).prototype = asn1lib.ASN1Integer.prototype;
+  (asn1lib.ASN1Integer.fromInt = function(x, opts) {
+    if (x == null) dart.nullFailed(I[0], 15, 27, "x");
+    let tag = opts && 'tag' in opts ? opts.tag : 2;
+    this[__ASN1Integer__intValue] = null;
+    this[__ASN1Integer__intValue_isSet] = false;
+    asn1lib.ASN1Integer.__proto__.new.call(this, {tag: core.int.as(tag)});
+    this[_intValue] = core._BigIntImpl.from(x);
+    this[_encode]();
+  }).prototype = asn1lib.ASN1Integer.prototype;
+  (asn1lib.ASN1Integer.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[0], 20, 35, "bytes");
+    this[__ASN1Integer__intValue] = null;
+    this[__ASN1Integer__intValue_isSet] = false;
+    asn1lib.ASN1Integer.__proto__.fromBytes.call(this, bytes);
+    this[_intValue] = asn1lib.ASN1Integer.decodeBigInt(this.valueBytes());
+  }).prototype = asn1lib.ASN1Integer.prototype;
+  dart.addTypeTests(asn1lib.ASN1Integer);
+  dart.addTypeCaches(asn1lib.ASN1Integer);
+  dart.setGetterSignature(asn1lib.ASN1Integer, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1Integer.__proto__),
+    [_intValue]: core.BigInt,
+    intValue: core.int,
+    valueAsBigInteger: dart.nullable(core.BigInt)
   }));
-  dart.setLibraryUri(lsq_solver.LeastSquaresSolver, I[1]);
-  dart.setFieldSignature(lsq_solver.LeastSquaresSolver, () => ({
-    __proto__: dart.getFields(lsq_solver.LeastSquaresSolver.__proto__),
-    x: dart.finalFieldType(core.List$(core.double)),
-    y: dart.finalFieldType(core.List$(core.double)),
-    w: dart.finalFieldType(core.List$(core.double))
+  dart.setSetterSignature(asn1lib.ASN1Integer, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1Integer.__proto__),
+    [_intValue]: core.BigInt
   }));
-  dart.trackLibraries("packages/flutter/src/gestures/lsq_solver.dart", {
-    "package:flutter/src/gestures/lsq_solver.dart": lsq_solver
+  dart.setLibraryUri(asn1lib.ASN1Integer, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Integer, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Integer.__proto__),
+    [__ASN1Integer__intValue]: dart.fieldType(dart.nullable(core.BigInt)),
+    [__ASN1Integer__intValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1Integer, ['toString', '_equals']);
+  dart.defineExtensionAccessors(asn1lib.ASN1Integer, ['hashCode']);
+  dart.defineLazy(asn1lib.ASN1Integer, {
+    /*asn1lib.ASN1Integer._b256*/get _b256() {
+      return core._BigIntImpl.from(256);
+    },
+    /*asn1lib.ASN1Integer._minusOne*/get _minusOne() {
+      return core._BigIntImpl.from(-1);
+    },
+    /*asn1lib.ASN1Integer._negOne*/get _negOne() {
+      return core._BigIntImpl.from(-1);
+    },
+    /*asn1lib.ASN1Integer._negOneArray*/get _negOneArray() {
+      return _native_typed_data.NativeUint8List.fromList(T.JSArrayOfint().of([255]));
+    },
+    /*asn1lib.ASN1Integer._zeroList*/get _zeroList() {
+      return _native_typed_data.NativeUint8List.fromList(T.JSArrayOfint().of([0]));
+    }
+  }, false);
+  asn1lib.ASN1Enumerated = class ASN1Enumerated extends asn1lib.ASN1Integer {};
+  (asn1lib.ASN1Enumerated.new = function(i, opts) {
+    if (i == null) dart.nullFailed(I[3], 7, 22, "i");
+    let tag = opts && 'tag' in opts ? opts.tag : 10;
+    asn1lib.ASN1Enumerated.__proto__.new.call(this, core._BigIntImpl.from(i), {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1Enumerated.prototype;
+  dart.addTypeTests(asn1lib.ASN1Enumerated);
+  dart.addTypeCaches(asn1lib.ASN1Enumerated);
+  dart.setLibraryUri(asn1lib.ASN1Enumerated, I[2]);
+  asn1lib.ASN1Util = class ASN1Util extends core.Object {
+    static listToString(list) {
+      if (list == null) dart.nullFailed(I[4], 5, 40, "list");
+      let b = new core.StringBuffer.new("[");
+      let doComma = false;
+      list[$forEach](dart.fn(v => {
+        if (v == null) dart.nullFailed(I[4], 8, 19, "v");
+        doComma ? b.write(", ") : doComma = true;
+        b.write("0x" + v[$toRadixString](16));
+      }, T.intTovoid()));
+      b.write("]");
+      return b.toString();
+    }
+    static obj2HexString(x) {
+      if (core.List.is(x)) {
+        return asn1lib.ASN1Util.listToString(T.ListOfint().as(x));
+      } else {
+        return T.StringN().as(dart.dsend(x, 'toRadixString', [16]));
+      }
+    }
+    static bytes2BigInt(bytes) {
+      if (bytes == null) dart.nullFailed(I[4], 28, 40, "bytes");
+      let x = core.BigInt.zero;
+      for (let i = 0; i < dart.notNull(bytes[$length]); i = i + 1) {
+        x = x['<<'](8);
+        x = x['+'](core._BigIntImpl.from(bytes[$_get](i)));
+      }
+      return x;
+    }
+  };
+  (asn1lib.ASN1Util.new = function() {
+    ;
+  }).prototype = asn1lib.ASN1Util.prototype;
+  dart.addTypeTests(asn1lib.ASN1Util);
+  dart.addTypeCaches(asn1lib.ASN1Util);
+  dart.setLibraryUri(asn1lib.ASN1Util, I[2]);
+  var __ASN1OctetString_octets = dart.privateName(asn1lib, "_#ASN1OctetString#octets");
+  var __ASN1OctetString_octets_isSet = dart.privateName(asn1lib, "_#ASN1OctetString#octets#isSet");
+  asn1lib.ASN1OctetString = class ASN1OctetString extends asn1lib.ASN1Object {
+    get octets() {
+      let t1;
+      return dart.test(this[__ASN1OctetString_octets_isSet]) ? (t1 = this[__ASN1OctetString_octets], t1) : dart.throw(new _internal.LateError.fieldNI("octets"));
+    }
+    set octets(t1) {
+      if (t1 == null) dart.nullFailed(I[5], 8, 18, "null");
+      this[__ASN1OctetString_octets_isSet] = true;
+      this[__ASN1OctetString_octets] = t1;
+    }
+    contentBytes() {
+      return this.octets;
+    }
+    get stringValue() {
+      return core.String.fromCharCodes(this.octets);
+    }
+    [_encode]() {
+      this[_valueByteLength] = this.octets[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](this.octets);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "OctetString(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1OctetString.new = function(octets, opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 4;
+    if (tag == null) dart.nullFailed(I[5], 17, 40, "tag");
+    this[__ASN1OctetString_octets] = null;
+    this[__ASN1OctetString_octets_isSet] = false;
+    asn1lib.ASN1OctetString.__proto__.new.call(this, {tag: tag});
+    if (typeof octets == 'string') {
+      this.octets = _native_typed_data.NativeUint8List.fromList(octets[$codeUnits]);
+    } else if (typed_data.Uint8List.is(octets)) {
+      this.octets = octets;
+    } else if (T.ListOfint().is(octets)) {
+      this.octets = _native_typed_data.NativeUint8List.fromList(octets);
+    } else {
+      dart.throw(new core.ArgumentError.new("Parameters octets should be either of type String or List<int>."));
+    }
+  }).prototype = asn1lib.ASN1OctetString.prototype;
+  (asn1lib.ASN1OctetString.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[5], 34, 39, "bytes");
+    this[__ASN1OctetString_octets] = null;
+    this[__ASN1OctetString_octets_isSet] = false;
+    asn1lib.ASN1OctetString.__proto__.fromBytes.call(this, bytes);
+    this.octets = this.valueBytes();
+  }).prototype = asn1lib.ASN1OctetString.prototype;
+  dart.addTypeTests(asn1lib.ASN1OctetString);
+  dart.addTypeCaches(asn1lib.ASN1OctetString);
+  dart.setGetterSignature(asn1lib.ASN1OctetString, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1OctetString.__proto__),
+    octets: typed_data.Uint8List,
+    stringValue: core.String
+  }));
+  dart.setSetterSignature(asn1lib.ASN1OctetString, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1OctetString.__proto__),
+    octets: typed_data.Uint8List
+  }));
+  dart.setLibraryUri(asn1lib.ASN1OctetString, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1OctetString, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1OctetString.__proto__),
+    [__ASN1OctetString_octets]: dart.fieldType(dart.nullable(typed_data.Uint8List)),
+    [__ASN1OctetString_octets_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1OctetString, ['toString']);
+  var message$ = dart.privateName(asn1lib, "ASN1Exception.message");
+  asn1lib.ASN1Exception = class ASN1Exception extends core.Object {
+    get message() {
+      return this[message$];
+    }
+    set message(value) {
+      this[message$] = value;
+    }
+  };
+  (asn1lib.ASN1Exception.new = function(message) {
+    if (message == null) dart.nullFailed(I[6], 9, 22, "message");
+    this[message$] = message;
+    ;
+  }).prototype = asn1lib.ASN1Exception.prototype;
+  dart.addTypeTests(asn1lib.ASN1Exception);
+  dart.addTypeCaches(asn1lib.ASN1Exception);
+  asn1lib.ASN1Exception[dart.implements] = () => [core.Exception];
+  dart.setLibraryUri(asn1lib.ASN1Exception, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Exception, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Exception.__proto__),
+    message: dart.fieldType(core.String)
+  }));
+  var elements = dart.privateName(asn1lib, "ASN1Sequence.elements");
+  var _decodeSeq = dart.privateName(asn1lib, "_decodeSeq");
+  var _childLength = dart.privateName(asn1lib, "_childLength");
+  asn1lib.ASN1Sequence = class ASN1Sequence extends asn1lib.ASN1Object {
+    get elements() {
+      return this[elements];
+    }
+    set elements(value) {
+      this[elements] = value;
+    }
+    add(o) {
+      if (o == null) dart.nullFailed(I[7], 34, 23, "o");
+      this.elements[$add](o);
+    }
+    [_encode]() {
+      this[_valueByteLength] = this[_childLength]();
+      super[_encodeHeader]();
+      let i = this[_valueStartPosition$];
+      this.elements[$forEach](dart.fn(obj => {
+        if (obj == null) dart.nullFailed(I[7], 44, 23, "obj");
+        let b = obj.encodedBytes;
+        this.encodedBytes[$setRange](i, dart.notNull(i) + dart.notNull(b[$length]), b);
+        i = dart.notNull(i) + dart.notNull(b[$length]);
+      }, T.ASN1ObjectTovoid()));
+      return this[_encodedBytes];
+    }
+    [_childLength]() {
+      let l = 0;
+      this.elements[$forEach](dart.fn(obj => {
+        if (obj == null) dart.nullFailed(I[7], 57, 23, "obj");
+        l = l + dart.notNull(dart.nullCheck(obj[_encode]())[$length]);
+      }, T.ASN1ObjectTovoid()));
+      return l;
+    }
+    [_decodeSeq]() {
+      let parser = new asn1lib.ASN1Parser.new(this.valueBytes());
+      while (dart.test(parser.hasNext())) {
+        this.elements[$add](parser.nextObject());
+      }
+    }
+    toString() {
+      let b = new core.StringBuffer.new("Seq[");
+      this.elements[$forEach](dart.fn(e => {
+        if (e == null) dart.nullFailed(I[7], 80, 23, "e");
+        b.write(dart.toString(e));
+        b.write(" ");
+      }, T.ASN1ObjectTovoid()));
+      b.write("]");
+      return b.toString();
+    }
+  };
+  (asn1lib.ASN1Sequence.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[7], 18, 36, "bytes");
+    this[elements] = T.JSArrayOfASN1Object().of([]);
+    asn1lib.ASN1Sequence.__proto__.fromBytes.call(this, bytes);
+    if ((dart.notNull(this.tag) & 48) === 0) {
+      dart.throw(new asn1lib.ASN1Exception.new("The tag " + dart.str(this.tag) + " does not look like a sequence type"));
+    }
+    this[_decodeSeq]();
+  }).prototype = asn1lib.ASN1Sequence.prototype;
+  (asn1lib.ASN1Sequence.new = function(opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 48;
+    if (tag == null) dart.nullFailed(I[7], 29, 21, "tag");
+    this[elements] = T.JSArrayOfASN1Object().of([]);
+    asn1lib.ASN1Sequence.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1Sequence.prototype;
+  dart.addTypeTests(asn1lib.ASN1Sequence);
+  dart.addTypeCaches(asn1lib.ASN1Sequence);
+  dart.setMethodSignature(asn1lib.ASN1Sequence, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1Sequence.__proto__),
+    add: dart.fnType(dart.void, [asn1lib.ASN1Object]),
+    [_childLength]: dart.fnType(core.int, []),
+    [_decodeSeq]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Sequence, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Sequence, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Sequence.__proto__),
+    elements: dart.fieldType(core.List$(asn1lib.ASN1Object))
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1Sequence, ['toString']);
+  var _length$ = dart.privateName(asn1lib, "_length");
+  asn1lib.ASN1Length = class ASN1Length extends core.Object {
+    get length() {
+      return this[_length$];
+    }
+    get valueStartPosition() {
+      return this[_valueStartPosition$];
+    }
+    static encodeLength(length) {
+      let t2;
+      if (length == null) dart.nullFailed(I[8], 35, 37, "length");
+      let e = null;
+      if (dart.notNull(length) <= 127) {
+        e = _native_typed_data.NativeUint8List.new(1);
+        e[$_set](0, length);
+      } else {
+        let x = _native_typed_data.NativeUint32List.new(1);
+        x[$_set](0, length);
+        let y = typed_data.Uint8List.view(x[$buffer]);
+        let num = 3;
+        while (y[$_get](num) === 0) {
+          num = num - 1;
+        }
+        e = _native_typed_data.NativeUint8List.new(num + 2);
+        e[$_set](0, 128 + num + 1);
+        for (let i = 1; i < dart.notNull(e[$length]); i = i + 1) {
+          e[$_set](i, y[$_get]((t2 = num, num = t2 - 1, t2)));
+        }
+      }
+      return e;
+    }
+    static decodeLength(encodedBytes) {
+      let t2;
+      if (encodedBytes == null) dart.nullFailed(I[8], 66, 44, "encodedBytes");
+      let valueStartPosition = 2;
+      let length = dart.notNull(encodedBytes[$_get](1)) & 127;
+      if (length !== encodedBytes[$_get](1)) {
+        let numLengthBytes = length;
+        length = 0;
+        for (let i = 0; i < numLengthBytes; i = i + 1) {
+          length = length << 8 >>> 0;
+          length = (length | dart.notNull(encodedBytes[$_get]((t2 = valueStartPosition, valueStartPosition = t2 + 1, t2))) & 255) >>> 0;
+        }
+      }
+      return new asn1lib.ASN1Length.new(length, valueStartPosition);
+    }
+  };
+  (asn1lib.ASN1Length.new = function(_length, _valueStartPosition) {
+    if (_length == null) dart.nullFailed(I[8], 22, 19, "_length");
+    if (_valueStartPosition == null) dart.nullFailed(I[8], 22, 33, "_valueStartPosition");
+    this[_length$] = _length;
+    this[_valueStartPosition$] = _valueStartPosition;
+    ;
+  }).prototype = asn1lib.ASN1Length.prototype;
+  dart.addTypeTests(asn1lib.ASN1Length);
+  dart.addTypeCaches(asn1lib.ASN1Length);
+  dart.setGetterSignature(asn1lib.ASN1Length, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1Length.__proto__),
+    length: core.int,
+    valueStartPosition: core.int
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Length, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Length, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Length.__proto__),
+    [_length$]: dart.finalFieldType(core.int),
+    [_valueStartPosition$]: dart.finalFieldType(core.int)
+  }));
+  var _position = dart.privateName(asn1lib, "_position");
+  var _bytes$ = dart.privateName(asn1lib, "_bytes");
+  var _doPrimitive = dart.privateName(asn1lib, "_doPrimitive");
+  asn1lib.ASN1Parser = class ASN1Parser extends core.Object {
+    hasNext() {
+      return dart.notNull(this[_position]) < dart.notNull(this[_bytes$][$length]);
+    }
+    nextObject() {
+      let tag = this[_bytes$][$_get](this[_position]);
+      let isPrimitive = (192 & dart.notNull(tag)) === 0;
+      let isApplication = (64 & dart.notNull(tag)) !== 0;
+      let l = 0;
+      let length = asn1lib.ASN1Length.decodeLength(this[_bytes$][$sublist](this[_position]));
+      if (dart.notNull(this[_position]) < dart.notNull(length.length) + dart.notNull(length.valueStartPosition)) {
+        l = dart.notNull(length.length) + dart.notNull(length.valueStartPosition);
+      } else {
+        l = dart.notNull(this[_bytes$][$length]) - dart.notNull(this[_position]);
+      }
+      let offset = dart.notNull(this[_position]) + dart.notNull(this[_bytes$][$offsetInBytes]);
+      let subBytes = typed_data.Uint8List.view(this[_bytes$][$buffer], offset, l);
+      let obj = null;
+      if (isPrimitive) {
+        obj = this[_doPrimitive](tag, subBytes);
+      } else if (isApplication && (dart.notNull(tag) & 48) !== 0) {
+        obj = new asn1lib.ASN1Sequence.fromBytes(subBytes);
+      } else {
+        obj = new asn1lib.ASN1Object.fromBytes(subBytes);
+      }
+      this[_position] = dart.notNull(this[_position]) + dart.notNull(obj.totalEncodedByteLength);
+      return obj;
+    }
+    [_doPrimitive](tag, b) {
+      if (tag == null) dart.nullFailed(I[9], 64, 31, "tag");
+      if (b == null) dart.nullFailed(I[9], 64, 46, "b");
+      switch (tag) {
+        case 48:
+        {
+          return new asn1lib.ASN1Sequence.fromBytes(b);
+        }
+        case 4:
+        {
+          return new asn1lib.ASN1OctetString.fromBytes(b);
+        }
+        case 12:
+        {
+          return new asn1lib.ASN1UTF8String.fromBytes(b);
+        }
+        case 22:
+        {
+          return new asn1lib.ASN1IA5String.fromBytes(b);
+        }
+        case 2:
+        case 10:
+        {
+          return new asn1lib.ASN1Integer.fromBytes(b);
+        }
+        case 49:
+        {
+          return new asn1lib.ASN1Set.fromBytes(b);
+        }
+        case 1:
+        {
+          return new asn1lib.ASN1Boolean.fromBytes(b);
+        }
+        case 6:
+        {
+          return new asn1lib.ASN1ObjectIdentifier.fromBytes(b);
+        }
+        case 3:
+        {
+          return new asn1lib.ASN1BitString.fromBytes(b);
+        }
+        case 5:
+        {
+          return new asn1lib.ASN1Null.fromBytes(b);
+        }
+        case 19:
+        {
+          return new asn1lib.ASN1PrintableString.fromBytes(b);
+        }
+        case 23:
+        {
+          return new asn1lib.ASN1UtcTime.fromBytes(b);
+        }
+        case 24:
+        {
+          return new asn1lib.ASN1GeneralizedTime.fromBytes(b);
+        }
+        case 20:
+        {
+          return new asn1lib.ASN1TeletextString.fromBytes(b);
+        }
+        default:
+        {
+          dart.throw(new asn1lib.ASN1Exception.new("Parser for tag " + dart.str(tag) + " not implemented yet"));
+        }
+      }
+    }
+  };
+  (asn1lib.ASN1Parser.new = function(_bytes) {
+    if (_bytes == null) dart.nullFailed(I[9], 11, 19, "_bytes");
+    this[_position] = 0;
+    this[_bytes$] = _bytes;
+    ;
+  }).prototype = asn1lib.ASN1Parser.prototype;
+  dart.addTypeTests(asn1lib.ASN1Parser);
+  dart.addTypeCaches(asn1lib.ASN1Parser);
+  dart.setMethodSignature(asn1lib.ASN1Parser, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1Parser.__proto__),
+    hasNext: dart.fnType(core.bool, []),
+    nextObject: dart.fnType(asn1lib.ASN1Object, []),
+    [_doPrimitive]: dart.fnType(asn1lib.ASN1Object, [core.int, typed_data.Uint8List])
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Parser, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Parser, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Parser.__proto__),
+    [_bytes$]: dart.finalFieldType(typed_data.Uint8List),
+    [_position]: dart.fieldType(core.int)
+  }));
+  asn1lib.ASN1Null = class ASN1Null extends asn1lib.ASN1Object {
+    get [_encodedBytes]() {
+      return _native_typed_data.NativeUint8List.fromList(T.JSArrayOfint().of([this.tag, 0]));
+    }
+    set [_encodedBytes](value) {
+      super[_encodedBytes] = value;
+    }
+    [_encode]() {
+      return _native_typed_data.NativeUint8List.fromList(T.JSArrayOfint().of([this.tag, 0]));
+    }
+  };
+  (asn1lib.ASN1Null.new = function(opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 5;
+    asn1lib.ASN1Null.__proto__.new.call(this, {tag: core.int.as(tag)});
+    ;
+  }).prototype = asn1lib.ASN1Null.prototype;
+  (asn1lib.ASN1Null.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[10], 12, 32, "bytes");
+    asn1lib.ASN1Null.__proto__.fromBytes.call(this, bytes);
+    ;
+  }).prototype = asn1lib.ASN1Null.prototype;
+  dart.addTypeTests(asn1lib.ASN1Null);
+  dart.addTypeCaches(asn1lib.ASN1Null);
+  dart.setMethodSignature(asn1lib.ASN1Null, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1Null.__proto__),
+    [_encode]: dart.fnType(typed_data.Uint8List, [])
+  }));
+  dart.setGetterSignature(asn1lib.ASN1Null, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1Null.__proto__),
+    [_encodedBytes]: typed_data.Uint8List
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Null, I[2]);
+  var _boolValue$ = dart.privateName(asn1lib, "_boolValue");
+  asn1lib.ASN1Boolean = class ASN1Boolean extends asn1lib.ASN1Object {
+    get booleanValue() {
+      return this[_boolValue$];
+    }
+    [_encode]() {
+      super[_encodeHeader]();
+      super[_setValueBytes](T.JSArrayOfint().of([this[_boolValue$] === true ? 255 : 0]));
+      return this[_encodedBytes];
+    }
+  };
+  (asn1lib.ASN1Boolean.new = function(_boolValue, opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 1;
+    this[_boolValue$] = _boolValue;
+    asn1lib.ASN1Boolean.__proto__.new.call(this, {tag: core.int.as(tag)});
+    this[_valueByteLength] = 1;
+  }).prototype = asn1lib.ASN1Boolean.prototype;
+  (asn1lib.ASN1Boolean.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[11], 19, 35, "bytes");
+    this[_boolValue$] = null;
+    asn1lib.ASN1Boolean.__proto__.fromBytes.call(this, bytes);
+    let b = bytes[$_get](this[_valueStartPosition$]);
+    this[_boolValue$] = b === 255;
+  }).prototype = asn1lib.ASN1Boolean.prototype;
+  dart.addTypeTests(asn1lib.ASN1Boolean);
+  dart.addTypeCaches(asn1lib.ASN1Boolean);
+  dart.setGetterSignature(asn1lib.ASN1Boolean, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1Boolean.__proto__),
+    booleanValue: dart.nullable(core.bool)
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Boolean, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Boolean, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Boolean.__proto__),
+    [_boolValue$]: dart.fieldType(dart.nullable(core.bool))
+  }));
+  dart.defineLazy(asn1lib.ASN1Boolean, {
+    /*asn1lib.ASN1Boolean.ASN1TrueBoolean*/get ASN1TrueBoolean() {
+      return new asn1lib.ASN1Boolean.new(true);
+    },
+    /*asn1lib.ASN1Boolean.ASN1FalseBoolean*/get ASN1FalseBoolean() {
+      return new asn1lib.ASN1Boolean.new(false);
+    }
+  }, false);
+  var elements$ = dart.privateName(asn1lib, "ASN1Set.elements");
+  var _decodeSet = dart.privateName(asn1lib, "_decodeSet");
+  asn1lib.ASN1Set = class ASN1Set extends asn1lib.ASN1Object {
+    get elements() {
+      return this[elements$];
+    }
+    set elements(value) {
+      this[elements$] = value;
+    }
+    add(o) {
+      if (o == null) dart.nullFailed(I[12], 26, 23, "o");
+      this.elements.add(o);
+    }
+    [_encode]() {
+      this[_valueByteLength] = this[_childLength]();
+      super[_encodeHeader]();
+      let i = this[_valueStartPosition$];
+      this.elements[$forEach](dart.fn(obj => {
+        if (obj == null) dart.nullFailed(I[12], 37, 23, "obj");
+        let b = obj.encodedBytes;
+        this.encodedBytes[$setRange](i, dart.notNull(i) + dart.notNull(b[$length]), b);
+        i = dart.notNull(i) + dart.notNull(b[$length]);
+      }, T.ASN1ObjectTovoid()));
+      return this[_encodedBytes];
+    }
+    [_childLength]() {
+      let l = 0;
+      this.elements[$forEach](dart.fn(obj => {
+        if (obj == null) dart.nullFailed(I[12], 50, 23, "obj");
+        obj[_encode]();
+        l = l + dart.notNull(obj.encodedBytes[$length]);
+      }, T.ASN1ObjectTovoid()));
+      return l;
+    }
+    [_decodeSet]() {
+      let parser = new asn1lib.ASN1Parser.new(this.valueBytes());
+      while (dart.test(parser.hasNext())) {
+        this.elements.add(parser.nextObject());
+      }
+    }
+    toString() {
+      let b = new core.StringBuffer.new("Set[");
+      this.elements[$forEach](dart.fn(e => {
+        if (e == null) dart.nullFailed(I[12], 74, 23, "e");
+        b.write(dart.toString(e));
+        b.write(" ");
+      }, T.ASN1ObjectTovoid()));
+      b.write("]");
+      return b.toString();
+    }
+  };
+  (asn1lib.ASN1Set.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[12], 14, 31, "bytes");
+    this[elements$] = T.LinkedHashSetOfASN1Object().new();
+    asn1lib.ASN1Set.__proto__.fromBytes.call(this, bytes);
+    if ((dart.notNull(this.tag) & 49) === 0) {
+      dart.throw(new asn1lib.ASN1Exception.new("The tag " + dart.str(this.tag) + " does not look like a set type"));
+    }
+    this[_decodeSet]();
+  }).prototype = asn1lib.ASN1Set.prototype;
+  (asn1lib.ASN1Set.new = function(opts) {
+    let tag = opts && 'tag' in opts ? opts.tag : 49;
+    if (tag == null) dart.nullFailed(I[12], 21, 16, "tag");
+    this[elements$] = T.LinkedHashSetOfASN1Object().new();
+    asn1lib.ASN1Set.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1Set.prototype;
+  dart.addTypeTests(asn1lib.ASN1Set);
+  dart.addTypeCaches(asn1lib.ASN1Set);
+  dart.setMethodSignature(asn1lib.ASN1Set, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1Set.__proto__),
+    add: dart.fnType(dart.void, [asn1lib.ASN1Object]),
+    [_childLength]: dart.fnType(core.int, []),
+    [_decodeSet]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(asn1lib.ASN1Set, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1Set, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1Set.__proto__),
+    elements: dart.fieldType(core.Set$(asn1lib.ASN1Object))
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1Set, ['toString']);
+  var identifier$ = dart.privateName(asn1lib, "ASN1ObjectIdentifier.identifier");
+  var __ASN1ObjectIdentifier_oi = dart.privateName(asn1lib, "_#ASN1ObjectIdentifier#oi");
+  var __ASN1ObjectIdentifier_oi_isSet = dart.privateName(asn1lib, "_#ASN1ObjectIdentifier#oi#isSet");
+  asn1lib.ASN1ObjectIdentifier = class ASN1ObjectIdentifier extends asn1lib.ASN1Object {
+    get identifier() {
+      return this[identifier$];
+    }
+    set identifier(value) {
+      this[identifier$] = value;
+    }
+    get oi() {
+      let t2;
+      return dart.test(this[__ASN1ObjectIdentifier_oi_isSet]) ? (t2 = this[__ASN1ObjectIdentifier_oi], t2) : dart.throw(new _internal.LateError.fieldNI("oi"));
+    }
+    set oi(t2) {
+      if (t2 == null) dart.nullFailed(I[13], 61, 18, "null");
+      this[__ASN1ObjectIdentifier_oi_isSet] = true;
+      this[__ASN1ObjectIdentifier_oi] = t2;
+    }
+    [_encode]() {
+      let _valBytes = T.JSArrayOfint().of([dart.notNull(this.oi[$_get](0)) * 40 + dart.notNull(this.oi[$_get](1))]);
+      for (let ci = 2; ci < dart.notNull(this.oi[$length]); ci = ci + 1) {
+        let position = _valBytes[$length];
+        let v = this.oi[$_get](ci);
+        let first = true;
+        do {
+          let remainder = dart.notNull(v) & 127;
+          v = v[$rightShift](7);
+          if (first) {
+            first = false;
+          } else {
+            remainder = (remainder | 128) >>> 0;
+          }
+          _valBytes[$insert](position, remainder);
+        } while (dart.notNull(v) > 0);
+      }
+      this[_valueByteLength] = _valBytes[$length];
+      super[_encodeHeader]();
+      this[_setValueBytes](_valBytes);
+      return this[_encodedBytes];
+    }
+    static fromComponentString(path, opts) {
+      if (path == null) dart.nullFailed(I[13], 152, 58, "path");
+      let tag = opts && 'tag' in opts ? opts.tag : 6;
+      return asn1lib.ASN1ObjectIdentifier.fromComponents(path[$split](".")[$map](core.int, dart.fn(v => {
+        if (v == null) dart.nullFailed(I[13], 154, 43, "v");
+        return core.int.parse(v);
+      }, T.StringToint()))[$toList](), {tag: tag});
+    }
+    static fromComponents(components, opts) {
+      if (components == null) dart.nullFailed(I[13], 157, 56, "components");
+      let tag = opts && 'tag' in opts ? opts.tag : 6;
+      if (!(dart.notNull(components[$length]) >= 2)) dart.assertFailed(null, I[13], 159, 12, "components.length >= 2");
+      if (!(dart.notNull(components[$_get](0)) < 3)) dart.assertFailed(null, I[13], 160, 12, "components[0] < 3");
+      if (!(dart.notNull(components[$_get](1)) < 39)) dart.assertFailed(null, I[13], 161, 12, "components[1] < 39");
+      return new asn1lib.ASN1ObjectIdentifier.new(components, {identifier: components[$join]("."), tag: tag});
+    }
+    static fromName(name, opts) {
+      if (name == null) dart.nullFailed(I[13], 169, 47, "name");
+      let tag = opts && 'tag' in opts ? opts.tag : 6;
+      name = name[$toLowerCase]();
+      for (let entry of asn1lib.ASN1ObjectIdentifier._names[$entries]) {
+        if (entry.key == name) {
+          return new asn1lib.ASN1ObjectIdentifier.new(entry.value.oi, {tag: entry.value.tag});
+        }
+      }
+      dart.throw(new asn1lib.ASN1Exception.new("No ObjectIdentifier found for name " + dart.str(name)));
+    }
+    static registerObjectIdentiferName(name, oid) {
+      if (name == null) dart.nullFailed(I[13], 182, 14, "name");
+      if (oid == null) dart.nullFailed(I[13], 182, 41, "oid");
+      asn1lib.ASN1ObjectIdentifier._names[$_set](name[$toLowerCase](), oid);
+    }
+    static registerManyNames(pairs) {
+      if (pairs == null) dart.nullFailed(I[13], 186, 53, "pairs");
+      pairs[$forEach](dart.fn((key, value) => {
+        if (key == null) dart.nullFailed(I[13], 187, 20, "key");
+        if (value == null) dart.nullFailed(I[13], 187, 25, "value");
+        asn1lib.ASN1ObjectIdentifier.registerObjectIdentiferName(key, asn1lib.ASN1ObjectIdentifier.fromComponentString(value));
+      }, T.StringAndStringTovoid()));
+    }
+    static registerFrequentNames() {
+      asn1lib.ASN1ObjectIdentifier.registerManyNames(asn1lib.ASN1ObjectIdentifier.DN);
+    }
+  };
+  (asn1lib.ASN1ObjectIdentifier.new = function(oi, opts) {
+    if (oi == null) dart.nullFailed(I[13], 65, 29, "oi");
+    let identifier = opts && 'identifier' in opts ? opts.identifier : null;
+    let tag = opts && 'tag' in opts ? opts.tag : 6;
+    this[__ASN1ObjectIdentifier_oi] = null;
+    this[__ASN1ObjectIdentifier_oi_isSet] = false;
+    this[__ASN1ObjectIdentifier_oi_isSet] = true;
+    this[__ASN1ObjectIdentifier_oi] = oi;
+    this[identifier$] = identifier;
+    asn1lib.ASN1ObjectIdentifier.__proto__.new.call(this, {tag: core.int.as(tag)});
+    ;
+  }).prototype = asn1lib.ASN1ObjectIdentifier.prototype;
+  (asn1lib.ASN1ObjectIdentifier.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[13], 71, 44, "bytes");
+    this[__ASN1ObjectIdentifier_oi] = null;
+    this[__ASN1ObjectIdentifier_oi_isSet] = false;
+    this[identifier$] = null;
+    asn1lib.ASN1ObjectIdentifier.__proto__.fromBytes.call(this, bytes);
+    let subBytes = bytes[$sublist](2, bytes[$length]);
+    let value = 0;
+    let first = true;
+    let bigValue = null;
+    let list = T.JSArrayOfint().of([]);
+    let objId = new core.StringBuffer.new();
+    for (let i = 0; i !== subBytes[$length]; i = i + 1) {
+      let b = dart.notNull(subBytes[$_get](i)) & 255;
+      if (value < 36028797018963968) {
+        value = value * 128 + (b & 127);
+        if ((b & 128) === 0) {
+          if (first) {
+            switch ((value / 40)[$truncate]()) {
+              case 0:
+              {
+                list[$add](0);
+                objId.write("0");
+                break;
+              }
+              case 1:
+              {
+                list[$add](1);
+                objId.write("1");
+                value = value - 40;
+                break;
+              }
+              default:
+              {
+                list[$add](2);
+                objId.write("2");
+                value = value - 80;
+              }
+            }
+            first = false;
+          }
+          list[$add](value);
+          objId.write(".");
+          objId.write(value);
+          value = 0;
+        }
+      } else {
+        bigValue == null ? bigValue = core._BigIntImpl.from(value) : null;
+        bigValue = bigValue['<<'](7);
+        bigValue = bigValue['|'](core._BigIntImpl.from(b & 127));
+        if ((b & 128) === 0) {
+          objId.write(".");
+          objId.write(bigValue);
+          bigValue = null;
+          value = 0;
+        }
+      }
+    }
+    this.oi = list;
+    this.identifier = objId.toString();
+  }).prototype = asn1lib.ASN1ObjectIdentifier.prototype;
+  dart.addTypeTests(asn1lib.ASN1ObjectIdentifier);
+  dart.addTypeCaches(asn1lib.ASN1ObjectIdentifier);
+  dart.setGetterSignature(asn1lib.ASN1ObjectIdentifier, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1ObjectIdentifier.__proto__),
+    oi: core.List$(core.int)
+  }));
+  dart.setSetterSignature(asn1lib.ASN1ObjectIdentifier, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1ObjectIdentifier.__proto__),
+    oi: core.List$(core.int)
+  }));
+  dart.setLibraryUri(asn1lib.ASN1ObjectIdentifier, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1ObjectIdentifier, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1ObjectIdentifier.__proto__),
+    [__ASN1ObjectIdentifier_oi]: dart.fieldType(dart.nullable(core.List$(core.int))),
+    [__ASN1ObjectIdentifier_oi_isSet]: dart.fieldType(core.bool),
+    identifier: dart.fieldType(dart.nullable(core.String))
+  }));
+  dart.defineLazy(asn1lib.ASN1ObjectIdentifier, {
+    /*asn1lib.ASN1ObjectIdentifier.DN*/get DN() {
+      return new (T.IdentityMapOfString$String()).from(["cn", "2.5.4.3", "sn", "2.5.4.4", "c", "2.5.4.6", "l", "2.5.4.7", "st", "2.5.4.8", "s", "2.5.4.8", "o", "2.5.4.10", "ou", "2.5.4.11", "title", "2.5.4.12", "registeredAddress", "2.5.4.26", "member", "2.5.4.31", "owner", "2.5.4.32", "roleOccupant", "2.5.4.33", "seeAlso", "2.5.4.34", "givenName", "2.5.4.42", "initials", "2.5.4.43", "generationQualifier", "2.5.4.44", "dmdName", "2.5.4.54", "alias", "2.5.6.1", "country", "2.5.6.2", "locality", "2.5.6.3", "organization", "2.5.6.4", "organizationalUnit", "2.5.6.5", "person", "2.5.6.6", "organizationalPerson", "2.5.6.7", "organizationalRole", "2.5.6.8", "groupOfNames", "2.5.6.9", "residentialPerson", "2.5.6.10", "applicationProcess", "2.5.6.11", "applicationEntity", "2.5.6.12", "dSA", "2.5.6.13", "device", "2.5.6.14", "strongAuthenticationUser", "2.5.6.15", "certificationAuthority", "2.5.6.16", "groupOfUniqueNames", "2.5.6.17", "userSecurityInformation", "2.5.6.18", "certificationAuthority-V2", "2.5.6.16.2", "cRLDistributionPoint", "2.5.6.19", "dmd", "2.5.6.20", "md5WithRSAEncryption", "1.2.840.113549.1.1.4", "rsaEncryption", "1.2.840.113549.1.1.1", "sha256WithRSAEncryption", "1.2.840.113549.1.1.11", "subjectAltName", "2.5.29.17", "businessCategory", "2.5.4.15", "jurisdictionOfIncorporationC", "1.3.6.1.4.1.311.60.2.1.3", "jurisdictionOfIncorporationSP", "1.3.6.1.4.1.311.60.2.1.2", "jurisdictionOfIncorporationL", "1.3.6.1.4.1.311.60.2.1.1", "sha1WithRSAEncryption", "1.2.840.113549.1.1.5", "ecPublicKey", "1.2.840.10045.2.1", "prime256v1", "1.2.840.10045.3.1.7", "ecdsaWithSHA256", "1.2.840.10045.4.3.2"]);
+    },
+    /*asn1lib.ASN1ObjectIdentifier._names*/get _names() {
+      return new (T.IdentityMapOfString$ASN1ObjectIdentifier()).new();
+    }
+  }, false);
+  var unusedbits$ = dart.privateName(asn1lib, "ASN1BitString.unusedbits");
+  var __ASN1BitString_stringValue = dart.privateName(asn1lib, "_#ASN1BitString#stringValue");
+  var __ASN1BitString_stringValue_isSet = dart.privateName(asn1lib, "_#ASN1BitString#stringValue#isSet");
+  asn1lib.ASN1BitString = class ASN1BitString extends asn1lib.ASN1Object {
+    get unusedbits() {
+      return this[unusedbits$];
+    }
+    set unusedbits(value) {
+      this[unusedbits$] = value;
+    }
+    get stringValue() {
+      let t3;
+      return dart.test(this[__ASN1BitString_stringValue_isSet]) ? (t3 = this[__ASN1BitString_stringValue], t3) : dart.throw(new _internal.LateError.fieldNI("stringValue"));
+    }
+    set stringValue(t3) {
+      if (t3 == null) dart.nullFailed(I[14], 8, 18, "null");
+      this[__ASN1BitString_stringValue_isSet] = true;
+      this[__ASN1BitString_stringValue] = t3;
+    }
+    contentBytes() {
+      return _native_typed_data.NativeUint8List.fromList(this.stringValue);
+    }
+    [_encode]() {
+      let valBytes = T.JSArrayOfint().of([this.unusedbits]);
+      valBytes[$addAll](this.stringValue);
+      this[_valueByteLength] = valBytes[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](valBytes);
+      return this[_encodedBytes];
+    }
+    static decodeOctetString(bytes) {
+      if (bytes == null) dart.nullFailed(I[14], 39, 45, "bytes");
+      return core.String.fromCharCodes(bytes);
+    }
+    toString() {
+      return "BitString(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1BitString.new = function(stringValue, opts) {
+    if (stringValue == null) dart.nullFailed(I[14], 17, 22, "stringValue");
+    let unusedbits = opts && 'unusedbits' in opts ? opts.unusedbits : 0;
+    if (unusedbits == null) dart.nullFailed(I[14], 18, 13, "unusedbits");
+    let tag = opts && 'tag' in opts ? opts.tag : 3;
+    if (tag == null) dart.nullFailed(I[14], 18, 33, "tag");
+    this[__ASN1BitString_stringValue] = null;
+    this[__ASN1BitString_stringValue_isSet] = false;
+    this[unusedbits$] = 0;
+    this[__ASN1BitString_stringValue_isSet] = true;
+    this[__ASN1BitString_stringValue] = stringValue;
+    this[unusedbits$] = unusedbits;
+    asn1lib.ASN1BitString.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1BitString.prototype;
+  (asn1lib.ASN1BitString.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[14], 24, 37, "bytes");
+    this[__ASN1BitString_stringValue] = null;
+    this[__ASN1BitString_stringValue_isSet] = false;
+    this[unusedbits$] = 0;
+    asn1lib.ASN1BitString.__proto__.fromBytes.call(this, bytes);
+    this.unusedbits = bytes[$_get](0);
+    this.stringValue = this.valueBytes()[$sublist](1);
+  }).prototype = asn1lib.ASN1BitString.prototype;
+  dart.addTypeTests(asn1lib.ASN1BitString);
+  dart.addTypeCaches(asn1lib.ASN1BitString);
+  dart.setMethodSignature(asn1lib.ASN1BitString, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1BitString.__proto__),
+    contentBytes: dart.fnType(typed_data.Uint8List, [])
+  }));
+  dart.setGetterSignature(asn1lib.ASN1BitString, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1BitString.__proto__),
+    stringValue: core.List$(core.int)
+  }));
+  dart.setSetterSignature(asn1lib.ASN1BitString, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1BitString.__proto__),
+    stringValue: core.List$(core.int)
+  }));
+  dart.setLibraryUri(asn1lib.ASN1BitString, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1BitString, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1BitString.__proto__),
+    [__ASN1BitString_stringValue]: dart.fieldType(dart.nullable(core.List$(core.int))),
+    [__ASN1BitString_stringValue_isSet]: dart.fieldType(core.bool),
+    unusedbits: dart.fieldType(core.int)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1BitString, ['toString']);
+  var __ASN1PrintableString_stringValue = dart.privateName(asn1lib, "_#ASN1PrintableString#stringValue");
+  var __ASN1PrintableString_stringValue_isSet = dart.privateName(asn1lib, "_#ASN1PrintableString#stringValue#isSet");
+  asn1lib.ASN1PrintableString = class ASN1PrintableString extends asn1lib.ASN1Object {
+    get stringValue() {
+      let t4;
+      return dart.test(this[__ASN1PrintableString_stringValue_isSet]) ? (t4 = this[__ASN1PrintableString_stringValue], t4) : dart.throw(new _internal.LateError.fieldNI("stringValue"));
+    }
+    set stringValue(t4) {
+      if (t4 == null) dart.nullFailed(I[15], 11, 15, "null");
+      this[__ASN1PrintableString_stringValue_isSet] = true;
+      this[__ASN1PrintableString_stringValue] = t4;
+    }
+    [_encode]() {
+      let octets = convert.ascii.encode(this.stringValue);
+      this[_valueByteLength] = octets[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](octets);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "PrintableString(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1PrintableString.new = function(stringValue, opts) {
+    if (stringValue == null) dart.nullFailed(I[15], 18, 28, "stringValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 19;
+    if (tag == null) dart.nullFailed(I[15], 18, 46, "tag");
+    this[__ASN1PrintableString_stringValue] = null;
+    this[__ASN1PrintableString_stringValue_isSet] = false;
+    this[__ASN1PrintableString_stringValue_isSet] = true;
+    this[__ASN1PrintableString_stringValue] = stringValue;
+    asn1lib.ASN1PrintableString.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1PrintableString.prototype;
+  (asn1lib.ASN1PrintableString.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[15], 24, 43, "bytes");
+    this[__ASN1PrintableString_stringValue] = null;
+    this[__ASN1PrintableString_stringValue_isSet] = false;
+    asn1lib.ASN1PrintableString.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    this.stringValue = convert.ascii.decode(octets);
+  }).prototype = asn1lib.ASN1PrintableString.prototype;
+  dart.addTypeTests(asn1lib.ASN1PrintableString);
+  dart.addTypeCaches(asn1lib.ASN1PrintableString);
+  dart.setGetterSignature(asn1lib.ASN1PrintableString, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1PrintableString.__proto__),
+    stringValue: core.String
+  }));
+  dart.setSetterSignature(asn1lib.ASN1PrintableString, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1PrintableString.__proto__),
+    stringValue: core.String
+  }));
+  dart.setLibraryUri(asn1lib.ASN1PrintableString, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1PrintableString, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1PrintableString.__proto__),
+    [__ASN1PrintableString_stringValue]: dart.fieldType(dart.nullable(core.String)),
+    [__ASN1PrintableString_stringValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1PrintableString, ['toString']);
+  var __ASN1UTF8String_utf8StringValue = dart.privateName(asn1lib, "_#ASN1UTF8String#utf8StringValue");
+  var __ASN1UTF8String_utf8StringValue_isSet = dart.privateName(asn1lib, "_#ASN1UTF8String#utf8StringValue#isSet");
+  asn1lib.ASN1UTF8String = class ASN1UTF8String extends asn1lib.ASN1Object {
+    get utf8StringValue() {
+      let t5;
+      return dart.test(this[__ASN1UTF8String_utf8StringValue_isSet]) ? (t5 = this[__ASN1UTF8String_utf8StringValue], t5) : dart.throw(new _internal.LateError.fieldNI("utf8StringValue"));
+    }
+    set utf8StringValue(t5) {
+      if (t5 == null) dart.nullFailed(I[16], 8, 15, "null");
+      this[__ASN1UTF8String_utf8StringValue_isSet] = true;
+      this[__ASN1UTF8String_utf8StringValue] = t5;
+    }
+    [_encode]() {
+      let octets = convert.utf8.encode(this.utf8StringValue);
+      this[_valueByteLength] = octets[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](octets);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "UTF8String(" + dart.str(this.utf8StringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1UTF8String.new = function(utf8StringValue, opts) {
+    if (utf8StringValue == null) dart.nullFailed(I[16], 15, 23, "utf8StringValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 12;
+    if (tag == null) dart.nullFailed(I[16], 15, 45, "tag");
+    this[__ASN1UTF8String_utf8StringValue] = null;
+    this[__ASN1UTF8String_utf8StringValue_isSet] = false;
+    this[__ASN1UTF8String_utf8StringValue_isSet] = true;
+    this[__ASN1UTF8String_utf8StringValue] = utf8StringValue;
+    asn1lib.ASN1UTF8String.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1UTF8String.prototype;
+  (asn1lib.ASN1UTF8String.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[16], 21, 38, "bytes");
+    this[__ASN1UTF8String_utf8StringValue] = null;
+    this[__ASN1UTF8String_utf8StringValue_isSet] = false;
+    asn1lib.ASN1UTF8String.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    this.utf8StringValue = convert.utf8.decode(octets);
+  }).prototype = asn1lib.ASN1UTF8String.prototype;
+  dart.addTypeTests(asn1lib.ASN1UTF8String);
+  dart.addTypeCaches(asn1lib.ASN1UTF8String);
+  dart.setGetterSignature(asn1lib.ASN1UTF8String, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1UTF8String.__proto__),
+    utf8StringValue: core.String
+  }));
+  dart.setSetterSignature(asn1lib.ASN1UTF8String, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1UTF8String.__proto__),
+    utf8StringValue: core.String
+  }));
+  dart.setLibraryUri(asn1lib.ASN1UTF8String, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1UTF8String, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1UTF8String.__proto__),
+    [__ASN1UTF8String_utf8StringValue]: dart.fieldType(dart.nullable(core.String)),
+    [__ASN1UTF8String_utf8StringValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1UTF8String, ['toString']);
+  var __ASN1IA5String_stringValue = dart.privateName(asn1lib, "_#ASN1IA5String#stringValue");
+  var __ASN1IA5String_stringValue_isSet = dart.privateName(asn1lib, "_#ASN1IA5String#stringValue#isSet");
+  asn1lib.ASN1IA5String = class ASN1IA5String extends asn1lib.ASN1Object {
+    get stringValue() {
+      let t6;
+      return dart.test(this[__ASN1IA5String_stringValue_isSet]) ? (t6 = this[__ASN1IA5String_stringValue], t6) : dart.throw(new _internal.LateError.fieldNI("stringValue"));
+    }
+    set stringValue(t6) {
+      if (t6 == null) dart.nullFailed(I[17], 10, 15, "null");
+      this[__ASN1IA5String_stringValue_isSet] = true;
+      this[__ASN1IA5String_stringValue] = t6;
+    }
+    [_encode]() {
+      let octets = convert.ascii.encode(this.stringValue);
+      this[_valueByteLength] = octets[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](octets);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "IA5String(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1IA5String.new = function(stringValue, opts) {
+    if (stringValue == null) dart.nullFailed(I[17], 16, 22, "stringValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 22;
+    if (tag == null) dart.nullFailed(I[17], 16, 40, "tag");
+    this[__ASN1IA5String_stringValue] = null;
+    this[__ASN1IA5String_stringValue_isSet] = false;
+    this[__ASN1IA5String_stringValue_isSet] = true;
+    this[__ASN1IA5String_stringValue] = stringValue;
+    asn1lib.ASN1IA5String.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1IA5String.prototype;
+  (asn1lib.ASN1IA5String.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[17], 22, 37, "bytes");
+    this[__ASN1IA5String_stringValue] = null;
+    this[__ASN1IA5String_stringValue_isSet] = false;
+    asn1lib.ASN1IA5String.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    this.stringValue = convert.ascii.decode(octets);
+  }).prototype = asn1lib.ASN1IA5String.prototype;
+  dart.addTypeTests(asn1lib.ASN1IA5String);
+  dart.addTypeCaches(asn1lib.ASN1IA5String);
+  dart.setGetterSignature(asn1lib.ASN1IA5String, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1IA5String.__proto__),
+    stringValue: core.String
+  }));
+  dart.setSetterSignature(asn1lib.ASN1IA5String, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1IA5String.__proto__),
+    stringValue: core.String
+  }));
+  dart.setLibraryUri(asn1lib.ASN1IA5String, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1IA5String, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1IA5String.__proto__),
+    [__ASN1IA5String_stringValue]: dart.fieldType(dart.nullable(core.String)),
+    [__ASN1IA5String_stringValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1IA5String, ['toString']);
+  var __ASN1UtcTime_dateTimeValue = dart.privateName(asn1lib, "_#ASN1UtcTime#dateTimeValue");
+  var __ASN1UtcTime_dateTimeValue_isSet = dart.privateName(asn1lib, "_#ASN1UtcTime#dateTimeValue#isSet");
+  asn1lib.ASN1UtcTime = class ASN1UtcTime extends asn1lib.ASN1Object {
+    get dateTimeValue() {
+      let t7;
+      return dart.test(this[__ASN1UtcTime_dateTimeValue_isSet]) ? (t7 = this[__ASN1UtcTime_dateTimeValue], t7) : dart.throw(new _internal.LateError.fieldNI("dateTimeValue"));
+    }
+    set dateTimeValue(t7) {
+      if (t7 == null) dart.nullFailed(I[18], 13, 17, "null");
+      this[__ASN1UtcTime_dateTimeValue_isSet] = true;
+      this[__ASN1UtcTime_dateTimeValue] = t7;
+    }
+    [_encode]() {
+      let utc = this.dateTimeValue.toUtc();
+      let year = dart.toString(utc.year)[$substring](2)[$padLeft](2, "0");
+      let month = dart.toString(utc.month)[$padLeft](2, "0");
+      let day = dart.toString(utc.day)[$padLeft](2, "0");
+      let hour = dart.toString(utc.hour)[$padLeft](2, "0");
+      let minute = dart.toString(utc.minute)[$padLeft](2, "0");
+      let second = dart.toString(utc.second)[$padLeft](2, "0");
+      let utcString = year + month + day + hour + minute + second + "Z";
+      let valBytes = T.JSArrayOfint().of([]);
+      valBytes[$addAll](convert.ascii.encode(utcString));
+      this[_valueByteLength] = valBytes[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](valBytes);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "UtcTime(" + dart.str(this.dateTimeValue) + ")";
+    }
+  };
+  (asn1lib.ASN1UtcTime.new = function(dateTimeValue, opts) {
+    if (dateTimeValue == null) dart.nullFailed(I[18], 20, 20, "dateTimeValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 23;
+    if (tag == null) dart.nullFailed(I[18], 20, 40, "tag");
+    this[__ASN1UtcTime_dateTimeValue] = null;
+    this[__ASN1UtcTime_dateTimeValue_isSet] = false;
+    this[__ASN1UtcTime_dateTimeValue_isSet] = true;
+    this[__ASN1UtcTime_dateTimeValue] = dateTimeValue;
+    asn1lib.ASN1UtcTime.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1UtcTime.prototype;
+  (asn1lib.ASN1UtcTime.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[18], 25, 35, "bytes");
+    this[__ASN1UtcTime_dateTimeValue] = null;
+    this[__ASN1UtcTime_dateTimeValue_isSet] = false;
+    asn1lib.ASN1UtcTime.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    let stringValue = convert.ascii.decode(octets);
+    let y2 = core.int.parse(stringValue[$substring](0, 2));
+    if (dart.notNull(y2) > 75) {
+      stringValue = "19" + dart.notNull(stringValue);
+    } else {
+      stringValue = "20" + dart.notNull(stringValue);
+    }
+    stringValue = stringValue[$substring](0, 8) + "T" + stringValue[$substring](8);
+    this.dateTimeValue = core.DateTime.parse(stringValue);
+  }).prototype = asn1lib.ASN1UtcTime.prototype;
+  dart.addTypeTests(asn1lib.ASN1UtcTime);
+  dart.addTypeCaches(asn1lib.ASN1UtcTime);
+  dart.setGetterSignature(asn1lib.ASN1UtcTime, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1UtcTime.__proto__),
+    dateTimeValue: core.DateTime
+  }));
+  dart.setSetterSignature(asn1lib.ASN1UtcTime, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1UtcTime.__proto__),
+    dateTimeValue: core.DateTime
+  }));
+  dart.setLibraryUri(asn1lib.ASN1UtcTime, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1UtcTime, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1UtcTime.__proto__),
+    [__ASN1UtcTime_dateTimeValue]: dart.fieldType(dart.nullable(core.DateTime)),
+    [__ASN1UtcTime_dateTimeValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1UtcTime, ['toString']);
+  var __ASN1GeneralizedTime_dateTimeValue = dart.privateName(asn1lib, "_#ASN1GeneralizedTime#dateTimeValue");
+  var __ASN1GeneralizedTime_dateTimeValue_isSet = dart.privateName(asn1lib, "_#ASN1GeneralizedTime#dateTimeValue#isSet");
+  asn1lib.ASN1GeneralizedTime = class ASN1GeneralizedTime extends asn1lib.ASN1Object {
+    get dateTimeValue() {
+      let t8;
+      return dart.test(this[__ASN1GeneralizedTime_dateTimeValue_isSet]) ? (t8 = this[__ASN1GeneralizedTime_dateTimeValue], t8) : dart.throw(new _internal.LateError.fieldNI("dateTimeValue"));
+    }
+    set dateTimeValue(t8) {
+      if (t8 == null) dart.nullFailed(I[19], 13, 17, "null");
+      this[__ASN1GeneralizedTime_dateTimeValue_isSet] = true;
+      this[__ASN1GeneralizedTime_dateTimeValue] = t8;
+    }
+    [_encode]() {
+      let utc = this.dateTimeValue.toUtc();
+      let year = dart.toString(utc.year);
+      let month = dart.toString(utc.month);
+      let day = dart.toString(utc.day);
+      let hour = dart.toString(utc.hour);
+      let minute = dart.toString(utc.minute);
+      let second = dart.toString(utc.second);
+      let utcString = year + month + day + hour + minute + second + "Z";
+      let valBytes = T.JSArrayOfint().of([]);
+      valBytes[$addAll](convert.ascii.encode(utcString));
+      this[_valueByteLength] = valBytes[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](valBytes);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "GeneralizedTime(" + dart.str(this.dateTimeValue) + ")";
+    }
+  };
+  (asn1lib.ASN1GeneralizedTime.new = function(dateTimeValue, opts) {
+    if (dateTimeValue == null) dart.nullFailed(I[19], 20, 28, "dateTimeValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 24;
+    if (tag == null) dart.nullFailed(I[19], 20, 48, "tag");
+    this[__ASN1GeneralizedTime_dateTimeValue] = null;
+    this[__ASN1GeneralizedTime_dateTimeValue_isSet] = false;
+    this[__ASN1GeneralizedTime_dateTimeValue_isSet] = true;
+    this[__ASN1GeneralizedTime_dateTimeValue] = dateTimeValue;
+    asn1lib.ASN1GeneralizedTime.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1GeneralizedTime.prototype;
+  (asn1lib.ASN1GeneralizedTime.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[19], 26, 43, "bytes");
+    this[__ASN1GeneralizedTime_dateTimeValue] = null;
+    this[__ASN1GeneralizedTime_dateTimeValue_isSet] = false;
+    asn1lib.ASN1GeneralizedTime.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    let stringValue = convert.ascii.decode(octets);
+    let year = stringValue[$substring](0, 4);
+    let month = stringValue[$substring](4, 6);
+    let day = stringValue[$substring](6, 8);
+    let hour = stringValue[$substring](8, 10);
+    let minute = stringValue[$substring](10, 12);
+    let second = stringValue[$substring](12, 14);
+    if (stringValue.length > 14) {
+      let timeZone = stringValue[$substring](14, stringValue.length);
+      this.dateTimeValue = core.DateTime.parse(year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second + timeZone);
+    } else {
+      this.dateTimeValue = core.DateTime.parse(year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second);
+    }
+  }).prototype = asn1lib.ASN1GeneralizedTime.prototype;
+  dart.addTypeTests(asn1lib.ASN1GeneralizedTime);
+  dart.addTypeCaches(asn1lib.ASN1GeneralizedTime);
+  dart.setGetterSignature(asn1lib.ASN1GeneralizedTime, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1GeneralizedTime.__proto__),
+    dateTimeValue: core.DateTime
+  }));
+  dart.setSetterSignature(asn1lib.ASN1GeneralizedTime, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1GeneralizedTime.__proto__),
+    dateTimeValue: core.DateTime
+  }));
+  dart.setLibraryUri(asn1lib.ASN1GeneralizedTime, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1GeneralizedTime, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1GeneralizedTime.__proto__),
+    [__ASN1GeneralizedTime_dateTimeValue]: dart.fieldType(dart.nullable(core.DateTime)),
+    [__ASN1GeneralizedTime_dateTimeValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1GeneralizedTime, ['toString']);
+  var __ASN1TeletextString_stringValue = dart.privateName(asn1lib, "_#ASN1TeletextString#stringValue");
+  var __ASN1TeletextString_stringValue_isSet = dart.privateName(asn1lib, "_#ASN1TeletextString#stringValue#isSet");
+  asn1lib.ASN1TeletextString = class ASN1TeletextString extends asn1lib.ASN1Object {
+    get stringValue() {
+      let t9;
+      return dart.test(this[__ASN1TeletextString_stringValue_isSet]) ? (t9 = this[__ASN1TeletextString_stringValue], t9) : dart.throw(new _internal.LateError.fieldNI("stringValue"));
+    }
+    set stringValue(t9) {
+      if (t9 == null) dart.nullFailed(I[20], 8, 15, "null");
+      this[__ASN1TeletextString_stringValue_isSet] = true;
+      this[__ASN1TeletextString_stringValue] = t9;
+    }
+    [_encode]() {
+      let octets = convert.ascii.encode(this.stringValue);
+      this[_valueByteLength] = octets[$length];
+      this[_encodeHeader]();
+      this[_setValueBytes](octets);
+      return this[_encodedBytes];
+    }
+    toString() {
+      return "ASN1TeletextString(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1TeletextString.new = function(stringValue, opts) {
+    if (stringValue == null) dart.nullFailed(I[20], 15, 27, "stringValue");
+    let tag = opts && 'tag' in opts ? opts.tag : 12;
+    if (tag == null) dart.nullFailed(I[20], 15, 45, "tag");
+    this[__ASN1TeletextString_stringValue] = null;
+    this[__ASN1TeletextString_stringValue_isSet] = false;
+    this[__ASN1TeletextString_stringValue_isSet] = true;
+    this[__ASN1TeletextString_stringValue] = stringValue;
+    asn1lib.ASN1TeletextString.__proto__.new.call(this, {tag: tag});
+    ;
+  }).prototype = asn1lib.ASN1TeletextString.prototype;
+  (asn1lib.ASN1TeletextString.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[20], 21, 42, "bytes");
+    this[__ASN1TeletextString_stringValue] = null;
+    this[__ASN1TeletextString_stringValue_isSet] = false;
+    asn1lib.ASN1TeletextString.__proto__.fromBytes.call(this, bytes);
+    let octets = this.valueBytes();
+    this.stringValue = convert.ascii.decode(octets);
+  }).prototype = asn1lib.ASN1TeletextString.prototype;
+  dart.addTypeTests(asn1lib.ASN1TeletextString);
+  dart.addTypeCaches(asn1lib.ASN1TeletextString);
+  dart.setGetterSignature(asn1lib.ASN1TeletextString, () => ({
+    __proto__: dart.getGetters(asn1lib.ASN1TeletextString.__proto__),
+    stringValue: core.String
+  }));
+  dart.setSetterSignature(asn1lib.ASN1TeletextString, () => ({
+    __proto__: dart.getSetters(asn1lib.ASN1TeletextString.__proto__),
+    stringValue: core.String
+  }));
+  dart.setLibraryUri(asn1lib.ASN1TeletextString, I[2]);
+  dart.setFieldSignature(asn1lib.ASN1TeletextString, () => ({
+    __proto__: dart.getFields(asn1lib.ASN1TeletextString.__proto__),
+    [__ASN1TeletextString_stringValue]: dart.fieldType(dart.nullable(core.String)),
+    [__ASN1TeletextString_stringValue_isSet]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(asn1lib.ASN1TeletextString, ['toString']);
+  var _assertValidLength = dart.privateName(asn1lib, "_assertValidLength");
+  asn1lib.ASN1IpAddress = class ASN1IpAddress extends asn1lib.ASN1OctetString {
+    static fromComponentString(path, opts) {
+      if (path == null) dart.nullFailed(I[21], 32, 51, "path");
+      let tag = opts && 'tag' in opts ? opts.tag : 64;
+      return asn1lib.ASN1IpAddress.fromComponents(path[$split](".")[$map](core.int, dart.fn(v => {
+        if (v == null) dart.nullFailed(I[21], 33, 43, "v");
+        return core.int.parse(v);
+      }, T.StringToint()))[$toList](), {tag: tag});
+    }
+    static fromComponents(components, opts) {
+      if (components == null) dart.nullFailed(I[21], 40, 49, "components");
+      let tag = opts && 'tag' in opts ? opts.tag : 64;
+      return new asn1lib.ASN1IpAddress.new(components, {tag: core.int.as(tag)});
+    }
+    [_assertValidLength](octets) {
+      if (octets == null) dart.nullFailed(I[21], 45, 37, "octets");
+      if (octets[$length] !== 4) {
+        dart.throw(new core.ArgumentError.new("IPv4 Address should contain exactly 4 octets."));
+      }
+    }
+    get stringValue() {
+      return this.octets[$join](".");
+    }
+    toString() {
+      return "IpAddress(" + dart.str(this.stringValue) + ")";
+    }
+  };
+  (asn1lib.ASN1IpAddress.new = function(octets, opts) {
+    if (octets == null) dart.nullFailed(I[21], 11, 27, "octets");
+    let tag = opts && 'tag' in opts ? opts.tag : 64;
+    if (tag == null) dart.nullFailed(I[21], 11, 40, "tag");
+    asn1lib.ASN1IpAddress.__proto__.new.call(this, octets, {tag: tag});
+    this[_assertValidLength](this.octets);
+    for (let o of octets) {
+      if (0 > dart.notNull(o) || dart.notNull(o) > 255) {
+        dart.throw(new core.ArgumentError.new("Octet out of range!."));
+      }
+    }
+  }).prototype = asn1lib.ASN1IpAddress.prototype;
+  (asn1lib.ASN1IpAddress.fromBytes = function(bytes) {
+    if (bytes == null) dart.nullFailed(I[21], 24, 37, "bytes");
+    asn1lib.ASN1IpAddress.__proto__.fromBytes.call(this, bytes);
+    this.octets = this.valueBytes();
+    this[_assertValidLength](this.octets);
+  }).prototype = asn1lib.ASN1IpAddress.prototype;
+  dart.addTypeTests(asn1lib.ASN1IpAddress);
+  dart.addTypeCaches(asn1lib.ASN1IpAddress);
+  dart.setMethodSignature(asn1lib.ASN1IpAddress, () => ({
+    __proto__: dart.getMethods(asn1lib.ASN1IpAddress.__proto__),
+    [_assertValidLength]: dart.fnType(dart.void, [typed_data.Uint8List])
+  }));
+  dart.setLibraryUri(asn1lib.ASN1IpAddress, I[2]);
+  dart.defineExtensionMethods(asn1lib.ASN1IpAddress, ['toString']);
+  dart.defineLazy(asn1lib, {
+    /*asn1lib.BOOLEAN_TYPE*/get BOOLEAN_TYPE() {
+      return 1;
+    },
+    /*asn1lib.INTEGER_TYPE*/get INTEGER_TYPE() {
+      return 2;
+    },
+    /*asn1lib.BIT_STRING_TYPE*/get BIT_STRING_TYPE() {
+      return 3;
+    },
+    /*asn1lib.OCTET_STRING_TYPE*/get OCTET_STRING_TYPE() {
+      return 4;
+    },
+    /*asn1lib.NULL_TYPE*/get NULL_TYPE() {
+      return 5;
+    },
+    /*asn1lib.ENUMERATED_TYPE*/get ENUMERATED_TYPE() {
+      return 10;
+    },
+    /*asn1lib.UTF8_STRING_TYPE*/get UTF8_STRING_TYPE() {
+      return 12;
+    },
+    /*asn1lib.PRINTABLE_STRING_TYPE*/get PRINTABLE_STRING_TYPE() {
+      return 19;
+    },
+    /*asn1lib.IA5_STRING_TYPE*/get IA5_STRING_TYPE() {
+      return 22;
+    },
+    /*asn1lib.UTC_TIME_TYPE*/get UTC_TIME_TYPE() {
+      return 23;
+    },
+    /*asn1lib.SEQUENCE_TYPE*/get SEQUENCE_TYPE() {
+      return 48;
+    },
+    /*asn1lib.SET_TYPE*/get SET_TYPE() {
+      return 49;
+    },
+    /*asn1lib.OBJECT_IDENTIFIER*/get OBJECT_IDENTIFIER() {
+      return 6;
+    },
+    /*asn1lib.GENERALIZED_TIME*/get GENERALIZED_TIME() {
+      return 24;
+    },
+    /*asn1lib.TELETEXT_STRING*/get TELETEXT_STRING() {
+      return 20;
+    },
+    /*asn1lib.BOOLEAN_TRUE_VALUE*/get BOOLEAN_TRUE_VALUE() {
+      return 255;
+    },
+    /*asn1lib.BOOLEAN_FALSE_VALUE*/get BOOLEAN_FALSE_VALUE() {
+      return 0;
+    },
+    /*asn1lib.IP_ADDRESS*/get IP_ADDRESS() {
+      return 64;
+    }
+  }, false);
+  dart.trackLibraries("packages/asn1lib/asn1lib.dart", {
+    "package:asn1lib/asn1lib.dart": asn1lib
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["lsq_solver.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/gestures/lsq_solver.dart.lib.js"}');
+    "package:asn1lib/asn1lib.dart": ["asn1integer.dart", "asn1enumerated.dart", "asn1object.dart", "asn1util.dart", "asn1octetstring.dart", "asn1exception.dart", "asn1sequence.dart", "asn1length.dart", "asn1parser.dart", "asn1constants.dart", "asn1null.dart", "asn1boolean.dart", "asn1set.dart", "asn1objectidentifier.dart", "asn1bitstring.dart", "asn1printablestring.dart", "asn1utf8string.dart", "asn1ia5string.dart", "asn1utctime.dart", "asn1generalizedtime.dart", "asn1teletextstring.dart", "asn1ipaddress.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["asn1object.dart","asn1integer.dart","asn1enumerated.dart","asn1util.dart","asn1octetstring.dart","asn1exception.dart","asn1sequence.dart","asn1length.dart","asn1parser.dart","asn1null.dart","asn1boolean.dart","asn1set.dart","asn1objectidentifier.dart","asn1bitstring.dart","asn1printablestring.dart","asn1utf8string.dart","asn1ia5string.dart","asn1utctime.dart","asn1generalizedtime.dart","asn1teletextstring.dart","asn1ipaddress.dart","asn1constants.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/asn1lib/asn1lib.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__lsq_solver: lsq_solver
+    asn1lib: asn1lib
   };
 }));
 
-//# sourceMappingURL=lsq_solver.dart.lib.js.map
+//# sourceMappingURL=asn1lib.dart.lib.js.map

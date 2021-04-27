@@ -1,21 +1,15 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/paragraph.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/cupertino/button.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/edge_insets.dart'], (function load__packages__flutter__src__cupertino__text_selection_toolbar_button_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__paragraph$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__cupertino__button$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__edge_insets$46dart) {
+define(['dart_sdk'], (function load__packages__collection__src__comparators_dart(dart_sdk) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const text$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
-  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
-  const button = packages__flutter__src__cupertino__button$46dart.src__cupertino__button;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  var text_selection_toolbar_button = Object.create(dart.library);
+  var comparators = Object.create(dart.library);
+  var $codeUnitAt = dartx.codeUnitAt;
+  var $rightShift = dartx['>>'];
+  var $sign = dartx.sign;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+    _: () => T
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -29,295 +23,295 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 10,
-        [_Location_line]: 40,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "overflow",
-        [_Location_column]: 10,
-        [_Location_line]: 41,
-        [_Location_file]: null
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 10,
-        [_Location_line]: 42,
-        [_Location_file]: null
-      });
-    },
-    get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4], T._LocationL());
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[1] || CT.C1,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 39,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/text_selection_toolbar_button.dart"
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "borderRadius",
-        [_Location_column]: 7,
-        [_Location_line]: 63,
-        [_Location_file]: null
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 7,
-        [_Location_line]: 64,
-        [_Location_file]: null
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "disabledColor",
-        [_Location_column]: 7,
-        [_Location_line]: 65,
-        [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 7,
-        [_Location_line]: 66,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 7,
-        [_Location_line]: 67,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "pressedOpacity",
-        [_Location_column]: 7,
-        [_Location_line]: 68,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 69,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[6] || CT.C6,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 62,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/text_selection_toolbar_button.dart"
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: ui.FontWeight.prototype,
-        [FontWeight_index]: 3
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: text_style.TextStyle.prototype,
-        [TextStyle_fontFeatures]: null,
-        [TextStyle_shadows]: null,
-        [TextStyle_debugLabel]: null,
-        [TextStyle_decorationThickness]: null,
-        [TextStyle_decorationStyle]: null,
-        [TextStyle_decorationColor]: null,
-        [TextStyle_decoration]: null,
-        [TextStyle_background]: null,
-        [TextStyle_foreground]: null,
-        [TextStyle_locale]: null,
-        [TextStyle_height]: null,
-        [TextStyle_textBaseline]: null,
-        [TextStyle_wordSpacing]: null,
-        [TextStyle_letterSpacing]: -0.15,
-        [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[15] || CT.C15,
-        [TextStyle_fontSize]: 14,
-        [TextStyle__package]: null,
-        [TextStyle__fontFamilyFallback]: null,
-        [TextStyle_fontFamily]: null,
-        [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: null,
-        [TextStyle_inherit]: false
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 3944751136.0
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 16,
-        [EdgeInsets_right]: 18,
-        [EdgeInsets_top]: 16,
-        [EdgeInsets_left]: 18
-      });
+  var C = [];
+  var I = ["file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/src/comparators.dart"];
+  comparators.equalsIgnoreAsciiCase = function equalsIgnoreAsciiCase(a, b) {
+    if (a == null) dart.nullFailed(I[0], 27, 35, "a");
+    if (b == null) dart.nullFailed(I[0], 27, 45, "b");
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i = i + 1) {
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar === bChar) continue;
+      if ((aChar ^ bChar) >>> 0 !== 32) return false;
+      let aCharLowerCase = (aChar | 32) >>> 0;
+      if (97 <= aCharLowerCase && aCharLowerCase <= 122) {
+        continue;
+      }
+      return false;
     }
-  }, false);
-  var C = Array(18).fill(void 0);
-  var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/text_selection_toolbar_button.dart",
-    "package:flutter/src/cupertino/text_selection_toolbar_button.dart"
-  ];
-  var child$ = dart.privateName(text_selection_toolbar_button, "CupertinoTextSelectionToolbarButton.child");
-  var onPressed$ = dart.privateName(text_selection_toolbar_button, "CupertinoTextSelectionToolbarButton.onPressed");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  text_selection_toolbar_button.CupertinoTextSelectionToolbarButton = class CupertinoTextSelectionToolbarButton extends framework.StatelessWidget {
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    get onPressed() {
-      return this[onPressed$];
-    }
-    set onPressed(value) {
-      super.onPressed = value;
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 61, 29, "context");
-      return new button.CupertinoButton.new({borderRadius: null, color: text_selection_toolbar_button._kToolbarBackgroundColor, disabledColor: text_selection_toolbar_button._kToolbarBackgroundColor, onPressed: this.onPressed, padding: text_selection_toolbar_button._kToolbarButtonPadding, pressedOpacity: this.onPressed == null ? 1.0 : 0.7, child: this.child, $creationLocationd_0dea112b090073317d4: C[5] || CT.C5});
-    }
+    return true;
   };
-  (text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 30, 19, "child");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[onPressed$] = onPressed;
-    this[child$] = child;
-    text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.prototype;
-  (text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.text = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
-    let text = opts && 'text' in opts ? opts.text : null;
-    if (text == null) dart.nullFailed(I[0], 38, 21, "text");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[onPressed$] = onPressed;
-    this[child$] = new text$.Text.new(text, {overflow: paragraph.TextOverflow.ellipsis, style: text_selection_toolbar_button._kToolbarButtonFontStyle.copyWith({color: onPressed != null ? colors.CupertinoColors.white : colors.CupertinoColors.inactiveGray}), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
-    text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.prototype;
-  dart.addTypeTests(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton);
-  dart.addTypeCaches(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton);
-  dart.setMethodSignature(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton, () => ({
-    __proto__: dart.getMethods(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton, I[1]);
-  dart.setFieldSignature(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton, () => ({
-    __proto__: dart.getFields(text_selection_toolbar_button.CupertinoTextSelectionToolbarButton.__proto__),
-    child: dart.finalFieldType(framework.Widget),
-    onPressed: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [])))
-  }));
-  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
-  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
-  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
-  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
-  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
-  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
-  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
-  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
-  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
-  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
-  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
-  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
-  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
-  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
-  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
-  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
-  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
-  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
-  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  dart.defineLazy(text_selection_toolbar_button, {
-    /*text_selection_toolbar_button._kToolbarButtonFontStyle*/get _kToolbarButtonFontStyle() {
-      return C[14] || CT.C14;
+  comparators.hashIgnoreAsciiCase = function hashIgnoreAsciiCase(string) {
+    if (string == null) dart.nullFailed(I[0], 50, 32, "string");
+    let hash = 0;
+    for (let i = 0; i < string.length; i = i + 1) {
+      let char = string[$codeUnitAt](i);
+      if (97 <= char && char <= 122) char = char - 32;
+      hash = 536870911 & hash + char;
+      hash = 536870911 & hash + ((524287 & hash) << 10);
+      hash = hash[$rightShift](6);
+    }
+    hash = 536870911 & hash + ((67108863 & hash) << 3);
+    hash = hash[$rightShift](11);
+    return 536870911 & hash + ((16383 & hash) << 15);
+  };
+  comparators.compareAsciiUpperCase = function compareAsciiUpperCase(a, b) {
+    if (a == null) dart.nullFailed(I[0], 85, 34, "a");
+    if (b == null) dart.nullFailed(I[0], 85, 44, "b");
+    let defaultResult = 0;
+    for (let i = 0; i < a.length; i = i + 1) {
+      if (i >= b.length) return 1;
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar === bChar) continue;
+      let aUpperCase = aChar;
+      let bUpperCase = bChar;
+      if (97 <= aChar && aChar <= 122) {
+        aUpperCase = aUpperCase - 32;
+      }
+      if (97 <= bChar && bChar <= 122) {
+        bUpperCase = bUpperCase - 32;
+      }
+      if (aUpperCase !== bUpperCase) return (aUpperCase - bUpperCase)[$sign];
+      if (defaultResult === 0) defaultResult = aChar - bChar;
+    }
+    if (b.length > a.length) return -1;
+    return defaultResult[$sign];
+  };
+  comparators.compareAsciiLowerCase = function compareAsciiLowerCase(a, b) {
+    if (a == null) dart.nullFailed(I[0], 122, 34, "a");
+    if (b == null) dart.nullFailed(I[0], 122, 44, "b");
+    let defaultResult = 0;
+    for (let i = 0; i < a.length; i = i + 1) {
+      if (i >= b.length) return 1;
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar === bChar) continue;
+      let aLowerCase = aChar;
+      let bLowerCase = bChar;
+      if (65 <= bChar && bChar <= 90) {
+        bLowerCase = bLowerCase + 32;
+      }
+      if (65 <= aChar && aChar <= 90) {
+        aLowerCase = aLowerCase + 32;
+      }
+      if (aLowerCase !== bLowerCase) return (aLowerCase - bLowerCase)[$sign];
+      if (defaultResult === 0) defaultResult = aChar - bChar;
+    }
+    if (b.length > a.length) return -1;
+    return defaultResult[$sign];
+  };
+  comparators.compareNatural = function compareNatural(a, b) {
+    if (a == null) dart.nullFailed(I[0], 161, 27, "a");
+    if (b == null) dart.nullFailed(I[0], 161, 37, "b");
+    for (let i = 0; i < a.length; i = i + 1) {
+      if (i >= b.length) return 1;
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar !== bChar) {
+        return comparators._compareNaturally(a, b, i, aChar, bChar);
+      }
+    }
+    if (b.length > a.length) return -1;
+    return 0;
+  };
+  comparators.compareAsciiLowerCaseNatural = function compareAsciiLowerCaseNatural(a, b) {
+    if (a == null) dart.nullFailed(I[0], 187, 41, "a");
+    if (b == null) dart.nullFailed(I[0], 187, 51, "b");
+    let defaultResult = 0;
+    for (let i = 0; i < a.length; i = i + 1) {
+      if (i >= b.length) return 1;
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar === bChar) continue;
+      let aLowerCase = aChar;
+      let bLowerCase = bChar;
+      if (65 <= aChar && aChar <= 90) {
+        aLowerCase = aLowerCase + 32;
+      }
+      if (65 <= bChar && bChar <= 90) {
+        bLowerCase = bLowerCase + 32;
+      }
+      if (aLowerCase !== bLowerCase) {
+        return comparators._compareNaturally(a, b, i, aLowerCase, bLowerCase);
+      }
+      if (defaultResult === 0) defaultResult = aChar - bChar;
+    }
+    if (b.length > a.length) return -1;
+    return defaultResult[$sign];
+  };
+  comparators.compareAsciiUpperCaseNatural = function compareAsciiUpperCaseNatural(a, b) {
+    if (a == null) dart.nullFailed(I[0], 224, 41, "a");
+    if (b == null) dart.nullFailed(I[0], 224, 51, "b");
+    let defaultResult = 0;
+    for (let i = 0; i < a.length; i = i + 1) {
+      if (i >= b.length) return 1;
+      let aChar = a[$codeUnitAt](i);
+      let bChar = b[$codeUnitAt](i);
+      if (aChar === bChar) continue;
+      let aUpperCase = aChar;
+      let bUpperCase = bChar;
+      if (97 <= aChar && aChar <= 122) {
+        aUpperCase = aUpperCase - 32;
+      }
+      if (97 <= bChar && bChar <= 122) {
+        bUpperCase = bUpperCase - 32;
+      }
+      if (aUpperCase !== bUpperCase) {
+        return comparators._compareNaturally(a, b, i, aUpperCase, bUpperCase);
+      }
+      if (defaultResult === 0) defaultResult = aChar - bChar;
+    }
+    if (b.length > a.length) return -1;
+    return defaultResult[$sign];
+  };
+  comparators._compareNaturally = function _compareNaturally(a, b, index, aChar, bChar) {
+    if (a == null) dart.nullFailed(I[0], 258, 30, "a");
+    if (b == null) dart.nullFailed(I[0], 258, 40, "b");
+    if (index == null) dart.nullFailed(I[0], 258, 47, "index");
+    if (aChar == null) dart.nullFailed(I[0], 258, 58, "aChar");
+    if (bChar == null) dart.nullFailed(I[0], 258, 69, "bChar");
+    if (!(aChar != bChar)) dart.assertFailed(null, I[0], 259, 10, "aChar != bChar");
+    let aIsDigit = comparators._isDigit(aChar);
+    let bIsDigit = comparators._isDigit(bChar);
+    if (dart.test(aIsDigit)) {
+      if (dart.test(bIsDigit)) {
+        return comparators._compareNumerically(a, b, aChar, bChar, index);
+      } else if (dart.notNull(index) > 0 && dart.test(comparators._isDigit(a[$codeUnitAt](dart.notNull(index) - 1)))) {
+        return 1;
+      }
+    } else if (dart.test(bIsDigit) && dart.notNull(index) > 0 && dart.test(comparators._isDigit(b[$codeUnitAt](dart.notNull(index) - 1)))) {
+      return -1;
+    }
+    return (dart.notNull(aChar) - dart.notNull(bChar))[$sign];
+  };
+  comparators._compareNumerically = function _compareNumerically(a, b, aChar, bChar, index) {
+    if (a == null) dart.nullFailed(I[0], 283, 32, "a");
+    if (b == null) dart.nullFailed(I[0], 283, 42, "b");
+    if (aChar == null) dart.nullFailed(I[0], 283, 49, "aChar");
+    if (bChar == null) dart.nullFailed(I[0], 283, 60, "bChar");
+    if (index == null) dart.nullFailed(I[0], 283, 71, "index");
+    if (dart.test(comparators._isNonZeroNumberSuffix(a, index))) {
+      let result = comparators._compareDigitCount(a, b, index, index);
+      if (result !== 0) return result;
+      return (dart.notNull(aChar) - dart.notNull(bChar))[$sign];
+    }
+    let aIndex = index;
+    let bIndex = index;
+    if (aChar === 48) {
+      do {
+        aIndex = dart.notNull(aIndex) + 1;
+        if (aIndex === a.length) return -1;
+        aChar = a[$codeUnitAt](aIndex);
+      } while (aChar === 48);
+      if (!dart.test(comparators._isDigit(aChar))) return -1;
+    } else if (bChar === 48) {
+      do {
+        bIndex = dart.notNull(bIndex) + 1;
+        if (bIndex === b.length) return 1;
+        bChar = b[$codeUnitAt](bIndex);
+      } while (bChar === 48);
+      if (!dart.test(comparators._isDigit(bChar))) return 1;
+    }
+    if (aChar != bChar) {
+      let result = comparators._compareDigitCount(a, b, aIndex, bIndex);
+      if (result !== 0) return result;
+      return (dart.notNull(aChar) - dart.notNull(bChar))[$sign];
+    }
+    while (true) {
+      let aIsDigit = false;
+      let bIsDigit = false;
+      aChar = 0;
+      bChar = 0;
+      if ((aIndex = dart.notNull(aIndex) + 1) < a.length) {
+        aChar = a[$codeUnitAt](aIndex);
+        aIsDigit = comparators._isDigit(aChar);
+      }
+      if ((bIndex = dart.notNull(bIndex) + 1) < b.length) {
+        bChar = b[$codeUnitAt](bIndex);
+        bIsDigit = comparators._isDigit(bChar);
+      }
+      if (dart.test(aIsDigit)) {
+        if (dart.test(bIsDigit)) {
+          if (aChar == bChar) continue;
+          break;
+        }
+        return 1;
+      } else if (dart.test(bIsDigit)) {
+        return -1;
+      } else {
+        return (dart.notNull(aIndex) - dart.notNull(bIndex))[$sign];
+      }
+    }
+    let result = comparators._compareDigitCount(a, b, aIndex, bIndex);
+    if (result !== 0) return result;
+    return (dart.notNull(aChar) - dart.notNull(bChar))[$sign];
+  };
+  comparators._compareDigitCount = function _compareDigitCount(a, b, i, j) {
+    if (a == null) dart.nullFailed(I[0], 360, 31, "a");
+    if (b == null) dart.nullFailed(I[0], 360, 41, "b");
+    if (i == null) dart.nullFailed(I[0], 360, 48, "i");
+    if (j == null) dart.nullFailed(I[0], 360, 55, "j");
+    while ((i = dart.notNull(i) + 1) < a.length) {
+      let aIsDigit = comparators._isDigit(a[$codeUnitAt](i));
+      if ((j = dart.notNull(j) + 1) === b.length) return dart.test(aIsDigit) ? 1 : 0;
+      let bIsDigit = comparators._isDigit(b[$codeUnitAt](j));
+      if (dart.test(aIsDigit)) {
+        if (dart.test(bIsDigit)) continue;
+        return 1;
+      } else if (dart.test(bIsDigit)) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+    if ((j = dart.notNull(j) + 1) < b.length && dart.test(comparators._isDigit(b[$codeUnitAt](j)))) {
+      return -1;
+    }
+    return 0;
+  };
+  comparators._isDigit = function _isDigit(charCode) {
+    if (charCode == null) dart.nullFailed(I[0], 380, 19, "charCode");
+    return (dart.notNull(charCode) ^ 48) >>> 0 <= 9;
+  };
+  comparators._isNonZeroNumberSuffix = function _isNonZeroNumberSuffix(string, index) {
+    if (string == null) dart.nullFailed(I[0], 387, 36, "string");
+    if (index == null) dart.nullFailed(I[0], 387, 48, "index");
+    while ((index = dart.notNull(index) - 1) >= 0) {
+      let char = string[$codeUnitAt](index);
+      if (char !== 48) return comparators._isDigit(char);
+    }
+    return false;
+  };
+  dart.defineLazy(comparators, {
+    /*comparators._zero*/get _zero() {
+      return 48;
     },
-    /*text_selection_toolbar_button._kToolbarBackgroundColor*/get _kToolbarBackgroundColor() {
-      return C[16] || CT.C16;
+    /*comparators._upperCaseA*/get _upperCaseA() {
+      return 65;
     },
-    /*text_selection_toolbar_button._kToolbarButtonPadding*/get _kToolbarButtonPadding() {
-      return C[17] || CT.C17;
+    /*comparators._upperCaseZ*/get _upperCaseZ() {
+      return 90;
+    },
+    /*comparators._lowerCaseA*/get _lowerCaseA() {
+      return 97;
+    },
+    /*comparators._lowerCaseZ*/get _lowerCaseZ() {
+      return 122;
+    },
+    /*comparators._asciiCaseBit*/get _asciiCaseBit() {
+      return 32;
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/cupertino/text_selection_toolbar_button.dart", {
-    "package:flutter/src/cupertino/text_selection_toolbar_button.dart": text_selection_toolbar_button
+  dart.trackLibraries("packages/collection/src/comparators.dart", {
+    "package:collection/src/comparators.dart": comparators
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_selection_toolbar_button.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAoDe;;;;;;IAKO;;;;;;;UAGM;AACxB,YAAO,+CACS,aACP,uEACQ,mEACJ,yBACF,sEACO,AAAU,yBAAU,MAAM,YACnC;IAEX;;;QA3CO;QACA;QACS;;;IADT;IACS;AACX,qGAAW,GAAG;;EAAC;;QAKb;QACA;QACW;;;IADX;IAEI,eAAE,mBACN,IAAI,aACmB,wCAChB,AAAyB,wEACvB,AAAU,SAAD,WAA2B,+BAAwB;AAGvE,qGAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MApCN,sDAAwB;;;MAS5B,sDAAwB;;;MAGnB,oDAAsB","file":"../../../../../../../../D:/packages/flutter/src/cupertino/text_selection_toolbar_button.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["comparators.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/collection/src/comparators.dart.lib.js"}');
   // Exports:
   return {
-    src__cupertino__text_selection_toolbar_button: text_selection_toolbar_button
+    src__comparators: comparators
   };
 }));
 
-//# sourceMappingURL=text_selection_toolbar_button.dart.lib.js.map
+//# sourceMappingURL=comparators.dart.lib.js.map

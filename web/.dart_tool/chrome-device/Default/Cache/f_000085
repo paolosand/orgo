@@ -1,27 +1,17 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/scrollbar.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/services/haptic_feedback.dart'], (function load__packages__flutter__src__cupertino__scrollbar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__scrollbar$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__services__haptic_feedback$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__material__floating_action_button_theme_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
-  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const scrollbar = packages__flutter__src__widgets__scrollbar$46dart.src__widgets__scrollbar;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const haptic_feedback = packages__flutter__src__services__haptic_feedback$46dart.src__services__haptic_feedback;
-  var scrollbar$ = Object.create(dart.library);
-  var $abs = dartx.abs;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  var floating_action_button_theme = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    ScrollNotificationTobool: () => (T.ScrollNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollNotification])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
-    voidToFutureOfvoid: () => (T.voidToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [dart.void])))()
+    DiagnosticsPropertyOfShapeBorder: () => (T.DiagnosticsPropertyOfShapeBorder = dart.constFn(diagnostics.DiagnosticsProperty$(borders.ShapeBorder)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -38,346 +28,212 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 1.5,
-        [Radius_x]: 1.5
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 4,
-        [Radius_x]: 4
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 100000
-      });
-    },
-    get C3() {
-      return C[3] = dart.fn(scroll_notification.defaultScrollNotificationPredicate, T.ScrollNotificationTobool());
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.horizontal",
-        index: 0
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 1200000
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 250000
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 2164260863.0
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 1493172224
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: colors.CupertinoDynamicColor.prototype,
-        [Color_value]: 0,
-        [CupertinoDynamicColor_darkHighContrastElevatedColor]: C[9] || CT.C9,
-        [CupertinoDynamicColor_highContrastElevatedColor]: C[10] || CT.C10,
-        [CupertinoDynamicColor_darkElevatedColor]: C[9] || CT.C9,
-        [CupertinoDynamicColor_elevatedColor]: C[10] || CT.C10,
-        [CupertinoDynamicColor_darkHighContrastColor]: C[9] || CT.C9,
-        [CupertinoDynamicColor_highContrastColor]: C[10] || CT.C10,
-        [CupertinoDynamicColor_darkColor]: C[9] || CT.C9,
-        [CupertinoDynamicColor_color]: C[10] || CT.C10,
-        [CupertinoDynamicColor__debugResolveContext]: null,
-        [CupertinoDynamicColor__debugLabel]: null,
-        [CupertinoDynamicColor__effectiveColor]: C[10] || CT.C10
+        __proto__: floating_action_button_theme.FloatingActionButtonThemeData.prototype,
+        [shape$]: null,
+        [highlightElevation$]: null,
+        [disabledElevation$]: null,
+        [hoverElevation$]: null,
+        [focusElevation$]: null,
+        [elevation$]: null,
+        [splashColor$]: null,
+        [hoverColor$]: null,
+        [focusColor$]: null,
+        [backgroundColor$]: null,
+        [foregroundColor$]: null
       });
     }
   }, false);
-  var C = Array(11).fill(void 0);
+  var C = [void 0];
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/cupertino/scrollbar.dart",
-    "package:flutter/src/cupertino/scrollbar.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/material/floating_action_button_theme.dart",
+    "package:flutter/src/material/floating_action_button_theme.dart"
   ];
-  var thicknessWhileDragging$ = dart.privateName(scrollbar$, "CupertinoScrollbar.thicknessWhileDragging");
-  var radiusWhileDragging$ = dart.privateName(scrollbar$, "CupertinoScrollbar.radiusWhileDragging");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  scrollbar$.CupertinoScrollbar = class CupertinoScrollbar extends scrollbar.RawScrollbar {
-    get thicknessWhileDragging() {
-      return this[thicknessWhileDragging$];
+  var foregroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.foregroundColor");
+  var backgroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.backgroundColor");
+  var focusColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusColor");
+  var hoverColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverColor");
+  var splashColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.splashColor");
+  var elevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.elevation");
+  var focusElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusElevation");
+  var hoverElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverElevation");
+  var disabledElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.disabledElevation");
+  var highlightElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.highlightElevation");
+  var shape$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.shape");
+  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
+  (Object_Diagnosticable$36.new = function() {
+  }).prototype = Object_Diagnosticable$36.prototype;
+  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
+  floating_action_button_theme.FloatingActionButtonThemeData = class FloatingActionButtonThemeData extends Object_Diagnosticable$36 {
+    get foregroundColor() {
+      return this[foregroundColor$];
     }
-    set thicknessWhileDragging(value) {
-      super.thicknessWhileDragging = value;
+    set foregroundColor(value) {
+      super.foregroundColor = value;
     }
-    get radiusWhileDragging() {
-      return this[radiusWhileDragging$];
+    get backgroundColor() {
+      return this[backgroundColor$];
     }
-    set radiusWhileDragging(value) {
-      super.radiusWhileDragging = value;
+    set backgroundColor(value) {
+      super.backgroundColor = value;
     }
-    createState() {
-      return new scrollbar$._CupertinoScrollbarState.new();
+    get focusColor() {
+      return this[focusColor$];
     }
-  };
-  (scrollbar$.CupertinoScrollbar.new = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    if (child == null) dart.nullFailed(I[0], 57, 21, "child");
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let isAlwaysShown = opts && 'isAlwaysShown' in opts ? opts.isAlwaysShown : false;
-    if (isAlwaysShown == null) dart.nullFailed(I[0], 59, 10, "isAlwaysShown");
-    let thickness = opts && 'thickness' in opts ? opts.thickness : 3;
-    if (thickness == null) dart.nullFailed(I[0], 60, 12, "thickness");
-    let thicknessWhileDragging = opts && 'thicknessWhileDragging' in opts ? opts.thicknessWhileDragging : 8;
-    if (thicknessWhileDragging == null) dart.nullFailed(I[0], 61, 10, "thicknessWhileDragging");
-    let radius = opts && 'radius' in opts ? opts.radius : C[0] || CT.C0;
-    if (radius == null) dart.nullFailed(I[0], 62, 12, "radius");
-    let radiusWhileDragging = opts && 'radiusWhileDragging' in opts ? opts.radiusWhileDragging : C[1] || CT.C1;
-    if (radiusWhileDragging == null) dart.nullFailed(I[0], 63, 10, "radiusWhileDragging");
-    let notificationPredicate = opts && 'notificationPredicate' in opts ? opts.notificationPredicate : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[thicknessWhileDragging$] = thicknessWhileDragging;
-    this[radiusWhileDragging$] = radiusWhileDragging;
-    if (!(thickness != null)) dart.assertFailed(null, I[0], 65, 15, "thickness != null");
-    if (!(dart.notNull(thickness) < 1 / 0)) dart.assertFailed(null, I[0], 66, 15, "thickness < double.infinity");
-    if (!(thicknessWhileDragging != null)) dart.assertFailed(null, I[0], 67, 15, "thicknessWhileDragging != null");
-    if (!(dart.notNull(thicknessWhileDragging) < 1 / 0)) dart.assertFailed(null, I[0], 68, 15, "thicknessWhileDragging < double.infinity");
-    if (!(radius != null)) dart.assertFailed(null, I[0], 69, 15, "radius != null");
-    if (!(radiusWhileDragging != null)) dart.assertFailed(null, I[0], 70, 15, "radiusWhileDragging != null");
-    scrollbar$.CupertinoScrollbar.__proto__.new.call(this, {key: key, child: child, controller: controller, isAlwaysShown: isAlwaysShown, thickness: thickness, radius: radius, fadeDuration: scrollbar$._kScrollbarFadeDuration, timeToFade: scrollbar$._kScrollbarTimeToFade, pressDuration: C[2] || CT.C2, notificationPredicate: (t0 = notificationPredicate, t0 == null ? C[3] || CT.C3 : t0), $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scrollbar$.CupertinoScrollbar.prototype;
-  dart.addTypeTests(scrollbar$.CupertinoScrollbar);
-  dart.addTypeCaches(scrollbar$.CupertinoScrollbar);
-  dart.setMethodSignature(scrollbar$.CupertinoScrollbar, () => ({
-    __proto__: dart.getMethods(scrollbar$.CupertinoScrollbar.__proto__),
-    createState: dart.fnType(scrollbar$._CupertinoScrollbarState, [])
-  }));
-  dart.setLibraryUri(scrollbar$.CupertinoScrollbar, I[1]);
-  dart.setFieldSignature(scrollbar$.CupertinoScrollbar, () => ({
-    __proto__: dart.getFields(scrollbar$.CupertinoScrollbar.__proto__),
-    thicknessWhileDragging: dart.finalFieldType(core.double),
-    radiusWhileDragging: dart.finalFieldType(ui.Radius)
-  }));
-  dart.defineLazy(scrollbar$.CupertinoScrollbar, {
-    /*scrollbar$.CupertinoScrollbar.defaultThickness*/get defaultThickness() {
-      return 3;
-    },
-    /*scrollbar$.CupertinoScrollbar.defaultThicknessWhileDragging*/get defaultThicknessWhileDragging() {
-      return 8;
-    },
-    /*scrollbar$.CupertinoScrollbar.defaultRadius*/get defaultRadius() {
-      return C[0] || CT.C0;
-    },
-    /*scrollbar$.CupertinoScrollbar.defaultRadiusWhileDragging*/get defaultRadiusWhileDragging() {
-      return C[1] || CT.C1;
+    set focusColor(value) {
+      super.focusColor = value;
     }
-  }, false);
-  var ___CupertinoScrollbarState__thicknessAnimationController = dart.privateName(scrollbar$, "_#_CupertinoScrollbarState#_thicknessAnimationController");
-  var ___CupertinoScrollbarState__thicknessAnimationController_isSet = dart.privateName(scrollbar$, "_#_CupertinoScrollbarState#_thicknessAnimationController#isSet");
-  var _pressStartAxisPosition = dart.privateName(scrollbar$, "_pressStartAxisPosition");
-  var _thicknessAnimationController = dart.privateName(scrollbar$, "_thicknessAnimationController");
-  var _thickness = dart.privateName(scrollbar$, "_thickness");
-  var _radius = dart.privateName(scrollbar$, "_radius");
-  var _name = dart.privateName(basic_types, "_name");
-  scrollbar$._CupertinoScrollbarState = class _CupertinoScrollbarState extends scrollbar.RawScrollbarState$(scrollbar$.CupertinoScrollbar) {
-    get [_thicknessAnimationController]() {
-      let t0;
-      return dart.test(this[___CupertinoScrollbarState__thicknessAnimationController_isSet]) ? (t0 = this[___CupertinoScrollbarState__thicknessAnimationController], t0) : dart.throw(new _internal.LateError.fieldNI("_thicknessAnimationController"));
+    get hoverColor() {
+      return this[hoverColor$];
     }
-    set [_thicknessAnimationController](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 118, 28, "null");
-      this[___CupertinoScrollbarState__thicknessAnimationController_isSet] = true;
-      this[___CupertinoScrollbarState__thicknessAnimationController] = t0;
+    set hoverColor(value) {
+      super.hoverColor = value;
     }
-    get [_thickness]() {
-      return dart.nullCheck(this.widget.thickness) + dart.notNull(this[_thicknessAnimationController].value) * (dart.notNull(this.widget.thicknessWhileDragging) - dart.nullCheck(this.widget.thickness));
+    get splashColor() {
+      return this[splashColor$];
     }
-    get [_radius]() {
-      return dart.nullCheck(ui.Radius.lerp(this.widget.radius, this.widget.radiusWhileDragging, this[_thicknessAnimationController].value));
+    set splashColor(value) {
+      super.splashColor = value;
     }
-    initState() {
-      super.initState();
-      this[_thicknessAnimationController] = new animation_controller.AnimationController.new({vsync: this, duration: scrollbar$._kScrollbarResizeDuration});
-      this[_thicknessAnimationController].addListener(dart.fn(() => {
-        this.updateScrollbarPainter();
-      }, T.VoidTovoid()));
+    get elevation() {
+      return this[elevation$];
     }
-    updateScrollbarPainter() {
-      let t1;
-      t1 = this.scrollbarPainter;
-      (() => {
-        t1.color = colors.CupertinoDynamicColor.resolve(scrollbar$._kScrollbarColor, this.context);
-        t1.textDirection = basic.Directionality.of(this.context);
-        t1.thickness = this[_thickness];
-        t1.mainAxisMargin = 3;
-        t1.crossAxisMargin = 3;
-        t1.radius = this[_radius];
-        t1.padding = media_query.MediaQuery.of(this.context).padding;
-        t1.minLength = 36;
-        t1.minOverscrollLength = 8;
-        return t1;
-      })();
+    set elevation(value) {
+      super.elevation = value;
     }
-    handleThumbPressStart(localPosition) {
-      if (localPosition == null) dart.nullFailed(I[0], 160, 37, "localPosition");
-      super.handleThumbPressStart(localPosition);
-      let direction = dart.nullCheck(this.getScrollbarDirection());
-      switch (direction) {
-        case C[4] || CT.C4:
-        {
-          this[_pressStartAxisPosition] = localPosition.dy;
-          break;
-        }
-        case C[5] || CT.C5:
-        {
-          this[_pressStartAxisPosition] = localPosition.dx;
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
+    get focusElevation() {
+      return this[focusElevation$];
     }
-    handleThumbPress() {
-      if (this.getScrollbarDirection() == null) {
-        return;
-      }
-      super.handleThumbPress();
-      this[_thicknessAnimationController].forward().then(dart.void, dart.fn(_ => haptic_feedback.HapticFeedback.mediumImpact(), T.voidToFutureOfvoid()));
+    set focusElevation(value) {
+      super.focusElevation = value;
     }
-    handleThumbPressEnd(localPosition, velocity) {
-      if (localPosition == null) dart.nullFailed(I[0], 185, 35, "localPosition");
-      if (velocity == null) dart.nullFailed(I[0], 185, 59, "velocity");
-      let direction = this.getScrollbarDirection();
-      if (direction == null) {
-        return;
-      }
-      this[_thicknessAnimationController].reverse();
-      super.handleThumbPressEnd(localPosition, velocity);
-      switch (direction) {
-        case C[4] || CT.C4:
-        {
-          if (velocity.pixelsPerSecond.dy[$abs]() < 10 && (dart.notNull(localPosition.dy) - dart.notNull(this[_pressStartAxisPosition]))[$abs]() > 0) {
-            haptic_feedback.HapticFeedback.mediumImpact();
-          }
-          break;
-        }
-        case C[5] || CT.C5:
-        {
-          if (velocity.pixelsPerSecond.dx[$abs]() < 10 && (dart.notNull(localPosition.dx) - dart.notNull(this[_pressStartAxisPosition]))[$abs]() > 0) {
-            haptic_feedback.HapticFeedback.mediumImpact();
-          }
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
+    get hoverElevation() {
+      return this[hoverElevation$];
     }
-    dispose() {
-      this[_thicknessAnimationController].dispose();
-      super.dispose();
+    set hoverElevation(value) {
+      super.hoverElevation = value;
+    }
+    get disabledElevation() {
+      return this[disabledElevation$];
+    }
+    set disabledElevation(value) {
+      super.disabledElevation = value;
+    }
+    get highlightElevation() {
+      return this[highlightElevation$];
+    }
+    set highlightElevation(value) {
+      super.highlightElevation = value;
+    }
+    get shape() {
+      return this[shape$];
+    }
+    set shape(value) {
+      super.shape = value;
+    }
+    copyWith(opts) {
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8;
+      let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
+      let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
+      let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
+      let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
+      let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
+      let elevation = opts && 'elevation' in opts ? opts.elevation : null;
+      let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
+      let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
+      let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
+      let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
+      let shape = opts && 'shape' in opts ? opts.shape : null;
+      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: (t0 = foregroundColor, t0 == null ? this.foregroundColor : t0), backgroundColor: (t0$ = backgroundColor, t0$ == null ? this.backgroundColor : t0$), focusColor: (t0$0 = focusColor, t0$0 == null ? this.focusColor : t0$0), hoverColor: (t0$1 = hoverColor, t0$1 == null ? this.hoverColor : t0$1), splashColor: (t0$2 = splashColor, t0$2 == null ? this.splashColor : t0$2), elevation: (t0$3 = elevation, t0$3 == null ? this.elevation : t0$3), focusElevation: (t0$4 = focusElevation, t0$4 == null ? this.focusElevation : t0$4), hoverElevation: (t0$5 = hoverElevation, t0$5 == null ? this.hoverElevation : t0$5), disabledElevation: (t0$6 = disabledElevation, t0$6 == null ? this.disabledElevation : t0$6), highlightElevation: (t0$7 = highlightElevation, t0$7 == null ? this.highlightElevation : t0$7), shape: (t0$8 = shape, t0$8 == null ? this.shape : t0$8)});
+    }
+    static lerp(a, b, t) {
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11, t0$12, t0$13, t0$14, t0$15, t0$16, t0$17, t0$18, t0$19;
+      if (t == null) dart.nullFailed(I[0], 127, 121, "t");
+      if (!(t != null)) dart.assertFailed(null, I[0], 128, 12, "t != null");
+      if (a == null && b == null) return null;
+      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: ui.Color.lerp((t0 = a, t0 == null ? null : t0.foregroundColor), (t0$ = b, t0$ == null ? null : t0$.foregroundColor), t), backgroundColor: ui.Color.lerp((t0$0 = a, t0$0 == null ? null : t0$0.backgroundColor), (t0$1 = b, t0$1 == null ? null : t0$1.backgroundColor), t), focusColor: ui.Color.lerp((t0$2 = a, t0$2 == null ? null : t0$2.focusColor), (t0$3 = b, t0$3 == null ? null : t0$3.focusColor), t), hoverColor: ui.Color.lerp((t0$4 = a, t0$4 == null ? null : t0$4.hoverColor), (t0$5 = b, t0$5 == null ? null : t0$5.hoverColor), t), splashColor: ui.Color.lerp((t0$6 = a, t0$6 == null ? null : t0$6.splashColor), (t0$7 = b, t0$7 == null ? null : t0$7.splashColor), t), elevation: ui.lerpDouble((t0$8 = a, t0$8 == null ? null : t0$8.elevation), (t0$9 = b, t0$9 == null ? null : t0$9.elevation), t), focusElevation: ui.lerpDouble((t0$10 = a, t0$10 == null ? null : t0$10.focusElevation), (t0$11 = b, t0$11 == null ? null : t0$11.focusElevation), t), hoverElevation: ui.lerpDouble((t0$12 = a, t0$12 == null ? null : t0$12.hoverElevation), (t0$13 = b, t0$13 == null ? null : t0$13.hoverElevation), t), disabledElevation: ui.lerpDouble((t0$14 = a, t0$14 == null ? null : t0$14.disabledElevation), (t0$15 = b, t0$15 == null ? null : t0$15.disabledElevation), t), highlightElevation: ui.lerpDouble((t0$16 = a, t0$16 == null ? null : t0$16.highlightElevation), (t0$17 = b, t0$17 == null ? null : t0$17.highlightElevation), t), shape: borders.ShapeBorder.lerp((t0$18 = a, t0$18 == null ? null : t0$18.shape), (t0$19 = b, t0$19 == null ? null : t0$19.shape), t)});
+    }
+    get hashCode() {
+      return ui.hashValues(this.foregroundColor, this.backgroundColor, this.focusColor, this.hoverColor, this.splashColor, this.elevation, this.focusElevation, this.hoverElevation, this.disabledElevation, this.highlightElevation, this.shape);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
+      return floating_action_button_theme.FloatingActionButtonThemeData.is(other) && dart.equals(other.foregroundColor, this.foregroundColor) && dart.equals(other.backgroundColor, this.backgroundColor) && dart.equals(other.focusColor, this.focusColor) && dart.equals(other.hoverColor, this.hoverColor) && dart.equals(other.splashColor, this.splashColor) && other.elevation == this.elevation && other.focusElevation == this.focusElevation && other.hoverElevation == this.hoverElevation && other.disabledElevation == this.disabledElevation && other.highlightElevation == this.highlightElevation && dart.equals(other.shape, this.shape);
+    }
+    debugFillProperties(properties) {
+      if (properties == null) dart.nullFailed(I[0], 184, 56, "properties");
+      super.debugFillProperties(properties);
+      let defaultData = C[0] || CT.C0;
+      properties.add(new colors.ColorProperty.new("foregroundColor", this.foregroundColor, {defaultValue: defaultData.foregroundColor}));
+      properties.add(new colors.ColorProperty.new("backgroundColor", this.backgroundColor, {defaultValue: defaultData.backgroundColor}));
+      properties.add(new colors.ColorProperty.new("focusColor", this.focusColor, {defaultValue: defaultData.focusColor}));
+      properties.add(new colors.ColorProperty.new("hoverColor", this.hoverColor, {defaultValue: defaultData.hoverColor}));
+      properties.add(new colors.ColorProperty.new("splashColor", this.splashColor, {defaultValue: defaultData.splashColor}));
+      properties.add(new diagnostics.DoubleProperty.new("elevation", this.elevation, {defaultValue: defaultData.elevation}));
+      properties.add(new diagnostics.DoubleProperty.new("focusElevation", this.focusElevation, {defaultValue: defaultData.focusElevation}));
+      properties.add(new diagnostics.DoubleProperty.new("hoverElevation", this.hoverElevation, {defaultValue: defaultData.hoverElevation}));
+      properties.add(new diagnostics.DoubleProperty.new("disabledElevation", this.disabledElevation, {defaultValue: defaultData.disabledElevation}));
+      properties.add(new diagnostics.DoubleProperty.new("highlightElevation", this.highlightElevation, {defaultValue: defaultData.highlightElevation}));
+      properties.add(new (T.DiagnosticsPropertyOfShapeBorder()).new("shape", this.shape, {defaultValue: defaultData.shape}));
     }
   };
-  (scrollbar$._CupertinoScrollbarState.new = function() {
-    this[___CupertinoScrollbarState__thicknessAnimationController] = null;
-    this[___CupertinoScrollbarState__thicknessAnimationController_isSet] = false;
-    this[_pressStartAxisPosition] = 0.0;
-    scrollbar$._CupertinoScrollbarState.__proto__.new.call(this);
+  (floating_action_button_theme.FloatingActionButtonThemeData.new = function(opts) {
+    let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
+    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
+    let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
+    let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
+    let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
+    let elevation = opts && 'elevation' in opts ? opts.elevation : null;
+    let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
+    let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
+    let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
+    let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
+    let shape = opts && 'shape' in opts ? opts.shape : null;
+    this[foregroundColor$] = foregroundColor;
+    this[backgroundColor$] = backgroundColor;
+    this[focusColor$] = focusColor;
+    this[hoverColor$] = hoverColor;
+    this[splashColor$] = splashColor;
+    this[elevation$] = elevation;
+    this[focusElevation$] = focusElevation;
+    this[hoverElevation$] = hoverElevation;
+    this[disabledElevation$] = disabledElevation;
+    this[highlightElevation$] = highlightElevation;
+    this[shape$] = shape;
     ;
-  }).prototype = scrollbar$._CupertinoScrollbarState.prototype;
-  dart.addTypeTests(scrollbar$._CupertinoScrollbarState);
-  dart.addTypeCaches(scrollbar$._CupertinoScrollbarState);
-  dart.setGetterSignature(scrollbar$._CupertinoScrollbarState, () => ({
-    __proto__: dart.getGetters(scrollbar$._CupertinoScrollbarState.__proto__),
-    [_thicknessAnimationController]: animation_controller.AnimationController,
-    [_thickness]: core.double,
-    [_radius]: ui.Radius
+  }).prototype = floating_action_button_theme.FloatingActionButtonThemeData.prototype;
+  dart.addTypeTests(floating_action_button_theme.FloatingActionButtonThemeData);
+  dart.addTypeCaches(floating_action_button_theme.FloatingActionButtonThemeData);
+  dart.setMethodSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
+    __proto__: dart.getMethods(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
+    copyWith: dart.fnType(floating_action_button_theme.FloatingActionButtonThemeData, [], {backgroundColor: dart.nullable(ui.Color), disabledElevation: dart.nullable(core.double), elevation: dart.nullable(core.double), focusColor: dart.nullable(ui.Color), focusElevation: dart.nullable(core.double), foregroundColor: dart.nullable(ui.Color), highlightElevation: dart.nullable(core.double), hoverColor: dart.nullable(ui.Color), hoverElevation: dart.nullable(core.double), shape: dart.nullable(borders.ShapeBorder), splashColor: dart.nullable(ui.Color)}, {})
   }));
-  dart.setSetterSignature(scrollbar$._CupertinoScrollbarState, () => ({
-    __proto__: dart.getSetters(scrollbar$._CupertinoScrollbarState.__proto__),
-    [_thicknessAnimationController]: animation_controller.AnimationController
+  dart.setLibraryUri(floating_action_button_theme.FloatingActionButtonThemeData, I[1]);
+  dart.setFieldSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
+    __proto__: dart.getFields(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
+    foregroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    focusColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    hoverColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    splashColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    elevation: dart.finalFieldType(dart.nullable(core.double)),
+    focusElevation: dart.finalFieldType(dart.nullable(core.double)),
+    hoverElevation: dart.finalFieldType(dart.nullable(core.double)),
+    disabledElevation: dart.finalFieldType(dart.nullable(core.double)),
+    highlightElevation: dart.finalFieldType(dart.nullable(core.double)),
+    shape: dart.finalFieldType(dart.nullable(borders.ShapeBorder))
   }));
-  dart.setLibraryUri(scrollbar$._CupertinoScrollbarState, I[1]);
-  dart.setFieldSignature(scrollbar$._CupertinoScrollbarState, () => ({
-    __proto__: dart.getFields(scrollbar$._CupertinoScrollbarState.__proto__),
-    [___CupertinoScrollbarState__thicknessAnimationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [___CupertinoScrollbarState__thicknessAnimationController_isSet]: dart.fieldType(core.bool),
-    [_pressStartAxisPosition]: dart.fieldType(core.double)
-  }));
-  var Color_value = dart.privateName(ui, "Color.value");
-  var CupertinoDynamicColor_darkHighContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastElevatedColor");
-  var CupertinoDynamicColor_highContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastElevatedColor");
-  var CupertinoDynamicColor_darkElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkElevatedColor");
-  var CupertinoDynamicColor_elevatedColor = dart.privateName(colors, "CupertinoDynamicColor.elevatedColor");
-  var CupertinoDynamicColor_darkHighContrastColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastColor");
-  var CupertinoDynamicColor_highContrastColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastColor");
-  var CupertinoDynamicColor_darkColor = dart.privateName(colors, "CupertinoDynamicColor.darkColor");
-  var CupertinoDynamicColor_color = dart.privateName(colors, "CupertinoDynamicColor.color");
-  var CupertinoDynamicColor__debugResolveContext = dart.privateName(colors, "CupertinoDynamicColor._debugResolveContext");
-  var CupertinoDynamicColor__debugLabel = dart.privateName(colors, "CupertinoDynamicColor._debugLabel");
-  var CupertinoDynamicColor__effectiveColor = dart.privateName(colors, "CupertinoDynamicColor._effectiveColor");
-  dart.defineLazy(scrollbar$, {
-    /*scrollbar$._kScrollbarMinLength*/get _kScrollbarMinLength() {
-      return 36;
-    },
-    /*scrollbar$._kScrollbarMinOverscrollLength*/get _kScrollbarMinOverscrollLength() {
-      return 8;
-    },
-    /*scrollbar$._kScrollbarTimeToFade*/get _kScrollbarTimeToFade() {
-      return C[6] || CT.C6;
-    },
-    /*scrollbar$._kScrollbarFadeDuration*/get _kScrollbarFadeDuration() {
-      return C[7] || CT.C7;
-    },
-    /*scrollbar$._kScrollbarResizeDuration*/get _kScrollbarResizeDuration() {
-      return C[2] || CT.C2;
-    },
-    /*scrollbar$._kScrollbarColor*/get _kScrollbarColor() {
-      return C[8] || CT.C8;
-    },
-    /*scrollbar$._kScrollbarMainAxisMargin*/get _kScrollbarMainAxisMargin() {
-      return 3;
-    },
-    /*scrollbar$._kScrollbarCrossAxisMargin*/get _kScrollbarCrossAxisMargin() {
-      return 3;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/cupertino/scrollbar.dart", {
-    "package:flutter/src/cupertino/scrollbar.dart": scrollbar$
+  dart.defineExtensionMethods(floating_action_button_theme.FloatingActionButtonThemeData, ['_equals']);
+  dart.defineExtensionAccessors(floating_action_button_theme.FloatingActionButtonThemeData, ['hashCode']);
+  dart.trackLibraries("packages/flutter/src/material/floating_action_button_theme.dart", {
+    "package:flutter/src/material/floating_action_button_theme.dart": floating_action_button_theme
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["scrollbar.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAsGe;;;;;;IAQA;;;;;;;AAG6B;IAA0B;;;;QA1D7D;QACW;;QACE;QACb;;QACE;;QACF;;QACE;;QACF;;QACwB;;IAHxB;IAEA;UAEK,AAAU,SAAD;UACC,aAAV,SAAS;UACT,AAAuB,sBAAD;UACC,aAAvB,sBAAsB;UACtB,AAAO,MAAD;UACN,AAAoB,mBAAD;AAC1B,iEACO,GAAG,SACD,KAAK,cACA,UAAU,iBACP,aAAa,aACjB,SAAS,UACZ,MAAM,gBACA,gDACF,wFAEiC,KAAtB,qBAAqB,EAArB;;EACxB;;;;;;;;;;;;;;MAGc,8CAAgB;;;MAIhB,2DAA6B;;;MAG7B,2CAAa;;;MAIb,wDAA0B;;;;;;;;;;;;;;AAsBrB;IAA6B;;;AAA7B;;IAA6B;;AAGpD,YAAuB,AAAE,gBAAlB,AAAO,yBAAiD,aAApC,AAA8B,8CAAuC,aAA9B,AAAO,sCAAyC,eAAhB,AAAO;IAC3G;;AAGE,YAAkG,gBAApF,eAAK,AAAO,oBAAQ,AAAO,iCAAqB,AAA8B;IAC9F;;AAImB,MAAX;AAIL,MAHD,sCAAgC,yDACvB,gBACG;AAIV,MAFF,AAA8B,gDAAY;AAChB,QAAxB;;IAEJ;;;AAa0D,WATxD;;AACI,mBAA8B,qCAAQ,6BAAkB;AACxD,2BAA+B,wBAAG;AAClC,uBAAY;AACZ;AACA;AACA,oBAAS;AACT,qBAAqB,AAAY,0BAAT;AACxB;AACA;;;IACN;;UAQkC;AACU,MAApC,4BAAsB,aAAa;AAC9B,sBAAmC,eAAvB;AACvB,cAAQ,SAAS;;;AAE6B,UAA1C,gCAA0B,AAAc,aAAD;AACvC;;;;AAE0C,UAA1C,gCAA0B,AAAc,aAAD;AACvC;;;;AANJ;;;IAQF;;AAIE,UAAI,AAAwB;AAC1B;;AAEsB,MAAlB;AAGL,MAFD,AAA8B,AAAU,8DAClC,QAAC,KAAqB;IAE9B;wBAGgC,eAAwB;UAAxB;UAAwB;AAC1C,sBAAY;AACxB,UAAI,AAAU,SAAD;AACX;;AAEqC,MAAvC,AAA8B;AACoB,MAA5C,0BAAoB,aAAa,EAAE,QAAQ;AACjD,cAAO,SAAS;;;AAEZ,cAAI,AAAS,AAAgB,AAAG,AAAM,QAA1B,8BAA4B,MACO,AAAM,CAAjC,aAAjB,AAAc,aAAD,oBAAM,0CAAiC;AACxB,YAAd;;AAEjB;;;;AAEA,cAAI,AAAS,AAAgB,AAAG,AAAM,QAA1B,8BAA4B,MACO,AAAM,CAAjC,aAAjB,AAAc,aAAD,oBAAM,0CAAiC;AACxB,YAAd;;AAEjB;;;;AAZJ;;;IAcF;;AAIyC,MAAvC,AAA8B;AACf,MAAT;IACR;;;qEA9FyB;;IAoClB,gCAA0B;;;EA2DnC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA1Ma,+BAAoB;;;MACpB,yCAA8B;;;MAC5B,gCAAqB;;;MACrB,kCAAuB;;;MACvB,oCAAyB;;;MAG5B,2BAAgB;;;MASf,oCAAyB;;;MACzB,qCAA0B","file":"../../../../../../../../D:/packages/flutter/src/cupertino/scrollbar.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["floating_action_button_theme.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgDe;;;;;;IAIA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAIC;;;;;;IAMA;;;;;;IAMA;;;;;;IAIA;;;;;;IAIA;;;;;;IAGK;;;;;;;;UAKV;UACA;UACA;UACA;UACA;UACC;UACA;UACA;UACA;UACA;UACK;AAEb,YAAO,uFAC4B,KAAhB,eAAe,EAAf,aAAwB,8CACR,MAAhB,eAAe,EAAf,cAAwB,0CAClB,OAAX,UAAU,EAAV,eAAmB,sCACR,OAAX,UAAU,EAAV,eAAmB,uCACN,OAAZ,WAAW,EAAX,eAAoB,sCACZ,OAAV,SAAS,EAAT,eAAkB,yCACE,OAAf,cAAc,EAAd,eAAuB,8CACR,OAAf,cAAc,EAAd,eAAuB,iDACF,OAAlB,iBAAiB,EAAjB,eAA0B,qDACN,OAAnB,kBAAkB,EAAlB,eAA2B,yCAClC,OAAN,KAAK,EAAL,eAAc;IAEzB;gBAO0E,GAAkC,GAAU;;;AACpH,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,YAAO,sFACkB,oBAAK,CAAC,eAAD,OAAG,4BAAiB,CAAC,gBAAD,OAAG,sBAAiB,CAAC,oBAC9C,sBAAK,CAAC,iBAAD,OAAG,+BAAiB,CAAC,iBAAD,OAAG,uBAAiB,CAAC,eACnD,sBAAK,CAAC,iBAAD,OAAG,0BAAY,CAAC,iBAAD,OAAG,kBAAY,CAAC,eACpC,sBAAK,CAAC,iBAAD,OAAG,0BAAY,CAAC,iBAAD,OAAG,kBAAY,CAAC,gBACnC,sBAAK,CAAC,iBAAD,OAAG,2BAAa,CAAC,iBAAD,OAAG,mBAAa,CAAC,cAC9C,sBAAW,CAAC,iBAAD,OAAG,yBAAW,CAAC,iBAAD,OAAG,iBAAW,CAAC,mBACnC,uBAAW,CAAC,kBAAD,OAAG,gCAAgB,CAAC,kBAAD,OAAG,uBAAgB,CAAC,mBAClD,uBAAW,CAAC,kBAAD,OAAG,gCAAgB,CAAC,kBAAD,OAAG,uBAAgB,CAAC,sBAC/C,uBAAW,CAAC,kBAAD,OAAG,mCAAmB,CAAC,kBAAD,OAAG,0BAAmB,CAAC,uBACvD,uBAAW,CAAC,kBAAD,OAAG,oCAAoB,CAAC,kBAAD,OAAG,2BAAoB,CAAC,UAC3D,kCAAK,CAAC,kBAAD,OAAG,uBAAO,CAAC,kBAAD,OAAG,cAAO,CAAC;IAEjD;;AAIE,YAAO,eACL,sBACA,sBACA,iBACA,iBACA,kBACA,gBACA,qBACA,qBACA,wBACA,yBACA;IAEJ;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,UAAsB,aAAZ,iBAAN,KAAK,GAAgB,qBACvB,MAAO;AACT,YAAa,AAWT,+DAXG,KAAK,KACiB,YAAtB,AAAM,KAAD,kBAAoB,yBACH,YAAtB,AAAM,KAAD,kBAAoB,yBACR,YAAjB,AAAM,KAAD,aAAe,oBACH,YAAjB,AAAM,KAAD,aAAe,oBACF,YAAlB,AAAM,KAAD,cAAgB,qBACrB,AAAM,AAAU,KAAX,cAAc,kBACnB,AAAM,AAAe,KAAhB,mBAAmB,uBACxB,AAAM,AAAe,KAAhB,mBAAmB,uBACxB,AAAM,AAAkB,KAAnB,sBAAsB,0BAC3B,AAAM,AAAmB,KAApB,uBAAuB,2BAChB,YAAZ,AAAM,KAAD,QAAU;IACxB;;UAGqD;AACd,MAA/B,0BAAoB,UAAU;AACA;AAEwE,MAA5G,AAAW,UAAD,KAAK,6BAAc,mBAAmB,qCAA+B,AAAY,WAAD;AACkB,MAA5G,AAAW,UAAD,KAAK,6BAAc,mBAAmB,qCAA+B,AAAY,WAAD;AACG,MAA7F,AAAW,UAAD,KAAK,6BAAc,cAAc,gCAA0B,AAAY,WAAD;AACa,MAA7F,AAAW,UAAD,KAAK,6BAAc,cAAc,gCAA0B,AAAY,WAAD;AACgB,MAAhG,AAAW,UAAD,KAAK,6BAAc,eAAe,iCAA2B,AAAY,WAAD;AACS,MAA3F,AAAW,UAAD,KAAK,mCAAe,aAAa,+BAAyB,AAAY,WAAD;AAC2B,MAA1G,AAAW,UAAD,KAAK,mCAAe,kBAAkB,oCAA8B,AAAY,WAAD;AACiB,MAA1G,AAAW,UAAD,KAAK,mCAAe,kBAAkB,oCAA8B,AAAY,WAAD;AAC0B,MAAnH,AAAW,UAAD,KAAK,mCAAe,qBAAqB,uCAAiC,AAAY,WAAD;AACuB,MAAtH,AAAW,UAAD,KAAK,mCAAe,sBAAsB,wCAAkC,AAAY,WAAD;AACA,MAAjG,AAAW,UAAD,KAAK,+CAAiC,SAAS,2BAAqB,AAAY,WAAD;IAC3F;;;QArKO;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;IAVA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EACL","file":"../../../../../../../../D:/packages/flutter/src/material/floating_action_button_theme.dart.lib.js"}');
   // Exports:
   return {
-    src__cupertino__scrollbar: scrollbar$
+    src__material__floating_action_button_theme: floating_action_button_theme
   };
 }));
 
-//# sourceMappingURL=scrollbar.dart.lib.js.map
+//# sourceMappingURL=floating_action_button_theme.dart.lib.js.map

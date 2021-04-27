@@ -1,27 +1,29 @@
-define(['dart_sdk'], (function load__packages__intl__date_symbols_dart(dart_sdk) {
+define(['dart_sdk', 'packages/clock/src/utils.dart'], (function load__packages__clock__src__stopwatch_dart(dart_sdk, packages__clock__src__utils$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  var date_symbols = Object.create(dart.library);
-  var $_get = dartx._get;
-  var $_set = dartx._set;
+  const utils = packages__clock__src__utils$46dart.src__utils;
+  var stopwatch = Object.create(dart.library);
+  var clock = Object.create(dart.library);
+  var $default = Object.create(dart.library);
+  var clock$ = Object.create(dart.library);
+  var $truncate = dartx.truncate;
+  var $noSuchMethod = dartx.noSuchMethod;
+  var $modulo = dartx['%'];
   dart._checkModuleNullSafetyMode(false);
-  var T = {
-    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
-    StringToListOfString: () => (T.StringToListOfString = dart.constFn(dart.fnType(T.ListOfString(), [core.String])))(),
-    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
-    LinkedHashMapOfString$String: () => (T.LinkedHashMapOfString$String = dart.constFn(collection.LinkedHashMap$(core.String, core.String)))(),
-    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
-    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
-    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
-    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))()
+  var T$ = {
+    intN: () => (T$.intN = dart.constFn(dart.nullable(core.int)))(),
+    VoidToDateTime: () => (T$.VoidToDateTime = dart.constFn(dart.fnType(core.DateTime, [])))(),
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    LinkedMapOfObjectN$ObjectN: () => (T$.LinkedMapOfObjectN$ObjectN = dart.constFn(_js_helper.LinkedMap$(T$.ObjectN(), T$.ObjectN())))(),
+    ClockN: () => (T$.ClockN = dart.constFn(dart.nullable(clock.Clock)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T);
+  }, T$);
   var S = {
     _: () => S
   };
@@ -33,402 +35,374 @@ define(['dart_sdk'], (function load__packages__intl__date_symbols_dart(dart_sdk)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.constList(["BC", "AD"], T.StringL());
+      return C[0] = dart.const(new _js_helper.PrivateSymbol.new('_stop', _stop));
     },
     get C1() {
-      return C[1] = dart.constList(["Before Christ", "Anno Domini"], T.StringL());
+      return C[1] = dart.const(new _js_helper.PrivateSymbol.new('_start', _start$));
     },
     get C2() {
-      return C[2] = dart.constList(["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], T.StringL());
+      return C[2] = dart.const(new _js_helper.PrivateSymbol.new('_stop=', _stop_));
     },
     get C3() {
-      return C[3] = dart.constList(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], T.StringL());
+      return C[3] = dart.const(new _js_helper.PrivateSymbol.new('_start=', _start_));
     },
     get C4() {
-      return C[4] = dart.constList(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], T.StringL());
+      return C[4] = dart.fn(clock$.systemTime, T$.VoidToDateTime());
     },
     get C5() {
-      return C[5] = dart.constList(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], T.StringL());
-    },
-    get C6() {
-      return C[6] = dart.constList(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], T.StringL());
-    },
-    get C7() {
-      return C[7] = dart.constList(["S", "M", "T", "W", "T", "F", "S"], T.StringL());
-    },
-    get C8() {
-      return C[8] = dart.constList(["Q1", "Q2", "Q3", "Q4"], T.StringL());
-    },
-    get C9() {
-      return C[9] = dart.constList(["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"], T.StringL());
-    },
-    get C10() {
-      return C[10] = dart.constList(["AM", "PM"], T.StringL());
-    },
-    get C11() {
-      return C[11] = dart.constList(["EEEE, MMMM d, y", "MMMM d, y", "MMM d, y", "M/d/yy"], T.StringL());
-    },
-    get C12() {
-      return C[12] = dart.constList(["h:mm:ss a zzzz", "h:mm:ss a z", "h:mm:ss a", "h:mm a"], T.StringL());
-    },
-    get C13() {
-      return C[13] = dart.constList([5, 6], T.intL());
-    },
-    get C14() {
-      return C[14] = dart.constList(["{1} 'at' {0}", "{1} 'at' {0}", "{1}, {0}", "{1}, {0}"], T.StringL());
-    },
-    get C15() {
-      return C[15] = dart.constMap(T.StringL(), T.StringL(), ["d", "d", "E", "EEE", "EEEE", "EEEE", "LLL", "LLL", "LLLL", "LLLL", "M", "L", "Md", "M/d", "MEd", "EEE, M/d", "MMM", "LLL", "MMMd", "MMM d", "MMMEd", "EEE, MMM d", "MMMM", "LLLL", "MMMMd", "MMMM d", "MMMMEEEEd", "EEEE, MMMM d", "QQQ", "QQQ", "QQQQ", "QQQQ", "y", "y", "yM", "M/y", "yMd", "M/d/y", "yMEd", "EEE, M/d/y", "yMMM", "MMM y", "yMMMd", "MMM d, y", "yMMMEd", "EEE, MMM d, y", "yMMMM", "MMMM y", "yMMMMd", "MMMM d, y", "yMMMMEEEEd", "EEEE, MMMM d, y", "yQQQ", "QQQ y", "yQQQQ", "QQQQ y", "H", "HH", "Hm", "HH:mm", "Hms", "HH:mm:ss", "j", "h a", "jm", "h:mm a", "jms", "h:mm:ss a", "jmv", "h:mm a v", "jmz", "h:mm a z", "jz", "h a z", "m", "m", "ms", "mm:ss", "s", "s", "v", "v", "z", "z", "zzzz", "zzzz", "ZZZZ", "ZZZZ"]);
+      return C[5] = dart.const({
+        __proto__: clock.Clock.prototype,
+        [_time]: C[4] || CT.C4
+      });
     }
   }, false);
-  var C = Array(16).fill(void 0);
+  var C = Array(6).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib/date_symbols.dart",
-    "package:intl/date_symbols.dart"
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/stopwatch.dart",
+    "package:clock/src/stopwatch.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/clock.dart",
+    "package:clock/src/clock.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/default.dart"
   ];
-  var NAME$ = dart.privateName(date_symbols, "DateSymbols.NAME");
-  var ERAS$ = dart.privateName(date_symbols, "DateSymbols.ERAS");
-  var ERANAMES$ = dart.privateName(date_symbols, "DateSymbols.ERANAMES");
-  var NARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.NARROWMONTHS");
-  var STANDALONENARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWMONTHS");
-  var MONTHS$ = dart.privateName(date_symbols, "DateSymbols.MONTHS");
-  var STANDALONEMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEMONTHS");
-  var SHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.SHORTMONTHS");
-  var STANDALONESHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTMONTHS");
-  var WEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.WEEKDAYS");
-  var STANDALONEWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEWEEKDAYS");
-  var SHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.SHORTWEEKDAYS");
-  var STANDALONESHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTWEEKDAYS");
-  var NARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.NARROWWEEKDAYS");
-  var STANDALONENARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWWEEKDAYS");
-  var SHORTQUARTERS$ = dart.privateName(date_symbols, "DateSymbols.SHORTQUARTERS");
-  var QUARTERS$ = dart.privateName(date_symbols, "DateSymbols.QUARTERS");
-  var AMPMS$ = dart.privateName(date_symbols, "DateSymbols.AMPMS");
-  var DATEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATEFORMATS");
-  var TIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.TIMEFORMATS");
-  var DATETIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATETIMEFORMATS");
-  var AVAILABLEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.AVAILABLEFORMATS");
-  var FIRSTDAYOFWEEK$ = dart.privateName(date_symbols, "DateSymbols.FIRSTDAYOFWEEK");
-  var WEEKENDRANGE$ = dart.privateName(date_symbols, "DateSymbols.WEEKENDRANGE");
-  var FIRSTWEEKCUTOFFDAY$ = dart.privateName(date_symbols, "DateSymbols.FIRSTWEEKCUTOFFDAY");
-  var ZERODIGIT$ = dart.privateName(date_symbols, "DateSymbols.ZERODIGIT");
-  var _serializeToMap = dart.privateName(date_symbols, "_serializeToMap");
-  date_symbols.DateSymbols = class DateSymbols extends core.Object {
-    get NAME() {
-      return this[NAME$];
+  var _start = dart.privateName(stopwatch, "ClockStopwatch._start");
+  var _elapsed = dart.privateName(stopwatch, "_elapsed");
+  var _clock$ = dart.privateName(stopwatch, "_clock");
+  var _start$ = dart.privateName(stopwatch, "_start");
+  var _stop = dart.privateName(stopwatch, "_stop");
+  var _stop$ = dart.privateName(core, "_stop");
+  var _start$0 = dart.privateName(core, "_start");
+  var _stop_ = dart.privateName(stopwatch, "_stop=");
+  var _start_ = dart.privateName(stopwatch, "_start=");
+  stopwatch.ClockStopwatch = class ClockStopwatch extends core.Object {
+    get [_start$]() {
+      return this[_start];
     }
-    set NAME(value) {
-      this[NAME$] = value;
+    set [_start$](value) {
+      this[_start] = value;
     }
-    get ERAS() {
-      return this[ERAS$];
+    get frequency() {
+      return stopwatch._frequency;
     }
-    set ERAS(value) {
-      this[ERAS$] = value;
+    get elapsedTicks() {
+      return (dart.notNull(this.elapsedMicroseconds) * dart.notNull(this.frequency) / 1000000)[$truncate]();
     }
-    get ERANAMES() {
-      return this[ERANAMES$];
+    get elapsed() {
+      return new core.Duration.new({microseconds: this.elapsedMicroseconds});
     }
-    set ERANAMES(value) {
-      this[ERANAMES$] = value;
+    get elapsedMilliseconds() {
+      return (dart.notNull(this.elapsedMicroseconds) / 1000)[$truncate]();
     }
-    get NARROWMONTHS() {
-      return this[NARROWMONTHS$];
+    get isRunning() {
+      return this[_start$] != null;
     }
-    set NARROWMONTHS(value) {
-      this[NARROWMONTHS$] = value;
+    get elapsedMicroseconds() {
+      return dart.notNull(this[_elapsed]) + dart.notNull(this[_start$] == null ? 0 : this[_clock$].now().difference(dart.nullCheck(this[_start$])).inMicroseconds);
     }
-    get STANDALONENARROWMONTHS() {
-      return this[STANDALONENARROWMONTHS$];
+    start() {
+      this[_start$] == null ? this[_start$] = this[_clock$].now() : null;
     }
-    set STANDALONENARROWMONTHS(value) {
-      this[STANDALONENARROWMONTHS$] = value;
+    stop() {
+      this[_elapsed] = this.elapsedMicroseconds;
+      this[_start$] = null;
     }
-    get MONTHS() {
-      return this[MONTHS$];
+    reset() {
+      this[_elapsed] = 0;
+      if (this[_start$] != null) this[_start$] = this[_clock$].now();
     }
-    set MONTHS(value) {
-      this[MONTHS$] = value;
+    get [_stop$]() {
+      return T$.intN().as(this[$noSuchMethod](new core._Invocation.getter(C[0] || CT.C0)));
     }
-    get STANDALONEMONTHS() {
-      return this[STANDALONEMONTHS$];
+    get [_start$0]() {
+      return core.int.as(this[$noSuchMethod](new core._Invocation.getter(C[1] || CT.C1)));
     }
-    set STANDALONEMONTHS(value) {
-      this[STANDALONEMONTHS$] = value;
+    set [_stop$](value) {
+      return this[$noSuchMethod](new core._Invocation.setter(C[2] || CT.C2, value));
     }
-    get SHORTMONTHS() {
-      return this[SHORTMONTHS$];
-    }
-    set SHORTMONTHS(value) {
-      this[SHORTMONTHS$] = value;
-    }
-    get STANDALONESHORTMONTHS() {
-      return this[STANDALONESHORTMONTHS$];
-    }
-    set STANDALONESHORTMONTHS(value) {
-      this[STANDALONESHORTMONTHS$] = value;
-    }
-    get WEEKDAYS() {
-      return this[WEEKDAYS$];
-    }
-    set WEEKDAYS(value) {
-      this[WEEKDAYS$] = value;
-    }
-    get STANDALONEWEEKDAYS() {
-      return this[STANDALONEWEEKDAYS$];
-    }
-    set STANDALONEWEEKDAYS(value) {
-      this[STANDALONEWEEKDAYS$] = value;
-    }
-    get SHORTWEEKDAYS() {
-      return this[SHORTWEEKDAYS$];
-    }
-    set SHORTWEEKDAYS(value) {
-      this[SHORTWEEKDAYS$] = value;
-    }
-    get STANDALONESHORTWEEKDAYS() {
-      return this[STANDALONESHORTWEEKDAYS$];
-    }
-    set STANDALONESHORTWEEKDAYS(value) {
-      this[STANDALONESHORTWEEKDAYS$] = value;
-    }
-    get NARROWWEEKDAYS() {
-      return this[NARROWWEEKDAYS$];
-    }
-    set NARROWWEEKDAYS(value) {
-      this[NARROWWEEKDAYS$] = value;
-    }
-    get STANDALONENARROWWEEKDAYS() {
-      return this[STANDALONENARROWWEEKDAYS$];
-    }
-    set STANDALONENARROWWEEKDAYS(value) {
-      this[STANDALONENARROWWEEKDAYS$] = value;
-    }
-    get SHORTQUARTERS() {
-      return this[SHORTQUARTERS$];
-    }
-    set SHORTQUARTERS(value) {
-      this[SHORTQUARTERS$] = value;
-    }
-    get QUARTERS() {
-      return this[QUARTERS$];
-    }
-    set QUARTERS(value) {
-      this[QUARTERS$] = value;
-    }
-    get AMPMS() {
-      return this[AMPMS$];
-    }
-    set AMPMS(value) {
-      this[AMPMS$] = value;
-    }
-    get DATEFORMATS() {
-      return this[DATEFORMATS$];
-    }
-    set DATEFORMATS(value) {
-      this[DATEFORMATS$] = value;
-    }
-    get TIMEFORMATS() {
-      return this[TIMEFORMATS$];
-    }
-    set TIMEFORMATS(value) {
-      this[TIMEFORMATS$] = value;
-    }
-    get DATETIMEFORMATS() {
-      return this[DATETIMEFORMATS$];
-    }
-    set DATETIMEFORMATS(value) {
-      this[DATETIMEFORMATS$] = value;
-    }
-    get AVAILABLEFORMATS() {
-      return this[AVAILABLEFORMATS$];
-    }
-    set AVAILABLEFORMATS(value) {
-      this[AVAILABLEFORMATS$] = value;
-    }
-    get FIRSTDAYOFWEEK() {
-      return this[FIRSTDAYOFWEEK$];
-    }
-    set FIRSTDAYOFWEEK(value) {
-      this[FIRSTDAYOFWEEK$] = value;
-    }
-    get WEEKENDRANGE() {
-      return this[WEEKENDRANGE$];
-    }
-    set WEEKENDRANGE(value) {
-      this[WEEKENDRANGE$] = value;
-    }
-    get FIRSTWEEKCUTOFFDAY() {
-      return this[FIRSTWEEKCUTOFFDAY$];
-    }
-    set FIRSTWEEKCUTOFFDAY(value) {
-      this[FIRSTWEEKCUTOFFDAY$] = value;
-    }
-    get ZERODIGIT() {
-      return this[ZERODIGIT$];
-    }
-    set ZERODIGIT(value) {
-      this[ZERODIGIT$] = value;
-    }
-    static deserializeFromMap(map) {
-      let t0;
-      if (map == null) dart.nullFailed(I[0], 138, 64, "map");
-      function _getStringList(name) {
-        if (name == null) dart.nullFailed(I[0], 139, 40, "name");
-        return T.ListOfString().from(core.Iterable.as(map[$_get](name)));
-      }
-      dart.fn(_getStringList, T.StringToListOfString());
-      return new date_symbols.DateSymbols.new({NAME: core.String.as(map[$_get]("NAME")), ERAS: _getStringList("ERAS"), ERANAMES: _getStringList("ERANAMES"), NARROWMONTHS: _getStringList("NARROWMONTHS"), STANDALONENARROWMONTHS: _getStringList("STANDALONENARROWMONTHS"), MONTHS: _getStringList("MONTHS"), STANDALONEMONTHS: _getStringList("STANDALONEMONTHS"), SHORTMONTHS: _getStringList("SHORTMONTHS"), STANDALONESHORTMONTHS: _getStringList("STANDALONESHORTMONTHS"), WEEKDAYS: _getStringList("WEEKDAYS"), STANDALONEWEEKDAYS: _getStringList("STANDALONEWEEKDAYS"), SHORTWEEKDAYS: _getStringList("SHORTWEEKDAYS"), STANDALONESHORTWEEKDAYS: _getStringList("STANDALONESHORTWEEKDAYS"), NARROWWEEKDAYS: _getStringList("NARROWWEEKDAYS"), STANDALONENARROWWEEKDAYS: _getStringList("STANDALONENARROWWEEKDAYS"), SHORTQUARTERS: _getStringList("SHORTQUARTERS"), QUARTERS: _getStringList("QUARTERS"), AMPMS: _getStringList("AMPMS"), ZERODIGIT: T.StringN().as(map[$_get]("ZERODIGIT")), DATEFORMATS: _getStringList("DATEFORMATS"), TIMEFORMATS: _getStringList("TIMEFORMATS"), AVAILABLEFORMATS: T.LinkedHashMapOfString$String().from(core.Map.as((t0 = map[$_get]("AVAILABLEFORMATS"), t0 == null ? new _js_helper.LinkedMap.new() : t0))), FIRSTDAYOFWEEK: core.int.as(map[$_get]("FIRSTDAYOFWEEK")), WEEKENDRANGE: T.ListOfint().from(core.Iterable.as(map[$_get]("WEEKENDRANGE"))), FIRSTWEEKCUTOFFDAY: core.int.as(map[$_get]("FIRSTWEEKCUTOFFDAY")), DATETIMEFORMATS: _getStringList("DATETIMEFORMATS")});
-    }
-    serializeToMap() {
-      let basicMap = this[_serializeToMap]();
-      if (this.ZERODIGIT != null && this.ZERODIGIT !== "") {
-        basicMap[$_set]("ZERODIGIT", this.ZERODIGIT);
-      }
-      return basicMap;
-    }
-    [_serializeToMap]() {
-      return new (T.IdentityMapOfString$dynamic()).from(["NAME", this.NAME, "ERAS", this.ERAS, "ERANAMES", this.ERANAMES, "NARROWMONTHS", this.NARROWMONTHS, "STANDALONENARROWMONTHS", this.STANDALONENARROWMONTHS, "MONTHS", this.MONTHS, "STANDALONEMONTHS", this.STANDALONEMONTHS, "SHORTMONTHS", this.SHORTMONTHS, "STANDALONESHORTMONTHS", this.STANDALONESHORTMONTHS, "WEEKDAYS", this.WEEKDAYS, "STANDALONEWEEKDAYS", this.STANDALONEWEEKDAYS, "SHORTWEEKDAYS", this.SHORTWEEKDAYS, "STANDALONESHORTWEEKDAYS", this.STANDALONESHORTWEEKDAYS, "NARROWWEEKDAYS", this.NARROWWEEKDAYS, "STANDALONENARROWWEEKDAYS", this.STANDALONENARROWWEEKDAYS, "SHORTQUARTERS", this.SHORTQUARTERS, "QUARTERS", this.QUARTERS, "AMPMS", this.AMPMS, "DATEFORMATS", this.DATEFORMATS, "TIMEFORMATS", this.TIMEFORMATS, "AVAILABLEFORMATS", this.AVAILABLEFORMATS, "FIRSTDAYOFWEEK", this.FIRSTDAYOFWEEK, "WEEKENDRANGE", this.WEEKENDRANGE, "FIRSTWEEKCUTOFFDAY", this.FIRSTWEEKCUTOFFDAY, "DATETIMEFORMATS", this.DATETIMEFORMATS]);
-    }
-    toString() {
-      return this.NAME;
+    set [_start$0](value) {
+      if (value == null) dart.nullFailed(I[0], 25, 7, "value");
+      return this[$noSuchMethod](new core._Invocation.setter(C[3] || CT.C3, value));
     }
   };
-  (date_symbols.DateSymbols.new = function(opts) {
-    let NAME = opts && 'NAME' in opts ? opts.NAME : null;
-    if (NAME == null) dart.nullFailed(I[0], 105, 22, "NAME");
-    let ERAS = opts && 'ERAS' in opts ? opts.ERAS : null;
-    if (ERAS == null) dart.nullFailed(I[0], 106, 21, "ERAS");
-    let ERANAMES = opts && 'ERANAMES' in opts ? opts.ERANAMES : null;
-    if (ERANAMES == null) dart.nullFailed(I[0], 107, 21, "ERANAMES");
-    let NARROWMONTHS = opts && 'NARROWMONTHS' in opts ? opts.NARROWMONTHS : null;
-    if (NARROWMONTHS == null) dart.nullFailed(I[0], 108, 21, "NARROWMONTHS");
-    let STANDALONENARROWMONTHS = opts && 'STANDALONENARROWMONTHS' in opts ? opts.STANDALONENARROWMONTHS : null;
-    if (STANDALONENARROWMONTHS == null) dart.nullFailed(I[0], 109, 21, "STANDALONENARROWMONTHS");
-    let MONTHS = opts && 'MONTHS' in opts ? opts.MONTHS : null;
-    if (MONTHS == null) dart.nullFailed(I[0], 110, 21, "MONTHS");
-    let STANDALONEMONTHS = opts && 'STANDALONEMONTHS' in opts ? opts.STANDALONEMONTHS : null;
-    if (STANDALONEMONTHS == null) dart.nullFailed(I[0], 111, 21, "STANDALONEMONTHS");
-    let SHORTMONTHS = opts && 'SHORTMONTHS' in opts ? opts.SHORTMONTHS : null;
-    if (SHORTMONTHS == null) dart.nullFailed(I[0], 112, 21, "SHORTMONTHS");
-    let STANDALONESHORTMONTHS = opts && 'STANDALONESHORTMONTHS' in opts ? opts.STANDALONESHORTMONTHS : null;
-    if (STANDALONESHORTMONTHS == null) dart.nullFailed(I[0], 113, 21, "STANDALONESHORTMONTHS");
-    let WEEKDAYS = opts && 'WEEKDAYS' in opts ? opts.WEEKDAYS : null;
-    if (WEEKDAYS == null) dart.nullFailed(I[0], 114, 21, "WEEKDAYS");
-    let STANDALONEWEEKDAYS = opts && 'STANDALONEWEEKDAYS' in opts ? opts.STANDALONEWEEKDAYS : null;
-    if (STANDALONEWEEKDAYS == null) dart.nullFailed(I[0], 115, 21, "STANDALONEWEEKDAYS");
-    let SHORTWEEKDAYS = opts && 'SHORTWEEKDAYS' in opts ? opts.SHORTWEEKDAYS : null;
-    if (SHORTWEEKDAYS == null) dart.nullFailed(I[0], 116, 21, "SHORTWEEKDAYS");
-    let STANDALONESHORTWEEKDAYS = opts && 'STANDALONESHORTWEEKDAYS' in opts ? opts.STANDALONESHORTWEEKDAYS : null;
-    if (STANDALONESHORTWEEKDAYS == null) dart.nullFailed(I[0], 117, 21, "STANDALONESHORTWEEKDAYS");
-    let NARROWWEEKDAYS = opts && 'NARROWWEEKDAYS' in opts ? opts.NARROWWEEKDAYS : null;
-    if (NARROWWEEKDAYS == null) dart.nullFailed(I[0], 118, 21, "NARROWWEEKDAYS");
-    let STANDALONENARROWWEEKDAYS = opts && 'STANDALONENARROWWEEKDAYS' in opts ? opts.STANDALONENARROWWEEKDAYS : null;
-    if (STANDALONENARROWWEEKDAYS == null) dart.nullFailed(I[0], 119, 21, "STANDALONENARROWWEEKDAYS");
-    let SHORTQUARTERS = opts && 'SHORTQUARTERS' in opts ? opts.SHORTQUARTERS : null;
-    if (SHORTQUARTERS == null) dart.nullFailed(I[0], 120, 21, "SHORTQUARTERS");
-    let QUARTERS = opts && 'QUARTERS' in opts ? opts.QUARTERS : null;
-    if (QUARTERS == null) dart.nullFailed(I[0], 121, 21, "QUARTERS");
-    let AMPMS = opts && 'AMPMS' in opts ? opts.AMPMS : null;
-    if (AMPMS == null) dart.nullFailed(I[0], 122, 21, "AMPMS");
-    let ZERODIGIT = opts && 'ZERODIGIT' in opts ? opts.ZERODIGIT : null;
-    let DATEFORMATS = opts && 'DATEFORMATS' in opts ? opts.DATEFORMATS : null;
-    if (DATEFORMATS == null) dart.nullFailed(I[0], 128, 21, "DATEFORMATS");
-    let TIMEFORMATS = opts && 'TIMEFORMATS' in opts ? opts.TIMEFORMATS : null;
-    if (TIMEFORMATS == null) dart.nullFailed(I[0], 129, 21, "TIMEFORMATS");
-    let AVAILABLEFORMATS = opts && 'AVAILABLEFORMATS' in opts ? opts.AVAILABLEFORMATS : null;
-    let FIRSTDAYOFWEEK = opts && 'FIRSTDAYOFWEEK' in opts ? opts.FIRSTDAYOFWEEK : null;
-    if (FIRSTDAYOFWEEK == null) dart.nullFailed(I[0], 131, 21, "FIRSTDAYOFWEEK");
-    let WEEKENDRANGE = opts && 'WEEKENDRANGE' in opts ? opts.WEEKENDRANGE : null;
-    if (WEEKENDRANGE == null) dart.nullFailed(I[0], 132, 21, "WEEKENDRANGE");
-    let FIRSTWEEKCUTOFFDAY = opts && 'FIRSTWEEKCUTOFFDAY' in opts ? opts.FIRSTWEEKCUTOFFDAY : null;
-    if (FIRSTWEEKCUTOFFDAY == null) dart.nullFailed(I[0], 133, 21, "FIRSTWEEKCUTOFFDAY");
-    let DATETIMEFORMATS = opts && 'DATETIMEFORMATS' in opts ? opts.DATETIMEFORMATS : null;
-    if (DATETIMEFORMATS == null) dart.nullFailed(I[0], 134, 21, "DATETIMEFORMATS");
-    this[NAME$] = NAME;
-    this[ERAS$] = ERAS;
-    this[ERANAMES$] = ERANAMES;
-    this[NARROWMONTHS$] = NARROWMONTHS;
-    this[STANDALONENARROWMONTHS$] = STANDALONENARROWMONTHS;
-    this[MONTHS$] = MONTHS;
-    this[STANDALONEMONTHS$] = STANDALONEMONTHS;
-    this[SHORTMONTHS$] = SHORTMONTHS;
-    this[STANDALONESHORTMONTHS$] = STANDALONESHORTMONTHS;
-    this[WEEKDAYS$] = WEEKDAYS;
-    this[STANDALONEWEEKDAYS$] = STANDALONEWEEKDAYS;
-    this[SHORTWEEKDAYS$] = SHORTWEEKDAYS;
-    this[STANDALONESHORTWEEKDAYS$] = STANDALONESHORTWEEKDAYS;
-    this[NARROWWEEKDAYS$] = NARROWWEEKDAYS;
-    this[STANDALONENARROWWEEKDAYS$] = STANDALONENARROWWEEKDAYS;
-    this[SHORTQUARTERS$] = SHORTQUARTERS;
-    this[QUARTERS$] = QUARTERS;
-    this[AMPMS$] = AMPMS;
-    this[ZERODIGIT$] = ZERODIGIT;
-    this[DATEFORMATS$] = DATEFORMATS;
-    this[TIMEFORMATS$] = TIMEFORMATS;
-    this[AVAILABLEFORMATS$] = AVAILABLEFORMATS;
-    this[FIRSTDAYOFWEEK$] = FIRSTDAYOFWEEK;
-    this[WEEKENDRANGE$] = WEEKENDRANGE;
-    this[FIRSTWEEKCUTOFFDAY$] = FIRSTWEEKCUTOFFDAY;
-    this[DATETIMEFORMATS$] = DATETIMEFORMATS;
+  (stopwatch.ClockStopwatch.new = function(_clock) {
+    if (_clock == null) dart.nullFailed(I[0], 39, 23, "_clock");
+    this[_elapsed] = 0;
+    this[_start] = null;
+    this[_clock$] = _clock;
     ;
-  }).prototype = date_symbols.DateSymbols.prototype;
-  dart.addTypeTests(date_symbols.DateSymbols);
-  dart.addTypeCaches(date_symbols.DateSymbols);
-  dart.setMethodSignature(date_symbols.DateSymbols, () => ({
-    __proto__: dart.getMethods(date_symbols.DateSymbols.__proto__),
-    serializeToMap: dart.fnType(core.Map$(core.String, dart.dynamic), []),
-    [_serializeToMap]: dart.fnType(core.Map$(core.String, dart.dynamic), [])
+  }).prototype = stopwatch.ClockStopwatch.prototype;
+  dart.addTypeTests(stopwatch.ClockStopwatch);
+  dart.addTypeCaches(stopwatch.ClockStopwatch);
+  stopwatch.ClockStopwatch[dart.implements] = () => [core.Stopwatch];
+  dart.setMethodSignature(stopwatch.ClockStopwatch, () => ({
+    __proto__: dart.getMethods(stopwatch.ClockStopwatch.__proto__),
+    start: dart.fnType(dart.void, []),
+    stop: dart.fnType(dart.void, []),
+    reset: dart.fnType(dart.void, [])
   }));
-  dart.setLibraryUri(date_symbols.DateSymbols, I[1]);
-  dart.setFieldSignature(date_symbols.DateSymbols, () => ({
-    __proto__: dart.getFields(date_symbols.DateSymbols.__proto__),
-    NAME: dart.fieldType(core.String),
-    ERAS: dart.fieldType(core.List$(core.String)),
-    ERANAMES: dart.fieldType(core.List$(core.String)),
-    NARROWMONTHS: dart.fieldType(core.List$(core.String)),
-    STANDALONENARROWMONTHS: dart.fieldType(core.List$(core.String)),
-    MONTHS: dart.fieldType(core.List$(core.String)),
-    STANDALONEMONTHS: dart.fieldType(core.List$(core.String)),
-    SHORTMONTHS: dart.fieldType(core.List$(core.String)),
-    STANDALONESHORTMONTHS: dart.fieldType(core.List$(core.String)),
-    WEEKDAYS: dart.fieldType(core.List$(core.String)),
-    STANDALONEWEEKDAYS: dart.fieldType(core.List$(core.String)),
-    SHORTWEEKDAYS: dart.fieldType(core.List$(core.String)),
-    STANDALONESHORTWEEKDAYS: dart.fieldType(core.List$(core.String)),
-    NARROWWEEKDAYS: dart.fieldType(core.List$(core.String)),
-    STANDALONENARROWWEEKDAYS: dart.fieldType(core.List$(core.String)),
-    SHORTQUARTERS: dart.fieldType(core.List$(core.String)),
-    QUARTERS: dart.fieldType(core.List$(core.String)),
-    AMPMS: dart.fieldType(core.List$(core.String)),
-    DATEFORMATS: dart.fieldType(core.List$(core.String)),
-    TIMEFORMATS: dart.fieldType(core.List$(core.String)),
-    DATETIMEFORMATS: dart.fieldType(core.List$(core.String)),
-    AVAILABLEFORMATS: dart.fieldType(dart.nullable(core.Map$(core.String, core.String))),
-    FIRSTDAYOFWEEK: dart.fieldType(core.int),
-    WEEKENDRANGE: dart.fieldType(core.List$(core.int)),
-    FIRSTWEEKCUTOFFDAY: dart.fieldType(core.int),
-    ZERODIGIT: dart.fieldType(dart.nullable(core.String))
+  dart.setGetterSignature(stopwatch.ClockStopwatch, () => ({
+    __proto__: dart.getGetters(stopwatch.ClockStopwatch.__proto__),
+    frequency: core.int,
+    elapsedTicks: core.int,
+    elapsed: core.Duration,
+    elapsedMilliseconds: core.int,
+    isRunning: core.bool,
+    elapsedMicroseconds: core.int,
+    [_stop$]: dart.nullable(core.int),
+    [_start$0]: core.int
   }));
-  dart.defineExtensionMethods(date_symbols.DateSymbols, ['toString']);
-  dart.defineLazy(date_symbols, {
-    /*date_symbols.en_USSymbols*/get en_USSymbols() {
-      return new date_symbols.DateSymbols.new({NAME: "en_US", ERAS: C[0] || CT.C0, ERANAMES: C[1] || CT.C1, NARROWMONTHS: C[2] || CT.C2, STANDALONENARROWMONTHS: C[2] || CT.C2, MONTHS: C[3] || CT.C3, STANDALONEMONTHS: C[3] || CT.C3, SHORTMONTHS: C[4] || CT.C4, STANDALONESHORTMONTHS: C[4] || CT.C4, WEEKDAYS: C[5] || CT.C5, STANDALONEWEEKDAYS: C[5] || CT.C5, SHORTWEEKDAYS: C[6] || CT.C6, STANDALONESHORTWEEKDAYS: C[6] || CT.C6, NARROWWEEKDAYS: C[7] || CT.C7, STANDALONENARROWWEEKDAYS: C[7] || CT.C7, SHORTQUARTERS: C[8] || CT.C8, QUARTERS: C[9] || CT.C9, AMPMS: C[10] || CT.C10, DATEFORMATS: C[11] || CT.C11, TIMEFORMATS: C[12] || CT.C12, FIRSTDAYOFWEEK: 6, WEEKENDRANGE: C[13] || CT.C13, FIRSTWEEKCUTOFFDAY: 5, DATETIMEFORMATS: C[14] || CT.C14});
-    },
-    set en_USSymbols(_) {},
-    /*date_symbols.en_USPatterns*/get en_USPatterns() {
-      return C[15] || CT.C15;
-    },
-    set en_USPatterns(_) {}
+  dart.setSetterSignature(stopwatch.ClockStopwatch, () => ({
+    __proto__: dart.getSetters(stopwatch.ClockStopwatch.__proto__),
+    [_stop$]: dart.nullable(core.int),
+    [_start$0]: core.int
+  }));
+  dart.setLibraryUri(stopwatch.ClockStopwatch, I[1]);
+  dart.setFieldSignature(stopwatch.ClockStopwatch, () => ({
+    __proto__: dart.getFields(stopwatch.ClockStopwatch.__proto__),
+    [_clock$]: dart.finalFieldType(clock.Clock),
+    [_elapsed]: dart.fieldType(core.int),
+    [_start$]: dart.fieldType(dart.nullable(core.DateTime))
+  }));
+  dart.defineLazy(stopwatch, {
+    /*stopwatch._frequency*/get _frequency() {
+      return new core.Stopwatch.new().frequency;
+    }
   }, false);
-  dart.trackLibraries("packages/intl/date_symbols.dart", {
-    "package:intl/date_symbols.dart": date_symbols
+  var _time = dart.privateName(clock, "Clock._time");
+  var _time$ = dart.privateName(clock, "_time");
+  clock.Clock = class Clock extends core.Object {
+    get [_time$]() {
+      return this[_time];
+    }
+    set [_time$](value) {
+      super[_time$] = value;
+    }
+    now() {
+      return this[_time$]();
+    }
+    agoBy(duration) {
+      if (duration == null) dart.nullFailed(I[2], 47, 27, "duration");
+      return this.now().subtract(duration);
+    }
+    fromNowBy(duration) {
+      if (duration == null) dart.nullFailed(I[2], 50, 31, "duration");
+      return this.now().add(duration);
+    }
+    ago(opts) {
+      let days = opts && 'days' in opts ? opts.days : 0;
+      if (days == null) dart.nullFailed(I[2], 56, 16, "days");
+      let hours = opts && 'hours' in opts ? opts.hours : 0;
+      if (hours == null) dart.nullFailed(I[2], 57, 15, "hours");
+      let minutes = opts && 'minutes' in opts ? opts.minutes : 0;
+      if (minutes == null) dart.nullFailed(I[2], 58, 15, "minutes");
+      let seconds = opts && 'seconds' in opts ? opts.seconds : 0;
+      if (seconds == null) dart.nullFailed(I[2], 59, 15, "seconds");
+      let milliseconds = opts && 'milliseconds' in opts ? opts.milliseconds : 0;
+      if (milliseconds == null) dart.nullFailed(I[2], 60, 15, "milliseconds");
+      let microseconds = opts && 'microseconds' in opts ? opts.microseconds : 0;
+      if (microseconds == null) dart.nullFailed(I[2], 61, 15, "microseconds");
+      return this.agoBy(new core.Duration.new({days: days, hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds, microseconds: microseconds}));
+    }
+    fromNow(opts) {
+      let days = opts && 'days' in opts ? opts.days : 0;
+      if (days == null) dart.nullFailed(I[2], 74, 16, "days");
+      let hours = opts && 'hours' in opts ? opts.hours : 0;
+      if (hours == null) dart.nullFailed(I[2], 75, 15, "hours");
+      let minutes = opts && 'minutes' in opts ? opts.minutes : 0;
+      if (minutes == null) dart.nullFailed(I[2], 76, 15, "minutes");
+      let seconds = opts && 'seconds' in opts ? opts.seconds : 0;
+      if (seconds == null) dart.nullFailed(I[2], 77, 15, "seconds");
+      let milliseconds = opts && 'milliseconds' in opts ? opts.milliseconds : 0;
+      if (milliseconds == null) dart.nullFailed(I[2], 78, 15, "milliseconds");
+      let microseconds = opts && 'microseconds' in opts ? opts.microseconds : 0;
+      if (microseconds == null) dart.nullFailed(I[2], 79, 15, "microseconds");
+      return this.fromNowBy(new core.Duration.new({days: days, hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds, microseconds: microseconds}));
+    }
+    microsAgo(microseconds) {
+      if (microseconds == null) dart.nullFailed(I[2], 89, 26, "microseconds");
+      return this.ago({microseconds: microseconds});
+    }
+    microsFromNow(microseconds) {
+      if (microseconds == null) dart.nullFailed(I[2], 92, 30, "microseconds");
+      return this.fromNow({microseconds: microseconds});
+    }
+    millisAgo(milliseconds) {
+      if (milliseconds == null) dart.nullFailed(I[2], 96, 26, "milliseconds");
+      return this.ago({milliseconds: milliseconds});
+    }
+    millisFromNow(milliseconds) {
+      if (milliseconds == null) dart.nullFailed(I[2], 99, 30, "milliseconds");
+      return this.fromNow({milliseconds: milliseconds});
+    }
+    secondsAgo(seconds) {
+      if (seconds == null) dart.nullFailed(I[2], 103, 27, "seconds");
+      return this.ago({seconds: seconds});
+    }
+    secondsFromNow(seconds) {
+      if (seconds == null) dart.nullFailed(I[2], 106, 31, "seconds");
+      return this.fromNow({seconds: seconds});
+    }
+    minutesAgo(minutes) {
+      if (minutes == null) dart.nullFailed(I[2], 109, 27, "minutes");
+      return this.ago({minutes: minutes});
+    }
+    minutesFromNow(minutes) {
+      if (minutes == null) dart.nullFailed(I[2], 112, 31, "minutes");
+      return this.fromNow({minutes: minutes});
+    }
+    hoursAgo(hours) {
+      if (hours == null) dart.nullFailed(I[2], 115, 25, "hours");
+      return this.ago({hours: hours});
+    }
+    hoursFromNow(hours) {
+      if (hours == null) dart.nullFailed(I[2], 118, 29, "hours");
+      return this.fromNow({hours: hours});
+    }
+    daysAgo(days) {
+      if (days == null) dart.nullFailed(I[2], 121, 24, "days");
+      return this.ago({days: days});
+    }
+    daysFromNow(days) {
+      if (days == null) dart.nullFailed(I[2], 124, 28, "days");
+      return this.fromNow({days: days});
+    }
+    weeksAgo(weeks) {
+      if (weeks == null) dart.nullFailed(I[2], 127, 25, "weeks");
+      return this.ago({days: 7 * dart.notNull(weeks)});
+    }
+    weeksFromNow(weeks) {
+      if (weeks == null) dart.nullFailed(I[2], 130, 29, "weeks");
+      return this.fromNow({days: 7 * dart.notNull(weeks)});
+    }
+    monthsAgo(months) {
+      if (months == null) dart.nullFailed(I[2], 136, 26, "months");
+      let time = this.now();
+      let month = (dart.notNull(time.month) - dart.notNull(months) - 1)[$modulo](12) + 1;
+      let year = dart.notNull(time.year) - ((dart.notNull(months) + 12 - dart.notNull(time.month)) / 12)[$truncate]();
+      let day = utils.clampDayOfMonth({year: year, month: month, day: time.day});
+      return new core.DateTime.new(year, month, day, time.hour, time.minute, time.second, time.millisecond);
+    }
+    monthsFromNow(months) {
+      if (months == null) dart.nullFailed(I[2], 149, 30, "months");
+      let time = this.now();
+      let month = (dart.notNull(time.month) + dart.notNull(months) - 1)[$modulo](12) + 1;
+      let year = dart.notNull(time.year) + ((dart.notNull(months) + dart.notNull(time.month) - 1) / 12)[$truncate]();
+      let day = utils.clampDayOfMonth({year: year, month: month, day: time.day});
+      return new core.DateTime.new(year, month, day, time.hour, time.minute, time.second, time.millisecond);
+    }
+    yearsAgo(years) {
+      if (years == null) dart.nullFailed(I[2], 162, 25, "years");
+      let time = this.now();
+      let year = dart.notNull(time.year) - dart.notNull(years);
+      let day = utils.clampDayOfMonth({year: year, month: time.month, day: time.day});
+      return new core.DateTime.new(year, time.month, day, time.hour, time.minute, time.second, time.millisecond);
+    }
+    yearsFromNow(years) {
+      if (years == null) dart.nullFailed(I[2], 174, 29, "years");
+      return this.yearsAgo(-dart.notNull(years));
+    }
+    stopwatch() {
+      return new stopwatch.ClockStopwatch.new(this);
+    }
+    getStopwatch() {
+      return this.stopwatch();
+    }
+  };
+  (clock.Clock.new = function(currentTime = C[4] || CT.C4) {
+    if (currentTime == null) dart.nullFailed(I[2], 37, 36, "currentTime");
+    this[_time] = currentTime;
+    ;
+  }).prototype = clock.Clock.prototype;
+  (clock.Clock.fixed = function(time) {
+    if (time == null) dart.nullFailed(I[2], 41, 24, "time");
+    this[_time] = dart.fn(() => time, T$.VoidToDateTime());
+    ;
+  }).prototype = clock.Clock.prototype;
+  dart.addTypeTests(clock.Clock);
+  dart.addTypeCaches(clock.Clock);
+  dart.setMethodSignature(clock.Clock, () => ({
+    __proto__: dart.getMethods(clock.Clock.__proto__),
+    now: dart.fnType(core.DateTime, []),
+    agoBy: dart.fnType(core.DateTime, [core.Duration]),
+    fromNowBy: dart.fnType(core.DateTime, [core.Duration]),
+    ago: dart.fnType(core.DateTime, [], {days: core.int, hours: core.int, microseconds: core.int, milliseconds: core.int, minutes: core.int, seconds: core.int}, {}),
+    fromNow: dart.fnType(core.DateTime, [], {days: core.int, hours: core.int, microseconds: core.int, milliseconds: core.int, minutes: core.int, seconds: core.int}, {}),
+    microsAgo: dart.fnType(core.DateTime, [core.int]),
+    microsFromNow: dart.fnType(core.DateTime, [core.int]),
+    millisAgo: dart.fnType(core.DateTime, [core.int]),
+    millisFromNow: dart.fnType(core.DateTime, [core.int]),
+    secondsAgo: dart.fnType(core.DateTime, [core.int]),
+    secondsFromNow: dart.fnType(core.DateTime, [core.int]),
+    minutesAgo: dart.fnType(core.DateTime, [core.int]),
+    minutesFromNow: dart.fnType(core.DateTime, [core.int]),
+    hoursAgo: dart.fnType(core.DateTime, [core.int]),
+    hoursFromNow: dart.fnType(core.DateTime, [core.int]),
+    daysAgo: dart.fnType(core.DateTime, [core.int]),
+    daysFromNow: dart.fnType(core.DateTime, [core.int]),
+    weeksAgo: dart.fnType(core.DateTime, [core.int]),
+    weeksFromNow: dart.fnType(core.DateTime, [core.int]),
+    monthsAgo: dart.fnType(core.DateTime, [core.int]),
+    monthsFromNow: dart.fnType(core.DateTime, [core.int]),
+    yearsAgo: dart.fnType(core.DateTime, [core.int]),
+    yearsFromNow: dart.fnType(core.DateTime, [core.int]),
+    stopwatch: dart.fnType(core.Stopwatch, []),
+    getStopwatch: dart.fnType(core.Stopwatch, [])
+  }));
+  dart.setLibraryUri(clock.Clock, I[3]);
+  dart.setFieldSignature(clock.Clock, () => ({
+    __proto__: dart.getFields(clock.Clock.__proto__),
+    [_time$]: dart.finalFieldType(dart.fnType(core.DateTime, []))
+  }));
+  $default.withClock = function withClock(T, clock, callback, opts) {
+    let t0;
+    if (clock == null) dart.nullFailed(I[4], 41, 22, "clock");
+    if (callback == null) dart.nullFailed(I[4], 41, 42, "callback");
+    let isFinal = opts && 'isFinal' in opts ? opts.isFinal : false;
+    if (isFinal == null) dart.nullFailed(I[4], 42, 23, "isFinal");
+    if (dart.equals((t0 = async.Zone.current._get($default._isFinalKey), t0 == null ? false : t0), true)) {
+      dart.throw(new core.StateError.new("Cannot call withClock() within a call to withClock(isFinal = true)."));
+    }
+    return async.runZoned(T, callback, {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([$default._clockKey, clock, $default._isFinalKey, isFinal])});
+  };
+  dart.copyProperties($default, {
+    get clock() {
+      let t0;
+      t0 = T$.ClockN().as(async.Zone.current._get($default._clockKey));
+      return t0 == null ? C[5] || CT.C5 : t0;
+    }
+  });
+  dart.defineLazy($default, {
+    /*$default._clockKey*/get _clockKey() {
+      return new core.Object.new();
+    },
+    /*$default._isFinalKey*/get _isFinalKey() {
+      return new core.Object.new();
+    }
+  }, false);
+  clock$.systemTime = function systemTime() {
+    return new core.DateTime.now();
+  };
+  clock$.getStopwatch = function getStopwatch() {
+    return $default.clock.stopwatch();
+  };
+  dart.copyProperties(clock$, {
+    get now() {
+      return $default.clock.now();
+    }
+  });
+  dart.trackLibraries("packages/clock/src/stopwatch.dart", {
+    "package:clock/src/stopwatch.dart": stopwatch,
+    "package:clock/src/clock.dart": clock,
+    "package:clock/src/default.dart": $default,
+    "package:clock/clock.dart": clock$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["date_symbols.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgBS;;;;;;IAIH;;;;;;IAGA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAOA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAMA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IACiB;;;;;;IAIjB;;;;;;IAKM;;;;;;IACN;;;;;;IAEI;;;;;;8BAoCqD;;;AAC3D,eAAa;YAAsB;AAAS,sDAAkB,AAAG,GAAA,QAAC,IAAI;;;AACtE,YAAO,wDACC,AAAG,GAAA,QAAC,gBACJ,cAAc,CAAC,mBACX,cAAc,CAAC,2BACX,cAAc,CAAC,yCACL,cAAc,CAAC,mCAC/B,cAAc,CAAC,6BACL,cAAc,CAAC,kCACpB,cAAc,CAAC,uCACL,cAAc,CAAC,oCAC5B,cAAc,CAAC,iCACL,cAAc,CAAC,sCACpB,cAAc,CAAC,2CACL,cAAc,CAAC,4CACxB,cAAc,CAAC,6CACL,cAAc,CAAC,4CAC1B,cAAc,CAAC,4BACpB,cAAc,CAAC,oBAClB,cAAc,CAAC,oCACX,AAAG,GAAA,QAAC,4BACF,cAAc,CAAC,6BACf,cAAc,CAAC,kCACV,mDAAiD,KAAxB,AAAG,GAAA,QAAC,qBAAD,aAAwB,oEACtD,AAAG,GAAA,QAAC,kCACN,oCAAe,AAAG,GAAA,QAAC,mDACb,AAAG,GAAA,QAAC,yCACP,cAAc,CAAC;IAEpC;;AAKM,qBAAW;AACf,UAAI,AAAU,0BAAW,AAAU,mBAAG;AACH,QAAjC,AAAQ,QAAA,QAAC,aAAe;;AAE1B,YAAO,SAAQ;IACjB;;AAE0C,yDACpC,QAAQ,WACR,QAAQ,WACR,YAAY,eACZ,gBAAgB,mBAChB,0BAA0B,6BAC1B,UAAU,aACV,oBAAoB,uBACpB,eAAe,kBACf,yBAAyB,4BACzB,YAAY,eACZ,sBAAsB,yBACtB,iBAAiB,oBACjB,2BAA2B,8BAC3B,kBAAkB,qBAClB,4BAA4B,+BAC5B,iBAAiB,oBACjB,YAAY,eACZ,SAAS,YACT,eAAe,kBACf,eAAe,kBACf,oBAAoB,uBACpB,kBAAkB,qBAClB,gBAAgB,mBAChB,sBAAsB,yBACtB,mBAAmB;IACpB;;AAEgB;IAAI;;;QAvGN;;QACD;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACA;;QACT;QAKS;;QACA;;QACT;QACS;;QACA;;QACA;;QACA;;IA7BC;IACD;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACT;IAKS;IACA;IACT;IACS;IACA;IACA;IACA;;EAAiB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA+EjC,yBAAY;YAAG,yCACT,0lBA+HU,sDAEI;;;MAQpB,0BAAa","file":"../../../../../../../../D:/packages/intl/date_symbols.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["stopwatch.dart","clock.dart","default.dart","../clock.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/clock/src/stopwatch.dart.lib.js"}');
   // Exports:
   return {
-    date_symbols: date_symbols
+    src__stopwatch: stopwatch,
+    src__clock: clock,
+    src__default: $default,
+    clock: clock$
   };
 }));
 
-//# sourceMappingURL=date_symbols.dart.lib.js.map
+//# sourceMappingURL=stopwatch.dart.lib.js.map
