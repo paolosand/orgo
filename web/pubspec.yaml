@@ -32,6 +32,7 @@ dependencies:
   cloud_firestore: ^1.0.1
   page_router: ^0.0.3
   sliding_up_panel: ^1.0.2
+  smooth_page_indicator: ^0.2.3
 
 dev_dependencies:
   flutter_test:

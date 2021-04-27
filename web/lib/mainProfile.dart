@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // A constant body textstyle used in the view account popup
-const TextStyle kViewBody = TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.w700);
+const TextStyle kViewBody =
+    TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.w700);
+
+// A constant heading textstyle for the popups (except view) and pull up widget.
+const TextStyle kHeading =
+    TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0);
+
+// A constant textstyle used for most button labels.
+const TextStyle kButtonLabel =
+    TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+
+// placeholder notifications
+List<String> notifs = ["Reminder", "To", "Sakin"];
 
 class MainProfile extends StatefulWidget {
   const MainProfile({Key key}) : super(key: key);
@@ -27,8 +38,8 @@ class _MainProfileState extends State<MainProfile> {
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
 
-  bool panelVisible = false; // to hide the contents of the panel when collapsed.
-  // function to call when the user wants to add an account.
+  double panelOpacity =
+      0.0; // to change panel opacity based on how much the panel is opened
   Future<void> addAccountPopup() async {
     String addAccName, addEmail, addPass, addURL;
 
@@ -38,10 +49,11 @@ class _MainProfileState extends State<MainProfile> {
         return SimpleDialog(
           title: const Text(
             'Add Account',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+            style: kHeading,
             textAlign: TextAlign.center,
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 10.0),
@@ -55,8 +67,7 @@ class _MainProfileState extends State<MainProfile> {
                       validator: (String value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter some text';
-                        }
-                        else if (classes.contains(value)){
+                        } else if (classes.contains(value)) {
                           return 'Account already exists';
                         }
                         return null;
@@ -109,8 +120,8 @@ class _MainProfileState extends State<MainProfile> {
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xff581845)),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Color(0xff581845)),
@@ -119,18 +130,18 @@ class _MainProfileState extends State<MainProfile> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account data successfully added')));
-                            addAccount(currentProfile, addAccName, addEmail, addPass, addURL);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content:
+                                    Text('Account data successfully added')));
+                            addAccount(currentProfile, addAccName, addEmail,
+                                addPass, addURL);
                             getClassList(currentProfile);
                             Navigator.of(context).pop();
                           }
                         },
                         child: Text(
                           'Add',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                          ),
+                          style: kButtonLabel,
                         ),
                       ),
                     )
@@ -140,211 +151,215 @@ class _MainProfileState extends State<MainProfile> {
             ),
           ],
         );
-      }
+      },
     );
   }
 
   // function to call when the user wants to edit the content of an account (class).
-  Future<void> editAccountPopup(String accName, accEmail, accPass, accURL) async {
+  Future<void> editAccountPopup(
+      String accName, accEmail, accPass, accURL) async {
     String editEmail, editPass, editURL;
 
-    await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          title: const Text(
-            'Add Account',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
-            textAlign: TextAlign.center,
-          ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 10.0),
-              width: 300,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    InputAccountCard(
-                      hintText: accEmail,
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        editEmail = text;
-                      },
-                    ),
-                    InputAccountCard(
-                      hintText: accPass,
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        editPass = text;
-                      },
-                    ),
-                    InputAccountCard(
-                      hintText: accURL,
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        editURL = text;
-                      },
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 30,
-                      width: 90,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xff581845)),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Color(0xff581845)),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account data successfully changed')));
-                            editAccount(currentProfile, accName, editEmail, editPass, editURL);
-                            getClassList(currentProfile);
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        );
-      }
-    );
-  }
-  
-  // function to call when the user wants to view the content of an account (class).
-  Future<void> viewAccountPopup(String accountTitle, String email, String password, String websiteURL, String imageURL) async {
     await showDialog(
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
-            backgroundColor: colorList[currentClassColor],
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.settings, color: Colors.white),
-                  onPressed: (){
-                    Navigator.of(context).pop();
-                    editAccountPopup(accountTitle, email, password, websiteURL);
-                  },
-                ),
-                Text(
-                  accountTitle,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-                
-                IconButton(
-                  icon: Icon(Icons.delete, color: Colors.white),
-                  onPressed: (){
-                    deleteAccount(currentProfile, accountTitle);
-                    getClassList(currentProfile);
-                    Navigator.of(context).pop();
-
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account successfully removed')));
-                  },
-                ),
-              ],
+            title: const Text(
+              'Add Account',
+              style: kHeading,
+              textAlign: TextAlign.center,
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-            children: [
+            children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-                height: 350,
-                width: 250,
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(imageURL),
-                      backgroundColor: Colors.white,
-                      radius: 80.0,
-                    ),
-                    SizedBox(height: 15.0),
-                    Text(
-                      email,
-                      style: kViewBody,
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      password,
-                      style: kViewBody,
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      websiteURL,
-                      style: kViewBody,
-                    ),
-                    SizedBox(height: 8.0),
-                    Container(
-                      margin: EdgeInsets.only(top: 25.0),
-                      height: 30,
-                      width: 90,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.white),
+                margin: EdgeInsets.only(top: 10.0),
+                width: 300,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      InputAccountCard(
+                        hintText: accEmail,
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onChanged: (text) {
+                          editEmail = text;
+                        },
+                      ),
+                      InputAccountCard(
+                        hintText: accPass,
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onChanged: (text) {
+                          editPass = text;
+                        },
+                      ),
+                      InputAccountCard(
+                        hintText: accURL,
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onChanged: (text) {
+                          editURL = text;
+                        },
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 20.0),
+                        height: 30,
+                        width: 90,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff581845)),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Color(0xff581845)),
+                              ),
                             ),
                           ),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          'Account data successfully changed')));
+                              editAccount(currentProfile, accName, editEmail,
+                                  editPass, editURL);
+                              getClassList(currentProfile);
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: Text(
+                            'Save',
+                            style: kButtonLabel,
+                          ),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          'Visit Link',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5),
-                        ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
           );
         });
+  }
+
+  // function to call when the user wants to view the content of an account (class).
+  Future<void> viewAccountPopup(String accountTitle, String email,
+      String password, String websiteURL, String imageURL) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          backgroundColor: colorList[currentClassColor],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: Icon(Icons.settings, color: Colors.white),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  editAccountPopup(accountTitle, email, password, websiteURL);
+                },
+              ),
+              Text(
+                accountTitle,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30.0,
+                    color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.white),
+                onPressed: () {
+                  deleteAccount(currentProfile, accountTitle);
+                  getClassList(currentProfile);
+                  Navigator.of(context).pop();
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Account successfully removed')));
+                },
+              ),
+            ],
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+              height: 350,
+              width: 250,
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(imageURL),
+                    backgroundColor: Colors.white,
+                    radius: 80.0,
+                  ),
+                  SizedBox(height: 15.0),
+                  Text(
+                    email,
+                    style: kViewBody,
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    password,
+                    style: kViewBody,
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    websiteURL,
+                    style: kViewBody,
+                  ),
+                  SizedBox(height: 8.0),
+                  Container(
+                    margin: EdgeInsets.only(top: 25.0),
+                    height: 30,
+                    width: 90,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Visit Link',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   // function to call when the user wants to add a new profile.
@@ -356,7 +371,7 @@ class _MainProfileState extends State<MainProfile> {
         return SimpleDialog(
           title: const Text(
             'Add Profile',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
+            style: kHeading,
             textAlign: TextAlign.center,
           ),
           shape:
@@ -377,7 +392,7 @@ class _MainProfileState extends State<MainProfile> {
                         }
                         return null;
                       },
-                      onChanged: (text){
+                      onChanged: (text) {
                         profileName = text;
                       },
                     ),
@@ -391,8 +406,8 @@ class _MainProfileState extends State<MainProfile> {
                               (Set<MaterialState> states) {
                             return colorList[currentColorIndex];
                           }),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),
@@ -405,9 +420,7 @@ class _MainProfileState extends State<MainProfile> {
                         },
                         child: Text(
                           'Color',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                          style: kButtonLabel,
                         ),
                       ),
                     ),
@@ -419,8 +432,8 @@ class _MainProfileState extends State<MainProfile> {
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xff581845)),
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Color(0xff581845)),
@@ -429,17 +442,15 @@ class _MainProfileState extends State<MainProfile> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile successfully added')));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text('Profile successfully added')));
                             addProfile(profileName, currentColorIndex);
                             Navigator.of(context).pop();
                           }
-
                         },
                         child: Text(
                           'Add',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                          style: kButtonLabel,
                         ),
                       ),
                     )
@@ -449,12 +460,400 @@ class _MainProfileState extends State<MainProfile> {
             ),
           ],
         );
-      }
+      },
+    );
+  }
+
+  // function to call when the user wants to add a new notification.
+  Future<void> addNotificationPopup() async {
+    String addNotifTitle, addNotifTime, addNotifDesc;
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text(
+            'Add Notification',
+            style: kHeading,
+            textAlign: TextAlign.center,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              width: 400,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // title textfield
+                    InputAccountCard(
+                      hintText: "Title",
+                      width: 300,
+                      validator: (String value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        addNotifTitle = text;
+                      },
+                    ),
+                    // textfieldform ba talaga tong sa time???
+                    InputAccountCard(
+                      hintText: "Time",
+                      width: 300,
+                      validator: (String value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        addNotifTime = text;
+                      },
+                    ),
+                    // like inputAccountCard pero may additional sht sa textformfield for multiline
+                    // description textfield
+                    Container(
+                      margin: EdgeInsets.all(5.0),
+                      width: 300,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1.0)),
+                      child: Center(
+                        child: TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          minLines: 5,
+                          textAlign: TextAlign.center,
+                          cursorColor: Colors.black,
+                          decoration: new InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            hintText: "Description",
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[300]),
+                          ),
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            addNotifDesc = text;
+                          },
+                        ),
+                      ),
+                    ),
+                    // choose class based on classes in profile?
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20.0),
+                      height: 30,
+                      width: 90,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith(
+                              (Set<MaterialState> states) {
+                            return colorList[currentColorIndex];
+                          }),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        // placeholder label
+                        child: Text(
+                          'CS 194',
+                          style: kButtonLabel,
+                        ),
+                      ),
+                    ),
+                    // click to add the notification
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20.0),
+                      height: 30,
+                      width: 90,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xff581845)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Color(0xff581845)),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          setState(() {
+                            notifs.add(addNotifTitle);
+                          });
+                        },
+                        child: Text(
+                          'Add',
+                          style: kButtonLabel,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // function to call when the user wants to edit an existing notification.
+  Future<void> editNotificationPopup(
+      String notifTitle, String notifTime, String notifDesc) async {
+    String editNotifTitle, editNotifTime, editNotifDesc;
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text(
+            'Edit Notification',
+            style: kHeading,
+            textAlign: TextAlign.center,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 10.0),
+              width: 400,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // uses previous info as hint text
+                    // just like the add notification popup
+                    InputAccountCard(
+                      hintText: notifTitle,
+                      width: 300,
+                      validator: (String value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        editNotifTitle = text;
+                      },
+                    ),
+                    InputAccountCard(
+                      hintText: notifTime,
+                      width: 300,
+                      validator: (String value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onChanged: (text) {
+                        editNotifTime = text;
+                      },
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(5.0),
+                      width: 300,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1.0)),
+                      child: Center(
+                        child: TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          minLines: 5,
+                          textAlign: TextAlign.center,
+                          cursorColor: Colors.black,
+                          decoration: new InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            hintText: notifDesc,
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[300]),
+                          ),
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editNotifDesc = text;
+                          },
+                        ),
+                      ),
+                    ),
+                    // choose class based on classes in profile?
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20.0),
+                      height: 30,
+                      width: 90,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.resolveWith(
+                              (Set<MaterialState> states) {
+                            return colorList[currentColorIndex];
+                          }),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {},
+                        // placeholder label
+                        child: Text(
+                          'CS 194',
+                          style: kButtonLabel,
+                        ),
+                      ),
+                    ),
+                    // click to save edited notification
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20.0),
+                      height: 30,
+                      width: 90,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xff581845)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Color(0xff581845)),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          'Save',
+                          style: kButtonLabel,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // function to call when the user wants to view the content of a notification
+  // used when a notification is clicked
+  Future<void> viewNotificationPopup(
+      String notifTitle, String notifTime, String notifDesc) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          // color based on color of class?
+          backgroundColor: Color(0xff43aa8b),
+          title: Text(
+            notifTitle,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30.0,
+                color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+          children: [
+            Container(
+              margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+              width: 300,
+              child: Column(
+                children: [
+                  // separate header from content
+                  Divider(
+                    indent: 60,
+                    endIndent: 60,
+                    color: Colors.white,
+                    height: 10,
+                    thickness: 5,
+                  ),
+                  SizedBox(height: 15.0),
+                  Text(
+                    notifTime,
+                    style: kViewBody,
+                  ),
+                  SizedBox(height: 15.0),
+                  Text(
+                    notifDesc,
+                    style: kViewBody,
+                  ),
+                  // used to edit the viewed notification
+                  Container(
+                    margin: EdgeInsets.only(top: 25.0),
+                    height: 30,
+                    width: 90,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        editNotificationPopup(
+                            "CS 194 Seminar",
+                            "Next Monday, 3:55 pm",
+                            "zoom.link.us/1230109283\npassword:1238943");
+                      },
+                      child: Text(
+                        'Edit',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
   // function to call when the user wants to add data to the database.
-  Future<void> addAccount(String profileName, String addAccName, String addEmail, String addPass, String addURL) {
+  Future<void> addAccount(String profileName, String addAccName,
+      String addEmail, String addPass, String addURL) {
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
         .collection(auth.currentUser.uid)
@@ -462,10 +861,10 @@ class _MainProfileState extends State<MainProfile> {
         .collection(profileName)
         .doc('accounts')
         .update({
-          addAccName : {
-            'email' : addEmail,
-            'password' : addPass,
-            'website url' : addURL
+          addAccName: {
+            'email': addEmail,
+            'password': addPass,
+            'website url': addURL
           }
         })
         .then((value) => print("User Added"))
@@ -473,7 +872,8 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   // function to call when the user wants to edit data in the database.
-  Future<void> editAccount(String profileName, String accName, String editEmail, String editPass, String editURL) {
+  Future<void> editAccount(String profileName, String accName, String editEmail,
+      String editPass, String editURL) {
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
         .collection(auth.currentUser.uid)
@@ -481,10 +881,10 @@ class _MainProfileState extends State<MainProfile> {
         .collection(profileName)
         .doc('accounts')
         .update({
-          accName : {
-            'email' : editEmail,
-            'password' : editPass,
-            'website url' : editURL
+          accName: {
+            'email': editEmail,
+            'password': editPass,
+            'website url': editURL
           }
         })
         .then((value) => print("Account successfully edited"))
@@ -499,14 +899,10 @@ class _MainProfileState extends State<MainProfile> {
         .doc('profiles')
         .collection(profileName)
         .doc('accounts')
-        .update({
-          accName : FieldValue.delete()
-        })
+        .update({accName: FieldValue.delete()})
         .then((value) => print("Account deleted"))
         .catchError((error) => print("Failed to add user: $error"));
   }
-
-
 
   // function to call when the user wants to add data to the database.
   Future<void> addProfile(String profileName, int colorIndex) {
@@ -515,9 +911,7 @@ class _MainProfileState extends State<MainProfile> {
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .set({
-          'color' : {
-            profileName : colorIndex
-          }
+          'color': {profileName: colorIndex}
         }, SetOptions(merge: true))
         .then((value) => print("Color Map Added"))
         .catchError((error) => print("Failed to add color map: $error"));
@@ -526,21 +920,20 @@ class _MainProfileState extends State<MainProfile> {
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .update({
-          'profile_count' : FieldValue.increment(1),
+          'profile_count': FieldValue.increment(1),
         })
         .then((value) => print("Color Count Added"))
         .catchError((error) => print("Failed to add color count: $error"));
-    
+
     FirebaseFirestore.instance
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .update({
-          'profile_names' : FieldValue.arrayUnion([profileName])
+          'profile_names': FieldValue.arrayUnion([profileName])
         })
         .then((value) => print("Profile Name Added"))
         .catchError((error) => print("Failed to add profilename: $error"));
-    
-    
+
     return FirebaseFirestore.instance
         .collection(auth.currentUser.uid)
         .doc('profiles')
@@ -557,9 +950,7 @@ class _MainProfileState extends State<MainProfile> {
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .set({
-          'color' : {
-            profileName : FieldValue.delete()
-          }
+          'color': {profileName: FieldValue.delete()}
         }, SetOptions(merge: true))
         .then((value) => print("Color Map entry deleted"))
         .catchError((error) => print("Failed to delete color map: $error"));
@@ -568,20 +959,19 @@ class _MainProfileState extends State<MainProfile> {
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .update({
-          'profile_count' : FieldValue.increment(-1),
+          'profile_count': FieldValue.increment(-1),
         })
         .then((value) => print("Color Count reduced"))
         .catchError((error) => print("Failed to delete color count: $error"));
-    
+
     FirebaseFirestore.instance
         .collection(auth.currentUser.uid)
         .doc('profiles')
         .update({
-          'profile_names' : FieldValue.arrayRemove([profileName])
+          'profile_names': FieldValue.arrayRemove([profileName])
         })
         .then((value) => print("Profile Name removed"))
         .catchError((error) => print("Failed to delete profilename: $error"));
-    
 
     WriteBatch batch = FirebaseFirestore.instance.batch();
 
@@ -591,12 +981,11 @@ class _MainProfileState extends State<MainProfile> {
         .collection(profileName)
         .get()
         .then((value) {
-          value.docs.forEach((document) {batch.delete(document.reference);});
-        })
-        .catchError((error) => print("Failed to delete profile: $error"));
+      value.docs.forEach((document) {
+        batch.delete(document.reference);
+      });
+    }).catchError((error) => print("Failed to delete profile: $error"));
   }
-
-
 
   // function to call when the user wants to signout.
   Future<void> _signOut() async {
@@ -604,14 +993,14 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   // function to call to update the local class list.
-  void getClassList(String profileName){
+  void getClassList(String profileName) {
     FirebaseFirestore.instance
-      .collection(auth.currentUser.uid)
-      .doc('profiles')
-      .collection(profileName)
-      .doc('accounts')
-      .get()
-      .then((DocumentSnapshot documentSnapshot) {
+        .collection(auth.currentUser.uid)
+        .doc('profiles')
+        .collection(profileName)
+        .doc('accounts')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         setState(() {
           classes = [];
@@ -623,32 +1012,28 @@ class _MainProfileState extends State<MainProfile> {
 
         print(accData);
         print(classes);
-
       } else {
         print('Document does not exist on the database');
       }
     });
   }
 
-  void getClassColor(String profileName){
+  void getClassColor(String profileName) {
     FirebaseFirestore.instance
-      .collection(auth.currentUser.uid)
-      .doc('profiles')
-      .get()
-      .then((DocumentSnapshot documentSnapshot) {
+        .collection(auth.currentUser.uid)
+        .doc('profiles')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         Map<String, dynamic> test = documentSnapshot.data();
         print(test['color'][profileName]);
         setState(() {
           currentClassColor = test['color'][profileName];
         });
-
       } else {
         print('Document does not exist on the database');
       }
     });
-
-
   }
 
   // function to call to change preferred color.
@@ -661,7 +1046,7 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     print(auth.currentUser.uid);
   }
@@ -678,7 +1063,7 @@ class _MainProfileState extends State<MainProfile> {
         leading: IconButton(
           icon: Icon(Icons.logout),
           tooltip: "Logout",
-          onPressed: (){
+          onPressed: () {
             print("Logout pressed");
             _signOut();
             Navigator.pop(context);
@@ -693,153 +1078,286 @@ class _MainProfileState extends State<MainProfile> {
         onPanelSlide: (double size) {
           // hide panel content until partially opened.
           setState(() {
-            if (size < 0.3) {
-              panelVisible = false;
-            } else {
-              panelVisible = true;
-            }
+            panelOpacity = size;
           });
         },
         // content of the panel
         panelBuilder: (ScrollController sc) {
-          return Visibility(
-            visible: panelVisible,
-            child: Container(
-              child: Column(
-                children: [
-                  // kinda like the header
-                  Expanded(
-                    flex: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40.0),
-                          child: IconButton(
-                            onPressed: () {
-                              deleteProfile(currentProfile);
-
-                            },
-                            icon: Icon(
-                              Icons.delete,
-                              color: Color(0xff581845),
-                              size: 30.0,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Profiles',
-                          style: TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          width: 75.0,
-                        )
-                      ],
-                    ),
-                  ),
-                  // the scrollable view of profiles
-                  Expanded(
-                    flex: 6,
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance.collection(auth.currentUser.uid).doc('profiles').snapshots(),
-                      builder: (context, snapshot){
-                        if (snapshot.data == null){
-                          return Center(
-                            child: CircularProgressIndicator(
-                              backgroundColor: Colors.white,
-                              valueColor: new AlwaysStoppedAnimation<Color>(Colors.black),
-                            ),
-                          );
-                        }
-                        int _itemcount = snapshot.data.data()['profile_count'];
-                        return Scrollbar(
-                          child: ListView.separated(
-                            controller: sc,
-                            padding: const EdgeInsets.all(8),
-                            itemCount: _itemcount,
-                            // to display all the profiles. add the backend stuff here to replace the placeholder profiles list??
-                            itemBuilder: (BuildContext context, int index) {
-                              String item = snapshot.data.data()['profile_names'][index];
-                              return Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: size.height / 8),
-                                height: 50.0,
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        (currentProfile == item)? Colors.pink : Color(0xff43aa8b)),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        side: BorderSide(color: Color(0xff43aa8b)),
+          final PageController pc = PageController(initialPage: 0);
+          return Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: pc,
+                  children: [
+                    // first page. contains the profiles
+                    Opacity(
+                      opacity: panelOpacity,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            // kinda like the header
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 40.0),
+                                    child: IconButton(
+                                      onPressed: () {
+                                        deleteProfile(currentProfile);
+                                      },
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Color(0xff581845),
+                                        size: 30.0,
                                       ),
                                     ),
                                   ),
+                                  Text(
+                                    'Profiles',
+                                    style: kHeading,
+                                  ),
+                                  SizedBox(width: 75.0),
+                                ],
+                              ),
+                            ),
+                            // the scrollable view of profiles
+                            Expanded(
+                              flex: 6,
+                              child: StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection(auth.currentUser.uid)
+                                    .doc('profiles')
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.data == null) {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        backgroundColor: Colors.white,
+                                        valueColor:
+                                            new AlwaysStoppedAnimation<Color>(
+                                                Colors.black),
+                                      ),
+                                    );
+                                  }
+                                  int _itemcount =
+                                      snapshot.data.data()['profile_count'];
+                                  return Scrollbar(
+                                    child: ListView.separated(
+                                      controller: sc,
+                                      padding: const EdgeInsets.all(8),
+                                      itemCount: _itemcount,
+                                      // to display all the profiles. add the backend stuff here to replace the placeholder profiles list??
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        String item = snapshot.data
+                                            .data()['profile_names'][index];
+                                        return Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: size.height / 8),
+                                          height: 50.0,
+                                          child: TextButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      (currentProfile == item)
+                                                          ? Colors.pink
+                                                          : Color(0xff43aa8b)),
+                                              shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  side: BorderSide(
+                                                      color: Color(0xff43aa8b)),
+                                                ),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                currentProfile = item;
+                                                getClassList(currentProfile);
+                                                getClassColor(currentProfile);
+                                              });
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          'Profile "$currentProfile" selected.')));
+                                              panelController.close();
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                SizedBox(width: 40.0),
+                                                Text(
+                                                  item,
+                                                  style: kButtonLabel,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 8.0),
+                                                  child: Icon(
+                                                    Icons.double_arrow_outlined,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) =>
+                                              SizedBox(height: 20.0),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
+                              child: Center(
+                                child: IconButton(
                                   onPressed: () {
-                                    setState(() {
-                                      currentProfile = item;
-                                      getClassList(currentProfile);
-                                      getClassColor(currentProfile);
-                                    });
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile "$currentProfile" selected.')));
-                                    panelController.close();
+                                    addProfilePopup();
                                   },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(width: 40.0),
-                                      Text(
-                                        item,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 8.0),
-                                        child: Icon(
-                                          Icons.double_arrow_outlined,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
+                                  icon: Icon(
+                                    Icons.add,
+                                    color: Color(0xff581845),
+                                    size: 32.0,
                                   ),
                                 ),
-                              );
-                            },
-                            separatorBuilder: (BuildContext context, int index) =>
-                                SizedBox(height: 20.0),
-                          ),
-                        );
-                      },
-                    )
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
-                    child: Center(
-                      child: IconButton(
-                        onPressed: () {
-                          addProfilePopup();
-                        },
-                        icon: Icon(
-                          Icons.add,
-                          color: Color(0xff581845),
-                          size: 32.0,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    // the second page. contains the notifications
+                    Opacity(
+                      opacity: panelOpacity,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            // kinda like the header
+                            Expanded(
+                              flex: 1,
+                              child: Center(
+                                child: Text(
+                                  'Notifications',
+                                  style: kHeading,
+                                ),
+                              ),
+                            ),
+                            // the scrollable view of notifications
+                            Expanded(
+                              flex: 6,
+                              child: Scrollbar(
+                                child: ListView.separated(
+                                  controller: sc,
+                                  padding: const EdgeInsets.all(8),
+                                  itemCount: notifs.length,
+                                  // to display all the notifications
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    String item = notifs[index];
+                                    return Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: size.height / 8),
+                                      height: 50.0,
+                                      child: TextButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  (currentProfile == item)
+                                                      ? Colors.pink
+                                                      : Color(0xff43aa8b)),
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: Color(0xff43aa8b)),
+                                            ),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          viewNotificationPopup(
+                                              "CS 194 Seminar",
+                                              "Next Monday, 3:55 pm",
+                                              "zoom.link.us/1230109283\npassword:1238943");
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            item,
+                                            style: kButtonLabel,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder:
+                                      (BuildContext context, int index) =>
+                                          SizedBox(height: 20.0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
+                              child: Center(
+                                child: IconButton(
+                                  onPressed: () {
+                                    addNotificationPopup();
+                                  },
+                                  icon: Icon(
+                                    Icons.add,
+                                    color: Color(0xff581845),
+                                    size: 32.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+              // contains the page indicator
+              Container(
+                padding: EdgeInsets.only(bottom: 20.0),
+                child: SmoothPageIndicator(
+                  controller: pc, // PageController
+                  count: 2,
+                  effect: ScrollingDotsEffect(
+                    activeStrokeWidth: 2.6,
+                    activeDotScale: 1.0,
+                    dotHeight: 10,
+                    dotWidth: 10,
+                    radius: 8,
+                    spacing: 10,
+                    activeDotColor: Color(0xff581845),
+                    fixedCenter: true,
+                  ),
+                ),
+              ),
+            ],
           );
         },
         collapsed: Center(
           child: Icon(Icons.keyboard_arrow_up),
         ),
         minHeight: 70.0,
+        maxHeight: 550.0,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30.0),
           topRight: Radius.circular(30.0),
@@ -906,9 +1424,9 @@ class _MainProfileState extends State<MainProfile> {
         onPressed: () {
           if (currentProfile != '') {
             addAccountPopup();
-          }
-          else{
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select a profile first!')));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Please select a profile first!')));
           }
         },
         child: const Icon(
@@ -927,12 +1445,13 @@ class InputAccountCard extends StatelessWidget {
   final String hintText;
   final Function validator;
   final Function onChanged;
-  InputAccountCard({this.hintText, this.validator, this.onChanged});
+  final double width;
+  InputAccountCard({this.hintText, this.validator, this.onChanged, this.width});
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(5.0),
-      width: 200,
+      width: width ?? 200,
       decoration:
           BoxDecoration(border: Border.all(color: Colors.grey, width: 1.0)),
       child: Center(
