@@ -1228,7 +1228,7 @@ class _MainProfileState extends State<MainProfile> {
   // function to call when the user wants to edit data in the database.
   Future<void> editAccount(String profileName, String accName, String editEmail,
       String editPass, String editURL) {
-        accData['accounts'][accounts.indexOf(accName)][accName]['password'] = editPass;
+        accData['accounts'][accounts.indexOf(accName)][accName]['password'] = encryptPass(editPass).base64;
         accData['accounts'][accounts.indexOf(accName)][accName]['email'] = editEmail;
         accData['accounts'][accounts.indexOf(accName)][accName]['website url'] = editURL;
 
