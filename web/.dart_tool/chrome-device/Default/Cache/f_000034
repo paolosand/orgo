@@ -1,31 +1,68 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/implicit_animations.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/material/constants.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/widgets/icon_theme.dart', 'packages/flutter/src/painting/_network_image_web.dart'], (function load__packages__flutter__src__material__circle_avatar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__implicit_animations$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__material__constants$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__widgets__icon_theme$46dart, packages__flutter__src__painting___network_image_web$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/physics/spring_simulation.dart'], (function load__packages__sliding_up_panel__src__panel_dart(dart_sdk, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__physics__spring_simulation$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const theme_data = packages__flutter__src__material__icon_button$46dart.src__material__theme_data;
-  const implicit_animations = packages__flutter__src__widgets__implicit_animations$46dart.src__widgets__implicit_animations;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
-  const constants = packages__flutter__src__material__constants$46dart.src__material__constants;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
-  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
   const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
-  const icon_theme = packages__flutter__src__widgets__icon_theme$46dart.src__widgets__icon_theme;
-  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
-  var circle_avatar = Object.create(dart.library);
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const spring_simulation = packages__flutter__src__physics__spring_simulation$46dart.src__physics__spring_simulation;
+  var panel$ = Object.create(dart.library);
+  var $toString = dartx.toString;
+  var $abs = dartx.abs;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+    SlideDirectionL: () => (T.SlideDirectionL = dart.constFn(dart.legacy(panel$.SlideDirection)))(),
+    PanelStateL: () => (T.PanelStateL = dart.constFn(dart.legacy(panel$.PanelState)))(),
+    BoxShadowL: () => (T.BoxShadowL = dart.constFn(dart.legacy(box_shadow.BoxShadow)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    PositionedL: () => (T.PositionedL = dart.constFn(dart.legacy(basic.Positioned)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextLAndWidgetLToPositionedL: () => (T.BuildContextLAndWidgetLToPositionedL = dart.constFn(dart.fnType(T.PositionedL(), [T.BuildContextL(), T.WidgetL()])))(),
+    DragEndDetailsL: () => (T.DragEndDetailsL = dart.constFn(dart.legacy(drag_details.DragEndDetails)))(),
+    DragEndDetailsLToNull: () => (T.DragEndDetailsLToNull = dart.constFn(dart.fnType(core.Null, [T.DragEndDetailsL()])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    FutureLOfvoid: () => (T.FutureLOfvoid = dart.constFn(dart.legacy(T.FutureOfvoid())))(),
+    VoidToFutureLOfvoid: () => (T.VoidToFutureLOfvoid = dart.constFn(dart.fnType(T.FutureLOfvoid(), [])))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BuildContextLAndWidgetLToContainerL: () => (T.BuildContextLAndWidgetLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.WidgetL()])))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    TweenOfdoubleL: () => (T.TweenOfdoubleL = dart.constFn(tween.Tween$(T.doubleL())))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    DragUpdateDetailsL: () => (T.DragUpdateDetailsL = dart.constFn(dart.legacy(drag_details.DragUpdateDetails)))(),
+    DragUpdateDetailsLTovoid: () => (T.DragUpdateDetailsLTovoid = dart.constFn(dart.fnType(dart.void, [T.DragUpdateDetailsL()])))(),
+    DragEndDetailsLTovoid: () => (T.DragEndDetailsLTovoid = dart.constFn(dart.fnType(dart.void, [T.DragEndDetailsL()])))(),
+    PointerDownEventL: () => (T.PointerDownEventL = dart.constFn(dart.legacy(events.PointerDownEvent)))(),
+    PointerDownEventLTovoid: () => (T.PointerDownEventLTovoid = dart.constFn(dart.fnType(dart.void, [T.PointerDownEventL()])))(),
+    PointerMoveEventL: () => (T.PointerMoveEventL = dart.constFn(dart.legacy(events.PointerMoveEvent)))(),
+    PointerMoveEventLToNull: () => (T.PointerMoveEventLToNull = dart.constFn(dart.fnType(core.Null, [T.PointerMoveEventL()])))(),
+    PointerUpEventL: () => (T.PointerUpEventL = dart.constFn(dart.legacy(events.PointerUpEvent)))(),
+    PointerUpEventLTovoid: () => (T.PointerUpEventLTovoid = dart.constFn(dart.fnType(dart.void, [T.PointerUpEventL()])))(),
+    voidToNull: () => (T.voidToNull = dart.constFn(dart.fnType(core.Null, [dart.void])))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -42,115 +79,89 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Brightness.prototype,
-        [_name]: "Brightness.dark",
+        __proto__: panel$.SlideDirection.prototype,
+        [_name$]: "SlideDirection.UP",
         index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: ui.Brightness.prototype,
-        [_name]: "Brightness.light",
+        __proto__: panel$.SlideDirection.prototype,
+        [_name$]: "SlideDirection.DOWN",
         index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], T.SlideDirectionL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: panel$.PanelState.prototype,
+        [_name$]: "PanelState.OPEN",
+        index: 0
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 21,
-        [_Location_line]: 259,
-        [_Location_file]: null
+        __proto__: panel$.PanelState.prototype,
+        [_name$]: "PanelState.CLOSED",
+        index: 1
       });
     },
     get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 260,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5], T._LocationL());
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 258,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart"
-      });
+      return C[5] = dart.constList([C[3] || CT.C3, C[4] || CT.C4], T.PanelStateL());
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 19,
-        [_Location_line]: 257,
-        [_Location_file]: null
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 258,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1056964608
       });
     },
     get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
+      return C[7] = dart.const({
+        __proto__: box_shadow.BoxShadow.prototype,
+        [Shadow_blurRadius]: 8,
+        [Shadow_offset]: C[8] || CT.C8,
+        [Shadow_color]: C[9] || CT.C9,
+        [BoxShadow_spreadRadius]: 0
+      });
     },
     get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 256,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart"
+      return C[6] = dart.constList([C[7] || CT.C7], T.BoxShadowL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 17,
-        [_Location_line]: 255,
-        [_Location_file]: null
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 300000
       });
     },
-    get C13() {
-      return C[13] = dart.const({
+    get C15() {
+      return C[15] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 256,
+        [_Location_name]: "top",
+        [_Location_column]: 15,
+        [_Location_line]: 261,
         [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[11] || CT.C11,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 252,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart"
       });
     },
     get C16() {
@@ -159,30 +170,30 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
         [_Location_column]: 15,
-        [_Location_line]: 252,
+        [_Location_line]: 262,
         [_Location_file]: null
       });
     },
-    get C15() {
-      return C[15] = dart.constList([C[16] || CT.C16], T._LocationL());
-    },
     get C14() {
-      return C[14] = dart.const({
+      return C[14] = dart.constList([C[15] || CT.C15, C[16] || CT.C16], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_parameterLocations]: C[14] || CT.C14,
         [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 251,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart"
+        [_Location_column]: 20,
+        [_Location_line]: 260,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
       });
     },
     get C19() {
       return C[19] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "constraints",
-        [_Location_column]: 7,
-        [_Location_line]: 221,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 266,
         [_Location_file]: null
       });
     },
@@ -190,9 +201,9 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[20] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "duration",
-        [_Location_column]: 7,
-        [_Location_line]: 227,
+        [_Location_name]: "width",
+        [_Location_column]: 13,
+        [_Location_line]: 267,
         [_Location_file]: null
       });
     },
@@ -200,263 +211,1579 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
       return C[21] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 7,
-        [_Location_line]: 228,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "foregroundDecoration",
-        [_Location_column]: 7,
-        [_Location_line]: 239,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
         [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 249,
+        [_Location_column]: 13,
+        [_Location_line]: 268,
         [_Location_file]: null
       });
     },
     get C18() {
-      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21], T._LocationL());
     },
     get C17() {
       return C[17] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: C[18] || CT.C18,
         [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 265,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 11,
+        [_Location_line]: 258,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 11,
+        [_Location_line]: 259,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 265,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25, C[26] || CT.C26], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 257,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 270,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 274,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 285,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 17,
+        [_Location_line]: 286,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 291,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 284,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 13,
+        [_Location_line]: 282,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 283,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 281,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragEnd",
+        [_Location_column]: 11,
+        [_Location_line]: 275,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 11,
+        [_Location_line]: 280,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 281,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41, C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 49,
+        [_Location_line]: 274,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 299,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 304,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 17,
+        [_Location_line]: 305,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 17,
+        [_Location_line]: 306,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 17,
+        [_Location_line]: 307,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 313,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 303,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 21,
+        [_Location_line]: 327,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 328,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 326,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 321,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 19,
+        [_Location_line]: 322,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 323,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 326,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60, C[61] || CT.C61], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 320,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 336,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 19,
+        [_Location_line]: 337,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 338,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 41,
+        [_Location_line]: 335,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 339,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 343,
+        [_Location_file]: null
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 19,
+        [_Location_line]: 344,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 345,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.constList([C[70] || CT.C70, C[71] || CT.C71, C[72] || CT.C72], T._LocationL());
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[69] || CT.C69,
+        [_Location_name]: null,
+        [_Location_column]: 41,
+        [_Location_line]: 342,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 346,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 55,
+        [_Location_line]: 357,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ignoring",
+        [_Location_column]: 25,
+        [_Location_line]: 363,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 364,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.constList([C[77] || CT.C77, C[78] || CT.C78], T._LocationL());
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[76] || CT.C76,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 362,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 23,
+        [_Location_line]: 358,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 362,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81, C[82] || CT.C82], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 69,
+        [_Location_line]: 357,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 21,
+        [_Location_line]: 356,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 357,
+        [_Location_file]: null
+      });
+    },
+    get C84() {
+      return C[84] = dart.constList([C[85] || CT.C85, C[86] || CT.C86], T._LocationL());
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[84] || CT.C84,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 355,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 350,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 19,
+        [_Location_line]: 351,
+        [_Location_file]: null
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 352,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 355,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.constList([C[89] || CT.C89, C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92], T._LocationL());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[88] || CT.C88,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 349,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 317,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.constList([C[95] || CT.C95], T._LocationL());
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[94] || CT.C94,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 316,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 13,
+        [_Location_line]: 301,
+        [_Location_file]: null
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 302,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 316,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.constList([C[98] || CT.C98, C[99] || CT.C99, C[100] || CT.C100], T._LocationL());
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[97] || CT.C97,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 300,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 7,
+        [_Location_line]: 252,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 253,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.constList([C[103] || CT.C103, C[104] || CT.C104], T._LocationL());
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[102] || CT.C102,
+        [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 220,
-        [_Location_file]: "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart"
+        [_Location_line]: 251,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragUpdate",
+        [_Location_column]: 9,
+        [_Location_line]: 402,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragEnd",
+        [_Location_column]: 9,
+        [_Location_line]: 403,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 404,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.constList([C[107] || CT.C107, C[108] || CT.C108, C[109] || CT.C109], T._LocationL());
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[106] || CT.C106,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 401,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPointerDown",
+        [_Location_column]: 7,
+        [_Location_line]: 409,
+        [_Location_file]: null
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPointerMove",
+        [_Location_column]: 7,
+        [_Location_line]: 410,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPointerUp",
+        [_Location_column]: 7,
+        [_Location_line]: 414,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 415,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.constList([C[112] || CT.C112, C[113] || CT.C113, C[114] || CT.C114, C[115] || CT.C115], T._LocationL());
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[111] || CT.C111,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 408,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
+      });
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: curves._Linear.prototype
       });
     }
   }, false);
-  var C = Array(24).fill(void 0);
+  var C = Array(117).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/packages/flutter/lib/src/material/circle_avatar.dart",
-    "package:flutter/src/material/circle_avatar.dart"
+    "package:sliding_up_panel/src/panel.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/sliding_up_panel-1.0.2/lib/src/panel.dart"
   ];
-  var child$ = dart.privateName(circle_avatar, "CircleAvatar.child");
-  var backgroundColor$ = dart.privateName(circle_avatar, "CircleAvatar.backgroundColor");
-  var foregroundColor$ = dart.privateName(circle_avatar, "CircleAvatar.foregroundColor");
-  var backgroundImage$ = dart.privateName(circle_avatar, "CircleAvatar.backgroundImage");
-  var foregroundImage$ = dart.privateName(circle_avatar, "CircleAvatar.foregroundImage");
-  var onBackgroundImageError$ = dart.privateName(circle_avatar, "CircleAvatar.onBackgroundImageError");
-  var onForegroundImageError$ = dart.privateName(circle_avatar, "CircleAvatar.onForegroundImageError");
-  var radius$ = dart.privateName(circle_avatar, "CircleAvatar.radius");
-  var minRadius$ = dart.privateName(circle_avatar, "CircleAvatar.minRadius");
-  var maxRadius$ = dart.privateName(circle_avatar, "CircleAvatar.maxRadius");
-  var _minDiameter = dart.privateName(circle_avatar, "_minDiameter");
-  var _maxDiameter = dart.privateName(circle_avatar, "_maxDiameter");
-  var _name = dart.privateName(ui, "_name");
+  var _name$ = dart.privateName(panel$, "_name");
+  panel$.SlideDirection = class SlideDirection extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (panel$.SlideDirection.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = panel$.SlideDirection.prototype;
+  dart.addTypeTests(panel$.SlideDirection);
+  dart.addTypeCaches(panel$.SlideDirection);
+  dart.setMethodSignature(panel$.SlideDirection, () => ({
+    __proto__: dart.getMethods(panel$.SlideDirection.__proto__),
+    toString: dart.fnType(dart.legacy(core.String), []),
+    [$toString]: dart.fnType(dart.legacy(core.String), [])
+  }));
+  dart.setLibraryUri(panel$.SlideDirection, I[0]);
+  dart.setFieldSignature(panel$.SlideDirection, () => ({
+    __proto__: dart.getFields(panel$.SlideDirection.__proto__),
+    index: dart.finalFieldType(dart.legacy(core.int)),
+    [_name$]: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  dart.defineExtensionMethods(panel$.SlideDirection, ['toString']);
+  panel$.SlideDirection.UP = C[0] || CT.C0;
+  panel$.SlideDirection.DOWN = C[1] || CT.C1;
+  panel$.SlideDirection.values = C[2] || CT.C2;
+  panel$.PanelState = class PanelState extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (panel$.PanelState.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = panel$.PanelState.prototype;
+  dart.addTypeTests(panel$.PanelState);
+  dart.addTypeCaches(panel$.PanelState);
+  dart.setMethodSignature(panel$.PanelState, () => ({
+    __proto__: dart.getMethods(panel$.PanelState.__proto__),
+    toString: dart.fnType(dart.legacy(core.String), []),
+    [$toString]: dart.fnType(dart.legacy(core.String), [])
+  }));
+  dart.setLibraryUri(panel$.PanelState, I[0]);
+  dart.setFieldSignature(panel$.PanelState, () => ({
+    __proto__: dart.getFields(panel$.PanelState.__proto__),
+    index: dart.finalFieldType(dart.legacy(core.int)),
+    [_name$]: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  dart.defineExtensionMethods(panel$.PanelState, ['toString']);
+  panel$.PanelState.OPEN = C[3] || CT.C3;
+  panel$.PanelState.CLOSED = C[4] || CT.C4;
+  panel$.PanelState.values = C[5] || CT.C5;
+  var panel$0 = dart.privateName(panel$, "SlidingUpPanel.panel");
+  var panelBuilder$ = dart.privateName(panel$, "SlidingUpPanel.panelBuilder");
+  var collapsed$ = dart.privateName(panel$, "SlidingUpPanel.collapsed");
+  var body$ = dart.privateName(panel$, "SlidingUpPanel.body");
+  var header$ = dart.privateName(panel$, "SlidingUpPanel.header");
+  var footer$ = dart.privateName(panel$, "SlidingUpPanel.footer");
+  var minHeight$ = dart.privateName(panel$, "SlidingUpPanel.minHeight");
+  var maxHeight$ = dart.privateName(panel$, "SlidingUpPanel.maxHeight");
+  var snapPoint$ = dart.privateName(panel$, "SlidingUpPanel.snapPoint");
+  var border$ = dart.privateName(panel$, "SlidingUpPanel.border");
+  var borderRadius$ = dart.privateName(panel$, "SlidingUpPanel.borderRadius");
+  var boxShadow$ = dart.privateName(panel$, "SlidingUpPanel.boxShadow");
+  var color$ = dart.privateName(panel$, "SlidingUpPanel.color");
+  var padding$ = dart.privateName(panel$, "SlidingUpPanel.padding");
+  var margin$ = dart.privateName(panel$, "SlidingUpPanel.margin");
+  var renderPanelSheet$ = dart.privateName(panel$, "SlidingUpPanel.renderPanelSheet");
+  var panelSnapping$ = dart.privateName(panel$, "SlidingUpPanel.panelSnapping");
+  var controller$ = dart.privateName(panel$, "SlidingUpPanel.controller");
+  var backdropEnabled$ = dart.privateName(panel$, "SlidingUpPanel.backdropEnabled");
+  var backdropColor$ = dart.privateName(panel$, "SlidingUpPanel.backdropColor");
+  var backdropOpacity$ = dart.privateName(panel$, "SlidingUpPanel.backdropOpacity");
+  var backdropTapClosesPanel$ = dart.privateName(panel$, "SlidingUpPanel.backdropTapClosesPanel");
+  var onPanelSlide$ = dart.privateName(panel$, "SlidingUpPanel.onPanelSlide");
+  var onPanelOpened$ = dart.privateName(panel$, "SlidingUpPanel.onPanelOpened");
+  var onPanelClosed$ = dart.privateName(panel$, "SlidingUpPanel.onPanelClosed");
+  var parallaxEnabled$ = dart.privateName(panel$, "SlidingUpPanel.parallaxEnabled");
+  var parallaxOffset$ = dart.privateName(panel$, "SlidingUpPanel.parallaxOffset");
+  var isDraggable$ = dart.privateName(panel$, "SlidingUpPanel.isDraggable");
+  var slideDirection$ = dart.privateName(panel$, "SlidingUpPanel.slideDirection");
+  var defaultPanelState$ = dart.privateName(panel$, "SlidingUpPanel.defaultPanelState");
+  var Shadow_blurRadius = dart.privateName(ui, "Shadow.blurRadius");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  var Shadow_offset = dart.privateName(ui, "Shadow.offset");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var Shadow_color = dart.privateName(ui, "Shadow.color");
+  var BoxShadow_spreadRadius = dart.privateName(box_shadow, "BoxShadow.spreadRadius");
+  panel$.SlidingUpPanel = class SlidingUpPanel extends framework.StatefulWidget {
+    get panel() {
+      return this[panel$0];
+    }
+    set panel(value) {
+      super.panel = value;
+    }
+    get panelBuilder() {
+      return this[panelBuilder$];
+    }
+    set panelBuilder(value) {
+      super.panelBuilder = value;
+    }
+    get collapsed() {
+      return this[collapsed$];
+    }
+    set collapsed(value) {
+      super.collapsed = value;
+    }
+    get body() {
+      return this[body$];
+    }
+    set body(value) {
+      super.body = value;
+    }
+    get header() {
+      return this[header$];
+    }
+    set header(value) {
+      super.header = value;
+    }
+    get footer() {
+      return this[footer$];
+    }
+    set footer(value) {
+      super.footer = value;
+    }
+    get minHeight() {
+      return this[minHeight$];
+    }
+    set minHeight(value) {
+      super.minHeight = value;
+    }
+    get maxHeight() {
+      return this[maxHeight$];
+    }
+    set maxHeight(value) {
+      super.maxHeight = value;
+    }
+    get snapPoint() {
+      return this[snapPoint$];
+    }
+    set snapPoint(value) {
+      super.snapPoint = value;
+    }
+    get border() {
+      return this[border$];
+    }
+    set border(value) {
+      super.border = value;
+    }
+    get borderRadius() {
+      return this[borderRadius$];
+    }
+    set borderRadius(value) {
+      super.borderRadius = value;
+    }
+    get boxShadow() {
+      return this[boxShadow$];
+    }
+    set boxShadow(value) {
+      super.boxShadow = value;
+    }
+    get color() {
+      return this[color$];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get padding() {
+      return this[padding$];
+    }
+    set padding(value) {
+      super.padding = value;
+    }
+    get margin() {
+      return this[margin$];
+    }
+    set margin(value) {
+      super.margin = value;
+    }
+    get renderPanelSheet() {
+      return this[renderPanelSheet$];
+    }
+    set renderPanelSheet(value) {
+      super.renderPanelSheet = value;
+    }
+    get panelSnapping() {
+      return this[panelSnapping$];
+    }
+    set panelSnapping(value) {
+      super.panelSnapping = value;
+    }
+    get controller() {
+      return this[controller$];
+    }
+    set controller(value) {
+      super.controller = value;
+    }
+    get backdropEnabled() {
+      return this[backdropEnabled$];
+    }
+    set backdropEnabled(value) {
+      super.backdropEnabled = value;
+    }
+    get backdropColor() {
+      return this[backdropColor$];
+    }
+    set backdropColor(value) {
+      super.backdropColor = value;
+    }
+    get backdropOpacity() {
+      return this[backdropOpacity$];
+    }
+    set backdropOpacity(value) {
+      super.backdropOpacity = value;
+    }
+    get backdropTapClosesPanel() {
+      return this[backdropTapClosesPanel$];
+    }
+    set backdropTapClosesPanel(value) {
+      super.backdropTapClosesPanel = value;
+    }
+    get onPanelSlide() {
+      return this[onPanelSlide$];
+    }
+    set onPanelSlide(value) {
+      super.onPanelSlide = value;
+    }
+    get onPanelOpened() {
+      return this[onPanelOpened$];
+    }
+    set onPanelOpened(value) {
+      super.onPanelOpened = value;
+    }
+    get onPanelClosed() {
+      return this[onPanelClosed$];
+    }
+    set onPanelClosed(value) {
+      super.onPanelClosed = value;
+    }
+    get parallaxEnabled() {
+      return this[parallaxEnabled$];
+    }
+    set parallaxEnabled(value) {
+      super.parallaxEnabled = value;
+    }
+    get parallaxOffset() {
+      return this[parallaxOffset$];
+    }
+    set parallaxOffset(value) {
+      super.parallaxOffset = value;
+    }
+    get isDraggable() {
+      return this[isDraggable$];
+    }
+    set isDraggable(value) {
+      super.isDraggable = value;
+    }
+    get slideDirection() {
+      return this[slideDirection$];
+    }
+    set slideDirection(value) {
+      super.slideDirection = value;
+    }
+    get defaultPanelState() {
+      return this[defaultPanelState$];
+    }
+    set defaultPanelState(value) {
+      super.defaultPanelState = value;
+    }
+    createState() {
+      return new panel$._SlidingUpPanelState.new();
+    }
+  };
+  (panel$.SlidingUpPanel.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let panel = opts && 'panel' in opts ? opts.panel : null;
+    let panelBuilder = opts && 'panelBuilder' in opts ? opts.panelBuilder : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let collapsed = opts && 'collapsed' in opts ? opts.collapsed : null;
+    let minHeight = opts && 'minHeight' in opts ? opts.minHeight : 100;
+    let maxHeight = opts && 'maxHeight' in opts ? opts.maxHeight : 500;
+    let snapPoint = opts && 'snapPoint' in opts ? opts.snapPoint : null;
+    let border = opts && 'border' in opts ? opts.border : null;
+    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
+    let boxShadow = opts && 'boxShadow' in opts ? opts.boxShadow : C[6] || CT.C6;
+    let color = opts && 'color' in opts ? opts.color : C[10] || CT.C10;
+    let padding = opts && 'padding' in opts ? opts.padding : null;
+    let margin = opts && 'margin' in opts ? opts.margin : null;
+    let renderPanelSheet = opts && 'renderPanelSheet' in opts ? opts.renderPanelSheet : true;
+    let panelSnapping = opts && 'panelSnapping' in opts ? opts.panelSnapping : true;
+    let controller = opts && 'controller' in opts ? opts.controller : null;
+    let backdropEnabled = opts && 'backdropEnabled' in opts ? opts.backdropEnabled : false;
+    let backdropColor = opts && 'backdropColor' in opts ? opts.backdropColor : C[11] || CT.C11;
+    let backdropOpacity = opts && 'backdropOpacity' in opts ? opts.backdropOpacity : 0.5;
+    let backdropTapClosesPanel = opts && 'backdropTapClosesPanel' in opts ? opts.backdropTapClosesPanel : true;
+    let onPanelSlide = opts && 'onPanelSlide' in opts ? opts.onPanelSlide : null;
+    let onPanelOpened = opts && 'onPanelOpened' in opts ? opts.onPanelOpened : null;
+    let onPanelClosed = opts && 'onPanelClosed' in opts ? opts.onPanelClosed : null;
+    let parallaxEnabled = opts && 'parallaxEnabled' in opts ? opts.parallaxEnabled : false;
+    let parallaxOffset = opts && 'parallaxOffset' in opts ? opts.parallaxOffset : 0.1;
+    let isDraggable = opts && 'isDraggable' in opts ? opts.isDraggable : true;
+    let slideDirection = opts && 'slideDirection' in opts ? opts.slideDirection : C[0] || CT.C0;
+    let defaultPanelState = opts && 'defaultPanelState' in opts ? opts.defaultPanelState : C[4] || CT.C4;
+    let header = opts && 'header' in opts ? opts.header : null;
+    let footer = opts && 'footer' in opts ? opts.footer : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[panel$0] = panel;
+    this[panelBuilder$] = panelBuilder;
+    this[body$] = body;
+    this[collapsed$] = collapsed;
+    this[minHeight$] = minHeight;
+    this[maxHeight$] = maxHeight;
+    this[snapPoint$] = snapPoint;
+    this[border$] = border;
+    this[borderRadius$] = borderRadius;
+    this[boxShadow$] = boxShadow;
+    this[color$] = color;
+    this[padding$] = padding;
+    this[margin$] = margin;
+    this[renderPanelSheet$] = renderPanelSheet;
+    this[panelSnapping$] = panelSnapping;
+    this[controller$] = controller;
+    this[backdropEnabled$] = backdropEnabled;
+    this[backdropColor$] = backdropColor;
+    this[backdropOpacity$] = backdropOpacity;
+    this[backdropTapClosesPanel$] = backdropTapClosesPanel;
+    this[onPanelSlide$] = onPanelSlide;
+    this[onPanelOpened$] = onPanelOpened;
+    this[onPanelClosed$] = onPanelClosed;
+    this[parallaxEnabled$] = parallaxEnabled;
+    this[parallaxOffset$] = parallaxOffset;
+    this[isDraggable$] = isDraggable;
+    this[slideDirection$] = slideDirection;
+    this[defaultPanelState$] = defaultPanelState;
+    this[header$] = header;
+    this[footer$] = footer;
+    if (!(panel != null || panelBuilder != null)) dart.assertFailed(null, I[1], 203, 15, "panel != null || panelBuilder != null");
+    if (!(0 <= dart.notNull(backdropOpacity) && dart.notNull(backdropOpacity) <= 1.0)) dart.assertFailed(null, I[1], 204, 15, "0 <= backdropOpacity && backdropOpacity <= 1.0");
+    if (!(snapPoint == null || 0 < dart.notNull(snapPoint) && dart.notNull(snapPoint) < 1.0)) dart.assertFailed(null, I[1], 205, 16, "snapPoint == null || 0 < snapPoint && snapPoint < 1.0");
+    panel$.SlidingUpPanel.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = panel$.SlidingUpPanel.prototype;
+  dart.addTypeTests(panel$.SlidingUpPanel);
+  dart.addTypeCaches(panel$.SlidingUpPanel);
+  dart.setMethodSignature(panel$.SlidingUpPanel, () => ({
+    __proto__: dart.getMethods(panel$.SlidingUpPanel.__proto__),
+    createState: dart.fnType(dart.legacy(panel$._SlidingUpPanelState), [])
+  }));
+  dart.setLibraryUri(panel$.SlidingUpPanel, I[0]);
+  dart.setFieldSignature(panel$.SlidingUpPanel, () => ({
+    __proto__: dart.getFields(panel$.SlidingUpPanel.__proto__),
+    panel: dart.finalFieldType(dart.legacy(framework.Widget)),
+    panelBuilder: dart.finalFieldType(dart.legacy(dart.fnType(dart.legacy(framework.Widget), [dart.legacy(scroll_controller.ScrollController)]))),
+    collapsed: dart.finalFieldType(dart.legacy(framework.Widget)),
+    body: dart.finalFieldType(dart.legacy(framework.Widget)),
+    header: dart.finalFieldType(dart.legacy(framework.Widget)),
+    footer: dart.finalFieldType(dart.legacy(framework.Widget)),
+    minHeight: dart.finalFieldType(dart.legacy(core.double)),
+    maxHeight: dart.finalFieldType(dart.legacy(core.double)),
+    snapPoint: dart.finalFieldType(dart.legacy(core.double)),
+    border: dart.finalFieldType(dart.legacy(box_border.Border)),
+    borderRadius: dart.finalFieldType(dart.legacy(border_radius.BorderRadiusGeometry)),
+    boxShadow: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(box_shadow.BoxShadow)))),
+    color: dart.finalFieldType(dart.legacy(ui.Color)),
+    padding: dart.finalFieldType(dart.legacy(edge_insets.EdgeInsetsGeometry)),
+    margin: dart.finalFieldType(dart.legacy(edge_insets.EdgeInsetsGeometry)),
+    renderPanelSheet: dart.finalFieldType(dart.legacy(core.bool)),
+    panelSnapping: dart.finalFieldType(dart.legacy(core.bool)),
+    controller: dart.finalFieldType(dart.legacy(panel$.PanelController)),
+    backdropEnabled: dart.finalFieldType(dart.legacy(core.bool)),
+    backdropColor: dart.finalFieldType(dart.legacy(ui.Color)),
+    backdropOpacity: dart.finalFieldType(dart.legacy(core.double)),
+    backdropTapClosesPanel: dart.finalFieldType(dart.legacy(core.bool)),
+    onPanelSlide: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(core.double)]))),
+    onPanelOpened: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, []))),
+    onPanelClosed: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, []))),
+    parallaxEnabled: dart.finalFieldType(dart.legacy(core.bool)),
+    parallaxOffset: dart.finalFieldType(dart.legacy(core.double)),
+    isDraggable: dart.finalFieldType(dart.legacy(core.bool)),
+    slideDirection: dart.finalFieldType(dart.legacy(panel$.SlideDirection)),
+    defaultPanelState: dart.finalFieldType(dart.legacy(panel$.PanelState))
+  }));
+  var _ac = dart.privateName(panel$, "_ac");
+  var _sc = dart.privateName(panel$, "_sc");
+  var _scrollingEnabled = dart.privateName(panel$, "_scrollingEnabled");
+  var _vt = dart.privateName(panel$, "_vt");
+  var _isPanelVisible = dart.privateName(panel$, "_isPanelVisible");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _addState = dart.privateName(panel$, "_addState");
+  var _getParallax = dart.privateName(panel$, "_getParallax");
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  circle_avatar.CircleAvatar = class CircleAvatar extends framework.StatelessWidget {
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    get backgroundColor() {
-      return this[backgroundColor$];
-    }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get foregroundColor() {
-      return this[foregroundColor$];
-    }
-    set foregroundColor(value) {
-      super.foregroundColor = value;
-    }
-    get backgroundImage() {
-      return this[backgroundImage$];
-    }
-    set backgroundImage(value) {
-      super.backgroundImage = value;
-    }
-    get foregroundImage() {
-      return this[foregroundImage$];
-    }
-    set foregroundImage(value) {
-      super.foregroundImage = value;
-    }
-    get onBackgroundImageError() {
-      return this[onBackgroundImageError$];
-    }
-    set onBackgroundImageError(value) {
-      super.onBackgroundImageError = value;
-    }
-    get onForegroundImageError() {
-      return this[onForegroundImageError$];
-    }
-    set onForegroundImageError(value) {
-      super.onForegroundImageError = value;
-    }
-    get radius() {
-      return this[radius$];
-    }
-    set radius(value) {
-      super.radius = value;
-    }
-    get minRadius() {
-      return this[minRadius$];
-    }
-    set minRadius(value) {
-      super.minRadius = value;
-    }
-    get maxRadius() {
-      return this[maxRadius$];
-    }
-    set maxRadius(value) {
-      super.maxRadius = value;
-    }
-    get [_minDiameter]() {
+  var _close = dart.privateName(panel$, "_close");
+  var _isPanelOpen = dart.privateName(panel$, "_isPanelOpen");
+  var _gestureHandler = dart.privateName(panel$, "_gestureHandler");
+  var _onGestureSlide = dart.privateName(panel$, "_onGestureSlide");
+  var _onGestureEnd = dart.privateName(panel$, "_onGestureEnd");
+  var _flingPanelToPosition = dart.privateName(panel$, "_flingPanelToPosition");
+  var _open = dart.privateName(panel$, "_open");
+  var _hide = dart.privateName(panel$, "_hide");
+  var _show = dart.privateName(panel$, "_show");
+  var _animatePanelToPosition = dart.privateName(panel$, "_animatePanelToPosition");
+  var _animatePanelToSnapPoint = dart.privateName(panel$, "_animatePanelToSnapPoint");
+  var _panelPosition = dart.privateName(panel$, "_panelPosition");
+  var _isPanelAnimating = dart.privateName(panel$, "_isPanelAnimating");
+  var _isPanelClosed = dart.privateName(panel$, "_isPanelClosed");
+  var _isPanelShown = dart.privateName(panel$, "_isPanelShown");
+  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(dart.legacy(panel$.SlidingUpPanel)) {};
+  (State_SingleTickerProviderStateMixin$36.new = function() {
+    ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(panel$.SlidingUpPanel))[dart.mixinNew].call(this);
+    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(panel$.SlidingUpPanel)));
+  panel$._SlidingUpPanelState = class _SlidingUpPanelState extends State_SingleTickerProviderStateMixin$36 {
+    initState() {
       let t0, t0$;
-      if (this.radius == null && this.minRadius == null && this.maxRadius == null) {
-        return 20 * 2.0;
-      }
-      return 2.0 * dart.notNull((t0$ = (t0 = this.radius, t0 == null ? this.minRadius : t0), t0$ == null ? 0 : t0$));
-    }
-    get [_maxDiameter]() {
-      let t0, t0$;
-      if (this.radius == null && this.minRadius == null && this.maxRadius == null) {
-        return 20 * 2.0;
-      }
-      return 2.0 * dart.notNull((t0$ = (t0 = this.radius, t0 == null ? this.maxRadius : t0), t0$ == null ? 1 / 0 : t0$));
+      super.initState();
+      this[_ac] = (t0 = new animation_controller.AnimationController.new({vsync: this, duration: C[12] || CT.C12, value: this.widget.defaultPanelState == panel$.PanelState.CLOSED ? 0.0 : 1.0}), (() => {
+        t0.addListener(dart.fn(() => {
+          let t2, t1;
+          if (this.widget.onPanelSlide != null) {
+            t1 = this.widget;
+            t2 = this[_ac].value;
+            t1.onPanelSlide(t2);
+          }
+          if (this.widget.onPanelOpened != null && this[_ac].value === 1.0) this.widget.onPanelOpened();
+          if (this.widget.onPanelClosed != null && this[_ac].value === 0.0) this.widget.onPanelClosed();
+        }, T.VoidToNull()));
+        return t0;
+      })());
+      this[_sc] = new scroll_controller.ScrollController.new();
+      this[_sc].addListener(dart.fn(() => {
+        if (dart.test(this.widget.isDraggable) && !dart.test(this[_scrollingEnabled])) this[_sc].jumpTo(0.0);
+      }, T.VoidToNull()));
+      t0$ = this.widget.controller;
+      t0$ == null ? null : t0$[_addState](this);
     }
     build(context) {
-      if (context == null) dart.nullFailed(I[0], 194, 29, "context");
-      if (!dart.test(debug.debugCheckHasMediaQuery(context))) dart.assertFailed(null, I[0], 195, 12, "debugCheckHasMediaQuery(context)");
-      let theme = theme$.Theme.of(context);
-      let textStyle = dart.nullCheck(theme.primaryTextTheme.subtitle1).copyWith({color: this.foregroundColor});
-      let effectiveBackgroundColor = this.backgroundColor;
-      if (effectiveBackgroundColor == null) {
-        switch (theme_data.ThemeData.estimateBrightnessForColor(dart.nullCheck(textStyle.color))) {
-          case C[0] || CT.C0:
-          {
-            effectiveBackgroundColor = theme.primaryColorLight;
-            break;
-          }
-          case C[1] || CT.C1:
-          {
-            effectiveBackgroundColor = theme.primaryColorDark;
-            break;
-          }
-          default:
-          {
-            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-          }
-        }
-      } else if (this.foregroundColor == null) {
-        switch (theme_data.ThemeData.estimateBrightnessForColor(dart.nullCheck(this.backgroundColor))) {
-          case C[0] || CT.C0:
-          {
-            textStyle = textStyle.copyWith({color: theme.primaryColorLight});
-            break;
-          }
-          case C[1] || CT.C1:
-          {
-            textStyle = textStyle.copyWith({color: theme.primaryColorDark});
-            break;
-          }
-          default:
-          {
-            dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-          }
+      let t1, t0;
+      return new basic.Stack.new({alignment: this.widget.slideDirection == panel$.SlideDirection.UP ? alignment.Alignment.bottomCenter : alignment.Alignment.topCenter, children: T.JSArrayOfWidgetL().of([this.widget.body != null ? new transitions.AnimatedBuilder.new({animation: this[_ac], builder: dart.fn((context, child) => new basic.Positioned.new({top: dart.test(this.widget.parallaxEnabled) ? this[_getParallax]() : 0.0, child: child, $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), T.BuildContextLAndWidgetLToPositionedL()), child: new container.Container.new({height: media_query.MediaQuery.of(context).size.height, width: media_query.MediaQuery.of(context).size.width, child: this.widget.body, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), $creationLocationd_0dea112b090073317d4: C[22] || CT.C22}) : new container.Container.new({$creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), !dart.test(this.widget.backdropEnabled) ? new container.Container.new({$creationLocationd_0dea112b090073317d4: C[29] || CT.C29}) : new gesture_detector.GestureDetector.new({onVerticalDragEnd: dart.test(this.widget.backdropTapClosesPanel) ? dart.fn(dets => {
+              if ((this.widget.slideDirection == panel$.SlideDirection.UP ? 1 : -1) * dart.notNull(dets.velocity.pixelsPerSecond.dy) > 0) this[_close]();
+            }, T.DragEndDetailsLToNull()) : null, onTap: dart.test(this.widget.backdropTapClosesPanel) ? dart.fn(() => this[_close](), T.VoidToFutureLOfvoid()) : null, child: new transitions.AnimatedBuilder.new({animation: this[_ac], builder: dart.fn((context, _) => new container.Container.new({height: media_query.MediaQuery.of(context).size.height, width: media_query.MediaQuery.of(context).size.width, color: this[_ac].value === 0.0 ? null : this.widget.backdropColor.withOpacity(dart.notNull(this.widget.backdropOpacity) * dart.notNull(this[_ac].value)), $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}), T.BuildContextLAndWidgetLToContainerL()), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}), !dart.test(this[_isPanelVisible]) ? new container.Container.new({$creationLocationd_0dea112b090073317d4: C[44] || CT.C44}) : this[_gestureHandler]({child: new transitions.AnimatedBuilder.new({animation: this[_ac], builder: dart.fn((context, child) => new container.Container.new({height: dart.notNull(this[_ac].value) * (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight)) + dart.notNull(this.widget.minHeight), margin: this.widget.margin, padding: this.widget.padding, decoration: dart.test(this.widget.renderPanelSheet) ? new box_decoration.BoxDecoration.new({border: this.widget.border, borderRadius: this.widget.borderRadius, boxShadow: this.widget.boxShadow, color: this.widget.color}) : null, child: child, $creationLocationd_0dea112b090073317d4: C[45] || CT.C45}), T.BuildContextLAndWidgetLToContainerL()), child: new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new basic.Positioned.new({top: this.widget.slideDirection == panel$.SlideDirection.UP ? 0.0 : null, bottom: this.widget.slideDirection == panel$.SlideDirection.DOWN ? 0.0 : null, width: dart.notNull(media_query.MediaQuery.of(context).size.width) - dart.notNull(this.widget.margin != null ? this.widget.margin.horizontal : 0) - dart.notNull(this.widget.padding != null ? this.widget.padding.horizontal : 0), child: new container.Container.new({height: this.widget.maxHeight, child: this.widget.panel != null ? this.widget.panel : (t0 = this.widget, t1 = this[_sc], t0.panelBuilder(t1)), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), $creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), this.widget.header != null ? new basic.Positioned.new({top: this.widget.slideDirection == panel$.SlideDirection.UP ? 0.0 : null, bottom: this.widget.slideDirection == panel$.SlideDirection.DOWN ? 0.0 : null, child: this.widget.header, $creationLocationd_0dea112b090073317d4: C[62] || CT.C62}) : new container.Container.new({$creationLocationd_0dea112b090073317d4: C[67] || CT.C67}), this.widget.footer != null ? new basic.Positioned.new({top: this.widget.slideDirection == panel$.SlideDirection.UP ? null : 0.0, bottom: this.widget.slideDirection == panel$.SlideDirection.DOWN ? null : 0.0, child: this.widget.footer, $creationLocationd_0dea112b090073317d4: C[68] || CT.C68}) : new container.Container.new({$creationLocationd_0dea112b090073317d4: C[73] || CT.C73}), new basic.Positioned.new({top: this.widget.slideDirection == panel$.SlideDirection.UP ? 0.0 : null, bottom: this.widget.slideDirection == panel$.SlideDirection.DOWN ? 0.0 : null, width: dart.notNull(media_query.MediaQuery.of(context).size.width) - dart.notNull(this.widget.margin != null ? this.widget.margin.horizontal : 0) - dart.notNull(this.widget.padding != null ? this.widget.padding.horizontal : 0), child: new container.Container.new({height: this.widget.minHeight, child: this.widget.collapsed == null ? new container.Container.new({$creationLocationd_0dea112b090073317d4: C[74] || CT.C74}) : new transitions.FadeTransition.new({opacity: new (T.TweenOfdoubleL()).new({begin: 1.0, end: 0.0}).animate(this[_ac]), child: new basic.IgnorePointer.new({ignoring: this[_isPanelOpen], child: this.widget.collapsed, $creationLocationd_0dea112b090073317d4: C[75] || CT.C75}), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79}), $creationLocationd_0dea112b090073317d4: C[83] || CT.C83}), $creationLocationd_0dea112b090073317d4: C[87] || CT.C87})]), $creationLocationd_0dea112b090073317d4: C[93] || CT.C93}), $creationLocationd_0dea112b090073317d4: C[96] || CT.C96})})]), $creationLocationd_0dea112b090073317d4: C[101] || CT.C101});
+    }
+    dispose() {
+      this[_ac].dispose();
+      super.dispose();
+    }
+    [_getParallax]() {
+      if (this.widget.slideDirection == panel$.SlideDirection.UP)
+        return -dart.notNull(this[_ac].value) * (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight)) * dart.notNull(this.widget.parallaxOffset);
+      else
+        return dart.notNull(this[_ac].value) * (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight)) * dart.notNull(this.widget.parallaxOffset);
+    }
+    [_gestureHandler](opts) {
+      let child = opts && 'child' in opts ? opts.child : null;
+      if (!dart.test(this.widget.isDraggable)) return child;
+      if (this.widget.panel != null) {
+        return new gesture_detector.GestureDetector.new({onVerticalDragUpdate: dart.fn(dets => this[_onGestureSlide](dets.delta.dy), T.DragUpdateDetailsLTovoid()), onVerticalDragEnd: dart.fn(dets => this[_onGestureEnd](dets.velocity), T.DragEndDetailsLTovoid()), child: child, $creationLocationd_0dea112b090073317d4: C[105] || CT.C105});
+      }
+      return new basic.Listener.new({onPointerDown: dart.fn(p => this[_vt].addPosition(p.timeStamp, p.position), T.PointerDownEventLTovoid()), onPointerMove: dart.fn(p => {
+          this[_vt].addPosition(p.timeStamp, p.position);
+          this[_onGestureSlide](p.delta.dy);
+        }, T.PointerMoveEventLToNull()), onPointerUp: dart.fn(p => this[_onGestureEnd](this[_vt].getVelocity()), T.PointerUpEventLTovoid()), child: child, $creationLocationd_0dea112b090073317d4: C[110] || CT.C110});
+    }
+    [_onGestureSlide](dy) {
+      let t0, t0$;
+      if (!dart.test(this[_scrollingEnabled])) {
+        if (this.widget.slideDirection == panel$.SlideDirection.UP) {
+          t0 = this[_ac];
+          t0.value = dart.notNull(t0.value) - dart.notNull(dy) / (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight));
+        } else {
+          t0$ = this[_ac];
+          t0$.value = dart.notNull(t0$.value) + dart.notNull(dy) / (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight));
         }
       }
-      let minDiameter = this[_minDiameter];
-      let maxDiameter = this[_maxDiameter];
-      return new implicit_animations.AnimatedContainer.new({constraints: new box.BoxConstraints.new({minHeight: minDiameter, minWidth: minDiameter, maxWidth: maxDiameter, maxHeight: maxDiameter}), duration: constants.kThemeChangeDuration, decoration: new box_decoration.BoxDecoration.new({color: effectiveBackgroundColor, image: this.backgroundImage != null ? new decoration_image.DecorationImage.new({image: dart.nullCheck(this.backgroundImage), onError: this.onBackgroundImageError, fit: box_fit.BoxFit.cover}) : null, shape: box_border.BoxShape.circle}), foregroundDecoration: this.foregroundImage != null ? new box_decoration.BoxDecoration.new({image: new decoration_image.DecorationImage.new({image: dart.nullCheck(this.foregroundImage), onError: this.onForegroundImageError, fit: box_fit.BoxFit.cover}), shape: box_border.BoxShape.circle}) : null, child: this.child == null ? null : new basic.Center.new({child: new media_query.MediaQuery.new({data: media_query.MediaQuery.of(context).copyWith({textScaleFactor: 1.0}), child: new icon_theme.IconTheme.new({data: theme.iconTheme.copyWith({color: textStyle.color}), child: new text.DefaultTextStyle.new({style: textStyle, child: dart.nullCheck(this.child), $creationLocationd_0dea112b090073317d4: C[2] || CT.C2}), $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), $creationLocationd_0dea112b090073317d4: C[17] || CT.C17});
+      if (dart.test(this[_isPanelOpen]) && dart.test(this[_sc].hasClients) && dart.notNull(this[_sc].offset) <= 0) {
+        this.setState(dart.fn(() => {
+          if (dart.notNull(dy) < 0) {
+            this[_scrollingEnabled] = true;
+          } else {
+            this[_scrollingEnabled] = false;
+          }
+        }, T.VoidToNull()));
+      }
+    }
+    [_onGestureEnd](v) {
+      let t0;
+      let minFlingVelocity = 365.0;
+      let kSnap = 8.0;
+      if (dart.test(this[_ac].isAnimating)) return;
+      if (dart.test(this[_isPanelOpen]) && dart.test(this[_scrollingEnabled])) return;
+      let visualVelocity = -dart.notNull(v.pixelsPerSecond.dy) / (dart.notNull(this.widget.maxHeight) - dart.notNull(this.widget.minHeight));
+      if (this.widget.slideDirection == panel$.SlideDirection.DOWN) visualVelocity = -visualVelocity;
+      let d2Close = this[_ac].value;
+      let d2Open = 1 - dart.notNull(this[_ac].value);
+      let d2Snap = (dart.notNull((t0 = this.widget.snapPoint, t0 == null ? 3.0 : t0)) - dart.notNull(this[_ac].value))[$abs]();
+      let minDistance = math.min(T.doubleL(), d2Close, math.min(T.doubleL(), d2Snap, d2Open));
+      if (v.pixelsPerSecond.dy[$abs]() >= minFlingVelocity) {
+        if (dart.test(this.widget.panelSnapping) && this.widget.snapPoint != null) {
+          if (v.pixelsPerSecond.dy[$abs]() >= kSnap * minFlingVelocity || minDistance === d2Snap)
+            this[_ac].fling({velocity: visualVelocity});
+          else
+            this[_flingPanelToPosition](this.widget.snapPoint, visualVelocity);
+        } else if (dart.test(this.widget.panelSnapping)) {
+          this[_ac].fling({velocity: visualVelocity});
+        } else {
+          this[_ac].animateTo(dart.notNull(this[_ac].value) + visualVelocity * 0.16, {duration: new core.Duration.new({milliseconds: 410}), curve: curves.Curves.decelerate});
+        }
+        return;
+      }
+      if (dart.test(this.widget.panelSnapping)) {
+        if (minDistance === d2Close) {
+          this[_close]();
+        } else if (minDistance === d2Snap) {
+          this[_flingPanelToPosition](this.widget.snapPoint, visualVelocity);
+        } else {
+          this[_open]();
+        }
+      }
+    }
+    [_flingPanelToPosition](targetPos, velocity) {
+      let simulation = new spring_simulation.SpringSimulation.new(new spring_simulation.SpringDescription.withDampingRatio({mass: 1.0, stiffness: 500.0, ratio: 1.0}), this[_ac].value, targetPos, velocity);
+      this[_ac].animateWith(simulation);
+    }
+    [_close]() {
+      return this[_ac].fling({velocity: -1.0});
+    }
+    [_open]() {
+      return this[_ac].fling({velocity: 1.0});
+    }
+    [_hide]() {
+      return this[_ac].fling({velocity: -1.0}).then(dart.void, dart.fn(x => {
+        this.setState(dart.fn(() => {
+          this[_isPanelVisible] = false;
+        }, T.VoidToNull()));
+      }, T.voidToNull()));
+    }
+    [_show]() {
+      return this[_ac].fling({velocity: -1.0}).then(dart.void, dart.fn(x => {
+        this.setState(dart.fn(() => {
+          this[_isPanelVisible] = true;
+        }, T.VoidToNull()));
+      }, T.voidToNull()));
+    }
+    [_animatePanelToPosition](value, opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[116] || CT.C116;
+      if (!(0.0 <= dart.notNull(value) && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[1], 560, 12, "0.0 <= value && value <= 1.0");
+      return this[_ac].animateTo(value, {duration: duration, curve: curve});
+    }
+    [_animatePanelToSnapPoint](opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[116] || CT.C116;
+      if (!(this.widget.snapPoint != null)) dart.assertFailed(null, I[1], 567, 12, "widget.snapPoint != null");
+      return this[_ac].animateTo(this.widget.snapPoint, {duration: duration, curve: curve});
+    }
+    set [_panelPosition](value) {
+      if (!(0.0 <= dart.notNull(value) && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[1], 574, 12, "0.0 <= value && value <= 1.0");
+      this[_ac].value = value;
+    }
+    get [_panelPosition]() {
+      return this[_ac].value;
+    }
+    get [_isPanelAnimating]() {
+      return this[_ac].isAnimating;
+    }
+    get [_isPanelOpen]() {
+      return this[_ac].value === 1.0;
+    }
+    get [_isPanelClosed]() {
+      return this[_ac].value === 0.0;
+    }
+    get [_isPanelShown]() {
+      return this[_isPanelVisible];
     }
   };
-  (circle_avatar.CircleAvatar.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let backgroundImage = opts && 'backgroundImage' in opts ? opts.backgroundImage : null;
-    let foregroundImage = opts && 'foregroundImage' in opts ? opts.foregroundImage : null;
-    let onBackgroundImageError = opts && 'onBackgroundImageError' in opts ? opts.onBackgroundImageError : null;
-    let onForegroundImageError = opts && 'onForegroundImageError' in opts ? opts.onForegroundImageError : null;
-    let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
-    let radius = opts && 'radius' in opts ? opts.radius : null;
-    let minRadius = opts && 'minRadius' in opts ? opts.minRadius : null;
-    let maxRadius = opts && 'maxRadius' in opts ? opts.maxRadius : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$] = child;
-    this[backgroundColor$] = backgroundColor;
-    this[backgroundImage$] = backgroundImage;
-    this[foregroundImage$] = foregroundImage;
-    this[onBackgroundImageError$] = onBackgroundImageError;
-    this[onForegroundImageError$] = onForegroundImageError;
-    this[foregroundColor$] = foregroundColor;
-    this[radius$] = radius;
-    this[minRadius$] = minRadius;
-    this[maxRadius$] = maxRadius;
-    if (!(radius == null || minRadius == null && maxRadius == null)) dart.assertFailed(null, I[0], 75, 15, "radius == null || (minRadius == null && maxRadius == null)");
-    if (!(backgroundImage != null || onBackgroundImageError == null)) dart.assertFailed(null, I[0], 76, 15, "backgroundImage != null || onBackgroundImageError == null");
-    if (!(foregroundImage != null || onForegroundImageError == null)) dart.assertFailed(null, I[0], 77, 15, "foregroundImage != null || onForegroundImageError== null");
-    circle_avatar.CircleAvatar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (panel$._SlidingUpPanelState.new = function() {
+    this[_ac] = null;
+    this[_sc] = null;
+    this[_scrollingEnabled] = false;
+    this[_vt] = new velocity_tracker.VelocityTracker.new();
+    this[_isPanelVisible] = true;
+    panel$._SlidingUpPanelState.__proto__.new.call(this);
     ;
-  }).prototype = circle_avatar.CircleAvatar.prototype;
-  dart.addTypeTests(circle_avatar.CircleAvatar);
-  dart.addTypeCaches(circle_avatar.CircleAvatar);
-  dart.setMethodSignature(circle_avatar.CircleAvatar, () => ({
-    __proto__: dart.getMethods(circle_avatar.CircleAvatar.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = panel$._SlidingUpPanelState.prototype;
+  dart.addTypeTests(panel$._SlidingUpPanelState);
+  dart.addTypeCaches(panel$._SlidingUpPanelState);
+  dart.setMethodSignature(panel$._SlidingUpPanelState, () => ({
+    __proto__: dart.getMethods(panel$._SlidingUpPanelState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_getParallax]: dart.fnType(dart.legacy(core.double), []),
+    [_gestureHandler]: dart.fnType(dart.legacy(framework.Widget), [], {child: dart.legacy(framework.Widget)}, {}),
+    [_onGestureSlide]: dart.fnType(dart.void, [dart.legacy(core.double)]),
+    [_onGestureEnd]: dart.fnType(dart.void, [dart.legacy(velocity_tracker.Velocity)]),
+    [_flingPanelToPosition]: dart.fnType(dart.void, [dart.legacy(core.double), dart.legacy(core.double)]),
+    [_close]: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    [_open]: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    [_hide]: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    [_show]: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    [_animatePanelToPosition]: dart.fnType(dart.legacy(async.Future$(dart.void)), [dart.legacy(core.double)], {curve: dart.legacy(curves.Curve), duration: dart.legacy(core.Duration)}, {}),
+    [_animatePanelToSnapPoint]: dart.fnType(dart.legacy(async.Future$(dart.void)), [], {curve: dart.legacy(curves.Curve), duration: dart.legacy(core.Duration)}, {})
   }));
-  dart.setGetterSignature(circle_avatar.CircleAvatar, () => ({
-    __proto__: dart.getGetters(circle_avatar.CircleAvatar.__proto__),
-    [_minDiameter]: core.double,
-    [_maxDiameter]: core.double
+  dart.setGetterSignature(panel$._SlidingUpPanelState, () => ({
+    __proto__: dart.getGetters(panel$._SlidingUpPanelState.__proto__),
+    [_panelPosition]: dart.legacy(core.double),
+    [_isPanelAnimating]: dart.legacy(core.bool),
+    [_isPanelOpen]: dart.legacy(core.bool),
+    [_isPanelClosed]: dart.legacy(core.bool),
+    [_isPanelShown]: dart.legacy(core.bool)
   }));
-  dart.setLibraryUri(circle_avatar.CircleAvatar, I[1]);
-  dart.setFieldSignature(circle_avatar.CircleAvatar, () => ({
-    __proto__: dart.getFields(circle_avatar.CircleAvatar.__proto__),
-    child: dart.finalFieldType(dart.nullable(framework.Widget)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    foregroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    backgroundImage: dart.finalFieldType(dart.nullable(image_provider.ImageProvider$(core.Object))),
-    foregroundImage: dart.finalFieldType(dart.nullable(image_provider.ImageProvider$(core.Object))),
-    onBackgroundImageError: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)]))),
-    onForegroundImageError: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)]))),
-    radius: dart.finalFieldType(dart.nullable(core.double)),
-    minRadius: dart.finalFieldType(dart.nullable(core.double)),
-    maxRadius: dart.finalFieldType(dart.nullable(core.double))
+  dart.setSetterSignature(panel$._SlidingUpPanelState, () => ({
+    __proto__: dart.getSetters(panel$._SlidingUpPanelState.__proto__),
+    [_panelPosition]: dart.legacy(core.double)
   }));
-  dart.defineLazy(circle_avatar.CircleAvatar, {
-    /*circle_avatar.CircleAvatar._defaultRadius*/get _defaultRadius() {
-      return 20;
-    },
-    /*circle_avatar.CircleAvatar._defaultMinRadius*/get _defaultMinRadius() {
-      return 0;
-    },
-    /*circle_avatar.CircleAvatar._defaultMaxRadius*/get _defaultMaxRadius() {
-      return 1 / 0;
+  dart.setLibraryUri(panel$._SlidingUpPanelState, I[0]);
+  dart.setFieldSignature(panel$._SlidingUpPanelState, () => ({
+    __proto__: dart.getFields(panel$._SlidingUpPanelState.__proto__),
+    [_ac]: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    [_sc]: dart.fieldType(dart.legacy(scroll_controller.ScrollController)),
+    [_scrollingEnabled]: dart.fieldType(dart.legacy(core.bool)),
+    [_vt]: dart.fieldType(dart.legacy(velocity_tracker.VelocityTracker)),
+    [_isPanelVisible]: dart.fieldType(dart.legacy(core.bool))
+  }));
+  var _panelState = dart.privateName(panel$, "_panelState");
+  panel$.PanelController = class PanelController extends core.Object {
+    [_addState](panelState) {
+      this[_panelState] = panelState;
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/circle_avatar.dart", {
-    "package:flutter/src/material/circle_avatar.dart": circle_avatar
+    get isAttached() {
+      return this[_panelState] != null;
+    }
+    close() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 622, 12, "isAttached");
+      return this[_panelState][_close]();
+    }
+    open() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 629, 12, "isAttached");
+      return this[_panelState][_open]();
+    }
+    hide() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 635, 12, "isAttached");
+      return this[_panelState][_hide]();
+    }
+    show() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 642, 12, "isAttached");
+      return this[_panelState][_show]();
+    }
+    animatePanelToPosition(value, opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[116] || CT.C116;
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 652, 12, "isAttached");
+      if (!(0.0 <= dart.notNull(value) && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[1], 653, 12, "0.0 <= value && value <= 1.0");
+      return this[_panelState][_animatePanelToPosition](value, {duration: duration, curve: curve});
+    }
+    animatePanelToSnapPoint(opts) {
+      let duration = opts && 'duration' in opts ? opts.duration : null;
+      let curve = opts && 'curve' in opts ? opts.curve : C[116] || CT.C116;
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 662, 12, "isAttached");
+      if (!(this[_panelState].widget.snapPoint != null)) dart.assertFailed("SlidingUpPanel snapPoint property must not be null", I[1], 663, 12, "_panelState.widget.snapPoint != null");
+      return this[_panelState][_animatePanelToSnapPoint]({duration: duration, curve: curve});
+    }
+    set panelPosition(value) {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 671, 12, "isAttached");
+      if (!(0.0 <= dart.notNull(value) && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[1], 672, 12, "0.0 <= value && value <= 1.0");
+      this[_panelState][_panelPosition] = value;
+    }
+    get panelPosition() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 683, 12, "isAttached");
+      return this[_panelState][_panelPosition];
+    }
+    get isPanelAnimating() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 690, 12, "isAttached");
+      return this[_panelState][_isPanelAnimating];
+    }
+    get isPanelOpen() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 697, 12, "isAttached");
+      return this[_panelState][_isPanelOpen];
+    }
+    get isPanelClosed() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 704, 12, "isAttached");
+      return this[_panelState][_isPanelClosed];
+    }
+    get isPanelShown() {
+      if (!dart.test(this.isAttached)) dart.assertFailed("PanelController must be attached to a SlidingUpPanel", I[1], 711, 12, "isAttached");
+      return this[_panelState][_isPanelShown];
+    }
+  };
+  (panel$.PanelController.new = function() {
+    this[_panelState] = null;
+    ;
+  }).prototype = panel$.PanelController.prototype;
+  dart.addTypeTests(panel$.PanelController);
+  dart.addTypeCaches(panel$.PanelController);
+  dart.setMethodSignature(panel$.PanelController, () => ({
+    __proto__: dart.getMethods(panel$.PanelController.__proto__),
+    [_addState]: dart.fnType(dart.void, [dart.legacy(panel$._SlidingUpPanelState)]),
+    close: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    open: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    hide: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    show: dart.fnType(dart.legacy(async.Future$(dart.void)), []),
+    animatePanelToPosition: dart.fnType(dart.legacy(async.Future$(dart.void)), [dart.legacy(core.double)], {curve: dart.legacy(curves.Curve), duration: dart.legacy(core.Duration)}, {}),
+    animatePanelToSnapPoint: dart.fnType(dart.legacy(async.Future$(dart.void)), [], {curve: dart.legacy(curves.Curve), duration: dart.legacy(core.Duration)}, {})
+  }));
+  dart.setGetterSignature(panel$.PanelController, () => ({
+    __proto__: dart.getGetters(panel$.PanelController.__proto__),
+    isAttached: dart.legacy(core.bool),
+    panelPosition: dart.legacy(core.double),
+    isPanelAnimating: dart.legacy(core.bool),
+    isPanelOpen: dart.legacy(core.bool),
+    isPanelClosed: dart.legacy(core.bool),
+    isPanelShown: dart.legacy(core.bool)
+  }));
+  dart.setSetterSignature(panel$.PanelController, () => ({
+    __proto__: dart.getSetters(panel$.PanelController.__proto__),
+    panelPosition: dart.legacy(core.double)
+  }));
+  dart.setLibraryUri(panel$.PanelController, I[0]);
+  dart.setFieldSignature(panel$.PanelController, () => ({
+    __proto__: dart.getFields(panel$.PanelController.__proto__),
+    [_panelState]: dart.fieldType(dart.legacy(panel$._SlidingUpPanelState))
+  }));
+  dart.trackLibraries("packages/sliding_up_panel/src/panel.dart", {
+    "package:sliding_up_panel/src/panel.dart": panel$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["circle_avatar.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAmFgB;;;;;;IAQD;;;;;;IASA;;;;;;IAQQ;;;;;;IAKA;;;;;;IAIK;;;;;;IAIA;;;;;;IAcZ;;;;;;IAgBA;;;;;;IAgBA;;;;;;;;AAYZ,UAAI,AAAO,uBAAW,AAAU,0BAAW,AAAU;AACnD,cAAsB,MAAE;;AAE1B,YAAO,AAAI,qBAAuB,OAAb,kBAAP,aAAU,sBAAH;IACvB;;;AAGE,UAAI,AAAO,uBAAW,AAAU,0BAAW,AAAU;AACnD,cAAsB,MAAE;;AAE1B,YAAO,AAAI,qBAAuB,OAAb,kBAAP,aAAU,sBAAH;IACvB;;UAG0B;AACxB,qBAAO,8BAAwB,OAAO;AACtB,kBAAc,gBAAG,OAAO;AAC9B,sBAA4C,AAAE,eAAlC,AAAM,AAAiB,KAAlB,8CAA6C;AACjE,qCAA2B;AAClC,UAAI,AAAyB,wBAAD;AAC1B,gBAAkB,gDAA0C,eAAf,AAAU,SAAD;;;AAEA,YAAlD,2BAA2B,AAAM,KAAD;AAChC;;;;AAEiD,YAAjD,2BAA2B,AAAM,KAAD;AAChC;;;;AANJ;;;YAQK,KAAI,AAAgB;AACzB,gBAAkB,gDAA0C,eAAf;;;AAEqB,YAA9D,YAAY,AAAU,SAAD,kBAAiB,AAAM,KAAD;AAC3C;;;;AAE6D,YAA7D,YAAY,AAAU,SAAD,kBAAiB,AAAM,KAAD;AAC3C;;;;AANJ;;;;AASW,wBAAc;AACd,wBAAc;AAC3B,YAAO,6DACQ,uCACA,WAAW,YACZ,WAAW,YACX,WAAW,aACV,WAAW,cAEd,4CACE,6CACH,wBAAwB,SACxB,AAAgB,+BACnB,iDACwB,eAAf,gCACE,kCACG,yBAEd,aACY,oDAEI,AAAgB,+BAChC,6CACS,iDACiB,eAAf,gCACE,kCACG,+BAEE,+BAElB,aACC,AAAM,qBACP,OACA,6BACS,sCAGY,AAAY,0BAAT,OAAO,6BAA4B,cAChD,oCACC,AAAM,AAAU,KAAX,4BAA2B,AAAU,SAAD,iBACxC,sCACE,SAAS,SACJ,eAAL;IAMzB;;;QA1MO;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;;IATA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;UACK,AAAO,AAAQ,MAAT,YAAa,AAAU,SAAD,YAAY,AAAU,SAAD;UACjD,AAAgB,AAAQ,eAAT,YAAY,AAAuB,sBAAD;UACjD,AAAgB,AAAQ,eAAT,YAAY,AAAsB,sBAAA;AACxD,8DAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;MA6FA,yCAAc;;;MAGd,4CAAiB;;;MAGjB,4CAAiB","file":"../../../../../../../../D:/packages/flutter/src/material/circle_avatar.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["panel.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAiBA;;+CAHK;;;;EAGL;;;;;;;;;;;;;;;;;;;;;IAKA;;2CAHK;;;;EAGL;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAUe;;;;;;IAQ8B;;;;;;IAI9B;;;;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","file":"../../../../../../../../../D:/packages/sliding_up_panel/src/panel.dart.lib.js"}');
   // Exports:
   return {
-    src__material__circle_avatar: circle_avatar
+    src__panel: panel$
   };
 }));
 
-//# sourceMappingURL=circle_avatar.dart.lib.js.map
+//# sourceMappingURL=panel.dart.lib.js.map

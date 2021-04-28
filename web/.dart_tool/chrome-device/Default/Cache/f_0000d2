@@ -1,1 +1,1441 @@
-{"web_entrypoint.dart":"786559307","packages/web/generated_plugin_registrant.dart":"804610898","packages/flutter_web_plugins/flutter_web_plugins.dart":"803198210","packages/flutter_web_plugins/src/plugin_registry.dart":"387153311","packages/flutter/services.dart":"864980846","packages/flutter/src/services/text_input.dart":"982390144","packages/flutter/src/services/text_editing.dart":"385465174","packages/flutter/foundation.dart":"425547849","packages/flutter/src/foundation/unicode.dart":"256470889","packages/flutter/src/foundation/synchronous_future.dart":"429223084","packages/flutter/src/foundation/stack_frame.dart":"905198184","packages/flutter/src/foundation/object.dart":"147774070","packages/flutter/src/foundation/constants.dart":"510457644","packages/meta/meta.dart":"238330546","packages/meta/meta_meta.dart":"316754565","packages/flutter/src/foundation/serialization.dart":"760689449","packages/typed_data/typed_buffers.dart":"1008425204","packages/typed_data/src/typed_buffer.dart":"809611125","packages/flutter/src/foundation/print.dart":"725869419","packages/flutter/src/foundation/_platform_web.dart":"592855831","packages/flutter/src/foundation/observer_list.dart":"1038484748","packages/flutter/src/foundation/node.dart":"1034664236","packages/flutter/src/foundation/licenses.dart":"188100389","packages/flutter/src/foundation/key.dart":"49395445","packages/flutter/src/foundation/_isolates_web.dart":"264348753","packages/flutter/src/foundation/debug.dart":"238254140","packages/flutter/src/foundation/basic_types.dart":"133745518","packages/flutter/src/foundation/consolidate_response.dart":"952078137","packages/flutter/src/foundation/collections.dart":"872375416","packages/flutter/src/foundation/change_notifier.dart":"96370092","packages/flutter/src/foundation/_bitfield_web.dart":"218032578","packages/flutter/src/foundation/binding.dart":"281226919","packages/flutter/src/foundation/annotations.dart":"840137999","packages/flutter/src/services/system_chrome.dart":"137994822","packages/flutter/src/services/system_channels.dart":"326304958","packages/flutter/scheduler.dart":"228636573","packages/flutter/src/scheduler/ticker.dart":"862479401","packages/flutter/src/scheduler/binding.dart":"546037537","packages/flutter/src/scheduler/priority.dart":"1069565026","packages/flutter/src/scheduler/debug.dart":"60572152","packages/collection/src/union_set_controller.dart":"484690473","packages/collection/src/queue_list.dart":"935336297","packages/collection/src/priority_queue.dart":"406906977","packages/collection/src/utils.dart":"44600742","packages/collection/src/list_extensions.dart":"324991784","packages/collection/src/equality.dart":"564928661","packages/collection/src/comparators.dart":"426170068","packages/collection/src/algorithms.dart":"49707285","packages/collection/src/iterable_zip.dart":"623340323","packages/collection/src/iterable_extensions.dart":"164662394","packages/collection/src/functions.dart":"1068099940","packages/collection/src/combined_wrappers/combined_map.dart":"664316900","packages/collection/src/combined_wrappers/combined_iterable.dart":"53573134","packages/collection/src/combined_wrappers/combined_iterator.dart":"302413029","packages/collection/src/combined_wrappers/combined_list.dart":"243930054","packages/collection/src/canonicalized_map.dart":"128649388","packages/vector_math/vector_math_64.dart":"67767395","packages/vector_math/hash.dart":"959041278","packages/flutter/src/services/text_formatter.dart":"144251060","packages/characters/characters.dart":"1059574953","packages/characters/src/extensions.dart":"936436746","packages/characters/src/characters_impl.dart":"120612213","packages/characters/src/grapheme_clusters/breaks.dart":"851251363","packages/characters/src/grapheme_clusters/table.dart":"343195362","packages/characters/src/grapheme_clusters/constants.dart":"426916510","packages/flutter/src/services/system_sound.dart":"319639000","packages/flutter/src/services/system_navigator.dart":"50765960","packages/flutter/src/services/raw_keyboard_windows.dart":"327789153","packages/flutter/src/services/keyboard_maps.dart":"863680685","packages/flutter/src/services/keyboard_key.dart":"419752860","packages/flutter/src/services/platform_views.dart":"438015423","packages/flutter/gestures.dart":"1009205026","packages/flutter/src/gestures/velocity_tracker.dart":"713012657","packages/flutter/src/gestures/lsq_solver.dart":"318178983","packages/flutter/src/gestures/events.dart":"981260094","packages/flutter/src/gestures/constants.dart":"549693156","packages/flutter/src/gestures/team.dart":"913285327","packages/flutter/src/gestures/binding.dart":"243652229","packages/flutter/src/gestures/resampler.dart":"361044155","packages/flutter/src/gestures/pointer_signal_resolver.dart":"165390882","packages/flutter/src/gestures/pointer_router.dart":"357313300","packages/flutter/src/gestures/hit_test.dart":"975819370","packages/flutter/src/gestures/debug.dart":"631768158","packages/flutter/src/gestures/converter.dart":"500328930","packages/flutter/src/gestures/arena.dart":"690863132","packages/flutter/src/gestures/tap.dart":"963190083","packages/flutter/src/gestures/recognizer.dart":"912102664","packages/flutter/src/gestures/scale.dart":"448107250","packages/flutter/src/gestures/multitap.dart":"94164675","packages/flutter/src/gestures/multidrag.dart":"715501358","packages/flutter/src/gestures/drag_details.dart":"890312813","packages/flutter/src/gestures/drag.dart":"687777795","packages/flutter/src/gestures/monodrag.dart":"966538115","packages/flutter/src/gestures/long_press.dart":"638275093","packages/flutter/src/gestures/force_press.dart":"1046153599","packages/flutter/src/gestures/eager.dart":"612762011","packages/flutter/src/services/platform_messages.dart":"151094927","packages/flutter/src/services/haptic_feedback.dart":"27291464","packages/flutter/src/services/font_loader.dart":"855788361","packages/flutter/src/services/deferred_component.dart":"136469274","packages/flutter/src/services/clipboard.dart":"532749215","packages/flutter_web_plugins/src/plugin_event_channel.dart":"969244665","packages/flutter_web_plugins/src/navigation/utils.dart":"559329827","packages/flutter_web_plugins/src/navigation/url_strategy.dart":"471461870","packages/js/js.dart":"540841802","packages/firebase_core_web/firebase_core_web.dart":"6966709","packages/firebase_core_web/src/interop/core.dart":"53964584","packages/firebase_core_web/src/interop/core_interop.dart":"694163213","packages/firebase_core_web/src/interop/utils/es6_interop.dart":"918188351","packages/firebase_core_web/src/interop/utils/func.dart":"310791431","packages/firebase_core_web/src/interop/app.dart":"355630339","packages/firebase_core_web/src/interop/utils/utils.dart":"785006666","packages/firebase_core_web/src/interop/utils/js_interop.dart":"840715988","packages/js/js_util.dart":"785060378","packages/firebase_core_web/src/interop/utils/js.dart":"265533241","packages/firebase_core_platform_interface/firebase_core_platform_interface.dart":"586128050","packages/plugin_platform_interface/plugin_platform_interface.dart":"971722261","packages/flutter/cupertino.dart":"905481226","packages/flutter/widgets.dart":"508145014","packages/flutter/src/widgets/will_pop_scope.dart":"1005524137","packages/flutter/src/widgets/widget_span.dart":"768637064","packages/flutter/rendering.dart":"198887400","packages/flutter/src/rendering/wrap.dart":"107562974","packages/flutter/src/rendering/layer.dart":"129522288","packages/flutter/painting.dart":"491429583","packages/flutter/src/painting/strut_style.dart":"995398828","packages/flutter/src/painting/basic_types.dart":"723860974","packages/flutter/src/painting/colors.dart":"103174","packages/flutter/src/painting/placeholder_span.dart":"202684418","packages/flutter/src/painting/stadium_border.dart":"683599043","packages/flutter/src/painting/rounded_rectangle_border.dart":"276309550","packages/flutter/src/painting/edge_insets.dart":"996566486","packages/flutter/src/painting/circle_border.dart":"102492046","packages/flutter/src/painting/borders.dart":"700561979","packages/flutter/src/painting/border_radius.dart":"9745488","packages/flutter/src/painting/shape_decoration.dart":"269107614","packages/flutter/src/painting/_network_image_web.dart":"860257755","packages/flutter/src/painting/image_stream.dart":"572347278","packages/flutter/src/painting/image_cache.dart":"932225544","packages/flutter/src/painting/binding.dart":"122024663","packages/flutter/src/painting/shader_warm_up.dart":"556931013","packages/flutter/src/painting/gradient.dart":"537022387","packages/flutter/src/painting/alignment.dart":"343044246","packages/flutter/src/painting/decoration_image.dart":"400456058","packages/flutter/src/painting/debug.dart":"171419478","packages/flutter/src/painting/box_fit.dart":"60704898","packages/flutter/src/painting/decoration.dart":"702906257","packages/flutter/src/painting/box_shadow.dart":"629301404","packages/flutter/src/painting/box_decoration.dart":"1029434801","packages/flutter/src/painting/box_border.dart":"54593478","packages/flutter/src/painting/paint_utilities.dart":"298036484","packages/flutter/src/painting/notched_shapes.dart":"428824569","packages/flutter/src/painting/matrix_utils.dart":"791513294","packages/flutter/src/painting/image_resolution.dart":"679084292","packages/flutter/src/painting/image_decoder.dart":"951256119","packages/flutter/src/painting/geometry.dart":"535697408","packages/flutter/src/painting/fractional_offset.dart":"469972848","packages/flutter/src/painting/flutter_logo.dart":"19435265","packages/flutter/src/painting/continuous_rectangle_border.dart":"701984039","packages/flutter/src/painting/clip.dart":"7811755","packages/flutter/src/painting/beveled_rectangle_border.dart":"971816619","packages/flutter/semantics.dart":"671353383","packages/flutter/src/semantics/semantics_service.dart":"93414992","packages/flutter/src/semantics/semantics_event.dart":"369709113","packages/flutter/src/semantics/semantics.dart":"614612157","packages/flutter/src/semantics/binding.dart":"268415336","packages/flutter/src/semantics/debug.dart":"166131248","packages/flutter/animation.dart":"637935565","packages/flutter/src/animation/tween_sequence.dart":"235172513","packages/flutter/src/animation/listener_helpers.dart":"675471521","packages/flutter/src/animation/curves.dart":"960221054","packages/flutter/src/animation/animation_controller.dart":"556368102","packages/flutter/physics.dart":"90480763","packages/flutter/src/physics/utils.dart":"449387196","packages/flutter/src/physics/tolerance.dart":"144282860","packages/flutter/src/physics/spring_simulation.dart":"603464433","packages/flutter/src/physics/simulation.dart":"225165466","packages/flutter/src/physics/gravity_simulation.dart":"930380651","packages/flutter/src/physics/friction_simulation.dart":"701681851","packages/flutter/src/physics/clamped_simulation.dart":"402708871","packages/flutter/src/rendering/layout_helper.dart":"93989542","packages/flutter/src/rendering/viewport_offset.dart":"692357024","packages/flutter/src/rendering/sliver.dart":"586122716","packages/flutter/src/rendering/tweens.dart":"828031867","packages/flutter/src/rendering/texture.dart":"658838361","packages/flutter/src/rendering/table_border.dart":"746556812","packages/flutter/src/rendering/table.dart":"972407534","packages/flutter/src/rendering/stack.dart":"677796594","packages/flutter/src/rendering/sliver_persistent_header.dart":"777554057","packages/flutter/src/rendering/sliver_padding.dart":"89094176","packages/flutter/src/rendering/sliver_multi_box_adaptor.dart":"721429097","packages/flutter/src/rendering/sliver_list.dart":"1030933131","packages/flutter/src/rendering/sliver_grid.dart":"586333517","packages/flutter/src/rendering/sliver_fixed_extent_list.dart":"669668381","packages/flutter/src/rendering/sliver_fill.dart":"41372547","packages/flutter/src/rendering/shifted_box.dart":"510812194","packages/flutter/src/rendering/debug_overflow_indicator.dart":"525755766","packages/flutter/src/rendering/rotated_box.dart":"132211649","packages/flutter/src/rendering/proxy_sliver.dart":"999461946","packages/flutter/src/rendering/proxy_box.dart":"144840369","packages/flutter/src/rendering/platform_view.dart":"14425967","packages/flutter/src/rendering/performance_overlay.dart":"194754935","packages/flutter/src/rendering/paragraph.dart":"9520758","packages/flutter/src/rendering/list_wheel_viewport.dart":"161070951","packages/flutter/src/rendering/list_body.dart":"526068694","packages/flutter/src/rendering/image.dart":"1070896113","packages/flutter/src/rendering/flow.dart":"270412178","packages/flutter/src/rendering/flex.dart":"794815883","packages/flutter/src/rendering/error.dart":"1043414934","packages/flutter/src/rendering/editable.dart":"411879919","packages/flutter/src/rendering/custom_paint.dart":"47493116","packages/flutter/src/rendering/custom_layout.dart":"677927843","packages/flutter/src/rendering/animated_size.dart":"729079100","packages/flutter/src/widgets/constants.dart":"927138470","packages/flutter/src/widgets/scroll_simulation.dart":"503944002","packages/flutter/src/widgets/scroll_metrics.dart":"705186696","packages/flutter/src/widgets/value_listenable_builder.dart":"1032711085","packages/flutter/src/widgets/unique_widget.dart":"754709941","packages/flutter/src/widgets/tween_animation_builder.dart":"22968107","packages/flutter/src/widgets/implicit_animations.dart":"159393063","packages/flutter/src/widgets/texture.dart":"621871243","packages/flutter/src/widgets/text_selection_toolbar_layout_delegate.dart":"209306877","packages/flutter/src/widgets/status_transitions.dart":"238882082","packages/flutter/src/widgets/spacer.dart":"546668773","packages/flutter/src/widgets/sliver_prototype_extent_list.dart":"504051775","packages/flutter/src/widgets/sliver_persistent_header.dart":"42947146","packages/flutter/src/widgets/sliver_layout_builder.dart":"896726663","packages/flutter/src/widgets/layout_builder.dart":"564660121","packages/flutter/src/widgets/sliver_fill.dart":"835852272","packages/flutter/src/widgets/size_changed_layout_notifier.dart":"454718617","packages/flutter/src/widgets/single_child_scroll_view.dart":"135742215","packages/flutter/src/widgets/scrollbar.dart":"215683848","packages/flutter/src/widgets/scroll_view.dart":"135166098","packages/flutter/src/widgets/safe_area.dart":"9023563","packages/flutter/src/widgets/reorderable_list.dart":"673515131","packages/flutter/src/widgets/raw_keyboard_listener.dart":"580992917","packages/flutter/src/widgets/preferred_size.dart":"455920366","packages/flutter/src/widgets/platform_view.dart":"571810086","packages/flutter/src/widgets/placeholder.dart":"398202983","packages/flutter/src/widgets/page_view.dart":"9707476","packages/flutter/src/widgets/overflow_bar.dart":"834985755","packages/flutter/src/widgets/orientation_builder.dart":"116011384","packages/flutter/src/widgets/nested_scroll_view.dart":"104908214","packages/flutter/src/widgets/navigation_toolbar.dart":"350964768","packages/flutter/src/widgets/list_wheel_scroll_view.dart":"352058244","packages/flutter/src/widgets/interactive_viewer.dart":"1021779694","packages/flutter/src/widgets/image_icon.dart":"967430773","packages/flutter/src/widgets/icon_theme_data.dart":"410138613","packages/flutter/src/widgets/icon_theme.dart":"924753407","packages/flutter/src/widgets/icon.dart":"955404805","packages/flutter/src/widgets/icon_data.dart":"326495629","packages/flutter/src/widgets/image_filter.dart":"736466956","packages/flutter/src/widgets/grid_paper.dart":"946954569","packages/flutter/src/widgets/form.dart":"180116086","packages/flutter/src/widgets/fade_in_image.dart":"989797422","packages/flutter/src/widgets/dual_transition_builder.dart":"493196478","packages/flutter/src/widgets/draggable_scrollable_sheet.dart":"1025301443","packages/flutter/src/widgets/drag_target.dart":"303381869","packages/flutter/src/widgets/dismissible.dart":"475031438","packages/flutter/src/widgets/desktop_text_selection_toolbar_layout_delegate.dart":"84095599","packages/flutter/src/widgets/color_filter.dart":"335287862","packages/flutter/src/widgets/bottom_navigation_bar_item.dart":"588478767","packages/flutter/src/widgets/autocomplete.dart":"762985772","packages/flutter/src/widgets/async.dart":"686195886","packages/flutter/src/widgets/annotated_region.dart":"376591972","packages/flutter/src/widgets/animated_switcher.dart":"29468679","packages/flutter/src/widgets/animated_size.dart":"299174694","packages/flutter/src/widgets/animated_list.dart":"839376176","packages/flutter/src/widgets/animated_cross_fade.dart":"337417669","packages/flutter/src/cupertino/thumb_painter.dart":"149991118","packages/flutter/src/cupertino/text_theme.dart":"756516199","packages/flutter/src/cupertino/interface_level.dart":"116667463","packages/flutter/src/cupertino/text_selection_toolbar_button.dart":"132460996","packages/flutter/src/cupertino/button.dart":"459787561","packages/flutter/src/cupertino/constants.dart":"148440597","packages/flutter/src/cupertino/text_selection_toolbar.dart":"487994930","packages/flutter/src/cupertino/text_selection.dart":"286605599","packages/flutter/src/cupertino/debug.dart":"689376256","packages/flutter/src/cupertino/text_form_field_row.dart":"16625447","packages/flutter/src/cupertino/text_field.dart":"788324849","packages/flutter/src/cupertino/icons.dart":"317193208","packages/flutter/src/cupertino/desktop_text_selection.dart":"853422480","packages/flutter/src/cupertino/form_row.dart":"59894051","packages/flutter/src/cupertino/tab_view.dart":"314428300","packages/flutter/src/cupertino/route.dart":"385458079","packages/flutter/src/cupertino/app.dart":"138967388","packages/flutter/src/cupertino/tab_scaffold.dart":"823501953","packages/flutter/src/cupertino/bottom_tab_bar.dart":"284804958","packages/flutter/src/cupertino/switch.dart":"392163750","packages/flutter/src/cupertino/sliding_segmented_control.dart":"688027813","packages/flutter/src/cupertino/slider.dart":"468503591","packages/flutter/src/cupertino/segmented_control.dart":"802715919","packages/flutter/src/cupertino/search_field.dart":"631051483","packages/flutter/src/cupertino/scrollbar.dart":"1036864367","packages/flutter/src/cupertino/refresh.dart":"882332353","packages/flutter/src/cupertino/activity_indicator.dart":"1062952528","packages/flutter/src/cupertino/picker.dart":"121395471","packages/flutter/src/cupertino/page_scaffold.dart":"95340548","packages/flutter/src/cupertino/nav_bar.dart":"853618107","packages/flutter/src/cupertino/form_section.dart":"722486885","packages/flutter/src/cupertino/dialog.dart":"265462274","packages/flutter/src/cupertino/date_picker.dart":"78173527","packages/flutter/src/cupertino/context_menu_action.dart":"996857281","packages/flutter/src/cupertino/context_menu.dart":"977943596","packages/flutter/src/cupertino/action_sheet.dart":"198112825","packages/firebase_auth_web/firebase_auth_web.dart":"590860753","packages/firebase_auth_web/src/firebase_auth_web_confirmation_result.dart":"903452053","packages/firebase_auth_web/src/utils/web_utils.dart":"977360872","packages/firebase_core_web/firebase_core_web_interop.dart":"91153787","packages/firebase_auth_web/src/interop/auth.dart":"899207962","packages/firebase_auth_web/src/interop/auth_interop.dart":"732510728","packages/firebase_auth_web/src/interop/utils/utils.dart":"999296842","packages/firebase_auth_web/src/interop/firebase_interop.dart":"990184491","packages/http_parser/http_parser.dart":"1017958418","packages/http_parser/src/media_type.dart":"972674521","packages/http_parser/src/utils.dart":"325567257","packages/source_span/source_span.dart":"421286522","packages/source_span/src/location_mixin.dart":"734257912","packages/source_span/src/colors.dart":"482574122","packages/term_glyph/src/generated/top_level.dart":"340354844","packages/term_glyph/src/generated/unicode_glyph_set.dart":"1050052520","packages/term_glyph/src/generated/glyph_set.dart":"688824840","packages/term_glyph/src/generated/ascii_glyph_set.dart":"761076605","packages/path/src/path_set.dart":"427530757","packages/path/src/utils.dart":"239417159","packages/path/src/characters.dart":"432239681","packages/path/src/path_exception.dart":"386672456","packages/charcode/charcode.dart":"99370227","packages/charcode/html_entity.dart":"1060088845","packages/charcode/ascii.dart":"1072195171","packages/source_span/src/span_exception.dart":"20985537","packages/http_parser/src/scan.dart":"739159111","packages/string_scanner/string_scanner.dart":"433988946","packages/string_scanner/src/utils.dart":"832026086","packages/string_scanner/src/relative_span_scanner.dart":"1042761073","packages/string_scanner/src/line_scanner.dart":"1005386477","packages/http_parser/src/case_insensitive_map.dart":"351669786","packages/http_parser/src/http_date.dart":"116914808","packages/http_parser/src/chunked_coding.dart":"700771346","packages/http_parser/src/chunked_coding/encoder.dart":"372442712","packages/http_parser/src/chunked_coding/decoder.dart":"475802921","packages/typed_data/typed_data.dart":"317682147","packages/typed_data/src/typed_queue.dart":"520308048","packages/http_parser/src/authentication_challenge.dart":"231692413","packages/firebase_auth_platform_interface/src/types.dart":"148030206","packages/firebase_auth_platform_interface/src/user_metadata.dart":"711329253","packages/firebase_auth_platform_interface/src/user_info.dart":"726636628","packages/firebase_auth_platform_interface/src/firebase_auth_exception.dart":"712513208","packages/firebase_auth_platform_interface/src/auth_credential.dart":"226408445","packages/firebase_core/firebase_core.dart":"606542692","packages/firebase_auth_platform_interface/src/auth_provider.dart":"384829812","packages/firebase_auth_platform_interface/src/providers/saml_auth.dart":"476425388","packages/firebase_auth_platform_interface/src/action_code_settings.dart":"735015340","packages/flutter/material.dart":"550262439","packages/flutter/src/material/user_accounts_drawer_header.dart":"50846879","packages/flutter/src/material/icon_button.dart":"434410181","packages/flutter/src/material/typography.dart":"137296347","packages/flutter/src/material/colors.dart":"314791646","packages/flutter/src/material/input_border.dart":"264153874","packages/flutter/src/material/constants.dart":"161108371","packages/flutter/src/material/material_state.dart":"874089601","packages/flutter/src/material/tab_indicator.dart":"271830235","packages/flutter/src/material/tab_controller.dart":"83865072","packages/flutter/src/material/floating_action_button_theme.dart":"274558621","packages/flutter/src/material/curves.dart":"951933119","packages/flutter/src/material/bottom_sheet_theme.dart":"156017040","packages/flutter/src/material/icons.dart":"945195768","packages/flutter/src/material/drawer_header.dart":"30955956","packages/flutter/src/material/toggleable.dart":"598220064","packages/flutter/src/material/toggle_buttons.dart":"775773925","packages/flutter/src/material/time_picker.dart":"831197532","packages/flutter/src/material/text_form_field.dart":"357025164","packages/flutter/src/material/text_field.dart":"491590802","packages/flutter/src/material/text_selection.dart":"799806947","packages/flutter/src/material/text_selection_toolbar_text_button.dart":"393542424","packages/flutter/src/material/text_selection_toolbar.dart":"167063126","packages/flutter/src/material/selectable_text.dart":"612395930","packages/flutter/src/material/desktop_text_selection.dart":"762675678","packages/flutter/src/material/switch_list_tile.dart":"856817952","packages/flutter/src/material/switch.dart":"617598708","packages/flutter/src/material/shadows.dart":"804162339","packages/flutter/src/material/stepper.dart":"799217775","packages/flutter/src/material/slider.dart":"938638596","packages/flutter/src/material/search.dart":"213890645","packages/flutter/src/material/scrollbar.dart":"921518988","packages/flutter/src/material/reorderable_list.dart":"900415399","packages/flutter/src/material/refresh_indicator.dart":"536926034","packages/flutter/src/material/progress_indicator.dart":"531614604","packages/flutter/src/material/range_slider.dart":"67412539","packages/flutter/src/material/radio_list_tile.dart":"18136410","packages/flutter/src/material/radio.dart":"211858146","packages/flutter/src/material/popup_menu.dart":"471854871","packages/flutter/src/material/paginated_data_table.dart":"623131730","packages/flutter/src/material/ink_decoration.dart":"276869023","packages/flutter/src/material/dropdown.dart":"618072502","packages/flutter/src/material/data_table_source.dart":"426531439","packages/flutter/src/material/data_table.dart":"404504646","packages/flutter/src/material/checkbox.dart":"36421699","packages/flutter/src/material/card.dart":"205309598","packages/flutter/src/material/page.dart":"216379936","packages/flutter/src/material/outlined_button.dart":"186564673","packages/flutter/src/material/mergeable_material.dart":"697172691","packages/flutter/src/material/input_date_picker_form_field.dart":"178392895","packages/flutter/src/material/date.dart":"771593469","packages/flutter/src/material/grid_tile_bar.dart":"736239957","packages/flutter/src/material/grid_tile.dart":"970403336","packages/flutter/src/material/flutter_logo.dart":"242778046","packages/flutter/src/material/expansion_tile.dart":"273836927","packages/flutter/src/material/expansion_panel.dart":"568593403","packages/flutter/src/material/expand_icon.dart":"553864616","packages/flutter/src/material/elevated_button.dart":"591291544","packages/flutter/src/material/date_picker_deprecated.dart":"823136414","packages/flutter/src/material/date_picker.dart":"462846510","packages/flutter/src/material/calendar_date_picker.dart":"602241326","packages/flutter/src/material/circle_avatar.dart":"762751376","packages/flutter/src/material/chip.dart":"111680953","packages/flutter/src/material/checkbox_list_tile.dart":"999086370","packages/flutter/src/material/bottom_app_bar.dart":"784388712","packages/flutter/src/material/banner.dart":"673661705","packages/flutter/src/material/autocomplete.dart":"813629694","packages/flutter/src/material/arc.dart":"778757510","packages/flutter/src/material/app.dart":"344709690","packages/flutter/src/material/animated_icons.dart":"30849360","packages/flutter/src/material/about.dart":"724286656","packages/firebase_auth_platform_interface/src/id_token_result.dart":"930003428","packages/firebase_auth_platform_interface/src/additional_user_info.dart":"516181606","packages/firebase_auth_platform_interface/src/action_code_info.dart":"176593334","packages/intl/intl.dart":"157162972","packages/intl/src/intl/text_direction.dart":"1038534869","packages/intl/src/intl/number_parser.dart":"78507909","packages/intl/src/intl/number_format_parser.dart":"118238749","packages/intl/src/intl/string_iterator.dart":"763006569","packages/intl/number_symbols_data.dart":"630915853","packages/intl/number_symbols.dart":"538222961","packages/intl/src/intl/intl_stream.dart":"978671022","packages/intl/src/intl/regexp.dart":"963052499","packages/intl/src/intl/constants.dart":"264805103","packages/intl/src/intl_helpers.dart":"566541299","packages/intl/src/global_state.dart":"648242283","packages/intl/src/intl/micro_money.dart":"135992134","packages/intl/src/intl/date_format.dart":"513468371","packages/intl/src/intl/date_computation.dart":"714703157","packages/intl/src/intl/date_builder.dart":"151093685","packages/clock/src/stopwatch.dart":"643233629","packages/clock/src/utils.dart":"330998155","packages/intl/src/date_format_internal.dart":"886982434","packages/intl/date_symbols.dart":"206462342","packages/intl/src/intl/bidi_formatter.dart":"201986106","packages/intl/src/intl/bidi.dart":"142212562","packages/intl/src/plural_rules.dart":"208736873","packages/firebase_auth_web/src/firebase_auth_web_recaptcha_verifier_factory.dart":"373370158","packages/web/main.dart":"635891591","packages/web/loginPage.dart":"909873369","packages/page_router/page_router.dart":"349357284","packages/page_router/src/route_path.dart":"318010654","packages/page_router/src/route_data.dart":"2459126","packages/trie_router/trie_router.dart":"606086022","packages/trie_router/src/errors.dart":"782105957","packages/trie_router/src/trie.dart":"130395728","packages/trie_router/src/trie_node.dart":"818881571","packages/trie_router/src/trie_router.dart":"473014544","packages/quiver/core.dart":"471134701","packages/quiver/src/core/optional.dart":"835306382","packages/quiver/src/core/hash.dart":"378045204","packages/firebase_auth/firebase_auth.dart":"688051408","packages/web/signupPage.dart":"583104397","packages/web/entryPage.dart":"955960811","packages/web/mainProfile.dart":"65664819","packages/sliding_up_panel/sliding_up_panel.dart":"172805550","packages/sliding_up_panel/src/panel.dart":"728018520"}
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/widgets/form.dart', 'packages/firebase_auth/firebase_auth.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/cloud_firestore/cloud_firestore.dart', 'packages/firebase_auth_platform_interface/src/firebase_auth_exception.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/material/input_border.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/border_radius.dart'], (function load__packages__web__signupPage_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__widgets__form$46dart, packages__firebase_auth__firebase_auth$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__icon_button$46dart, packages__cloud_firestore__cloud_firestore$46dart, packages__firebase_auth_platform_interface__src__firebase_auth_exception$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__material__input_border$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__border_radius$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const form = packages__flutter__src__widgets__form$46dart.src__widgets__form;
+  const firebase_auth = packages__firebase_auth__firebase_auth$46dart.firebase_auth;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const snack_bar = packages__flutter__src__material__icon_button$46dart.src__material__snack_bar;
+  const list_tile = packages__flutter__src__material__icon_button$46dart.src__material__list_tile;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const text_button = packages__flutter__src__material__icon_button$46dart.src__material__text_button;
+  const cloud_firestore = packages__cloud_firestore__cloud_firestore$46dart.cloud_firestore;
+  const firebase_auth_exception = packages__firebase_auth_platform_interface__src__firebase_auth_exception$46dart.src__firebase_auth_exception;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const input_border = packages__flutter__src__material__input_border$46dart.src__material__input_border;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  var signupPage = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    FormStateL: () => (T.FormStateL = dart.constFn(dart.legacy(form.FormState)))(),
+    GlobalKeyOfFormStateL: () => (T.GlobalKeyOfFormStateL = dart.constFn(framework.GlobalKey$(T.FormStateL())))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    IdentityMapOfStringL$dynamic: () => (T.IdentityMapOfStringL$dynamic = dart.constFn(_js_helper.IdentityMap$(T.StringL(), dart.dynamic)))(),
+    voidTovoid: () => (T.voidTovoid = dart.constFn(dart.fnType(dart.void, [dart.void])))(),
+    dynamicTovoid: () => (T.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    FutureLOfvoid: () => (T.FutureLOfvoid = dart.constFn(dart.legacy(T.FutureOfvoid())))(),
+    VoidToFutureLOfvoid: () => (T.VoidToFutureLOfvoid = dart.constFn(dart.fnType(T.FutureLOfvoid(), [])))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    FirebaseAuthExceptionL: () => (T.FirebaseAuthExceptionL = dart.constFn(dart.legacy(firebase_auth_exception.FirebaseAuthException)))(),
+    StringLToStringL: () => (T.StringLToStringL = dart.constFn(dart.fnType(T.StringL(), [T.StringL()])))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 15,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 15,
+        [_Location_line]: 43,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 9,
+        [_Location_line]: 44,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 73,
+        [_Location_line]: 56,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 68,
+        [_Location_line]: 56,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 59,
+        [_Location_line]: 56,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 50,
+        [_Location_line]: 56,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 5000000
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 75,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 70,
+        [_Location_line]: 89,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 61,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 52,
+        [_Location_line]: 89,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 75,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.constList([C[23] || CT.C23], T._LocationL());
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[22] || CT.C22,
+        [_Location_name]: null,
+        [_Location_column]: 70,
+        [_Location_line]: 92,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 61,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 52,
+        [_Location_line]: 92,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 17,
+        [_Location_line]: 117,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 118,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 115,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 112,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 15,
+        [_Location_line]: 113,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 15,
+        [_Location_line]: 114,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 115,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 111,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 43,
+        [_Location_line]: 129,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 129,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cursorColor",
+        [_Location_column]: 25,
+        [_Location_line]: 131,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 25,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 25,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 25,
+        [_Location_line]: 148,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 130,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "leading",
+        [_Location_column]: 23,
+        [_Location_line]: 129,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 23,
+        [_Location_line]: 130,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 128,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 21,
+        [_Location_line]: 126,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54], T._LocationL());
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 125,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 43,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 158,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "obscureText",
+        [_Location_column]: 25,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cursorColor",
+        [_Location_column]: 25,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 25,
+        [_Location_line]: 162,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 25,
+        [_Location_line]: 171,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 25,
+        [_Location_line]: 178,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.constList([C[60] || CT.C60, C[61] || CT.C61, C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64], T._LocationL());
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[59] || CT.C59,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 159,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 25,
+        [_Location_line]: 183,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.constList([C[67] || CT.C67, C[68] || CT.C68], T._LocationL());
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[66] || CT.C66,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 182,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "leading",
+        [_Location_column]: 23,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 23,
+        [_Location_line]: 159,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "trailing",
+        [_Location_column]: 23,
+        [_Location_line]: 182,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71, C[72] || CT.C72, C[73] || CT.C73], T._LocationL());
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 157,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 21,
+        [_Location_line]: 155,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 157,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76, C[77] || CT.C77], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 154,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 43,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C79() {
+      return C[79] = dart.constList([C[80] || CT.C80], T._LocationL());
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[79] || CT.C79,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 194,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "obscureText",
+        [_Location_column]: 25,
+        [_Location_line]: 196,
+        [_Location_file]: null
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cursorColor",
+        [_Location_column]: 25,
+        [_Location_line]: 197,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 25,
+        [_Location_line]: 198,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "validator",
+        [_Location_column]: 25,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.constList([C[83] || CT.C83, C[84] || CT.C84, C[85] || CT.C85, C[86] || CT.C86], T._LocationL());
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[82] || CT.C82,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 195,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 25,
+        [_Location_line]: 216,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 219,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.constList([C[89] || CT.C89, C[90] || CT.C90], T._LocationL());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[88] || CT.C88,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 215,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "leading",
+        [_Location_column]: 23,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 23,
+        [_Location_line]: 195,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "trailing",
+        [_Location_column]: 23,
+        [_Location_line]: 215,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.constList([C[93] || CT.C93, C[94] || CT.C94, C[95] || CT.C95], T._LocationL());
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[92] || CT.C92,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 193,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 21,
+        [_Location_line]: 191,
+        [_Location_file]: null
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.constList([C[98] || CT.C98, C[99] || CT.C99], T._LocationL());
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[97] || CT.C97,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 190,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 124,
+        [_Location_file]: null
+      });
+    },
+    get C101() {
+      return C[101] = dart.constList([C[102] || CT.C102], T._LocationL());
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[101] || CT.C101,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 123,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "key",
+        [_Location_column]: 15,
+        [_Location_line]: 122,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.constList([C[105] || CT.C105, C[106] || CT.C106], T._LocationL());
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[104] || CT.C104,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 121,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.constList([C[109] || CT.C109], T._LocationL());
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[108] || CT.C108,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 226,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 87,
+        [_Location_line]: 235,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.constList([C[112] || CT.C112], T._LocationL());
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[111] || CT.C111,
+        [_Location_name]: null,
+        [_Location_column]: 82,
+        [_Location_line]: 235,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 73,
+        [_Location_line]: 235,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.constList([C[115] || CT.C115], T._LocationL());
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 64,
+        [_Location_line]: 235,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 87,
+        [_Location_line]: 239,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.constList([C[118] || CT.C118], T._LocationL());
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_name]: null,
+        [_Location_column]: 82,
+        [_Location_line]: 239,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 73,
+        [_Location_line]: 239,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.constList([C[121] || CT.C121], T._LocationL());
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[120] || CT.C120,
+        [_Location_name]: null,
+        [_Location_column]: 64,
+        [_Location_line]: 239,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 243,
+        [_Location_file]: null
+      });
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 244,
+        [_Location_file]: null
+      });
+    },
+    get C123() {
+      return C[123] = dart.constList([C[124] || CT.C124, C[125] || CT.C125], T._LocationL());
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[123] || CT.C123,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 242,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 17,
+        [_Location_line]: 233,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 242,
+        [_Location_file]: null
+      });
+    },
+    get C127() {
+      return C[127] = dart.constList([C[128] || CT.C128, C[129] || CT.C129], T._LocationL());
+    },
+    get C126() {
+      return C[126] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[127] || CT.C127,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 232,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 15,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 15,
+        [_Location_line]: 229,
+        [_Location_file]: null
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 15,
+        [_Location_line]: 230,
+        [_Location_file]: null
+      });
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 232,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.constList([C[132] || CT.C132, C[133] || CT.C133, C[134] || CT.C134, C[135] || CT.C135], T._LocationL());
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[131] || CT.C131,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 227,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C138() {
+      return C[138] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 11,
+        [_Location_line]: 109,
+        [_Location_file]: null
+      });
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 110,
+        [_Location_file]: null
+      });
+    },
+    get C137() {
+      return C[137] = dart.constList([C[138] || CT.C138, C[139] || CT.C139], T._LocationL());
+    },
+    get C136() {
+      return C[136] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[137] || CT.C137,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 108,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C141() {
+      return C[141] = dart.constList([C[142] || CT.C142], T._LocationL());
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[141] || CT.C141,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 107,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    },
+    get C145() {
+      return C[145] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 7,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 107,
+        [_Location_file]: null
+      });
+    },
+    get C144() {
+      return C[144] = dart.constList([C[145] || CT.C145, C[146] || CT.C146], T._LocationL());
+    },
+    get C143() {
+      return C[143] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[144] || CT.C144,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 105,
+        [_Location_file]: "file:///D:/College%20Documents/AY%202020-2021%20Sem%202/CS%20192/orgo/web/lib/signupPage.dart"
+      });
+    }
+  }, false);
+  var C = Array(147).fill(void 0);
+  var I = ["package:web/signupPage.dart"];
+  signupPage.SignupPage = class SignupPage extends framework.StatefulWidget {
+    createState() {
+      return new signupPage._SignupPageState.new();
+    }
+  };
+  (signupPage.SignupPage.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    signupPage.SignupPage.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = signupPage.SignupPage.prototype;
+  dart.addTypeTests(signupPage.SignupPage);
+  dart.addTypeCaches(signupPage.SignupPage);
+  dart.setMethodSignature(signupPage.SignupPage, () => ({
+    __proto__: dart.getMethods(signupPage.SignupPage.__proto__),
+    createState: dart.fnType(dart.legacy(signupPage._SignupPageState), [])
+  }));
+  dart.setLibraryUri(signupPage.SignupPage, I[0]);
+  var _formKey = dart.privateName(signupPage, "_formKey");
+  var _obscureText1 = dart.privateName(signupPage, "_obscureText1");
+  var _obscureText2 = dart.privateName(signupPage, "_obscureText2");
+  var _toggle1 = dart.privateName(signupPage, "_toggle1");
+  var _toggle2 = dart.privateName(signupPage, "_toggle2");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _pwIcon = dart.privateName(signupPage, "_pwIcon");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  signupPage._SignupPageState = class _SignupPageState extends framework.State$(dart.legacy(signupPage.SignupPage)) {
+    [_toggle1]() {
+      this.setState(dart.fn(() => {
+        this[_obscureText1] = !dart.test(this[_obscureText1]);
+      }, T.VoidToNull()));
+    }
+    [_toggle2]() {
+      this.setState(dart.fn(() => {
+        this[_obscureText2] = !dart.test(this[_obscureText2]);
+      }, T.VoidToNull()));
+    }
+    [_pwIcon](pwState) {
+      if (pwState === true) {
+        return new icon.Icon.new(icons.Icons.visibility_off, {color: colors.Colors.grey, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
+      } else {
+        return new icon.Icon.new(icons.Icons.visibility, {color: colors.Colors.grey, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4});
+      }
+    }
+    signup(email, password) {
+      return async.async(dart.void, (function* signup() {
+        try {
+          yield this.auth.createUserWithEmailAndPassword({email: email, password: password});
+          scaffold.ScaffoldMessenger.of(this.context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Success!", {$creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}));
+          let users = cloud_firestore.FirebaseFirestore.instance.collection(this.auth.currentUser.uid);
+          core.print(this.auth.currentUser.uid);
+          function addUser() {
+            users.doc("notifcations").set(new (T.IdentityMapOfStringL$dynamic()).from(["data", [], "data_count", 0, "title_list", []])).then(dart.void, dart.fn(value => core.print("User Notification data Added"), T.voidTovoid())).catchError(dart.fn(error => core.print("Failed to add user notification data: " + dart.str(error)), T.dynamicTovoid()));
+            return users.doc("profiles").set(new (T.IdentityMapOfStringL$dynamic()).from(["profile_count", 0, "profile_names", []])).then(dart.void, dart.fn(value => core.print("User Added"), T.voidTovoid())).catchError(dart.fn(error => core.print("Failed to add user: " + dart.str(error)), T.dynamicTovoid()));
+          }
+          dart.fn(addUser, T.VoidToFutureLOfvoid());
+          addUser();
+          yield async.Future.delayed(C[14] || CT.C14);
+          navigator.Navigator.pop(T.ObjectL(), this.context);
+        } catch (e$) {
+          let ex = dart.getThrown(e$);
+          if (T.FirebaseAuthExceptionL().is(ex)) {
+            let e = ex;
+            if (e.code === "weak-password") {
+              core.print("The password provided is too weak.");
+              scaffold.ScaffoldMessenger.of(this.context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("The password provided is too weak.", {$creationLocationd_0dea112b090073317d4: C[15] || CT.C15}), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18}));
+            } else if (e.code === "email-already-in-use") {
+              core.print("The account already exists for that email.");
+              scaffold.ScaffoldMessenger.of(this.context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("The account already exists for that email.", {$creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}));
+            }
+          } else {
+            let e = ex;
+            core.print(e);
+          }
+        }
+      }).bind(this));
+    }
+    build(context) {
+      return new scaffold.Scaffold.new({backgroundColor: new ui.Color.fromRGBO(88, 24, 69, 1.0), body: new basic.Center.new({child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new container.Container.new({height: 100.0, width: 100.0, margin: new edge_insets.EdgeInsets.only({bottom: 60.0}), child: new icon.Icon.new(icons.Icons.donut_large, {size: 100.0, color: new ui.Color.fromRGBO(255, 195, 15, 1.0), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), new form.Form.new({key: this[_formKey], child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new card.Card.new({margin: new edge_insets.EdgeInsets.symmetric({horizontal: 150.0, vertical: 10.0}), child: new list_tile.ListTile.new({leading: new icon.Icon.new(icons.Icons.email, {$creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), title: new text_form_field.TextFormField.new({cursorColor: colors.Colors.black, decoration: new input_decorator.InputDecoration.new({border: input_border.InputBorder.none, focusedBorder: input_border.InputBorder.none, enabledBorder: input_border.InputBorder.none, errorBorder: input_border.InputBorder.none, disabledBorder: input_border.InputBorder.none, hintText: "Email", hintStyle: new text_style.TextStyle.new({fontWeight: ui.FontWeight.bold})}), validator: dart.fn(value => {
+                            if (value == null || value[$isEmpty]) {
+                              return "Please enter some text";
+                            }
+                            this.email = value;
+                            return null;
+                          }, T.StringLToStringL()), onChanged: dart.fn(text => {
+                            this.email = text;
+                          }, T.StringLToNull()), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51}), new card.Card.new({margin: new edge_insets.EdgeInsets.symmetric({horizontal: 150.0, vertical: 10.0}), child: new list_tile.ListTile.new({leading: new icon.Icon.new(icons.Icons.lock, {$creationLocationd_0dea112b090073317d4: C[55] || CT.C55}), title: new text_form_field.TextFormField.new({obscureText: this[_obscureText1], cursorColor: colors.Colors.black, decoration: new input_decorator.InputDecoration.new({border: input_border.InputBorder.none, focusedBorder: input_border.InputBorder.none, enabledBorder: input_border.InputBorder.none, errorBorder: input_border.InputBorder.none, disabledBorder: input_border.InputBorder.none, hintText: "Password", hintStyle: new text_style.TextStyle.new({fontWeight: ui.FontWeight.bold})}), validator: dart.fn(value => {
+                            if (value == null || value[$isEmpty]) {
+                              return "Please enter some text";
+                            }
+                            this.password = value;
+                            return null;
+                          }, T.StringLToStringL()), onChanged: dart.fn(text => {
+                            this.password = text;
+                          }, T.StringLToNull()), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58}), trailing: new text_button.TextButton.new({onPressed: dart.fn(() => {
+                            this[_toggle1]();
+                          }, T.VoidToNull()), child: this[_pwIcon](this[_obscureText1]), $creationLocationd_0dea112b090073317d4: C[65] || CT.C65}), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69}), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74}), new card.Card.new({margin: new edge_insets.EdgeInsets.symmetric({horizontal: 150.0, vertical: 10.0}), child: new list_tile.ListTile.new({leading: new icon.Icon.new(icons.Icons.lock, {$creationLocationd_0dea112b090073317d4: C[78] || CT.C78}), title: new text_form_field.TextFormField.new({obscureText: this[_obscureText2], cursorColor: colors.Colors.black, decoration: new input_decorator.InputDecoration.new({border: input_border.InputBorder.none, focusedBorder: input_border.InputBorder.none, enabledBorder: input_border.InputBorder.none, errorBorder: input_border.InputBorder.none, disabledBorder: input_border.InputBorder.none, hintText: "Confirm Password", hintStyle: new text_style.TextStyle.new({fontWeight: ui.FontWeight.bold})}), validator: dart.fn(value => {
+                            if (value == null || value[$isEmpty]) {
+                              return "Please enter some text";
+                            }
+                            this.confirmpass = value;
+                            return null;
+                          }, T.StringLToStringL()), $creationLocationd_0dea112b090073317d4: C[81] || CT.C81}), trailing: new text_button.TextButton.new({onPressed: dart.fn(() => {
+                            this[_toggle2]();
+                          }, T.VoidToNull()), child: this[_pwIcon](this[_obscureText2]), $creationLocationd_0dea112b090073317d4: C[87] || CT.C87}), $creationLocationd_0dea112b090073317d4: C[91] || CT.C91}), $creationLocationd_0dea112b090073317d4: C[96] || CT.C96})]), $creationLocationd_0dea112b090073317d4: C[100] || CT.C100}), $creationLocationd_0dea112b090073317d4: C[103] || CT.C103}), new basic.SizedBox.new({height: 50.0, $creationLocationd_0dea112b090073317d4: C[107] || CT.C107}), new container.Container.new({height: 40.0, width: 120.0, decoration: new box_decoration.BoxDecoration.new({color: colors.Colors.white, borderRadius: new border_radius.BorderRadius.circular(20.0)}), child: new text_button.TextButton.new({onPressed: dart.fn(() => {
+                    if (dart.test(this[_formKey].currentState.validate()) && this.password == this.confirmpass) {
+                      scaffold.ScaffoldMessenger.of(context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Signing Up", {$creationLocationd_0dea112b090073317d4: C[110] || CT.C110}), $creationLocationd_0dea112b090073317d4: C[113] || CT.C113}));
+                      this.signup(this.email, this.password);
+                    } else {
+                      scaffold.ScaffoldMessenger.of(context).showSnackBar(new snack_bar.SnackBar.new({content: new text.Text.new("Passwords do not match", {$creationLocationd_0dea112b090073317d4: C[116] || CT.C116}), $creationLocationd_0dea112b090073317d4: C[119] || CT.C119}));
+                    }
+                  }, T.VoidToNull()), child: new text.Text.new("SIGN UP", {style: new text_style.TextStyle.new({color: new ui.Color.fromRGBO(199, 0, 57, 1.0), fontSize: 15.0}), $creationLocationd_0dea112b090073317d4: C[122] || CT.C122}), $creationLocationd_0dea112b090073317d4: C[126] || CT.C126}), $creationLocationd_0dea112b090073317d4: C[130] || CT.C130})]), $creationLocationd_0dea112b090073317d4: C[136] || CT.C136}), $creationLocationd_0dea112b090073317d4: C[140] || CT.C140}), $creationLocationd_0dea112b090073317d4: C[143] || CT.C143});
+    }
+  };
+  (signupPage._SignupPageState.new = function() {
+    this[_formKey] = T.GlobalKeyOfFormStateL().new();
+    this.auth = firebase_auth.FirebaseAuth.instance;
+    this[_obscureText1] = true;
+    this[_obscureText2] = true;
+    this.email = "";
+    this.password = "";
+    this.confirmpass = "";
+    signupPage._SignupPageState.__proto__.new.call(this);
+    ;
+  }).prototype = signupPage._SignupPageState.prototype;
+  dart.addTypeTests(signupPage._SignupPageState);
+  dart.addTypeCaches(signupPage._SignupPageState);
+  dart.setMethodSignature(signupPage._SignupPageState, () => ({
+    __proto__: dart.getMethods(signupPage._SignupPageState.__proto__),
+    [_toggle1]: dart.fnType(dart.void, []),
+    [_toggle2]: dart.fnType(dart.void, []),
+    [_pwIcon]: dart.fnType(dart.legacy(icon.Icon), [dart.legacy(core.bool)]),
+    signup: dart.fnType(dart.void, [dart.legacy(core.String), dart.legacy(core.String)]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(signupPage._SignupPageState, I[0]);
+  dart.setFieldSignature(signupPage._SignupPageState, () => ({
+    __proto__: dart.getFields(signupPage._SignupPageState.__proto__),
+    [_formKey]: dart.finalFieldType(dart.legacy(framework.GlobalKey$(dart.legacy(form.FormState)))),
+    auth: dart.fieldType(dart.legacy(firebase_auth.FirebaseAuth)),
+    [_obscureText1]: dart.fieldType(dart.legacy(core.bool)),
+    [_obscureText2]: dart.fieldType(dart.legacy(core.bool)),
+    email: dart.fieldType(dart.legacy(core.String)),
+    password: dart.fieldType(dart.legacy(core.String)),
+    confirmpass: dart.fieldType(dart.legacy(core.String))
+  }));
+  dart.trackLibraries("packages/web/signupPage.dart", {
+    "package:web/signupPage.dart": signupPage
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["signupPage.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAOoC;IAAkB;;;QAF9B;;AAAQ,yDAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;AAoBzC,MAFF,cAAS;AACuB,QAA9B,sBAAgB,WAAC;;IAErB;;AAKI,MAFF,cAAS;AACuB,QAA9B,sBAAgB,WAAC;;IAErB;cAEkB;AAChB,UAAI,AAAQ,OAAD,KAAI;AACb,cAAO,mBACC,oCACQ;;AAGhB,cAAO,mBACC,gCACQ;;IAGpB;WAEmB,OAAc;AAAtB;AACT;AAIG,UAHD,MAAM,AAAK,iDACF,KAAK,YACF,QAAQ;AAG2D,UAA7D,AAAY,8BAAT,2BAAsB,qCAAkB,kBAAK;AAC9C,sBAA0B,AAAS,sDAAW,AAAK,AAAY;AACxD,UAA3B,WAAM,AAAK,AAAY;AACvB,mBAAa;AAUkE,YAR7E,AACC,AACA,AAKA,AACA,KARI,KACA,oBACA,6CACH,QAAS,IACT,cAAe,GACf,cAAe,sBAEX,QAAC,SAAU,WAAM,6DACX,QAAC,SAAU,WAAM,AAA8C,oDAAN,KAAK;AAG1E,kBAAO,AACJ,AACA,AAIA,AACA,MAPS,KACL,gBACA,6CACH,iBAAkB,GAClB,iBAAkB,sBAEd,QAAC,SAAU,WAAM,2CACX,QAAC,SAAU,WAAM,AAA4B,kCAAN,KAAK;;;AAGnD,UAAT,OAAO;AAE8C,UAArD,MAAU;AACY,UAAZ,qCAAI;;;AACd;gBAAgC;AAChC,gBAAI,AAAE,AAAK,CAAN,UAAS;AAC+B,cAA3C,WAAM;AACmG,cAAvF,AAAY,8BAAT,2BAAsB,qCAAkB,kBAAK;kBAC7D,KAAI,AAAE,AAAK,CAAN,UAAS;AACgC,cAAnD,WAAM;AAC2G,cAA/F,AAAY,8BAAT,2BAAsB,qCAAkB,kBAAK;;;gBAE7D;AACC,YAAR,WAAM,CAAC;;;MAMX;;UAG0B;AACxB,YAAO,6CACkB,sBAAS,IAAM,IAAM,IAAM,YAC5C,6BACG,yCACgC,yCAC3B,yBACR,qCACU,cACD,eACY,yCAAa,eACzB,kBACC,gCACA,cACO,sBAAS,KAAM,KAAM,IAAM,4HAG5C,wBACO,uBACE,gCACK,yBACR,2BAEiB,kDAAsB,iBAAiB,eAC/C,qCACI,kBAAW,sFACb,oDACe,iCACJ,iDACM,8CACO,8CACA,4CACF,+CACG,yCAClB,oBACC,0CAAiC,mCAEnC,QAAQ;AACjB,gCAAI,AAAM,KAAD,YAAY,AAAM,KAAD;AACxB,oCAAO;;AAEI,4BAAb,aAAQ,KAAK;AACb,kCAAO;+DAEE,QAAC;AACE,4BAAZ,aAAQ,IAAI;kOAKpB,2BAEiB,kDAAsB,iBAAiB,eAC/C,qCACI,kBAAW,qFACb,oDACQ,kCACO,iCACJ,iDACM,8CACO,8CACA,4CACF,+CACG,yCAClB,uBACC,0CAAiC,mCAEnC,QAAQ;AACjB,gCAAI,AAAM,KAAD,YAAY,AAAM,KAAD;AACxB,oCAAO;;AAEO,4BAAhB,gBAAW,KAAK;AAChB,kCAAO;+DAEE,QAAC;AACK,4BAAf,gBAAW,IAAI;sHAGT,2CACG;AACC,4BAAV;qDAEK,cAAQ,uMAIrB,2BAEiB,kDAAsB,iBAAiB,eAC/C,qCACI,kBAAW,qFACb,oDACQ,kCACO,iCACJ,iDACM,8CACO,8CACA,4CACF,+CACG,yCAClB,+BACC,0CAAiC,mCAEnC,QAAQ;AACjB,gCAAI,AAAM,KAAD,YAAY,AAAM,KAAD;AACxB,oCAAO;;AAEU,4BAAnB,mBAAc,KAAK;AACnB,kCAAO;yHAGD,2CACG;AACC,4BAAV;qDAEK,cAAQ,mUAO3B,gCAAiB,mEACjB,qCACU,aACD,mBACK,6CACM,mCAAkC,wCAAS,gBACtD,2CACM;AACT,kCAAI,AAAS,AAAa,2CAAe,AAAS,iBAAG;AAC8B,sBAA/D,AAAY,8BAAT,OAAO,eAAe,qCAAkB,kBAAK;AAC3C,sBAAvB,YAAO,YAAO;;AAG+E,sBAA3E,AAAY,8BAAT,OAAO,eAAe,qCAAkB,kBAAK;;6CAG/D,kBACL,mBACO,qCACU,sBAAS,KAAM,GAAM,IAAM,gBAC9B;IAQ9B;;;IAlP2B,iBAAW;IACzB,YAAoB;IAI5B,sBAAgB;IAChB,sBAAgB;IACd,aAAQ;IACR,gBAAW;IACX,mBAAc;;;EA0OvB","file":"../../../../../../packages/web/signupPage.dart.lib.js"}');
+  // Exports:
+  return {
+    signupPage: signupPage
+  };
+}));
+
+//# sourceMappingURL=signupPage.dart.lib.js.map

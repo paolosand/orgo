@@ -1,29 +1,37 @@
-define(['dart_sdk', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__priority_queue_dart(dart_sdk, packages__collection__src__utils$46dart) {
+define(['dart_sdk', 'packages/typed_data/src/typed_buffer.dart'], (function load__packages__flutter__src__foundation__serialization_dart(dart_sdk, packages__typed_data__src__typed_buffer$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const collection = dart_sdk.collection;
-  const _interceptors = dart_sdk._interceptors;
+  const _native_typed_data = dart_sdk._native_typed_data;
+  const _internal = dart_sdk._internal;
+  const typed_data = dart_sdk.typed_data;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const utils = packages__collection__src__utils$46dart.src__utils;
-  var priority_queue = Object.create(dart.library);
-  var $_get = dartx._get;
-  var $take = dartx.take;
-  var $cast = dartx.cast;
-  var $sort = dartx.sort;
-  var $add = dartx.add;
-  var $toString = dartx.toString;
+  const typed_buffer = packages__typed_data__src__typed_buffer$46dart.src__typed_buffer;
+  var serialization = Object.create(dart.library);
+  var $buffer = dartx.buffer;
+  var $asUint8List = dartx.asUint8List;
+  var $setUint16 = dartx.setUint16;
+  var $setUint32 = dartx.setUint32;
+  var $setInt32 = dartx.setInt32;
+  var $setInt64 = dartx.setInt64;
+  var $setFloat64 = dartx.setFloat64;
+  var $offsetInBytes = dartx.offsetInBytes;
   var $length = dartx.length;
-  var $isOdd = dartx.isOdd;
-  var $rightShift = dartx['>>'];
-  var $_set = dartx._set;
-  var $truncate = dartx.truncate;
-  var $setRange = dartx.setRange;
-  var $iterator = dartx.iterator;
+  var $modulo = dartx['%'];
+  var $asByteData = dartx.asByteData;
+  var $lengthInBytes = dartx.lengthInBytes;
+  var $getUint8 = dartx.getUint8;
+  var $getUint16 = dartx.getUint16;
+  var $getUint32 = dartx.getUint32;
+  var $getInt32 = dartx.getInt32;
+  var $getInt64 = dartx.getInt64;
+  var $getFloat64 = dartx.getFloat64;
+  var $asInt32List = dartx.asInt32List;
+  var $asInt64List = dartx.asInt64List;
+  var $asFloat64List = dartx.asFloat64List;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    ObjectNAndObjectNToint: () => (T.ObjectNAndObjectNToint = dart.constFn(dart.fnType(core.int, [T.ObjectN(), T.ObjectN()])))()
+    _: () => T
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -37,420 +45,266 @@ define(['dart_sdk', 'packages/collection/src/utils.dart'], (function load__packa
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.fn(utils.defaultCompare, T.ObjectNAndObjectNToint());
-    },
-    get C1() {
-      return C[1] = dart.constList([], core.Null);
-    }
-  }, false);
-  var C = Array(2).fill(void 0);
+  var C = [];
   var I = [
-    "package:collection/src/priority_queue.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/src/priority_queue.dart"
+    "file:///C:/src/flutter/packages/flutter/lib/src/foundation/serialization.dart",
+    "package:flutter/src/foundation/serialization.dart"
   ];
-  const _is_PriorityQueue_default = Symbol('_is_PriorityQueue_default');
-  priority_queue.PriorityQueue$ = dart.generic(E => {
-    class PriorityQueue extends core.Object {}
-    (PriorityQueue[dart.mixinNew] = function() {
-    }).prototype = PriorityQueue.prototype;
-    dart.addTypeTests(PriorityQueue);
-    PriorityQueue.prototype[_is_PriorityQueue_default] = true;
-    dart.addTypeCaches(PriorityQueue);
-    dart.setLibraryUri(PriorityQueue, I[0]);
-    return PriorityQueue;
-  });
-  priority_queue.PriorityQueue = priority_queue.PriorityQueue$();
-  dart.addTypeTests(priority_queue.PriorityQueue, _is_PriorityQueue_default);
-  var comparison$ = dart.privateName(priority_queue, "HeapPriorityQueue.comparison");
-  var _queue$ = dart.privateName(priority_queue, "_queue");
-  var _length = dart.privateName(priority_queue, "_length");
-  var _modificationCount = dart.privateName(priority_queue, "_modificationCount");
-  var _elementAt = dart.privateName(priority_queue, "_elementAt");
-  var _add = dart.privateName(priority_queue, "_add");
-  var _locate = dart.privateName(priority_queue, "_locate");
-  var _removeLast = dart.privateName(priority_queue, "_removeLast");
-  var _bubbleUp = dart.privateName(priority_queue, "_bubbleUp");
-  var _bubbleDown = dart.privateName(priority_queue, "_bubbleDown");
-  var _toUnorderedList = dart.privateName(priority_queue, "_toUnorderedList");
-  var _grow = dart.privateName(priority_queue, "_grow");
-  const _is_HeapPriorityQueue_default = Symbol('_is_HeapPriorityQueue_default');
-  priority_queue.HeapPriorityQueue$ = dart.generic(E => {
-    var EN = () => (EN = dart.constFn(dart.nullable(E)))();
-    var ListOfEN = () => (ListOfEN = dart.constFn(core.List$(EN())))();
-    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
-    var _UnorderedElementsIterableOfE = () => (_UnorderedElementsIterableOfE = dart.constFn(priority_queue._UnorderedElementsIterable$(E)))();
-    var SplayTreeSetOfE = () => (SplayTreeSetOfE = dart.constFn(collection.SplayTreeSet$(E)))();
-    var JSArrayOfE = () => (JSArrayOfE = dart.constFn(_interceptors.JSArray$(E)))();
-    class HeapPriorityQueue extends core.Object {
-      get comparison() {
-        return this[comparison$];
-      }
-      set comparison(value) {
-        super.comparison = value;
-      }
-      [_elementAt](index) {
-        let t0;
-        if (index == null) dart.nullFailed(I[1], 207, 20, "index");
-        t0 = this[_queue$][$_get](index);
-        return t0 == null ? E.as(null) : t0;
-      }
-      add(element) {
-        E.as(element);
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
-        this[_add](element);
-      }
-      addAll(elements) {
-        IterableOfE().as(elements);
-        if (elements == null) dart.nullFailed(I[1], 216, 27, "elements");
-        let modified = 0;
-        for (let element of elements) {
-          modified = 1;
-          this[_add](element);
-        }
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + modified;
-      }
-      clear() {
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
-        this[_queue$] = C[1] || CT.C1;
-        this[_length] = 0;
-      }
-      contains(object) {
-        E.as(object);
-        return dart.notNull(this[_locate](object)) >= 0;
-      }
-      get unorderedElements() {
-        return new (_UnorderedElementsIterableOfE()).new(this);
-      }
-      get first() {
-        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
-        return this[_elementAt](0);
-      }
-      get isEmpty() {
-        return this[_length] === 0;
-      }
-      get isNotEmpty() {
-        return this[_length] !== 0;
-      }
-      get length() {
-        return this[_length];
-      }
-      remove(element) {
-        let t1, t0;
-        E.as(element);
-        let index = this[_locate](element);
-        if (dart.notNull(index) < 0) return false;
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
-        let last = this[_removeLast]();
-        if (dart.notNull(index) < dart.notNull(this[_length])) {
-          let comp = (t0 = last, t1 = element, this.comparison(t0, t1));
-          if (dart.notNull(comp) <= 0) {
-            this[_bubbleUp](last, index);
-          } else {
-            this[_bubbleDown](last, index);
-          }
-        }
-        return true;
-      }
-      removeAll() {
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
-        let result = this[_queue$];
-        let length = this[_length];
-        this[_queue$] = C[1] || CT.C1;
-        this[_length] = 0;
-        return result[$take](length)[$cast](E);
-      }
-      removeFirst() {
-        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
-        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
-        let result = this[_elementAt](0);
-        let last = this[_removeLast]();
-        if (dart.notNull(this[_length]) > 0) {
-          this[_bubbleDown](last, 0);
-        }
-        return result;
-      }
-      toList() {
-        let t0;
-        t0 = this[_toUnorderedList]();
-        return (() => {
-          t0[$sort](this.comparison);
-          return t0;
-        })();
-      }
-      toSet() {
-        let set = new (SplayTreeSetOfE()).new(this.comparison);
-        for (let i = 0; i < dart.notNull(this[_length]); i = i + 1) {
-          set.add(this[_elementAt](i));
-        }
-        return set;
-      }
-      toUnorderedList() {
-        return this[_toUnorderedList]();
-      }
-      [_toUnorderedList]() {
-        return (() => {
-          let t0 = JSArrayOfE().of([]);
-          for (let i = 0; i < dart.notNull(this[_length]); i = i + 1)
-            t0[$add](this[_elementAt](i));
-          return t0;
-        })();
-      }
-      toString() {
-        return dart.toString(this[_queue$][$take](this[_length]));
-      }
-      [_add](element) {
-        let t1;
-        if (this[_length] == this[_queue$][$length]) this[_grow]();
-        this[_bubbleUp](element, (t1 = this[_length], this[_length] = dart.notNull(t1) + 1, t1));
-      }
-      [_locate](object) {
-        let t2, t1;
-        if (this[_length] === 0) return -1;
-        let position = 1;
-        do {
-          let index = position - 1;
-          let element = this[_elementAt](index);
-          let comp = (t1 = element, t2 = object, this.comparison(t1, t2));
-          if (dart.notNull(comp) <= 0) {
-            if (comp === 0 && dart.equals(element, object)) return index;
-            let leftChildPosition = position * 2;
-            if (leftChildPosition <= dart.notNull(this[_length])) {
-              position = leftChildPosition;
-              continue;
-            }
-          }
-          do {
-            while (position[$isOdd]) {
-              position = position[$rightShift](1);
-            }
-            position = position + 1;
-          } while (position > dart.notNull(this[_length]));
-        } while (position !== 1);
-        return -1;
-      }
-      [_removeLast]() {
-        let newLength = dart.notNull(this[_length]) - 1;
-        let last = this[_elementAt](newLength);
-        this[_queue$][$_set](newLength, null);
-        this[_length] = newLength;
-        return last;
-      }
-      [_bubbleUp](element, index) {
-        let t2, t1;
-        if (index == null) dart.nullFailed(I[1], 396, 33, "index");
-        while (dart.notNull(index) > 0) {
-          let parentIndex = ((dart.notNull(index) - 1) / 2)[$truncate]();
-          let parent = this[_elementAt](parentIndex);
-          if (dart.notNull((t1 = element, t2 = parent, this.comparison(t1, t2))) > 0) break;
-          this[_queue$][$_set](index, parent);
-          index = parentIndex;
-        }
-        this[_queue$][$_set](index, element);
-      }
-      [_bubbleDown](element, index) {
-        let t2, t1, t2$, t1$, t2$0, t1$0;
-        if (index == null) dart.nullFailed(I[1], 412, 35, "index");
-        let rightChildIndex = dart.notNull(index) * 2 + 2;
-        while (rightChildIndex < dart.notNull(this[_length])) {
-          let leftChildIndex = rightChildIndex - 1;
-          let leftChild = this[_elementAt](leftChildIndex);
-          let rightChild = this[_elementAt](rightChildIndex);
-          let comp = (t1 = leftChild, t2 = rightChild, this.comparison(t1, t2));
-          let minChildIndex = null;
-          let minChild = null;
-          if (dart.notNull(comp) < 0) {
-            minChild = leftChild;
-            minChildIndex = leftChildIndex;
-          } else {
-            minChild = rightChild;
-            minChildIndex = rightChildIndex;
-          }
-          comp = (t1$ = element, t2$ = minChild, this.comparison(t1$, t2$));
-          if (dart.notNull(comp) <= 0) {
-            this[_queue$][$_set](index, element);
-            return;
-          }
-          this[_queue$][$_set](index, minChild);
-          index = minChildIndex;
-          rightChildIndex = dart.notNull(index) * 2 + 2;
-        }
-        let leftChildIndex = rightChildIndex - 1;
-        if (leftChildIndex < dart.notNull(this[_length])) {
-          let child = this[_elementAt](leftChildIndex);
-          let comp = (t1$0 = element, t2$0 = child, this.comparison(t1$0, t2$0));
-          if (dart.notNull(comp) > 0) {
-            this[_queue$][$_set](index, child);
-            index = leftChildIndex;
-          }
-        }
-        this[_queue$][$_set](index, element);
-      }
-      [_grow]() {
-        let newCapacity = dart.notNull(this[_queue$][$length]) * 2 + 1;
-        if (newCapacity < 7) newCapacity = 7;
-        let newQueue = ListOfEN().filled(newCapacity, null);
-        newQueue[$setRange](0, this[_length], this[_queue$]);
-        this[_queue$] = newQueue;
-      }
-    }
-    (HeapPriorityQueue.new = function(comparison = null) {
+  var __WriteBuffer__eightBytesAsList = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList");
+  var __WriteBuffer__eightBytesAsList_isSet = dart.privateName(serialization, "_#WriteBuffer#_eightBytesAsList#isSet");
+  var _buffer = dart.privateName(serialization, "_buffer");
+  var _eightBytes = dart.privateName(serialization, "_eightBytes");
+  var _eightBytesAsList = dart.privateName(serialization, "_eightBytesAsList");
+  var _alignTo = dart.privateName(serialization, "_alignTo");
+  serialization.WriteBuffer = class WriteBuffer extends core.Object {
+    get [_eightBytesAsList]() {
       let t0;
-      this[_queue$] = ListOfEN().filled(7, null);
-      this[_length] = 0;
-      this[_modificationCount] = 0;
-      this[comparison$] = (t0 = comparison, t0 == null ? C[0] || CT.C0 : t0);
-      ;
-    }).prototype = HeapPriorityQueue.prototype;
-    dart.addTypeTests(HeapPriorityQueue);
-    HeapPriorityQueue.prototype[_is_HeapPriorityQueue_default] = true;
-    dart.addTypeCaches(HeapPriorityQueue);
-    HeapPriorityQueue[dart.implements] = () => [priority_queue.PriorityQueue$(E)];
-    dart.setMethodSignature(HeapPriorityQueue, () => ({
-      __proto__: dart.getMethods(HeapPriorityQueue.__proto__),
-      [_elementAt]: dart.fnType(E, [core.int]),
-      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
-      addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
-      clear: dart.fnType(dart.void, []),
-      contains: dart.fnType(core.bool, [dart.nullable(core.Object)]),
-      remove: dart.fnType(core.bool, [dart.nullable(core.Object)]),
-      removeAll: dart.fnType(core.Iterable$(E), []),
-      removeFirst: dart.fnType(E, []),
-      toList: dart.fnType(core.List$(E), []),
-      toSet: dart.fnType(core.Set$(E), []),
-      toUnorderedList: dart.fnType(core.List$(E), []),
-      [_toUnorderedList]: dart.fnType(core.List$(E), []),
-      [_add]: dart.fnType(dart.void, [E]),
-      [_locate]: dart.fnType(core.int, [E]),
-      [_removeLast]: dart.fnType(E, []),
-      [_bubbleUp]: dart.fnType(dart.void, [E, core.int]),
-      [_bubbleDown]: dart.fnType(dart.void, [E, core.int]),
-      [_grow]: dart.fnType(dart.void, [])
-    }));
-    dart.setGetterSignature(HeapPriorityQueue, () => ({
-      __proto__: dart.getGetters(HeapPriorityQueue.__proto__),
-      unorderedElements: core.Iterable$(E),
-      first: E,
-      isEmpty: core.bool,
-      isNotEmpty: core.bool,
-      length: core.int
-    }));
-    dart.setLibraryUri(HeapPriorityQueue, I[0]);
-    dart.setFieldSignature(HeapPriorityQueue, () => ({
-      __proto__: dart.getFields(HeapPriorityQueue.__proto__),
-      comparison: dart.finalFieldType(dart.fnType(core.int, [E, E])),
-      [_queue$]: dart.fieldType(core.List$(dart.nullable(E))),
-      [_length]: dart.fieldType(core.int),
-      [_modificationCount]: dart.fieldType(core.int)
-    }));
-    dart.defineExtensionMethods(HeapPriorityQueue, ['toString']);
-    return HeapPriorityQueue;
-  });
-  priority_queue.HeapPriorityQueue = priority_queue.HeapPriorityQueue$();
-  dart.defineLazy(priority_queue.HeapPriorityQueue, {
-    /*priority_queue.HeapPriorityQueue._INITIAL_CAPACITY*/get _INITIAL_CAPACITY() {
-      return 7;
+      return dart.test(this[__WriteBuffer__eightBytesAsList_isSet]) ? (t0 = this[__WriteBuffer__eightBytesAsList], t0) : dart.throw(new _internal.LateError.fieldNI("_eightBytesAsList"));
     }
-  }, false);
-  dart.addTypeTests(priority_queue.HeapPriorityQueue, _is_HeapPriorityQueue_default);
-  const _is__UnorderedElementsIterable_default = Symbol('_is__UnorderedElementsIterable_default');
-  priority_queue._UnorderedElementsIterable$ = dart.generic(E => {
-    var _UnorderedElementsIteratorOfE = () => (_UnorderedElementsIteratorOfE = dart.constFn(priority_queue._UnorderedElementsIterator$(E)))();
-    class _UnorderedElementsIterable extends core.Iterable$(E) {
-      get iterator() {
-        return new (_UnorderedElementsIteratorOfE()).new(this[_queue$]);
+    set [_eightBytesAsList](t0) {
+      if (t0 == null) dart.nullFailed(I[0], 25, 18, "null");
+      this[__WriteBuffer__eightBytesAsList_isSet] = true;
+      this[__WriteBuffer__eightBytesAsList] = t0;
+    }
+    putUint8(byte) {
+      if (byte == null) dart.nullFailed(I[0], 28, 21, "byte");
+      dart.nullCheck(this[_buffer]).add(byte);
+    }
+    putUint16(value, opts) {
+      let t1;
+      if (value == null) dart.nullFailed(I[0], 33, 22, "value");
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_eightBytes][$setUint16](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 2);
+    }
+    putUint32(value, opts) {
+      let t1;
+      if (value == null) dart.nullFailed(I[0], 39, 22, "value");
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_eightBytes][$setUint32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
+    }
+    putInt32(value, opts) {
+      let t1;
+      if (value == null) dart.nullFailed(I[0], 45, 21, "value");
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_eightBytes][$setInt32](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 4);
+    }
+    putInt64(value, opts) {
+      let t1;
+      if (value == null) dart.nullFailed(I[0], 51, 21, "value");
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_eightBytes][$setInt64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList], 0, 8);
+    }
+    putFloat64(value, opts) {
+      let t1;
+      if (value == null) dart.nullFailed(I[0], 57, 26, "value");
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_alignTo](8);
+      this[_eightBytes][$setFloat64](0, value, (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      dart.nullCheck(this[_buffer]).addAll(this[_eightBytesAsList]);
+    }
+    putUint8List(list) {
+      if (list == null) dart.nullFailed(I[0], 64, 31, "list");
+      dart.nullCheck(this[_buffer]).addAll(list);
+    }
+    putInt32List(list) {
+      if (list == null) dart.nullFailed(I[0], 69, 31, "list");
+      this[_alignTo](4);
+      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 4 * dart.notNull(list[$length])));
+    }
+    putInt64List(list) {
+      if (list == null) dart.nullFailed(I[0], 75, 31, "list");
+      this[_alignTo](8);
+      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
+    }
+    putFloat64List(list) {
+      if (list == null) dart.nullFailed(I[0], 81, 35, "list");
+      this[_alignTo](8);
+      dart.nullCheck(this[_buffer]).addAll(list[$buffer][$asUint8List](list[$offsetInBytes], 8 * dart.notNull(list[$length])));
+    }
+    [_alignTo](alignment) {
+      if (alignment == null) dart.nullFailed(I[0], 86, 21, "alignment");
+      let mod = dart.nullCheck(this[_buffer]).length[$modulo](alignment);
+      if (mod !== 0) {
+        for (let i = 0; i < dart.notNull(alignment) - mod; i = i + 1)
+          dart.nullCheck(this[_buffer]).add(0);
       }
     }
-    (_UnorderedElementsIterable.new = function(_queue) {
-      if (_queue == null) dart.nullFailed(I[1], 464, 35, "_queue");
-      this[_queue$] = _queue;
-      _UnorderedElementsIterable.__proto__.new.call(this);
-      ;
-    }).prototype = _UnorderedElementsIterable.prototype;
-    dart.addTypeTests(_UnorderedElementsIterable);
-    _UnorderedElementsIterable.prototype[_is__UnorderedElementsIterable_default] = true;
-    dart.addTypeCaches(_UnorderedElementsIterable);
-    dart.setGetterSignature(_UnorderedElementsIterable, () => ({
-      __proto__: dart.getGetters(_UnorderedElementsIterable.__proto__),
-      iterator: core.Iterator$(E),
-      [$iterator]: core.Iterator$(E)
-    }));
-    dart.setLibraryUri(_UnorderedElementsIterable, I[0]);
-    dart.setFieldSignature(_UnorderedElementsIterable, () => ({
-      __proto__: dart.getFields(_UnorderedElementsIterable.__proto__),
-      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E))
-    }));
-    dart.defineExtensionAccessors(_UnorderedElementsIterable, ['iterator']);
-    return _UnorderedElementsIterable;
-  });
-  priority_queue._UnorderedElementsIterable = priority_queue._UnorderedElementsIterable$();
-  dart.addTypeTests(priority_queue._UnorderedElementsIterable, _is__UnorderedElementsIterable_default);
-  var _current = dart.privateName(priority_queue, "_current");
-  var _index = dart.privateName(priority_queue, "_index");
-  var _initialModificationCount = dart.privateName(priority_queue, "_initialModificationCount");
-  const _is__UnorderedElementsIterator_default = Symbol('_is__UnorderedElementsIterator_default');
-  priority_queue._UnorderedElementsIterator$ = dart.generic(E => {
-    class _UnorderedElementsIterator extends core.Object {
-      moveNext() {
-        if (this[_initialModificationCount] != this[_queue$][_modificationCount]) {
-          dart.throw(new core.ConcurrentModificationError.new(this[_queue$]));
-        }
-        let nextIndex = dart.notNull(this[_index]) + 1;
-        if (0 <= nextIndex && nextIndex < dart.notNull(this[_queue$].length)) {
-          this[_current] = this[_queue$][_queue$][$_get](nextIndex);
-          this[_index] = nextIndex;
-          return true;
-        }
-        this[_current] = null;
-        this[_index] = -2;
-        return false;
-      }
-      get current() {
-        let t1;
-        return dart.notNull(this[_index]) < 0 ? dart.throw(new core.StateError.new("No element")) : (t1 = this[_current], t1 == null ? E.as(null) : t1);
-      }
+    done() {
+      let result = dart.nullCheck(this[_buffer]).buffer[$asByteData](0, dart.nullCheck(this[_buffer]).lengthInBytes);
+      this[_buffer] = null;
+      return result;
     }
-    (_UnorderedElementsIterator.new = function(_queue) {
-      if (_queue == null) dart.nullFailed(I[1], 475, 35, "_queue");
-      this[_current] = null;
-      this[_index] = -1;
-      this[_queue$] = _queue;
-      this[_initialModificationCount] = _queue[_modificationCount];
-      ;
-    }).prototype = _UnorderedElementsIterator.prototype;
-    dart.addTypeTests(_UnorderedElementsIterator);
-    _UnorderedElementsIterator.prototype[_is__UnorderedElementsIterator_default] = true;
-    dart.addTypeCaches(_UnorderedElementsIterator);
-    _UnorderedElementsIterator[dart.implements] = () => [core.Iterator$(E)];
-    dart.setMethodSignature(_UnorderedElementsIterator, () => ({
-      __proto__: dart.getMethods(_UnorderedElementsIterator.__proto__),
-      moveNext: dart.fnType(core.bool, [])
-    }));
-    dart.setGetterSignature(_UnorderedElementsIterator, () => ({
-      __proto__: dart.getGetters(_UnorderedElementsIterator.__proto__),
-      current: E
-    }));
-    dart.setLibraryUri(_UnorderedElementsIterator, I[0]);
-    dart.setFieldSignature(_UnorderedElementsIterator, () => ({
-      __proto__: dart.getFields(_UnorderedElementsIterator.__proto__),
-      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E)),
-      [_initialModificationCount]: dart.finalFieldType(core.int),
-      [_current]: dart.fieldType(dart.nullable(E)),
-      [_index]: dart.fieldType(core.int)
-    }));
-    return _UnorderedElementsIterator;
-  });
-  priority_queue._UnorderedElementsIterator = priority_queue._UnorderedElementsIterator$();
-  dart.addTypeTests(priority_queue._UnorderedElementsIterator, _is__UnorderedElementsIterator_default);
-  dart.trackLibraries("packages/collection/src/priority_queue.dart", {
-    "package:collection/src/priority_queue.dart": priority_queue
+  };
+  (serialization.WriteBuffer.new = function() {
+    this[__WriteBuffer__eightBytesAsList] = null;
+    this[__WriteBuffer__eightBytesAsList_isSet] = false;
+    this[_buffer] = new typed_buffer.Uint8Buffer.new();
+    this[_eightBytes] = _native_typed_data.NativeByteData.new(8);
+    this[_eightBytesAsList] = this[_eightBytes][$buffer][$asUint8List]();
+  }).prototype = serialization.WriteBuffer.prototype;
+  dart.addTypeTests(serialization.WriteBuffer);
+  dart.addTypeCaches(serialization.WriteBuffer);
+  dart.setMethodSignature(serialization.WriteBuffer, () => ({
+    __proto__: dart.getMethods(serialization.WriteBuffer.__proto__),
+    putUint8: dart.fnType(dart.void, [core.int]),
+    putUint16: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
+    putUint32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
+    putInt32: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
+    putInt64: dart.fnType(dart.void, [core.int], {endian: dart.nullable(typed_data.Endian)}, {}),
+    putFloat64: dart.fnType(dart.void, [core.double], {endian: dart.nullable(typed_data.Endian)}, {}),
+    putUint8List: dart.fnType(dart.void, [typed_data.Uint8List]),
+    putInt32List: dart.fnType(dart.void, [typed_data.Int32List]),
+    putInt64List: dart.fnType(dart.void, [typed_data.Int64List]),
+    putFloat64List: dart.fnType(dart.void, [typed_data.Float64List]),
+    [_alignTo]: dart.fnType(dart.void, [core.int]),
+    done: dart.fnType(typed_data.ByteData, [])
+  }));
+  dart.setGetterSignature(serialization.WriteBuffer, () => ({
+    __proto__: dart.getGetters(serialization.WriteBuffer.__proto__),
+    [_eightBytesAsList]: typed_data.Uint8List
+  }));
+  dart.setSetterSignature(serialization.WriteBuffer, () => ({
+    __proto__: dart.getSetters(serialization.WriteBuffer.__proto__),
+    [_eightBytesAsList]: typed_data.Uint8List
+  }));
+  dart.setLibraryUri(serialization.WriteBuffer, I[1]);
+  dart.setFieldSignature(serialization.WriteBuffer, () => ({
+    __proto__: dart.getFields(serialization.WriteBuffer.__proto__),
+    [_buffer]: dart.fieldType(dart.nullable(typed_buffer.Uint8Buffer)),
+    [_eightBytes]: dart.finalFieldType(typed_data.ByteData),
+    [__WriteBuffer__eightBytesAsList]: dart.fieldType(dart.nullable(typed_data.Uint8List)),
+    [__WriteBuffer__eightBytesAsList_isSet]: dart.fieldType(core.bool)
+  }));
+  var data$ = dart.privateName(serialization, "ReadBuffer.data");
+  var _position = dart.privateName(serialization, "_position");
+  serialization.ReadBuffer = class ReadBuffer extends core.Object {
+    get data() {
+      return this[data$];
+    }
+    set data(value) {
+      super.data = value;
+    }
+    get hasRemaining() {
+      return dart.notNull(this[_position]) < dart.notNull(this.data[$lengthInBytes]);
+    }
+    getUint8() {
+      let t1;
+      return this.data[$getUint8]((t1 = this[_position], this[_position] = dart.notNull(t1) + 1, t1));
+    }
+    getUint16(opts) {
+      let t1;
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      let value = this.data[$getUint16](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      this[_position] = dart.notNull(this[_position]) + 2;
+      return value;
+    }
+    getUint32(opts) {
+      let t1;
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      let value = this.data[$getUint32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      this[_position] = dart.notNull(this[_position]) + 4;
+      return value;
+    }
+    getInt32(opts) {
+      let t1;
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      let value = this.data[$getInt32](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      this[_position] = dart.notNull(this[_position]) + 4;
+      return value;
+    }
+    getInt64(opts) {
+      let t1;
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      let value = this.data[$getInt64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      this[_position] = dart.notNull(this[_position]) + 8;
+      return value;
+    }
+    getFloat64(opts) {
+      let t1;
+      let endian = opts && 'endian' in opts ? opts.endian : null;
+      this[_alignTo](8);
+      let value = this.data[$getFloat64](this[_position], (t1 = endian, t1 == null ? typed_data.Endian.host : t1));
+      this[_position] = dart.notNull(this[_position]) + 8;
+      return value;
+    }
+    getUint8List(length) {
+      if (length == null) dart.nullFailed(I[0], 161, 30, "length");
+      let list = this.data[$buffer][$asUint8List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
+      this[_position] = dart.notNull(this[_position]) + dart.notNull(length);
+      return list;
+    }
+    getInt32List(length) {
+      if (length == null) dart.nullFailed(I[0], 168, 30, "length");
+      this[_alignTo](4);
+      let list = this.data[$buffer][$asInt32List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
+      this[_position] = dart.notNull(this[_position]) + 4 * dart.notNull(length);
+      return list;
+    }
+    getInt64List(length) {
+      if (length == null) dart.nullFailed(I[0], 176, 30, "length");
+      this[_alignTo](8);
+      let list = this.data[$buffer][$asInt64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
+      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
+      return list;
+    }
+    getFloat64List(length) {
+      if (length == null) dart.nullFailed(I[0], 184, 34, "length");
+      this[_alignTo](8);
+      let list = this.data[$buffer][$asFloat64List](dart.notNull(this.data[$offsetInBytes]) + dart.notNull(this[_position]), length);
+      this[_position] = dart.notNull(this[_position]) + 8 * dart.notNull(length);
+      return list;
+    }
+    [_alignTo](alignment) {
+      if (alignment == null) dart.nullFailed(I[0], 191, 21, "alignment");
+      let mod = this[_position][$modulo](alignment);
+      if (mod !== 0) this[_position] = dart.notNull(this[_position]) + (dart.notNull(alignment) - mod);
+    }
+  };
+  (serialization.ReadBuffer.new = function(data) {
+    if (data == null) dart.nullFailed(I[0], 107, 19, "data");
+    this[_position] = 0;
+    this[data$] = data;
+    if (!(data != null)) dart.assertFailed(null, I[0], 108, 14, "data != null");
+    ;
+  }).prototype = serialization.ReadBuffer.prototype;
+  dart.addTypeTests(serialization.ReadBuffer);
+  dart.addTypeCaches(serialization.ReadBuffer);
+  dart.setMethodSignature(serialization.ReadBuffer, () => ({
+    __proto__: dart.getMethods(serialization.ReadBuffer.__proto__),
+    getUint8: dart.fnType(core.int, []),
+    getUint16: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
+    getUint32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
+    getInt32: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
+    getInt64: dart.fnType(core.int, [], {endian: dart.nullable(typed_data.Endian)}, {}),
+    getFloat64: dart.fnType(core.double, [], {endian: dart.nullable(typed_data.Endian)}, {}),
+    getUint8List: dart.fnType(typed_data.Uint8List, [core.int]),
+    getInt32List: dart.fnType(typed_data.Int32List, [core.int]),
+    getInt64List: dart.fnType(typed_data.Int64List, [core.int]),
+    getFloat64List: dart.fnType(typed_data.Float64List, [core.int]),
+    [_alignTo]: dart.fnType(dart.void, [core.int])
+  }));
+  dart.setGetterSignature(serialization.ReadBuffer, () => ({
+    __proto__: dart.getGetters(serialization.ReadBuffer.__proto__),
+    hasRemaining: core.bool
+  }));
+  dart.setLibraryUri(serialization.ReadBuffer, I[1]);
+  dart.setFieldSignature(serialization.ReadBuffer, () => ({
+    __proto__: dart.getFields(serialization.ReadBuffer.__proto__),
+    data: dart.finalFieldType(typed_data.ByteData),
+    [_position]: dart.fieldType(core.int)
+  }));
+  dart.trackLibraries("packages/flutter/src/foundation/serialization.dart", {
+    "package:flutter/src/foundation/serialization.dart": serialization
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["priority_queue.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/collection/src/priority_queue.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["serialization.dart"],"names":[],"mappings":"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","file":"../../../../../../../../D:/packages/flutter/src/foundation/serialization.dart.lib.js"}');
   // Exports:
   return {
-    src__priority_queue: priority_queue
+    src__foundation__serialization: serialization
   };
 }));
 
-//# sourceMappingURL=priority_queue.dart.lib.js.map
+//# sourceMappingURL=serialization.dart.lib.js.map

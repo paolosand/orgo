@@ -1,29 +1,33 @@
-define(['dart_sdk', 'packages/clock/src/utils.dart'], (function load__packages__clock__src__stopwatch_dart(dart_sdk, packages__clock__src__utils$46dart) {
+define(['dart_sdk', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__priority_queue_dart(dart_sdk, packages__collection__src__utils$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _js_helper = dart_sdk._js_helper;
-  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const utils = packages__clock__src__utils$46dart.src__utils;
-  var stopwatch = Object.create(dart.library);
-  var clock = Object.create(dart.library);
-  var $default = Object.create(dart.library);
-  var clock$ = Object.create(dart.library);
+  const utils = packages__collection__src__utils$46dart.src__utils;
+  var priority_queue = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $take = dartx.take;
+  var $cast = dartx.cast;
+  var $sort = dartx.sort;
+  var $add = dartx.add;
+  var $toString = dartx.toString;
+  var $length = dartx.length;
+  var $isOdd = dartx.isOdd;
+  var $rightShift = dartx['>>'];
+  var $_set = dartx._set;
   var $truncate = dartx.truncate;
-  var $noSuchMethod = dartx.noSuchMethod;
-  var $modulo = dartx['%'];
+  var $setRange = dartx.setRange;
+  var $iterator = dartx.iterator;
   dart._checkModuleNullSafetyMode(false);
-  var T$ = {
-    intN: () => (T$.intN = dart.constFn(dart.nullable(core.int)))(),
-    VoidToDateTime: () => (T$.VoidToDateTime = dart.constFn(dart.fnType(core.DateTime, [])))(),
-    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    LinkedMapOfObjectN$ObjectN: () => (T$.LinkedMapOfObjectN$ObjectN = dart.constFn(_js_helper.LinkedMap$(T$.ObjectN(), T$.ObjectN())))(),
-    ClockN: () => (T$.ClockN = dart.constFn(dart.nullable(clock.Clock)))()
+  var T = {
+    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNAndObjectNToint: () => (T.ObjectNAndObjectNToint = dart.constFn(dart.fnType(core.int, [T.ObjectN(), T.ObjectN()])))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T$);
+  }, T);
   var S = {
     _: () => S
   };
@@ -35,374 +39,418 @@ define(['dart_sdk', 'packages/clock/src/utils.dart'], (function load__packages__
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const(new _js_helper.PrivateSymbol.new('_stop', _stop));
+      return C[0] = dart.fn(utils.defaultCompare, T.ObjectNAndObjectNToint());
     },
     get C1() {
-      return C[1] = dart.const(new _js_helper.PrivateSymbol.new('_start', _start$));
-    },
-    get C2() {
-      return C[2] = dart.const(new _js_helper.PrivateSymbol.new('_stop=', _stop_));
-    },
-    get C3() {
-      return C[3] = dart.const(new _js_helper.PrivateSymbol.new('_start=', _start_));
-    },
-    get C4() {
-      return C[4] = dart.fn(clock$.systemTime, T$.VoidToDateTime());
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: clock.Clock.prototype,
-        [_time]: C[4] || CT.C4
-      });
+      return C[1] = dart.constList([], core.Null);
     }
   }, false);
-  var C = Array(6).fill(void 0);
+  var C = Array(2).fill(void 0);
   var I = [
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/stopwatch.dart",
-    "package:clock/src/stopwatch.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/clock.dart",
-    "package:clock/src/clock.dart",
-    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib/src/default.dart"
+    "package:collection/src/priority_queue.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/src/priority_queue.dart"
   ];
-  var _start = dart.privateName(stopwatch, "ClockStopwatch._start");
-  var _elapsed = dart.privateName(stopwatch, "_elapsed");
-  var _clock$ = dart.privateName(stopwatch, "_clock");
-  var _start$ = dart.privateName(stopwatch, "_start");
-  var _stop = dart.privateName(stopwatch, "_stop");
-  var _stop$ = dart.privateName(core, "_stop");
-  var _start$0 = dart.privateName(core, "_start");
-  var _stop_ = dart.privateName(stopwatch, "_stop=");
-  var _start_ = dart.privateName(stopwatch, "_start=");
-  stopwatch.ClockStopwatch = class ClockStopwatch extends core.Object {
-    get [_start$]() {
-      return this[_start];
+  const _is_PriorityQueue_default = Symbol('_is_PriorityQueue_default');
+  priority_queue.PriorityQueue$ = dart.generic(E => {
+    class PriorityQueue extends core.Object {}
+    (PriorityQueue[dart.mixinNew] = function() {
+    }).prototype = PriorityQueue.prototype;
+    dart.addTypeTests(PriorityQueue);
+    PriorityQueue.prototype[_is_PriorityQueue_default] = true;
+    dart.addTypeCaches(PriorityQueue);
+    dart.setLibraryUri(PriorityQueue, I[0]);
+    return PriorityQueue;
+  });
+  priority_queue.PriorityQueue = priority_queue.PriorityQueue$();
+  dart.addTypeTests(priority_queue.PriorityQueue, _is_PriorityQueue_default);
+  var comparison$ = dart.privateName(priority_queue, "HeapPriorityQueue.comparison");
+  var _queue$ = dart.privateName(priority_queue, "_queue");
+  var _length = dart.privateName(priority_queue, "_length");
+  var _modificationCount = dart.privateName(priority_queue, "_modificationCount");
+  var _elementAt = dart.privateName(priority_queue, "_elementAt");
+  var _add = dart.privateName(priority_queue, "_add");
+  var _locate = dart.privateName(priority_queue, "_locate");
+  var _removeLast = dart.privateName(priority_queue, "_removeLast");
+  var _bubbleUp = dart.privateName(priority_queue, "_bubbleUp");
+  var _bubbleDown = dart.privateName(priority_queue, "_bubbleDown");
+  var _toUnorderedList = dart.privateName(priority_queue, "_toUnorderedList");
+  var _grow = dart.privateName(priority_queue, "_grow");
+  const _is_HeapPriorityQueue_default = Symbol('_is_HeapPriorityQueue_default');
+  priority_queue.HeapPriorityQueue$ = dart.generic(E => {
+    var EN = () => (EN = dart.constFn(dart.nullable(E)))();
+    var ListOfEN = () => (ListOfEN = dart.constFn(core.List$(EN())))();
+    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
+    var _UnorderedElementsIterableOfE = () => (_UnorderedElementsIterableOfE = dart.constFn(priority_queue._UnorderedElementsIterable$(E)))();
+    var SplayTreeSetOfE = () => (SplayTreeSetOfE = dart.constFn(collection.SplayTreeSet$(E)))();
+    var JSArrayOfE = () => (JSArrayOfE = dart.constFn(_interceptors.JSArray$(E)))();
+    class HeapPriorityQueue extends core.Object {
+      get comparison() {
+        return this[comparison$];
+      }
+      set comparison(value) {
+        super.comparison = value;
+      }
+      [_elementAt](index) {
+        let t0;
+        if (index == null) dart.nullFailed(I[1], 207, 20, "index");
+        t0 = this[_queue$][$_get](index);
+        return t0 == null ? E.as(null) : t0;
+      }
+      add(element) {
+        E.as(element);
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        this[_add](element);
+      }
+      addAll(elements) {
+        IterableOfE().as(elements);
+        if (elements == null) dart.nullFailed(I[1], 216, 27, "elements");
+        let modified = 0;
+        for (let element of elements) {
+          modified = 1;
+          this[_add](element);
+        }
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + modified;
+      }
+      clear() {
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+      }
+      contains(object) {
+        E.as(object);
+        return dart.notNull(this[_locate](object)) >= 0;
+      }
+      get unorderedElements() {
+        return new (_UnorderedElementsIterableOfE()).new(this);
+      }
+      get first() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        return this[_elementAt](0);
+      }
+      get isEmpty() {
+        return this[_length] === 0;
+      }
+      get isNotEmpty() {
+        return this[_length] !== 0;
+      }
+      get length() {
+        return this[_length];
+      }
+      remove(element) {
+        let t1, t0;
+        E.as(element);
+        let index = this[_locate](element);
+        if (dart.notNull(index) < 0) return false;
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let last = this[_removeLast]();
+        if (dart.notNull(index) < dart.notNull(this[_length])) {
+          let comp = (t0 = last, t1 = element, this.comparison(t0, t1));
+          if (dart.notNull(comp) <= 0) {
+            this[_bubbleUp](last, index);
+          } else {
+            this[_bubbleDown](last, index);
+          }
+        }
+        return true;
+      }
+      removeAll() {
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let result = this[_queue$];
+        let length = this[_length];
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+        return result[$take](length)[$cast](E);
+      }
+      removeFirst() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        this[_modificationCount] = dart.notNull(this[_modificationCount]) + 1;
+        let result = this[_elementAt](0);
+        let last = this[_removeLast]();
+        if (dart.notNull(this[_length]) > 0) {
+          this[_bubbleDown](last, 0);
+        }
+        return result;
+      }
+      toList() {
+        let t0;
+        t0 = this[_toUnorderedList]();
+        return (() => {
+          t0[$sort](this.comparison);
+          return t0;
+        })();
+      }
+      toSet() {
+        let set = new (SplayTreeSetOfE()).new(this.comparison);
+        for (let i = 0; i < dart.notNull(this[_length]); i = i + 1) {
+          set.add(this[_elementAt](i));
+        }
+        return set;
+      }
+      toUnorderedList() {
+        return this[_toUnorderedList]();
+      }
+      [_toUnorderedList]() {
+        return (() => {
+          let t0 = JSArrayOfE().of([]);
+          for (let i = 0; i < dart.notNull(this[_length]); i = i + 1)
+            t0[$add](this[_elementAt](i));
+          return t0;
+        })();
+      }
+      toString() {
+        return dart.toString(this[_queue$][$take](this[_length]));
+      }
+      [_add](element) {
+        let t1;
+        if (this[_length] == this[_queue$][$length]) this[_grow]();
+        this[_bubbleUp](element, (t1 = this[_length], this[_length] = dart.notNull(t1) + 1, t1));
+      }
+      [_locate](object) {
+        let t2, t1;
+        if (this[_length] === 0) return -1;
+        let position = 1;
+        do {
+          let index = position - 1;
+          let element = this[_elementAt](index);
+          let comp = (t1 = element, t2 = object, this.comparison(t1, t2));
+          if (dart.notNull(comp) <= 0) {
+            if (comp === 0 && dart.equals(element, object)) return index;
+            let leftChildPosition = position * 2;
+            if (leftChildPosition <= dart.notNull(this[_length])) {
+              position = leftChildPosition;
+              continue;
+            }
+          }
+          do {
+            while (position[$isOdd]) {
+              position = position[$rightShift](1);
+            }
+            position = position + 1;
+          } while (position > dart.notNull(this[_length]));
+        } while (position !== 1);
+        return -1;
+      }
+      [_removeLast]() {
+        let newLength = dart.notNull(this[_length]) - 1;
+        let last = this[_elementAt](newLength);
+        this[_queue$][$_set](newLength, null);
+        this[_length] = newLength;
+        return last;
+      }
+      [_bubbleUp](element, index) {
+        let t2, t1;
+        if (index == null) dart.nullFailed(I[1], 396, 33, "index");
+        while (dart.notNull(index) > 0) {
+          let parentIndex = ((dart.notNull(index) - 1) / 2)[$truncate]();
+          let parent = this[_elementAt](parentIndex);
+          if (dart.notNull((t1 = element, t2 = parent, this.comparison(t1, t2))) > 0) break;
+          this[_queue$][$_set](index, parent);
+          index = parentIndex;
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_bubbleDown](element, index) {
+        let t2, t1, t2$, t1$, t2$0, t1$0;
+        if (index == null) dart.nullFailed(I[1], 412, 35, "index");
+        let rightChildIndex = dart.notNull(index) * 2 + 2;
+        while (rightChildIndex < dart.notNull(this[_length])) {
+          let leftChildIndex = rightChildIndex - 1;
+          let leftChild = this[_elementAt](leftChildIndex);
+          let rightChild = this[_elementAt](rightChildIndex);
+          let comp = (t1 = leftChild, t2 = rightChild, this.comparison(t1, t2));
+          let minChildIndex = null;
+          let minChild = null;
+          if (dart.notNull(comp) < 0) {
+            minChild = leftChild;
+            minChildIndex = leftChildIndex;
+          } else {
+            minChild = rightChild;
+            minChildIndex = rightChildIndex;
+          }
+          comp = (t1$ = element, t2$ = minChild, this.comparison(t1$, t2$));
+          if (dart.notNull(comp) <= 0) {
+            this[_queue$][$_set](index, element);
+            return;
+          }
+          this[_queue$][$_set](index, minChild);
+          index = minChildIndex;
+          rightChildIndex = dart.notNull(index) * 2 + 2;
+        }
+        let leftChildIndex = rightChildIndex - 1;
+        if (leftChildIndex < dart.notNull(this[_length])) {
+          let child = this[_elementAt](leftChildIndex);
+          let comp = (t1$0 = element, t2$0 = child, this.comparison(t1$0, t2$0));
+          if (dart.notNull(comp) > 0) {
+            this[_queue$][$_set](index, child);
+            index = leftChildIndex;
+          }
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_grow]() {
+        let newCapacity = dart.notNull(this[_queue$][$length]) * 2 + 1;
+        if (newCapacity < 7) newCapacity = 7;
+        let newQueue = ListOfEN().filled(newCapacity, null);
+        newQueue[$setRange](0, this[_length], this[_queue$]);
+        this[_queue$] = newQueue;
+      }
     }
-    set [_start$](value) {
-      this[_start] = value;
-    }
-    get frequency() {
-      return stopwatch._frequency;
-    }
-    get elapsedTicks() {
-      return (dart.notNull(this.elapsedMicroseconds) * dart.notNull(this.frequency) / 1000000)[$truncate]();
-    }
-    get elapsed() {
-      return new core.Duration.new({microseconds: this.elapsedMicroseconds});
-    }
-    get elapsedMilliseconds() {
-      return (dart.notNull(this.elapsedMicroseconds) / 1000)[$truncate]();
-    }
-    get isRunning() {
-      return this[_start$] != null;
-    }
-    get elapsedMicroseconds() {
-      return dart.notNull(this[_elapsed]) + dart.notNull(this[_start$] == null ? 0 : this[_clock$].now().difference(dart.nullCheck(this[_start$])).inMicroseconds);
-    }
-    start() {
-      this[_start$] == null ? this[_start$] = this[_clock$].now() : null;
-    }
-    stop() {
-      this[_elapsed] = this.elapsedMicroseconds;
-      this[_start$] = null;
-    }
-    reset() {
-      this[_elapsed] = 0;
-      if (this[_start$] != null) this[_start$] = this[_clock$].now();
-    }
-    get [_stop$]() {
-      return T$.intN().as(this[$noSuchMethod](new core._Invocation.getter(C[0] || CT.C0)));
-    }
-    get [_start$0]() {
-      return core.int.as(this[$noSuchMethod](new core._Invocation.getter(C[1] || CT.C1)));
-    }
-    set [_stop$](value) {
-      return this[$noSuchMethod](new core._Invocation.setter(C[2] || CT.C2, value));
-    }
-    set [_start$0](value) {
-      if (value == null) dart.nullFailed(I[0], 25, 7, "value");
-      return this[$noSuchMethod](new core._Invocation.setter(C[3] || CT.C3, value));
-    }
-  };
-  (stopwatch.ClockStopwatch.new = function(_clock) {
-    if (_clock == null) dart.nullFailed(I[0], 39, 23, "_clock");
-    this[_elapsed] = 0;
-    this[_start] = null;
-    this[_clock$] = _clock;
-    ;
-  }).prototype = stopwatch.ClockStopwatch.prototype;
-  dart.addTypeTests(stopwatch.ClockStopwatch);
-  dart.addTypeCaches(stopwatch.ClockStopwatch);
-  stopwatch.ClockStopwatch[dart.implements] = () => [core.Stopwatch];
-  dart.setMethodSignature(stopwatch.ClockStopwatch, () => ({
-    __proto__: dart.getMethods(stopwatch.ClockStopwatch.__proto__),
-    start: dart.fnType(dart.void, []),
-    stop: dart.fnType(dart.void, []),
-    reset: dart.fnType(dart.void, [])
-  }));
-  dart.setGetterSignature(stopwatch.ClockStopwatch, () => ({
-    __proto__: dart.getGetters(stopwatch.ClockStopwatch.__proto__),
-    frequency: core.int,
-    elapsedTicks: core.int,
-    elapsed: core.Duration,
-    elapsedMilliseconds: core.int,
-    isRunning: core.bool,
-    elapsedMicroseconds: core.int,
-    [_stop$]: dart.nullable(core.int),
-    [_start$0]: core.int
-  }));
-  dart.setSetterSignature(stopwatch.ClockStopwatch, () => ({
-    __proto__: dart.getSetters(stopwatch.ClockStopwatch.__proto__),
-    [_stop$]: dart.nullable(core.int),
-    [_start$0]: core.int
-  }));
-  dart.setLibraryUri(stopwatch.ClockStopwatch, I[1]);
-  dart.setFieldSignature(stopwatch.ClockStopwatch, () => ({
-    __proto__: dart.getFields(stopwatch.ClockStopwatch.__proto__),
-    [_clock$]: dart.finalFieldType(clock.Clock),
-    [_elapsed]: dart.fieldType(core.int),
-    [_start$]: dart.fieldType(dart.nullable(core.DateTime))
-  }));
-  dart.defineLazy(stopwatch, {
-    /*stopwatch._frequency*/get _frequency() {
-      return new core.Stopwatch.new().frequency;
-    }
-  }, false);
-  var _time = dart.privateName(clock, "Clock._time");
-  var _time$ = dart.privateName(clock, "_time");
-  clock.Clock = class Clock extends core.Object {
-    get [_time$]() {
-      return this[_time];
-    }
-    set [_time$](value) {
-      super[_time$] = value;
-    }
-    now() {
-      return this[_time$]();
-    }
-    agoBy(duration) {
-      if (duration == null) dart.nullFailed(I[2], 47, 27, "duration");
-      return this.now().subtract(duration);
-    }
-    fromNowBy(duration) {
-      if (duration == null) dart.nullFailed(I[2], 50, 31, "duration");
-      return this.now().add(duration);
-    }
-    ago(opts) {
-      let days = opts && 'days' in opts ? opts.days : 0;
-      if (days == null) dart.nullFailed(I[2], 56, 16, "days");
-      let hours = opts && 'hours' in opts ? opts.hours : 0;
-      if (hours == null) dart.nullFailed(I[2], 57, 15, "hours");
-      let minutes = opts && 'minutes' in opts ? opts.minutes : 0;
-      if (minutes == null) dart.nullFailed(I[2], 58, 15, "minutes");
-      let seconds = opts && 'seconds' in opts ? opts.seconds : 0;
-      if (seconds == null) dart.nullFailed(I[2], 59, 15, "seconds");
-      let milliseconds = opts && 'milliseconds' in opts ? opts.milliseconds : 0;
-      if (milliseconds == null) dart.nullFailed(I[2], 60, 15, "milliseconds");
-      let microseconds = opts && 'microseconds' in opts ? opts.microseconds : 0;
-      if (microseconds == null) dart.nullFailed(I[2], 61, 15, "microseconds");
-      return this.agoBy(new core.Duration.new({days: days, hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds, microseconds: microseconds}));
-    }
-    fromNow(opts) {
-      let days = opts && 'days' in opts ? opts.days : 0;
-      if (days == null) dart.nullFailed(I[2], 74, 16, "days");
-      let hours = opts && 'hours' in opts ? opts.hours : 0;
-      if (hours == null) dart.nullFailed(I[2], 75, 15, "hours");
-      let minutes = opts && 'minutes' in opts ? opts.minutes : 0;
-      if (minutes == null) dart.nullFailed(I[2], 76, 15, "minutes");
-      let seconds = opts && 'seconds' in opts ? opts.seconds : 0;
-      if (seconds == null) dart.nullFailed(I[2], 77, 15, "seconds");
-      let milliseconds = opts && 'milliseconds' in opts ? opts.milliseconds : 0;
-      if (milliseconds == null) dart.nullFailed(I[2], 78, 15, "milliseconds");
-      let microseconds = opts && 'microseconds' in opts ? opts.microseconds : 0;
-      if (microseconds == null) dart.nullFailed(I[2], 79, 15, "microseconds");
-      return this.fromNowBy(new core.Duration.new({days: days, hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds, microseconds: microseconds}));
-    }
-    microsAgo(microseconds) {
-      if (microseconds == null) dart.nullFailed(I[2], 89, 26, "microseconds");
-      return this.ago({microseconds: microseconds});
-    }
-    microsFromNow(microseconds) {
-      if (microseconds == null) dart.nullFailed(I[2], 92, 30, "microseconds");
-      return this.fromNow({microseconds: microseconds});
-    }
-    millisAgo(milliseconds) {
-      if (milliseconds == null) dart.nullFailed(I[2], 96, 26, "milliseconds");
-      return this.ago({milliseconds: milliseconds});
-    }
-    millisFromNow(milliseconds) {
-      if (milliseconds == null) dart.nullFailed(I[2], 99, 30, "milliseconds");
-      return this.fromNow({milliseconds: milliseconds});
-    }
-    secondsAgo(seconds) {
-      if (seconds == null) dart.nullFailed(I[2], 103, 27, "seconds");
-      return this.ago({seconds: seconds});
-    }
-    secondsFromNow(seconds) {
-      if (seconds == null) dart.nullFailed(I[2], 106, 31, "seconds");
-      return this.fromNow({seconds: seconds});
-    }
-    minutesAgo(minutes) {
-      if (minutes == null) dart.nullFailed(I[2], 109, 27, "minutes");
-      return this.ago({minutes: minutes});
-    }
-    minutesFromNow(minutes) {
-      if (minutes == null) dart.nullFailed(I[2], 112, 31, "minutes");
-      return this.fromNow({minutes: minutes});
-    }
-    hoursAgo(hours) {
-      if (hours == null) dart.nullFailed(I[2], 115, 25, "hours");
-      return this.ago({hours: hours});
-    }
-    hoursFromNow(hours) {
-      if (hours == null) dart.nullFailed(I[2], 118, 29, "hours");
-      return this.fromNow({hours: hours});
-    }
-    daysAgo(days) {
-      if (days == null) dart.nullFailed(I[2], 121, 24, "days");
-      return this.ago({days: days});
-    }
-    daysFromNow(days) {
-      if (days == null) dart.nullFailed(I[2], 124, 28, "days");
-      return this.fromNow({days: days});
-    }
-    weeksAgo(weeks) {
-      if (weeks == null) dart.nullFailed(I[2], 127, 25, "weeks");
-      return this.ago({days: 7 * dart.notNull(weeks)});
-    }
-    weeksFromNow(weeks) {
-      if (weeks == null) dart.nullFailed(I[2], 130, 29, "weeks");
-      return this.fromNow({days: 7 * dart.notNull(weeks)});
-    }
-    monthsAgo(months) {
-      if (months == null) dart.nullFailed(I[2], 136, 26, "months");
-      let time = this.now();
-      let month = (dart.notNull(time.month) - dart.notNull(months) - 1)[$modulo](12) + 1;
-      let year = dart.notNull(time.year) - ((dart.notNull(months) + 12 - dart.notNull(time.month)) / 12)[$truncate]();
-      let day = utils.clampDayOfMonth({year: year, month: month, day: time.day});
-      return new core.DateTime.new(year, month, day, time.hour, time.minute, time.second, time.millisecond);
-    }
-    monthsFromNow(months) {
-      if (months == null) dart.nullFailed(I[2], 149, 30, "months");
-      let time = this.now();
-      let month = (dart.notNull(time.month) + dart.notNull(months) - 1)[$modulo](12) + 1;
-      let year = dart.notNull(time.year) + ((dart.notNull(months) + dart.notNull(time.month) - 1) / 12)[$truncate]();
-      let day = utils.clampDayOfMonth({year: year, month: month, day: time.day});
-      return new core.DateTime.new(year, month, day, time.hour, time.minute, time.second, time.millisecond);
-    }
-    yearsAgo(years) {
-      if (years == null) dart.nullFailed(I[2], 162, 25, "years");
-      let time = this.now();
-      let year = dart.notNull(time.year) - dart.notNull(years);
-      let day = utils.clampDayOfMonth({year: year, month: time.month, day: time.day});
-      return new core.DateTime.new(year, time.month, day, time.hour, time.minute, time.second, time.millisecond);
-    }
-    yearsFromNow(years) {
-      if (years == null) dart.nullFailed(I[2], 174, 29, "years");
-      return this.yearsAgo(-dart.notNull(years));
-    }
-    stopwatch() {
-      return new stopwatch.ClockStopwatch.new(this);
-    }
-    getStopwatch() {
-      return this.stopwatch();
-    }
-  };
-  (clock.Clock.new = function(currentTime = C[4] || CT.C4) {
-    if (currentTime == null) dart.nullFailed(I[2], 37, 36, "currentTime");
-    this[_time] = currentTime;
-    ;
-  }).prototype = clock.Clock.prototype;
-  (clock.Clock.fixed = function(time) {
-    if (time == null) dart.nullFailed(I[2], 41, 24, "time");
-    this[_time] = dart.fn(() => time, T$.VoidToDateTime());
-    ;
-  }).prototype = clock.Clock.prototype;
-  dart.addTypeTests(clock.Clock);
-  dart.addTypeCaches(clock.Clock);
-  dart.setMethodSignature(clock.Clock, () => ({
-    __proto__: dart.getMethods(clock.Clock.__proto__),
-    now: dart.fnType(core.DateTime, []),
-    agoBy: dart.fnType(core.DateTime, [core.Duration]),
-    fromNowBy: dart.fnType(core.DateTime, [core.Duration]),
-    ago: dart.fnType(core.DateTime, [], {days: core.int, hours: core.int, microseconds: core.int, milliseconds: core.int, minutes: core.int, seconds: core.int}, {}),
-    fromNow: dart.fnType(core.DateTime, [], {days: core.int, hours: core.int, microseconds: core.int, milliseconds: core.int, minutes: core.int, seconds: core.int}, {}),
-    microsAgo: dart.fnType(core.DateTime, [core.int]),
-    microsFromNow: dart.fnType(core.DateTime, [core.int]),
-    millisAgo: dart.fnType(core.DateTime, [core.int]),
-    millisFromNow: dart.fnType(core.DateTime, [core.int]),
-    secondsAgo: dart.fnType(core.DateTime, [core.int]),
-    secondsFromNow: dart.fnType(core.DateTime, [core.int]),
-    minutesAgo: dart.fnType(core.DateTime, [core.int]),
-    minutesFromNow: dart.fnType(core.DateTime, [core.int]),
-    hoursAgo: dart.fnType(core.DateTime, [core.int]),
-    hoursFromNow: dart.fnType(core.DateTime, [core.int]),
-    daysAgo: dart.fnType(core.DateTime, [core.int]),
-    daysFromNow: dart.fnType(core.DateTime, [core.int]),
-    weeksAgo: dart.fnType(core.DateTime, [core.int]),
-    weeksFromNow: dart.fnType(core.DateTime, [core.int]),
-    monthsAgo: dart.fnType(core.DateTime, [core.int]),
-    monthsFromNow: dart.fnType(core.DateTime, [core.int]),
-    yearsAgo: dart.fnType(core.DateTime, [core.int]),
-    yearsFromNow: dart.fnType(core.DateTime, [core.int]),
-    stopwatch: dart.fnType(core.Stopwatch, []),
-    getStopwatch: dart.fnType(core.Stopwatch, [])
-  }));
-  dart.setLibraryUri(clock.Clock, I[3]);
-  dart.setFieldSignature(clock.Clock, () => ({
-    __proto__: dart.getFields(clock.Clock.__proto__),
-    [_time$]: dart.finalFieldType(dart.fnType(core.DateTime, []))
-  }));
-  $default.withClock = function withClock(T, clock, callback, opts) {
-    let t0;
-    if (clock == null) dart.nullFailed(I[4], 41, 22, "clock");
-    if (callback == null) dart.nullFailed(I[4], 41, 42, "callback");
-    let isFinal = opts && 'isFinal' in opts ? opts.isFinal : false;
-    if (isFinal == null) dart.nullFailed(I[4], 42, 23, "isFinal");
-    if (dart.equals((t0 = async.Zone.current._get($default._isFinalKey), t0 == null ? false : t0), true)) {
-      dart.throw(new core.StateError.new("Cannot call withClock() within a call to withClock(isFinal = true)."));
-    }
-    return async.runZoned(T, callback, {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([$default._clockKey, clock, $default._isFinalKey, isFinal])});
-  };
-  dart.copyProperties($default, {
-    get clock() {
+    (HeapPriorityQueue.new = function(comparison = null) {
       let t0;
-      t0 = T$.ClockN().as(async.Zone.current._get($default._clockKey));
-      return t0 == null ? C[5] || CT.C5 : t0;
-    }
+      this[_queue$] = ListOfEN().filled(7, null);
+      this[_length] = 0;
+      this[_modificationCount] = 0;
+      this[comparison$] = (t0 = comparison, t0 == null ? C[0] || CT.C0 : t0);
+      ;
+    }).prototype = HeapPriorityQueue.prototype;
+    dart.addTypeTests(HeapPriorityQueue);
+    HeapPriorityQueue.prototype[_is_HeapPriorityQueue_default] = true;
+    dart.addTypeCaches(HeapPriorityQueue);
+    HeapPriorityQueue[dart.implements] = () => [priority_queue.PriorityQueue$(E)];
+    dart.setMethodSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getMethods(HeapPriorityQueue.__proto__),
+      [_elementAt]: dart.fnType(E, [core.int]),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      clear: dart.fnType(dart.void, []),
+      contains: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      remove: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      removeAll: dart.fnType(core.Iterable$(E), []),
+      removeFirst: dart.fnType(E, []),
+      toList: dart.fnType(core.List$(E), []),
+      toSet: dart.fnType(core.Set$(E), []),
+      toUnorderedList: dart.fnType(core.List$(E), []),
+      [_toUnorderedList]: dart.fnType(core.List$(E), []),
+      [_add]: dart.fnType(dart.void, [E]),
+      [_locate]: dart.fnType(core.int, [E]),
+      [_removeLast]: dart.fnType(E, []),
+      [_bubbleUp]: dart.fnType(dart.void, [E, core.int]),
+      [_bubbleDown]: dart.fnType(dart.void, [E, core.int]),
+      [_grow]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getGetters(HeapPriorityQueue.__proto__),
+      unorderedElements: core.Iterable$(E),
+      first: E,
+      isEmpty: core.bool,
+      isNotEmpty: core.bool,
+      length: core.int
+    }));
+    dart.setLibraryUri(HeapPriorityQueue, I[0]);
+    dart.setFieldSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getFields(HeapPriorityQueue.__proto__),
+      comparison: dart.finalFieldType(dart.fnType(core.int, [E, E])),
+      [_queue$]: dart.fieldType(core.List$(dart.nullable(E))),
+      [_length]: dart.fieldType(core.int),
+      [_modificationCount]: dart.fieldType(core.int)
+    }));
+    dart.defineExtensionMethods(HeapPriorityQueue, ['toString']);
+    return HeapPriorityQueue;
   });
-  dart.defineLazy($default, {
-    /*$default._clockKey*/get _clockKey() {
-      return new core.Object.new();
-    },
-    /*$default._isFinalKey*/get _isFinalKey() {
-      return new core.Object.new();
+  priority_queue.HeapPriorityQueue = priority_queue.HeapPriorityQueue$();
+  dart.defineLazy(priority_queue.HeapPriorityQueue, {
+    /*priority_queue.HeapPriorityQueue._INITIAL_CAPACITY*/get _INITIAL_CAPACITY() {
+      return 7;
     }
   }, false);
-  clock$.systemTime = function systemTime() {
-    return new core.DateTime.now();
-  };
-  clock$.getStopwatch = function getStopwatch() {
-    return $default.clock.stopwatch();
-  };
-  dart.copyProperties(clock$, {
-    get now() {
-      return $default.clock.now();
+  dart.addTypeTests(priority_queue.HeapPriorityQueue, _is_HeapPriorityQueue_default);
+  const _is__UnorderedElementsIterable_default = Symbol('_is__UnorderedElementsIterable_default');
+  priority_queue._UnorderedElementsIterable$ = dart.generic(E => {
+    var _UnorderedElementsIteratorOfE = () => (_UnorderedElementsIteratorOfE = dart.constFn(priority_queue._UnorderedElementsIterator$(E)))();
+    class _UnorderedElementsIterable extends core.Iterable$(E) {
+      get iterator() {
+        return new (_UnorderedElementsIteratorOfE()).new(this[_queue$]);
+      }
     }
+    (_UnorderedElementsIterable.new = function(_queue) {
+      if (_queue == null) dart.nullFailed(I[1], 464, 35, "_queue");
+      this[_queue$] = _queue;
+      _UnorderedElementsIterable.__proto__.new.call(this);
+      ;
+    }).prototype = _UnorderedElementsIterable.prototype;
+    dart.addTypeTests(_UnorderedElementsIterable);
+    _UnorderedElementsIterable.prototype[_is__UnorderedElementsIterable_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterable);
+    dart.setGetterSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterable.__proto__),
+      iterator: core.Iterator$(E),
+      [$iterator]: core.Iterator$(E)
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterable, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterable.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E))
+    }));
+    dart.defineExtensionAccessors(_UnorderedElementsIterable, ['iterator']);
+    return _UnorderedElementsIterable;
   });
-  dart.trackLibraries("packages/clock/src/stopwatch.dart", {
-    "package:clock/src/stopwatch.dart": stopwatch,
-    "package:clock/src/clock.dart": clock,
-    "package:clock/src/default.dart": $default,
-    "package:clock/clock.dart": clock$
+  priority_queue._UnorderedElementsIterable = priority_queue._UnorderedElementsIterable$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterable, _is__UnorderedElementsIterable_default);
+  var _current = dart.privateName(priority_queue, "_current");
+  var _index = dart.privateName(priority_queue, "_index");
+  var _initialModificationCount = dart.privateName(priority_queue, "_initialModificationCount");
+  const _is__UnorderedElementsIterator_default = Symbol('_is__UnorderedElementsIterator_default');
+  priority_queue._UnorderedElementsIterator$ = dart.generic(E => {
+    class _UnorderedElementsIterator extends core.Object {
+      moveNext() {
+        if (this[_initialModificationCount] != this[_queue$][_modificationCount]) {
+          dart.throw(new core.ConcurrentModificationError.new(this[_queue$]));
+        }
+        let nextIndex = dart.notNull(this[_index]) + 1;
+        if (0 <= nextIndex && nextIndex < dart.notNull(this[_queue$].length)) {
+          this[_current] = this[_queue$][_queue$][$_get](nextIndex);
+          this[_index] = nextIndex;
+          return true;
+        }
+        this[_current] = null;
+        this[_index] = -2;
+        return false;
+      }
+      get current() {
+        let t1;
+        return dart.notNull(this[_index]) < 0 ? dart.throw(new core.StateError.new("No element")) : (t1 = this[_current], t1 == null ? E.as(null) : t1);
+      }
+    }
+    (_UnorderedElementsIterator.new = function(_queue) {
+      if (_queue == null) dart.nullFailed(I[1], 475, 35, "_queue");
+      this[_current] = null;
+      this[_index] = -1;
+      this[_queue$] = _queue;
+      this[_initialModificationCount] = _queue[_modificationCount];
+      ;
+    }).prototype = _UnorderedElementsIterator.prototype;
+    dart.addTypeTests(_UnorderedElementsIterator);
+    _UnorderedElementsIterator.prototype[_is__UnorderedElementsIterator_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterator);
+    _UnorderedElementsIterator[dart.implements] = () => [core.Iterator$(E)];
+    dart.setMethodSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getMethods(_UnorderedElementsIterator.__proto__),
+      moveNext: dart.fnType(core.bool, [])
+    }));
+    dart.setGetterSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterator.__proto__),
+      current: E
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterator, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterator.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E)),
+      [_initialModificationCount]: dart.finalFieldType(core.int),
+      [_current]: dart.fieldType(dart.nullable(E)),
+      [_index]: dart.fieldType(core.int)
+    }));
+    return _UnorderedElementsIterator;
+  });
+  priority_queue._UnorderedElementsIterator = priority_queue._UnorderedElementsIterator$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterator, _is__UnorderedElementsIterator_default);
+  dart.trackLibraries("packages/collection/src/priority_queue.dart", {
+    "package:collection/src/priority_queue.dart": priority_queue
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["stopwatch.dart","clock.dart","default.dart","../clock.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAoCY;;;;;;;AAKW;IAAU;;AAEP,YAAkC,EAAb,aAApB,yCAAsB,kBAAc;IAAO;;AAE5C,kDAAuB;IAAoB;;AAEpC,YAAoB,eAApB,4BAAuB;IAAI;;AAEpC,YAAA,AAAO;IAAO;;AAIhC,YAAS,cAAT,+BACC,AAAO,wBAAU,IAAI,AAAO,AAAM,AAAoB,+BAAH,eAAN;IAAwB;;AAIjD,MAAhB,wBAAP,gBAAW,AAAO,sBAAX;IACT;;AAIgC,MAA9B,iBAAW;AACE,MAAb,gBAAS;IACX;;AAIc,MAAZ,iBAAW;AACX,UAAI,AAAO,uBAAS,AAAqB,gBAAZ,AAAO;IACtC;;;;;;;;;;;;;;;;QAjCoB;IANhB,iBAAW;IAIL;IAEU;;EAAO;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAjBvB,oBAAU;YAAG,AAAY;;;;;;ICUH;;;;;;;AAYR,YAAA,AAAK;IAAE;;UAGD;AAAa,YAAA,AAAM,qBAAS,QAAQ;IAAC;;UAGjC;AAAa,YAAA,AAAM,gBAAI,QAAQ;IAAC;;UAM/C;;UACD;;UACA;;UACA;;UACA;;UACA;;AACR,wBAAM,6BACI,IAAI,SACH,KAAK,WACH,OAAO,WACP,OAAO,gBACF,YAAY,gBACZ,YAAY;IAAE;;UAMvB;;UACD;;UACA;;UACA;;UACA;;UACA;;AACR,4BAAU,6BACA,IAAI,SACH,KAAK,WACH,OAAO,WACP,OAAO,gBACF,YAAY,gBACZ,YAAY;IAAE;;UAGb;AAAiB,qCAAkB,YAAY;IAAC;;UAG5C;AACvB,yCAAsB,YAAY;IAAC;;UAGhB;AAAiB,qCAAkB,YAAY;IAAC;;UAG5C;AACvB,yCAAsB,YAAY;IAAC;;UAGf;AAAY,gCAAa,OAAO;IAAC;;UAG7B;AAAY,oCAAiB,OAAO;IAAC;;UAGzC;AAAY,gCAAa,OAAO;IAAC;;UAG7B;AAAY,oCAAiB,OAAO;IAAC;;UAG3C;AAAU,8BAAW,KAAK;IAAC;;UAGvB;AAAU,kCAAe,KAAK;IAAC;;UAGpC;AAAS,6BAAU,IAAI;IAAC;;UAGpB;AAAS,iCAAc,IAAI;IAAC;;UAG/B;AAAU,6BAAU,AAAE,iBAAE,KAAK;IAAC;;UAG1B;AAAU,iCAAc,AAAE,iBAAE,KAAK;IAAC;;UAMrC;AACjB,iBAAO;AACP,kBAAkC,AAAK,CAAnB,AAAS,aAApB,AAAK,IAAD,uBAAS,MAAM,IAAG,YAAK,MAAK;AACzC,iBAAiB,aAAV,AAAK,IAAD,SAAmC,EAAnB,AAAK,aAAZ,MAAM,IAAG,kBAAK,AAAK,IAAD,WAAW;AACjD,gBAAM,6BAAsB,IAAI,SAAS,KAAK,OAAO,AAAK,IAAD;AAC7D,YAAO,uBAAS,IAAI,EAAE,KAAK,EAAE,GAAG,EAAE,AAAK,IAAD,OAAO,AAAK,IAAD,SAAS,AAAK,IAAD,SAC1D,AAAK,IAAD;IACV;;UAM2B;AACrB,iBAAO;AACP,kBAAkC,AAAK,CAAnB,AAAS,aAApB,AAAK,IAAD,uBAAS,MAAM,IAAG,YAAK,MAAK;AACzC,iBAAiB,aAAV,AAAK,IAAD,SAAkC,EAAlB,AAAa,aAApB,MAAM,iBAAG,AAAK,IAAD,UAAS,KAAM;AAChD,gBAAM,6BAAsB,IAAI,SAAS,KAAK,OAAO,AAAK,IAAD;AAC7D,YAAO,uBAAS,IAAI,EAAE,KAAK,EAAE,GAAG,EAAE,AAAK,IAAD,OAAO,AAAK,IAAD,SAAS,AAAK,IAAD,SAC1D,AAAK,IAAD;IACV;;UAMsB;AAChB,iBAAO;AACP,iBAAiB,aAAV,AAAK,IAAD,sBAAQ,KAAK;AACxB,gBAAM,6BAAsB,IAAI,SAAS,AAAK,IAAD,aAAa,AAAK,IAAD;AAClE,YAAO,uBAAS,IAAI,EAAE,AAAK,IAAD,QAAQ,GAAG,EAAE,AAAK,IAAD,OAAO,AAAK,IAAD,SAAS,AAAK,IAAD,SAC/D,AAAK,IAAD;IACV;;UAM0B;AAAU,2BAAS,cAAC,KAAK;IAAC;;AAG3B,8CAAe;IAAK;;AAIjB;IAAW;;;QAhJN;IACrB,cAAE,WAAW;;;;QAGJ;IAAc,cAAG,cAAM,IAAI;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6CCA9B,OAAoB;;QAApB;QAAoB;QACnB;;AACpB,QAAyC,aAAV,KAArB,AAAO,wBAAC,uBAAD,aAAiB,aAAU;AAEgC,MAD1E,WAAM,wBACF;;AAGN,UAAO,mBAAS,QAAQ,eACR,4CAAC,oBAAW,KAAK,EAAE,sBAAa,OAAO;EACzD;;;;AAnBmB,WAAwB,eAAnB,AAAO,wBAAC;YAAW;IAA0B;;;MAV/D,kBAAS;YAAG;;MAIZ,oBAAW;YAAG;;;;ACCK,UAAS;EAAK;;AAQX,UAAA,AAAM;EAAW;;;AAJzB,YAAA,AAAM;IAAK","file":"../../../../../../../../../D:/packages/clock/src/stopwatch.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["priority_queue.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../D:/packages/collection/src/priority_queue.dart.lib.js"}');
   // Exports:
   return {
-    src__stopwatch: stopwatch,
-    src__clock: clock,
-    src__default: $default,
-    clock: clock$
+    src__priority_queue: priority_queue
   };
 }));
 
-//# sourceMappingURL=stopwatch.dart.lib.js.map
+//# sourceMappingURL=priority_queue.dart.lib.js.map

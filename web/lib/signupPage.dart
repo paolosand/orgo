@@ -58,14 +58,24 @@ class _SignupPageState extends State<SignupPage> {
       print(auth.currentUser.uid);
       Future<void> addUser() {
         // Call the user's CollectionReference to add a new user
+        users
+        .doc('notifications')
+        .set({
+          'data' : [],
+          'data_count' : 0,
+          'title_list' : []
+        })
+        .then((value) => print("User Notification data Added"))
+        .catchError((error) => print("Failed to add user notification data: $error"));
+
         return users
-            .doc('profiles')
-            .set({
-              'profile_count' : 0,
-              'profile_names' : []
-            })
-            .then((value) => print("User Added"))
-            .catchError((error) => print("Failed to add user: $error"));
+          .doc('profiles')
+          .set({
+            'profile_count' : 0,
+            'profile_names' : []
+          })
+          .then((value) => print("User Added"))
+          .catchError((error) => print("Failed to add user: $error"));
       }
 
       addUser();
