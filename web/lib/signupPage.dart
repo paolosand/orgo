@@ -59,7 +59,7 @@ class _SignupPageState extends State<SignupPage> {
       Future<void> addUser() {
         // Call the user's CollectionReference to add a new user
         users
-        .doc('notifcations')
+        .doc('notifications')
         .set({
           'data' : [],
           'data_count' : 0,
