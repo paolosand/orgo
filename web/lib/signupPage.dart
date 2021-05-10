@@ -12,7 +12,6 @@ class _SignupPageState extends State<SignupPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FirebaseAuth auth = FirebaseAuth.instance;
 
-
   //not sure kung pano ideal way nito sorry
   bool _obscureText1 = true;
   bool _obscureText2 = true;
@@ -49,54 +48,46 @@ class _SignupPageState extends State<SignupPage> {
   void signup(String email, String password) async {
     try {
       await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password
-      );
+          email: email, password: password);
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success!')));
-      CollectionReference users = FirebaseFirestore.instance.collection(auth.currentUser.uid);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Success!')));
+      CollectionReference users =
+          FirebaseFirestore.instance.collection(auth.currentUser.uid);
       print(auth.currentUser.uid);
       Future<void> addUser() {
         // Call the user's CollectionReference to add a new user
         users
-        .doc('notifications')
-        .set({
-          'data' : [],
-          'data_count' : 0,
-          'title_list' : []
-        })
-        .then((value) => print("User Notification data Added"))
-        .catchError((error) => print("Failed to add user notification data: $error"));
+            .doc('notifications')
+            .set({'data': [], 'data_count': 0, 'title_list': []})
+            .then((value) => print("User Notification data Added"))
+            .catchError((error) =>
+                print("Failed to add user notification data: $error"));
 
         return users
-          .doc('profiles')
-          .set({
-            'profile_count' : 0,
-            'profile_names' : []
-          })
-          .then((value) => print("User Added"))
-          .catchError((error) => print("Failed to add user: $error"));
+            .doc('profiles')
+            .set({'profile_count': 0, 'profile_names': []})
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
       }
 
       addUser();
 
-      await new Future.delayed(const Duration(seconds : 5));
+      await new Future.delayed(const Duration(seconds: 5));
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('The password provided is too weak.')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('The password provided is too weak.')));
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('The account already exists for that email.')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('The account already exists for that email.')));
       }
     } catch (e) {
       print(e);
     }
-
-    
-    
-    
   }
 
   @override
@@ -135,7 +126,7 @@ class _SignupPageState extends State<SignupPage> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Email",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -144,7 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                           email = value;
                           return null;
                         },
-                        onChanged: (text){
+                        onChanged: (text) {
                           email = text;
                         },
                       ),
@@ -165,7 +156,7 @@ class _SignupPageState extends State<SignupPage> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -174,15 +165,16 @@ class _SignupPageState extends State<SignupPage> {
                           password = value;
                           return null;
                         },
-                        onChanged: (text){
+                        onChanged: (text) {
                           password = text;
                         },
                       ),
-                      trailing: TextButton(
+                      trailing: IconButton(
                         onPressed: () {
                           _toggle1();
                         },
-                        child: _pwIcon(_obscureText1),
+                        tooltip: "Show/Hide Password",
+                        icon: _pwIcon(_obscureText1),
                       ),
                     ),
                   ),
@@ -201,7 +193,7 @@ class _SignupPageState extends State<SignupPage> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Confirm Password",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -211,11 +203,12 @@ class _SignupPageState extends State<SignupPage> {
                           return null;
                         },
                       ),
-                      trailing: TextButton(
+                      trailing: IconButton(
                         onPressed: () {
                           _toggle2();
                         },
-                        child: _pwIcon(_obscureText2),
+                        tooltip: "Show/Hide Password",
+                        icon: _pwIcon(_obscureText2),
                       ),
                     ),
                   ),
@@ -230,12 +223,14 @@ class _SignupPageState extends State<SignupPage> {
                   color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  if (_formKey.currentState.validate() && (password == confirmpass)) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Signing Up')));
+                  if (_formKey.currentState.validate() &&
+                      (password == confirmpass)) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Signing Up')));
                     signup(email, password);
-                  }
-                  else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Passwords do not match')));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Passwords do not match')));
                   }
                 },
                 child: Text(
