@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:encrypt/encrypt.dart' as en;
 import 'package:schedulers/schedulers.dart';
 import 'package:date_field/date_field.dart';
+import 'package:flutter/services.dart';
 
 // A constant body textstyle used in the view account popup
 const TextStyle kViewBody =
@@ -40,11 +41,11 @@ class _MainProfileState extends State<MainProfile> {
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
 
-  double panelOpacity =
-      0.0; // to change panel opacity based on how much the panel is opened
+  // to change panel opacity based on how much the panel is opened
+  double panelOpacity = 0.0;
 
-  bool isParent =
-      true; // hide stuff if parent login. idk pano nagana baka pwede galing sa database kung student o parent haha
+  // hide stuff if parent login. important to change
+  bool isParent = false;
 
   // function to call for encrypting plaintext password into cipher text (for saving in database)
   en.Encrypted encryptPass(String password) {
@@ -1030,6 +1031,91 @@ class _MainProfileState extends State<MainProfile> {
     deleteNotification(notifTitle);
   }
 
+  //function to call to view UID
+  Future<void> viewUIDPopup() async {
+    // insert uid from database here
+    String uid = "0018394971398";
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          backgroundColor: Colors.white,
+          // header
+          title: Text(
+            "UID",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30.0,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          children: [
+            Divider(
+              indent: 60,
+              endIndent: 60,
+              color: Colors.black,
+              height: 10,
+              thickness: 5,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey, width: 2.0),
+              ),
+              width: 300,
+              child: Row(
+                children: [
+                  // shows the UID
+                  Expanded(
+                    flex: 7,
+                    child: Center(
+                      child: Text(
+                        uid,
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Stuff for the clipboard button
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      // A button that copies the UID to the clipboard
+                      child: IconButton(
+                        icon: Icon(Icons.copy_outlined, color: Colors.black),
+                        tooltip: "Copy to Clipboard",
+                        splashRadius: 20.0,
+                        onPressed: () {
+                          // done to actually copy to clipboard
+                          Clipboard.setData(ClipboardData(text: uid))
+                              .then((result) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Copied Successfully')));
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //function to call to add notifcation data to database.
   Future<void> addNotification(
       String notifTitle, String notifDesc, DateTime notifDateTime) {
@@ -1442,6 +1528,22 @@ class _MainProfileState extends State<MainProfile> {
         ),
         title: Text(currentProfile),
         backgroundColor: Color(0xff581845),
+        // where the show UID button is added (idk where to put it so dito na lang)
+        actions: [
+          // hide if parent login
+          Visibility(
+            visible: isParent ? false : true,
+            child: IconButton(
+              icon: Icon(Icons.account_circle_outlined),
+              tooltip: "View UID",
+              splashRadius: 20.0,
+              onPressed: () {
+                viewUIDPopup();
+              },
+            ),
+          ),
+          SizedBox(width: size.width / 2.1),
+        ],
       ),
       backgroundColor: Color(0xff581845),
       body: SlidingUpPanel(
@@ -1475,6 +1577,10 @@ class _MainProfileState extends State<MainProfile> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  // combo of ignore pointer and opacity to hide the button
+                                  // still take up space (some designs will move if widget is gone from widget tree)
+                                  // non interactable even if just 0 opacity
+                                  // used numerous times below
                                   IgnorePointer(
                                     ignoring: isParent,
                                     child: Opacity(
@@ -1772,22 +1878,16 @@ class _MainProfileState extends State<MainProfile> {
                             Container(
                               padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
                               child: Center(
-                                child: IgnorePointer(
-                                  ignoring: isParent,
-                                  child: Opacity(
-                                    opacity: isParent ? 0 : 1,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        addNotificationPopup();
-                                      },
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Color(0xff581845),
-                                        size: 32.0,
-                                      ),
-                                      tooltip: "Add Notification",
-                                    ),
+                                child: IconButton(
+                                  onPressed: () {
+                                    addNotificationPopup();
+                                  },
+                                  icon: Icon(
+                                    Icons.add,
+                                    color: Color(0xff581845),
+                                    size: 32.0,
                                   ),
+                                  tooltip: "Add Notification",
                                 ),
                               ),
                             ),
