@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color kCardContentColor = Color(0xffC70039);
+
+enum CardName {
+  email,
+  password,
+  confirmPassword,
+}
+
 class SignupPage extends StatefulWidget {
   const SignupPage({Key key}) : super(key: key);
   @override
@@ -19,30 +27,20 @@ class _SignupPageState extends State<SignupPage> {
   String password = "";
   String confirmpass = "";
 
-  void _toggle1() {
-    setState(() {
-      _obscureText1 = !_obscureText1;
-    });
-  }
+  CardName selectedCard = CardName.email;
 
-  void _toggle2() {
-    setState(() {
-      _obscureText2 = !_obscureText2;
-    });
-  }
-
-  Icon _pwIcon(bool pwState) {
-    if (pwState == true) {
-      return Icon(
-        Icons.visibility_off,
-        color: Colors.grey,
-      );
-    } else {
-      return Icon(
-        Icons.visibility,
-        color: Colors.grey,
-      );
-    }
+  ShapeBorder getBorder(CardName cardName) {
+    return selectedCard == cardName
+        ? RoundedRectangleBorder(
+            side: BorderSide(
+              color: kCardContentColor,
+              width: 2.0,
+            ),
+          )
+        : RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.zero,
+          );
   }
 
   void signup(String email, String password) async {
@@ -115,11 +113,19 @@ class _SignupPageState extends State<SignupPage> {
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.email),
                     child: ListTile(
-                      leading: Icon(Icons.email),
+                      leading: Icon(
+                        Icons.email,
+                        color: selectedCard == CardName.email
+                            ? kCardContentColor
+                            : Colors.grey,
+                      ),
+                      selected: selectedCard == CardName.email,
                       title: TextFormField(
+                        autofocus: true,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -138,18 +144,30 @@ class _SignupPageState extends State<SignupPage> {
                         onChanged: (text) {
                           email = text;
                         },
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.email;
+                          });
+                        },
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.password),
                     child: ListTile(
-                      leading: Icon(Icons.lock),
+                      leading: Icon(
+                        Icons.lock,
+                        color: selectedCard == CardName.password
+                            ? kCardContentColor
+                            : Colors.grey,
+                      ),
+                      selected: selectedCard == CardName.password,
                       title: TextFormField(
                         obscureText: _obscureText1,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -168,25 +186,49 @@ class _SignupPageState extends State<SignupPage> {
                         onChanged: (text) {
                           password = text;
                         },
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.password;
+                          });
+                        },
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          _toggle1();
+                          setState(() {
+                            _obscureText1 = !_obscureText1;
+                          });
                         },
                         tooltip: "Show/Hide Password",
-                        icon: _pwIcon(_obscureText1),
+                        icon: _obscureText1
+                            ? Icon(
+                                Icons.visibility_off,
+                                color: selectedCard == CardName.password
+                                    ? kCardContentColor
+                                    : Colors.grey,
+                              )
+                            : Icon(
+                                Icons.visibility,
+                                color: selectedCard == CardName.password
+                                    ? kCardContentColor
+                                    : Colors.grey,
+                              ),
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.confirmPassword),
                     child: ListTile(
-                      leading: Icon(Icons.lock),
+                      leading: Icon(Icons.lock,
+                          color: selectedCard == CardName.confirmPassword
+                              ? kCardContentColor
+                              : Colors.grey),
+                      selected: selectedCard == CardName.confirmPassword,
                       title: TextFormField(
                         obscureText: _obscureText2,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -202,13 +244,28 @@ class _SignupPageState extends State<SignupPage> {
                           confirmpass = value;
                           return null;
                         },
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.confirmPassword;
+                          });
+                        },
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          _toggle2();
+                          setState(() {
+                            _obscureText2 = !_obscureText2;
+                          });
                         },
                         tooltip: "Show/Hide Password",
-                        icon: _pwIcon(_obscureText2),
+                        icon: _obscureText2
+                            ? Icon(Icons.visibility_off,
+                                color: selectedCard == CardName.confirmPassword
+                                    ? kCardContentColor
+                                    : Colors.grey)
+                            : Icon(Icons.visibility,
+                                color: selectedCard == CardName.confirmPassword
+                                    ? kCardContentColor
+                                    : Colors.grey),
                       ),
                     ),
                   ),
@@ -235,9 +292,7 @@ class _SignupPageState extends State<SignupPage> {
                 },
                 child: Text(
                   'SIGN UP',
-                  style: TextStyle(
-                      color: Color.fromRGBO(0xC7, 0x00, 0x39, 1),
-                      fontSize: 15.0),
+                  style: TextStyle(color: Color(0xffC70039), fontSize: 15.0),
                 ),
               ),
             ),
