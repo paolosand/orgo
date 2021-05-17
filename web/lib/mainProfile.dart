@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -45,7 +47,27 @@ class _MainProfileState extends State<MainProfile> {
   double panelOpacity = 0.0;
 
   // hide stuff if parent login. important to change
-  bool isParent = false;
+  bool isParent;
+  String currUser = "";
+
+  Future<void> isUserParent() {
+    return FirebaseFirestore.instance
+        .collection(auth.currentUser.uid)
+        .doc('data')
+        .get()
+        .then((DocumentSnapshot ds) {
+      if (ds.exists) {
+        isParent = ds.data()['isParent'];
+        print(isParent.runtimeType);
+        if (isParent) {
+          currUser = ds.data()['student'];
+        } else {
+          currUser = auth.currentUser.uid;
+        }
+        print(currUser);
+      }
+    }).catchError((error) => print("$error"));
+  }
 
   // function to call for encrypting plaintext password into cipher text (for saving in database)
   en.Encrypted encryptPass(String password) {
@@ -1034,7 +1056,7 @@ class _MainProfileState extends State<MainProfile> {
   //function to call to view UID
   Future<void> viewUIDPopup() async {
     // insert uid from database here
-    String uid = "0018394971398";
+    String uid = currUser;
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1120,14 +1142,14 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> addNotification(
       String notifTitle, String notifDesc, DateTime notifDateTime) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({'data_count': FieldValue.increment(1)})
         .then((value) => print("data count increased"))
         .catchError((error) => print("Failed to increase data count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayUnion([notifTitle])
@@ -1136,7 +1158,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'data': FieldValue.arrayUnion([
@@ -1157,7 +1179,7 @@ class _MainProfileState extends State<MainProfile> {
       DateTime editNotifDateTime) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayRemove([notifTitle])
@@ -1165,7 +1187,7 @@ class _MainProfileState extends State<MainProfile> {
         .then((value) => print("Profile Name Added"))
         .catchError((error) => print("Failed to add profilename: $error"));
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayUnion([editNotifTitle])
@@ -1174,7 +1196,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add profilename: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'data': FieldValue.arrayRemove([
@@ -1185,7 +1207,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add user: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'data': FieldValue.arrayUnion([
@@ -1205,7 +1227,7 @@ class _MainProfileState extends State<MainProfile> {
     List<dynamic> currData = [];
     int titleIndex;
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .get()
         .then((DocumentSnapshot ds) {
@@ -1221,7 +1243,7 @@ class _MainProfileState extends State<MainProfile> {
     }).catchError((error) => print("Failed to retrieve notif data: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'data_count': FieldValue.increment(-1),
@@ -1230,7 +1252,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to reduce data count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayRemove([notifTitle])
@@ -1239,7 +1261,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete notif title: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({'data': currData})
         .then((value) => print("Notification deleted"))
@@ -1247,10 +1269,10 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   //function to call to check scheduled notifcations for today from database.
-  void checkNotifications() {
+  Future<void> checkNotifications() {
     print("check notif called");
-    FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+    return FirebaseFirestore.instance
+        .collection(currUser)
         .doc('notifications')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
@@ -1288,7 +1310,7 @@ class _MainProfileState extends State<MainProfile> {
       String addEmail, String addPass, String addURL) {
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1321,7 +1343,7 @@ class _MainProfileState extends State<MainProfile> {
 
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1336,7 +1358,7 @@ class _MainProfileState extends State<MainProfile> {
     accData['accounts'].remove(accounts.indexOf(accName));
     print('after deletion: $accData');
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1352,7 +1374,7 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> addProfile(String profileName, int colorIndex, List data) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .set({
           'color': {profileName: colorIndex}
@@ -1361,7 +1383,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add color map: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_count': FieldValue.increment(1),
@@ -1370,7 +1392,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add color count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_names': FieldValue.arrayUnion([profileName])
@@ -1379,7 +1401,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1402,7 +1424,7 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> deleteProfile(String profileName) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .set({
           'color': {profileName: FieldValue.delete()}
@@ -1411,7 +1433,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete color map: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_count': FieldValue.increment(-1),
@@ -1420,7 +1442,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete color count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_names': FieldValue.arrayRemove([profileName])
@@ -1429,7 +1451,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1447,7 +1469,7 @@ class _MainProfileState extends State<MainProfile> {
   // function to call to update the local class list.
   void getClassList(String profileName) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1476,7 +1498,7 @@ class _MainProfileState extends State<MainProfile> {
   //function to call to get the profile color scheme from database
   void getClassColor(String profileName) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
@@ -1501,11 +1523,16 @@ class _MainProfileState extends State<MainProfile> {
     }
   }
 
+  _asyncMethod() async {
+    await isUserParent();
+    checkNotifications();
+  }
+
   @override
   void initState() {
     super.initState();
-    print(auth.currentUser.uid);
-    checkNotifications();
+    _asyncMethod();
+    print(currUser);
   }
 
   @override
@@ -1639,7 +1666,7 @@ class _MainProfileState extends State<MainProfile> {
                               flex: 6,
                               child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection(auth.currentUser.uid)
+                                    .collection(currUser)
                                     .doc('profiles')
                                     .snapshots(),
                                 builder: (context, snapshot) {
@@ -1781,7 +1808,7 @@ class _MainProfileState extends State<MainProfile> {
                               flex: 6,
                               child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection(auth.currentUser.uid)
+                                    .collection(currUser)
                                     .doc('notifications')
                                     .snapshots(),
                                 builder: (context, snapshot) {
