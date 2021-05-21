@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,7 +47,7 @@ class _MainProfileState extends State<MainProfile> {
   double panelOpacity = 0.0;
 
   // hide stuff if parent login. important to change
-  bool isParent;
+  bool isParent = false;
   String currUser = "";
 
   Future<void> isUserParent() {
@@ -1530,6 +1530,7 @@ class _MainProfileState extends State<MainProfile> {
 
   @override
   void initState() {
+    currUser = auth.currentUser.uid;
     super.initState();
     _asyncMethod();
     print(currUser);

@@ -62,6 +62,12 @@ class _SignupPageState extends State<SignupPage> {
             .catchError((error) =>
                 print("Failed to add user notification data: $error"));
 
+        users
+            .doc('data')
+            .set({'isParent': false})
+            .then((value) => print("User isParent field Added"))
+            .catchError((error) => print("$error"));
+
         return users
             .doc('profiles')
             .set({'profile_count': 0, 'profile_names': []})
