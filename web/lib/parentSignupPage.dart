@@ -2,21 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-const Color kCardContentColor = Color(0xffC70039);
-
-enum CardName {
-  email,
-  password,
-  confirmPassword,
-}
-
-class SignupPage extends StatefulWidget {
-  const SignupPage({Key key}) : super(key: key);
+class ParentSignupPage extends StatefulWidget {
+  const ParentSignupPage({Key key}) : super(key: key);
   @override
-  _SignupPageState createState() => _SignupPageState();
+  _ParentSignupPageState createState() => _ParentSignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _ParentSignupPageState extends State<ParentSignupPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -24,26 +16,37 @@ class _SignupPageState extends State<SignupPage> {
   bool _obscureText1 = true;
   bool _obscureText2 = true;
   String email = "";
+  String studentUserID = "";
   String password = "";
   String confirmpass = "";
 
-  CardName selectedCard = CardName.email;
-
-  ShapeBorder getBorder(CardName cardName) {
-    return selectedCard == cardName
-        ? RoundedRectangleBorder(
-            side: BorderSide(
-              color: kCardContentColor,
-              width: 2.0,
-            ),
-          )
-        : RoundedRectangleBorder(
-            side: BorderSide.none,
-            borderRadius: BorderRadius.zero,
-          );
+  void _toggle1() {
+    setState(() {
+      _obscureText1 = !_obscureText1;
+    });
   }
 
-  void signup(String email, String password) async {
+  void _toggle2() {
+    setState(() {
+      _obscureText2 = !_obscureText2;
+    });
+  }
+
+  Icon _pwIcon(bool pwState) {
+    if (pwState == true) {
+      return Icon(
+        Icons.visibility_off,
+        color: Colors.grey,
+      );
+    } else {
+      return Icon(
+        Icons.visibility,
+        color: Colors.grey,
+      );
+    }
+  }
+
+  void signup(String email, String password, String studentUserID) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -55,24 +58,18 @@ class _SignupPageState extends State<SignupPage> {
       print(auth.currentUser.uid);
       Future<void> addUser() {
         // Call the user's CollectionReference to add a new user
-        users
-            .doc('notifications')
-            .set({'data': [], 'data_count': 0, 'title_list': []})
-            .then((value) => print("User Notification data Added"))
-            .catchError((error) =>
-                print("Failed to add user notification data: $error"));
-
-        users
-            .doc('data')
-            .set({'isParent': false})
-            .then((value) => print("User isParent field Added"))
-            .catchError((error) => print("$error"));
+        // users
+        //     .doc('notifications')
+        //     .set({'data': [], 'data_count': 0, 'title_list': []})
+        //     .then((value) => print("User Notification data Added"))
+        //     .catchError((error) =>
+        //         print("Failed to add user notification data: $error"));
 
         return users
-            .doc('profiles')
-            .set({'profile_count': 0, 'profile_names': []})
-            .then((value) => print("User Added"))
-            .catchError((error) => print("Failed to add user: $error"));
+            .doc('data')
+            .set({'student': studentUserID, 'isParent': true})
+            .then((value) => print("Parent Successfully Added"))
+            .catchError((error) => print("Failed to add Parent: $error"));
       }
 
       addUser();
@@ -105,11 +102,23 @@ class _SignupPageState extends State<SignupPage> {
             Container(
               height: 100,
               width: 100,
-              margin: EdgeInsets.only(bottom: 60.0),
+              margin: EdgeInsets.only(bottom: 20.0),
               child: Icon(
                 Icons.donut_large,
                 size: 100.0,
                 color: Color.fromRGBO(0xFF, 0xC3, 0x0F, 1),
+              ),
+            ),
+            Container(
+              height: 40,
+              width: 200,
+              // margin: EdgeInsets.only(bottom: 60.0),
+              child: Text(
+                "Orgo for Parents",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
             Form(
@@ -119,26 +128,18 @@ class _SignupPageState extends State<SignupPage> {
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
-                    shape: getBorder(CardName.email),
                     child: ListTile(
-                      leading: Icon(
-                        Icons.email,
-                        color: selectedCard == CardName.email
-                            ? kCardContentColor
-                            : Colors.grey,
-                      ),
-                      selected: selectedCard == CardName.email,
+                      leading: Icon(Icons.email),
                       title: TextFormField(
-                        autofocus: true,
                         cursorColor: Colors.black,
-                        decoration: InputDecoration(
+                        decoration: new InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Email",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -150,10 +151,34 @@ class _SignupPageState extends State<SignupPage> {
                         onChanged: (text) {
                           email = text;
                         },
-                        onTap: () {
-                          setState(() {
-                            selectedCard = CardName.email;
-                          });
+                      ),
+                    ),
+                  ),
+                  Card(
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: TextFormField(
+                        cursorColor: Colors.black,
+                        decoration: new InputDecoration(
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          hintText: "Student User ID",
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          studentUserID = value;
+                          return null;
+                        },
+                        onChanged: (text) {
+                          studentUserID = text;
                         },
                       ),
                     ),
@@ -161,26 +186,19 @@ class _SignupPageState extends State<SignupPage> {
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
-                    shape: getBorder(CardName.password),
                     child: ListTile(
-                      leading: Icon(
-                        Icons.lock,
-                        color: selectedCard == CardName.password
-                            ? kCardContentColor
-                            : Colors.grey,
-                      ),
-                      selected: selectedCard == CardName.password,
+                      leading: Icon(Icons.lock),
                       title: TextFormField(
                         obscureText: _obscureText1,
                         cursorColor: Colors.black,
-                        decoration: InputDecoration(
+                        decoration: new InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -192,56 +210,31 @@ class _SignupPageState extends State<SignupPage> {
                         onChanged: (text) {
                           password = text;
                         },
-                        onTap: () {
-                          setState(() {
-                            selectedCard = CardName.password;
-                          });
-                        },
                       ),
-                      trailing: IconButton(
+                      trailing: TextButton(
                         onPressed: () {
-                          setState(() {
-                            _obscureText1 = !_obscureText1;
-                          });
+                          _toggle1();
                         },
-                        tooltip: "Show/Hide Password",
-                        icon: _obscureText1
-                            ? Icon(
-                                Icons.visibility_off,
-                                color: selectedCard == CardName.password
-                                    ? kCardContentColor
-                                    : Colors.grey,
-                              )
-                            : Icon(
-                                Icons.visibility,
-                                color: selectedCard == CardName.password
-                                    ? kCardContentColor
-                                    : Colors.grey,
-                              ),
+                        child: _pwIcon(_obscureText1),
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
-                    shape: getBorder(CardName.confirmPassword),
                     child: ListTile(
-                      leading: Icon(Icons.lock,
-                          color: selectedCard == CardName.confirmPassword
-                              ? kCardContentColor
-                              : Colors.grey),
-                      selected: selectedCard == CardName.confirmPassword,
+                      leading: Icon(Icons.lock),
                       title: TextFormField(
                         obscureText: _obscureText2,
                         cursorColor: Colors.black,
-                        decoration: InputDecoration(
+                        decoration: new InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Confirm Password",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -250,28 +243,12 @@ class _SignupPageState extends State<SignupPage> {
                           confirmpass = value;
                           return null;
                         },
-                        onTap: () {
-                          setState(() {
-                            selectedCard = CardName.confirmPassword;
-                          });
-                        },
                       ),
-                      trailing: IconButton(
+                      trailing: TextButton(
                         onPressed: () {
-                          setState(() {
-                            _obscureText2 = !_obscureText2;
-                          });
+                          _toggle2();
                         },
-                        tooltip: "Show/Hide Password",
-                        icon: _obscureText2
-                            ? Icon(Icons.visibility_off,
-                                color: selectedCard == CardName.confirmPassword
-                                    ? kCardContentColor
-                                    : Colors.grey)
-                            : Icon(Icons.visibility,
-                                color: selectedCard == CardName.confirmPassword
-                                    ? kCardContentColor
-                                    : Colors.grey),
+                        child: _pwIcon(_obscureText2),
                       ),
                     ),
                   ),
@@ -290,7 +267,7 @@ class _SignupPageState extends State<SignupPage> {
                       (password == confirmpass)) {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text('Signing Up')));
-                    signup(email, password);
+                    signup(email, password, studentUserID);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Passwords do not match')));
@@ -298,7 +275,9 @@ class _SignupPageState extends State<SignupPage> {
                 },
                 child: Text(
                   'SIGN UP',
-                  style: TextStyle(color: Color(0xffC70039), fontSize: 15.0),
+                  style: TextStyle(
+                      color: Color.fromRGBO(0xC7, 0x00, 0x39, 1),
+                      fontSize: 15.0),
                 ),
               ),
             ),

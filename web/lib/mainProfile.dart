@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -7,16 +9,19 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:encrypt/encrypt.dart' as en;
 import 'package:schedulers/schedulers.dart';
 import 'package:date_field/date_field.dart';
+import 'package:flutter/services.dart';
 
 // A constant body textstyle used in the view account popup
-const TextStyle kViewBody = TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.w700);
+const TextStyle kViewBody =
+    TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.w700);
 
 // A constant heading textstyle for the popups (except view) and pull up widget.
-const TextStyle kHeading = TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0);
+const TextStyle kHeading =
+    TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0);
 
 // A constant textstyle used for most button labels.
-const TextStyle kButtonLabel = TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
-
+const TextStyle kButtonLabel =
+    TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
 
 class MainProfile extends StatefulWidget {
   const MainProfile({Key key}) : super(key: key);
@@ -31,14 +36,38 @@ class _MainProfileState extends State<MainProfile> {
 
   List<String> accounts = [];
   Map<String, dynamic> accData = {};
-  Map<String,dynamic> editaccData = {};
+  Map<String, dynamic> editaccData = {};
   String currentProfile = "";
   int currentClassColor = 0;
 
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
 
-  double panelOpacity = 0.0; // to change panel opacity based on how much the panel is opened
+  // to change panel opacity based on how much the panel is opened
+  double panelOpacity = 0.0;
+
+  // hide stuff if parent login. important to change
+  bool isParent = false;
+  String currUser = "";
+
+  Future<void> isUserParent() {
+    return FirebaseFirestore.instance
+        .collection(auth.currentUser.uid)
+        .doc('data')
+        .get()
+        .then((DocumentSnapshot ds) {
+      if (ds.exists) {
+        isParent = ds.data()['isParent'];
+        print(isParent.runtimeType);
+        if (isParent) {
+          currUser = ds.data()['student'];
+        } else {
+          currUser = auth.currentUser.uid;
+        }
+        print(currUser);
+      }
+    }).catchError((error) => print("$error"));
+  }
 
   // function to call for encrypting plaintext password into cipher text (for saving in database)
   en.Encrypted encryptPass(String password) {
@@ -153,13 +182,11 @@ class _MainProfileState extends State<MainProfile> {
                         ),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            
                             addAccount(currentProfile, addAccName, addEmail,
                                 addPass, addURL);
                             getClassList(currentProfile);
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content:
-                                    Text('Account data being added')));
+                                content: Text('Account data being added')));
                             Navigator.of(context).pop();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content:
@@ -183,7 +210,8 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   // function to call when the user wants to edit the content of an account (class).
-  Future<void> editAccountPopup(String accName, accEmail, accPass, accURL) async {
+  Future<void> editAccountPopup(
+      String accName, accEmail, accPass, accURL) async {
     String editEmail, editPass, editURL;
 
     await showDialog(
@@ -191,7 +219,7 @@ class _MainProfileState extends State<MainProfile> {
         builder: (BuildContext context) {
           return SimpleDialog(
             title: const Text(
-              'Add Account',
+              'Edit Account',
               style: kHeading,
               textAlign: TextAlign.center,
             ),
@@ -285,7 +313,8 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   // function to call when the user wants to view the content of an account (class).
-  Future<void> viewAccountPopup(String accountTitle, String email, String password, String websiteURL, String imageURL) async {
+  Future<void> viewAccountPopup(String accountTitle, String email,
+      String password, String websiteURL, String imageURL) async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -296,6 +325,7 @@ class _MainProfileState extends State<MainProfile> {
             children: [
               IconButton(
                 icon: Icon(Icons.settings, color: Colors.white),
+                tooltip: "Edit Account",
                 onPressed: () {
                   Navigator.of(context).pop();
                   editAccountPopup(accountTitle, email, password, websiteURL);
@@ -311,6 +341,7 @@ class _MainProfileState extends State<MainProfile> {
               ),
               IconButton(
                 icon: Icon(Icons.delete, color: Colors.white),
+                tooltip: "Delete Account",
                 onPressed: () {
                   deleteAccount(currentProfile, accountTitle);
                   getClassList(currentProfile);
@@ -497,7 +528,7 @@ class _MainProfileState extends State<MainProfile> {
       },
     );
   }
-  
+
   //function to call when the user wants to edit an existing profile.
   Future<void> editProfilePopup() async {
     String editprofileName = '';
@@ -580,7 +611,8 @@ class _MainProfileState extends State<MainProfile> {
                           if (_formKey.currentState.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text('Profile successfully edited')));
-                            editProfile(currentProfile, editprofileName, currentColorIndex);
+                            editProfile(currentProfile, editprofileName,
+                                currentColorIndex);
                             setState(() {
                               currentProfile = editprofileName;
                               getClassList(currentProfile);
@@ -613,279 +645,279 @@ class _MainProfileState extends State<MainProfile> {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return SimpleDialog(
-              title: const Text(
-                'Add Notification',
-                style: kHeading,
-                textAlign: TextAlign.center,
-              ),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  width: 400,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        // title textfield
-                        InputAccountCard(
-                          hintText: "Title",
-                          width: 300,
-                          validator: (String value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) {
-                            addNotifTitle = text;
-                          },
-                        ),
-                        // textfieldform ba talaga tong sa time???
-                        Container(
-                          width: 300,
-                          child: DateTimeField(
+        return StatefulBuilder(builder: (context, setState) {
+          return SimpleDialog(
+            title: const Text(
+              'Add Notification',
+              style: kHeading,
+              textAlign: TextAlign.center,
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 10.0),
+                width: 400,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      // title textfield
+                      InputAccountCard(
+                        hintText: "Title",
+                        width: 300,
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onChanged: (text) {
+                          addNotifTitle = text;
+                        },
+                      ),
+                      // textfieldform ba talaga tong sa time???
+                      Container(
+                        width: 300,
+                        child: DateTimeField(
                             decoration: InputDecoration(
-                              hintText: 'Please select the notification date and time',
-                              border: OutlineInputBorder()
-                            ),
+                                hintText:
+                                    'Please select the notification date and time',
+                                border: OutlineInputBorder()),
                             selectedDate: addNotifDateTime,
                             onDateSelected: (DateTime value) {
                               addNotifDateTime = value;
                               setState(() {
                                 print(addNotifDateTime);
                               });
-                            }  
-                          ),
-                        ),
-                        
+                            }),
+                      ),
 
-
-
-
-                        // like inputAccountCard pero may additional sht sa textformfield for multiline
-                        // description textfield
-                        Container(
-                          margin: EdgeInsets.all(5.0),
-                          width: 300,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 1.0)),
-                          child: Center(
-                            child: TextFormField(
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 5,
-                              minLines: 5,
-                              textAlign: TextAlign.center,
-                              cursorColor: Colors.black,
-                              decoration: new InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintText: "Description",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey[300]),
-                              ),
-                              validator: (String value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
-                                }
-                                return null;
-                              },
-                              onChanged: (text) {
-                                addNotifDesc = text;
-                              },
+                      // like inputAccountCard pero may additional sht sa textformfield for multiline
+                      // description textfield
+                      Container(
+                        margin: EdgeInsets.all(5.0),
+                        width: 300,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 1.0)),
+                        child: Center(
+                          child: TextFormField(
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 5,
+                            minLines: 5,
+                            textAlign: TextAlign.center,
+                            cursorColor: Colors.black,
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: "Description",
+                              hintStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[300]),
                             ),
-                          ),
-                        ),
-                        // choose class based on accounts in profile?
-                        // click to add the notification
-                        Container(
-                          margin: EdgeInsets.only(bottom: 20.0),
-                          height: 30,
-                          width: 90,
-                          child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xff581845)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Color(0xff581845)),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()){
-                                addNotification(addNotifTitle, addNotifDesc, addNotifDateTime);
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text('Notification successfully set')));
-                                checkNotifications();
-                                Navigator.of(context).pop();
+                            validator: (String value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
                               }
+                              return null;
                             },
-                            child: Text(
-                              'Set',
-                              style: kButtonLabel,
+                            onChanged: (text) {
+                              addNotifDesc = text;
+                            },
+                          ),
+                        ),
+                      ),
+                      // choose class based on accounts in profile?
+                      // click to add the notification
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20.0),
+                        height: 30,
+                        width: 90,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff581845)),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Color(0xff581845)),
+                              ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              addNotification(addNotifTitle, addNotifDesc,
+                                  addNotifDateTime);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          'Notification successfully set')));
+                              checkNotifications();
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: Text(
+                            'Set',
+                            style: kButtonLabel,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-              ],
-            );
-          }
-        );
+              ),
+            ],
+          );
+        });
       },
     );
   }
 
   // function to call when the user wants to edit an existing notification.
-  Future<void> editNotificationPopup(String notifTitle, String notifDesc, DateTime notifDateTime) async {
+  Future<void> editNotificationPopup(
+      String notifTitle, String notifDesc, DateTime notifDateTime) async {
     String editNotifTitle, editNotifDesc;
     DateTime editNotifDateTime = notifDateTime;
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return SimpleDialog(
-              title: const Text(
-                'Edit Notification',
-                style: kHeading,
-                textAlign: TextAlign.center,
-              ),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  width: 400,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        // title textfield
-                        InputAccountCard(
-                          hintText: notifTitle,
-                          width: 300,
-                          validator: (String value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) {
-                            editNotifTitle = text;
-                          },
-                        ),
-                        // textfieldform ba talaga tong sa time???
-                        Container(
-                          width: 300,
-                          child: DateTimeField(
+        return StatefulBuilder(builder: (context, setState) {
+          return SimpleDialog(
+            title: const Text(
+              'Edit Notification',
+              style: kHeading,
+              textAlign: TextAlign.center,
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 10.0),
+                width: 400,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      // title textfield
+                      InputAccountCard(
+                        hintText: notifTitle,
+                        width: 300,
+                        validator: (String value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onChanged: (text) {
+                          editNotifTitle = text;
+                        },
+                      ),
+                      // textfieldform ba talaga tong sa time???
+                      Container(
+                        width: 300,
+                        child: DateTimeField(
                             decoration: InputDecoration(
-                              hintText: 'Please select the notification date and time',
-                              border: OutlineInputBorder()
-                            ),
+                                hintText:
+                                    'Please select the notification date and time',
+                                border: OutlineInputBorder()),
                             selectedDate: editNotifDateTime,
                             onDateSelected: (DateTime value) {
                               editNotifDateTime = value;
                               setState(() {
                                 print(editNotifDateTime);
                               });
-                            }  
-                          ),
-                        ),
-                        
+                            }),
+                      ),
 
-
-
-
-                        // like inputAccountCard pero may additional sht sa textformfield for multiline
-                        // description textfield
-                        Container(
-                          margin: EdgeInsets.all(5.0),
-                          width: 300,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 1.0)),
-                          child: Center(
-                            child: TextFormField(
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 5,
-                              minLines: 5,
-                              textAlign: TextAlign.center,
-                              cursorColor: Colors.black,
-                              decoration: new InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintText: "Description",
-                                hintStyle: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.grey[300]),
-                              ),
-                              validator: (String value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
-                                }
-                                return null;
-                              },
-                              onChanged: (text) {
-                                editNotifDesc = text;
-                              },
+                      // like inputAccountCard pero may additional sht sa textformfield for multiline
+                      // description textfield
+                      Container(
+                        margin: EdgeInsets.all(5.0),
+                        width: 300,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 1.0)),
+                        child: Center(
+                          child: TextFormField(
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 5,
+                            minLines: 5,
+                            textAlign: TextAlign.center,
+                            cursorColor: Colors.black,
+                            decoration: new InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: "Description",
+                              hintStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[300]),
                             ),
-                          ),
-                        ),
-                        // choose class based on accounts in profile?
-                        // click to add the notification
-                        Container(
-                          margin: EdgeInsets.only(bottom: 20.0),
-                          height: 30,
-                          width: 90,
-                          child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Color(0xff581845)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Color(0xff581845)),
-                                ),
-                              ),
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState.validate()){
-                                editNotification(notifTitle, notifDesc, notifDateTime, editNotifTitle, editNotifDesc, editNotifDateTime);
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text('Notification successfully changed')));
-                                checkNotifications();
-                                Navigator.of(context).pop();
+                            validator: (String value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
                               }
+                              return null;
                             },
-                            child: Text(
-                              'Set',
-                              style: kButtonLabel,
+                            onChanged: (text) {
+                              editNotifDesc = text;
+                            },
+                          ),
+                        ),
+                      ),
+                      // choose class based on accounts in profile?
+                      // click to add the notification
+                      Container(
+                        margin: EdgeInsets.only(bottom: 20.0),
+                        height: 30,
+                        width: 90,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff581845)),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Color(0xff581845)),
+                              ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              editNotification(
+                                  notifTitle,
+                                  notifDesc,
+                                  notifDateTime,
+                                  editNotifTitle,
+                                  editNotifDesc,
+                                  editNotifDateTime);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          'Notification successfully changed')));
+                              checkNotifications();
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: Text(
+                            'Set',
+                            style: kButtonLabel,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-              ],
-            );
-          }
-        );
+              ),
+            ],
+          );
+        });
       },
     );
   }
@@ -905,6 +937,7 @@ class _MainProfileState extends State<MainProfile> {
             children: [
               IconButton(
                 icon: Icon(Icons.settings, color: Colors.white),
+                tooltip: "Edit Notification",
                 onPressed: () {
                   Navigator.of(context).pop();
                   editNotificationPopup(notifTitle, notifDesc, notifDateTime);
@@ -920,16 +953,16 @@ class _MainProfileState extends State<MainProfile> {
               ),
               IconButton(
                 icon: Icon(Icons.delete, color: Colors.white),
+                tooltip: "Delete Notification",
                 onPressed: () {
                   Navigator.of(context).pop();
                   deleteNotification(notifTitle);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Notification successfully removed')));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Notification successfully removed')));
                 },
               ),
             ],
           ),
-          
 
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
@@ -1020,21 +1053,103 @@ class _MainProfileState extends State<MainProfile> {
     deleteNotification(notifTitle);
   }
 
+  //function to call to view UID
+  Future<void> viewUIDPopup() async {
+    // insert uid from database here
+    String uid = currUser;
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          backgroundColor: Colors.white,
+          // header
+          title: Text(
+            "UID",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30.0,
+                color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          children: [
+            Divider(
+              indent: 60,
+              endIndent: 60,
+              color: Colors.black,
+              height: 10,
+              thickness: 5,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.grey, width: 2.0),
+              ),
+              width: 300,
+              child: Row(
+                children: [
+                  // shows the UID
+                  Expanded(
+                    flex: 7,
+                    child: Center(
+                      child: Text(
+                        uid,
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Stuff for the clipboard button
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      // A button that copies the UID to the clipboard
+                      child: IconButton(
+                        icon: Icon(Icons.copy_outlined, color: Colors.black),
+                        tooltip: "Copy to Clipboard",
+                        splashRadius: 20.0,
+                        onPressed: () {
+                          // done to actually copy to clipboard
+                          Clipboard.setData(ClipboardData(text: uid))
+                              .then((result) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Copied Successfully')));
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //function to call to add notifcation data to database.
-  Future<void> addNotification(String notifTitle, String notifDesc,
-      DateTime notifDateTime) {
-    
+  Future<void> addNotification(
+      String notifTitle, String notifDesc, DateTime notifDateTime) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
-        .update({
-          'data_count': FieldValue.increment(1)
-        })
+        .update({'data_count': FieldValue.increment(1)})
         .then((value) => print("data count increased"))
         .catchError((error) => print("Failed to increase data count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayUnion([notifTitle])
@@ -1043,15 +1158,11 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
-          'data' : FieldValue.arrayUnion([
-            {
-              'title' : notifTitle,
-              'time' : notifDateTime,
-              'desc' : notifDesc
-            }
+          'data': FieldValue.arrayUnion([
+            {'title': notifTitle, 'time': notifDateTime, 'desc': notifDesc}
           ])
         })
         .then((value) => print("Notif Added"))
@@ -1059,11 +1170,16 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   //function to call to edit existing notifcation data in database.
-  Future<void> editNotification(String notifTitle, String notifDesc,
-      DateTime notifDateTime, String editNotifTitle, String editNotifDesc, DateTime editNotifDateTime) {
+  Future<void> editNotification(
+      String notifTitle,
+      String notifDesc,
+      DateTime notifDateTime,
+      String editNotifTitle,
+      String editNotifDesc,
+      DateTime editNotifDateTime) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayRemove([notifTitle])
@@ -1071,38 +1187,34 @@ class _MainProfileState extends State<MainProfile> {
         .then((value) => print("Profile Name Added"))
         .catchError((error) => print("Failed to add profilename: $error"));
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayUnion([editNotifTitle])
         })
         .then((value) => print("Profile Name Added"))
         .catchError((error) => print("Failed to add profilename: $error"));
-    
+
     FirebaseFirestore.instance
-    .collection(auth.currentUser.uid)
-    .doc('notifications')
-    .update({
-      'data' : FieldValue.arrayRemove([
-        {
-          'title' : notifTitle,
-          'time' : notifDateTime,
-          'desc' : notifDesc
-        }
-      ])
-    })
-    .then((value) => print("User Added"))
-    .catchError((error) => print("Failed to add user: $error"));
-    
-    return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
-          'data' : FieldValue.arrayUnion([
+          'data': FieldValue.arrayRemove([
+            {'title': notifTitle, 'time': notifDateTime, 'desc': notifDesc}
+          ])
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+
+    return FirebaseFirestore.instance
+        .collection(currUser)
+        .doc('notifications')
+        .update({
+          'data': FieldValue.arrayUnion([
             {
-              'title' : editNotifTitle,
-              'time' : editNotifDateTime,
-              'desc' : editNotifDesc
+              'title': editNotifTitle,
+              'time': editNotifDateTime,
+              'desc': editNotifDesc
             }
           ])
         })
@@ -1115,25 +1227,23 @@ class _MainProfileState extends State<MainProfile> {
     List<dynamic> currData = [];
     int titleIndex;
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .get()
         .then((DocumentSnapshot ds) {
-          if (ds.exists){
-            currData = ds.data()['data'];
-            List<dynamic> titleList = ds.data()['title_list'];
-            titleIndex = titleList.indexOf(notifTitle);
-            print('currData: $currData');
-            currData.removeAt(titleIndex);
-            print('currData after removal: $currData');
-            print(titleIndex);
-          }
-        })
-        .catchError((error) => print("Failed to retrieve notif data: $error"));
-
+      if (ds.exists) {
+        currData = ds.data()['data'];
+        List<dynamic> titleList = ds.data()['title_list'];
+        titleIndex = titleList.indexOf(notifTitle);
+        print('currData: $currData');
+        currData.removeAt(titleIndex);
+        print('currData after removal: $currData');
+        print(titleIndex);
+      }
+    }).catchError((error) => print("Failed to retrieve notif data: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'data_count': FieldValue.increment(-1),
@@ -1142,7 +1252,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to reduce data count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
         .update({
           'title_list': FieldValue.arrayRemove([notifTitle])
@@ -1151,46 +1261,40 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete notif title: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('notifications')
-        .update(
-          {
-            'data' : currData
-          }
-        )
+        .update({'data': currData})
         .then((value) => print("Notification deleted"))
         .catchError((error) => print("Failed to remove notif: $error"));
   }
 
   //function to call to check scheduled notifcations for today from database.
-  void checkNotifications() {
+  Future<void> checkNotifications() {
     print("check notif called");
-    FirebaseFirestore.instance
-    .collection(auth.currentUser.uid)
-    .doc('notifications')
-    .get()
-    .then((DocumentSnapshot documentSnapshot) {
+    return FirebaseFirestore.instance
+        .collection(currUser)
+        .doc('notifications')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
         setState(() {
           var notifData = documentSnapshot.data()['data'];
           DateTime now = DateTime.now();
           DateTime formatted = DateTime(now.year, now.month, now.day);
-          for (Map<String, dynamic> acc in notifData){
+          for (Map<String, dynamic> acc in notifData) {
             acc.forEach((key, value) {
-              if (key == 'time'){
-                DateTime saved = DateTime(value.toDate().year,value.toDate().month, value.toDate().day);
-                if (formatted == saved && value.toDate().compareTo(now) >= 0){
-                  TimeScheduler()
-                  .run(() {
-                    alertNotificationPopup(acc['title'], acc['time'].toDate(), acc['desc']);
-                  },
-                  value.toDate());
+              if (key == 'time') {
+                DateTime saved = DateTime(value.toDate().year,
+                    value.toDate().month, value.toDate().day);
+                if (formatted == saved && value.toDate().compareTo(now) >= 0) {
+                  TimeScheduler().run(() {
+                    alertNotificationPopup(
+                        acc['title'], acc['time'].toDate(), acc['desc']);
+                  }, value.toDate());
                 }
-
               }
             });
           }
-          
         });
 
         print(accData);
@@ -1206,21 +1310,23 @@ class _MainProfileState extends State<MainProfile> {
       String addEmail, String addPass, String addURL) {
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
-        .update({
-          'accounts' : FieldValue.arrayUnion([
-            {
-            addAccName: {
-              'email': addEmail,
-              'password': encryptPass(addPass).base64,
-              'website url': addURL
+        .update(
+          {
+            'accounts': FieldValue.arrayUnion([
+              {
+                addAccName: {
+                  'email': addEmail,
+                  'password': encryptPass(addPass).base64,
+                  'website url': addURL
+                }
               }
-            }
-          ])
-        },  )
+            ])
+          },
+        )
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
@@ -1228,13 +1334,16 @@ class _MainProfileState extends State<MainProfile> {
   // function to call when the user wants to edit data in the database.
   Future<void> editAccount(String profileName, String accName, String editEmail,
       String editPass, String editURL) {
-        accData['accounts'][accounts.indexOf(accName)][accName]['password'] = encryptPass(editPass).base64;
-        accData['accounts'][accounts.indexOf(accName)][accName]['email'] = editEmail;
-        accData['accounts'][accounts.indexOf(accName)][accName]['website url'] = editURL;
+    accData['accounts'][accounts.indexOf(accName)][accName]['password'] =
+        encryptPass(editPass).base64;
+    accData['accounts'][accounts.indexOf(accName)][accName]['email'] =
+        editEmail;
+    accData['accounts'][accounts.indexOf(accName)][accName]['website url'] =
+        editURL;
 
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1249,15 +1358,14 @@ class _MainProfileState extends State<MainProfile> {
     accData['accounts'].remove(accounts.indexOf(accName));
     print('after deletion: $accData');
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
-        .update(
-          {
-            'accounts' : FieldValue.arrayRemove([accData['accounts'][accounts.indexOf(accName)]])
-          }
-        )
+        .update({
+          'accounts': FieldValue.arrayRemove(
+              [accData['accounts'][accounts.indexOf(accName)]])
+        })
         .then((value) => print("Account deleted"))
         .catchError((error) => print("Failed to add user: $error"));
   }
@@ -1266,7 +1374,7 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> addProfile(String profileName, int colorIndex, List data) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .set({
           'color': {profileName: colorIndex}
@@ -1275,7 +1383,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add color map: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_count': FieldValue.increment(1),
@@ -1284,7 +1392,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add color count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_names': FieldValue.arrayUnion([profileName])
@@ -1293,21 +1401,20 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to add profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
-        .set({
-          'accounts' : data
-        })
+        .set({'accounts': data})
         .then((value) => print("Profile Added"))
         .catchError((error) => print("Failed to add profile: $error"));
   }
-  
+
   //function to call when the user wants to edit profile data (name and color) in the database
-  Future<void> editProfile(String profileName, String editprofileName, int colorIndex) {
+  Future<void> editProfile(
+      String profileName, String editprofileName, int colorIndex) {
     // Call the user's CollectionReference to add a new user
-    
+
     deleteProfile(profileName);
     addProfile(editprofileName, colorIndex, accData['accounts']);
     return null;
@@ -1317,7 +1424,7 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> deleteProfile(String profileName) {
     // Call the user's CollectionReference to add a new user
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .set({
           'color': {profileName: FieldValue.delete()}
@@ -1326,7 +1433,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete color map: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_count': FieldValue.increment(-1),
@@ -1335,7 +1442,7 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete color count: $error"));
 
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .update({
           'profile_names': FieldValue.arrayRemove([profileName])
@@ -1344,13 +1451,14 @@ class _MainProfileState extends State<MainProfile> {
         .catchError((error) => print("Failed to delete profilename: $error"));
 
     return FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
         .delete()
-        .then((value) {print("Profile delete successfully");
-        }).catchError((error) => print("Failed to delete profile: $error"));
+        .then((value) {
+      print("Profile delete successfully");
+    }).catchError((error) => print("Failed to delete profile: $error"));
   }
 
   // function to call when the user wants to signout.
@@ -1361,7 +1469,7 @@ class _MainProfileState extends State<MainProfile> {
   // function to call to update the local class list.
   void getClassList(String profileName) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .collection('profile_names')
         .doc(profileName)
@@ -1372,12 +1480,11 @@ class _MainProfileState extends State<MainProfile> {
           accounts = [];
           accData = documentSnapshot.data();
 
-          for (Map<String, dynamic> acc in accData['accounts']){
+          for (Map<String, dynamic> acc in accData['accounts']) {
             acc.forEach((key, value) {
               accounts.add(key);
             });
           }
-          
         });
 
         print(accData);
@@ -1391,7 +1498,7 @@ class _MainProfileState extends State<MainProfile> {
   //function to call to get the profile color scheme from database
   void getClassColor(String profileName) {
     FirebaseFirestore.instance
-        .collection(auth.currentUser.uid)
+        .collection(currUser)
         .doc('profiles')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
@@ -1416,11 +1523,17 @@ class _MainProfileState extends State<MainProfile> {
     }
   }
 
+  _asyncMethod() async {
+    await isUserParent();
+    checkNotifications();
+  }
+
   @override
   void initState() {
+    currUser = auth.currentUser.uid;
     super.initState();
-    print(auth.currentUser.uid);
-    checkNotifications();
+    _asyncMethod();
+    print(currUser);
   }
 
   @override
@@ -1443,6 +1556,22 @@ class _MainProfileState extends State<MainProfile> {
         ),
         title: Text(currentProfile),
         backgroundColor: Color(0xff581845),
+        // where the show UID button is added (idk where to put it so dito na lang)
+        actions: [
+          // hide if parent login
+          Visibility(
+            visible: isParent ? false : true,
+            child: IconButton(
+              icon: Icon(Icons.account_circle_outlined),
+              tooltip: "View UID",
+              splashRadius: 20.0,
+              onPressed: () {
+                viewUIDPopup();
+              },
+            ),
+          ),
+          SizedBox(width: size.width / 2.1),
+        ],
       ),
       backgroundColor: Color(0xff581845),
       body: SlidingUpPanel(
@@ -1476,16 +1605,28 @@ class _MainProfileState extends State<MainProfile> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 40.0),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        editProfilePopup();
-                                      },
-                                      icon: Icon(
-                                        Icons.edit,
-                                        color: Color(0xff581845),
-                                        size: 30.0,
+                                  // combo of ignore pointer and opacity to hide the button
+                                  // still take up space (some designs will move if widget is gone from widget tree)
+                                  // non interactable even if just 0 opacity
+                                  // used numerous times below
+                                  IgnorePointer(
+                                    ignoring: isParent,
+                                    child: Opacity(
+                                      opacity: isParent ? 0 : 1,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 40.0),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            editProfilePopup();
+                                          },
+                                          icon: Icon(
+                                            Icons.edit,
+                                            color: Color(0xff581845),
+                                            size: 30.0,
+                                          ),
+                                          tooltip: "Edit Profile",
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -1493,17 +1634,28 @@ class _MainProfileState extends State<MainProfile> {
                                     'Profiles',
                                     style: kHeading,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 40.0),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        deleteProfile(currentProfile);
-                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Profile Deleted Successfully')));
-                                      },
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Color(0xff581845),
-                                        size: 30.0,
+                                  IgnorePointer(
+                                    ignoring: isParent,
+                                    child: Opacity(
+                                      opacity: isParent ? 0 : 1,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 40.0),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            deleteProfile(currentProfile);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        'Profile Deleted Successfully')));
+                                          },
+                                          icon: Icon(
+                                            Icons.delete,
+                                            color: Color(0xff581845),
+                                            size: 30.0,
+                                          ),
+                                          tooltip: "Delete Profile",
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -1515,7 +1667,7 @@ class _MainProfileState extends State<MainProfile> {
                               flex: 6,
                               child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection(auth.currentUser.uid)
+                                    .collection(currUser)
                                     .doc('profiles')
                                     .snapshots(),
                                 builder: (context, snapshot) {
@@ -1559,7 +1711,10 @@ class _MainProfileState extends State<MainProfile> {
                                                       BorderRadius.circular(
                                                           10.0),
                                                   side: BorderSide(
-                                                      color: Color(0xff43aa8b)),
+                                                      color: (currentProfile ==
+                                                              item)
+                                                          ? Colors.pink
+                                                          : Color(0xff43aa8b)),
                                                 ),
                                               ),
                                             ),
@@ -1610,14 +1765,21 @@ class _MainProfileState extends State<MainProfile> {
                             Container(
                               padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
                               child: Center(
-                                child: IconButton(
-                                  onPressed: () {
-                                    addProfilePopup();
-                                  },
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: Color(0xff581845),
-                                    size: 32.0,
+                                child: IgnorePointer(
+                                  ignoring: isParent,
+                                  child: Opacity(
+                                    opacity: isParent ? 0 : 1,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        addProfilePopup();
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Color(0xff581845),
+                                        size: 32.0,
+                                      ),
+                                      tooltip: "Add Profile",
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1645,9 +1807,9 @@ class _MainProfileState extends State<MainProfile> {
                             // the scrollable view of notifications
                             Expanded(
                               flex: 6,
-                              child:StreamBuilder(
+                              child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection(auth.currentUser.uid)
+                                    .collection(currUser)
                                     .doc('notifications')
                                     .snapshots(),
                                 builder: (context, snapshot) {
@@ -1661,7 +1823,8 @@ class _MainProfileState extends State<MainProfile> {
                                       ),
                                     );
                                   }
-                                  int _itemcount = snapshot.data.data()['data_count'];
+                                  int _itemcount =
+                                      snapshot.data.data()['data_count'];
                                   return Scrollbar(
                                     child: ListView.separated(
                                       controller: sc2,
@@ -1672,7 +1835,8 @@ class _MainProfileState extends State<MainProfile> {
                                           (BuildContext context, int index) {
                                         String item = snapshot.data
                                             .data()['data'][index]['title'];
-                                        List<dynamic> titleList = snapshot.data.data()['title_list'];
+                                        List<dynamic> titleList =
+                                            snapshot.data.data()['title_list'];
                                         return Container(
                                           margin: EdgeInsets.symmetric(
                                               horizontal: size.height / 8),
@@ -1696,7 +1860,16 @@ class _MainProfileState extends State<MainProfile> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              viewNotificationPopup(item, snapshot.data.data()['data'][titleList.indexOf(item)]['time'].toDate(), snapshot.data.data()['data'][titleList.indexOf(item)]['desc']);
+                                              viewNotificationPopup(
+                                                  item,
+                                                  snapshot.data
+                                                      .data()['data'][titleList
+                                                              .indexOf(item)]
+                                                          ['time']
+                                                      .toDate(),
+                                                  snapshot.data.data()['data'][
+                                                      titleList.indexOf(
+                                                          item)]['desc']);
                                             },
                                             child: Row(
                                               mainAxisAlignment:
@@ -1742,6 +1915,7 @@ class _MainProfileState extends State<MainProfile> {
                                     color: Color(0xff581845),
                                     size: 32.0,
                                   ),
+                                  tooltip: "Add Notification",
                                 ),
                               ),
                             ),
@@ -1807,19 +1981,28 @@ class _MainProfileState extends State<MainProfile> {
                               borderRadius: BorderRadius.circular(10),
                               color: colorList[currentClassColor],
                             ),
-                            child: TextButton(
-                              onPressed: () {
-                                viewAccountPopup(
+                            child: IgnorePointer(
+                              ignoring: isParent,
+                              child: TextButton(
+                                onPressed: () {
+                                  viewAccountPopup(
+                                      accName,
+                                      accData['accounts']
+                                              [accounts.indexOf(accName)]
+                                          [accName]['email'],
+                                      decryptPass(accData['accounts']
+                                              [accounts.indexOf(accName)]
+                                          [accName]['password']),
+                                      accData['accounts']
+                                              [accounts.indexOf(accName)]
+                                          [accName]['website url'],
+                                      'https://i.insider.com/5abb9eb43216742a008b45cc?width=1200&format=jpeg');
+                                },
+                                child: Center(
+                                  child: Text(
                                     accName,
-                                    accData['accounts'][accounts.indexOf(accName)][accName]['email'],
-                                    decryptPass(accData['accounts'][accounts.indexOf(accName)][accName]['password']),
-                                    accData['accounts'][accounts.indexOf(accName)][accName]['website url'],
-                                    'https://i.insider.com/5abb9eb43216742a008b45cc?width=1200&format=jpeg');
-                              },
-                              child: Center(
-                                child: Text(
-                                  accName,
-                                  style: TextStyle(color: Colors.black),
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                 ),
                               ),
                             ),
@@ -1841,20 +2024,26 @@ class _MainProfileState extends State<MainProfile> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if (currentProfile != '') {
-            addAccountPopup();
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Please select a profile first!')));
-          }
-        },
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
+      floatingActionButton: IgnorePointer(
+        ignoring: isParent,
+        child: Opacity(
+          opacity: isParent ? 0 : 1,
+          child: FloatingActionButton(
+            onPressed: () {
+              if (currentProfile != '') {
+                addAccountPopup();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Please select a profile first!')));
+              }
+            },
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.red,
+          ),
         ),
-        backgroundColor: Colors.red,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
     );

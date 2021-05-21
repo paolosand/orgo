@@ -7,6 +7,11 @@ import 'entryPage.dart';
 import 'signupPage.dart';
 import 'loginPage.dart';
 
+// for parent pages
+import 'parentEntryPage.dart';
+import 'parentLoginPage.dart';
+import 'parentSignupPage.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -19,49 +24,58 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final routerData = PageRouterData({
-    '/' : RoutePath(
-      builder: (context, params) => FadeTransitionPage(
-        key: ValueKey('/'),
-        child: EntryPage(),
-      )
-    ),
-    
-    '/entry' : RoutePath(
-      builder: (context, params) => FadeTransitionPage(
-        key: ValueKey('/'),
-        child: EntryPage(),
-      )
-    ),
+    '/': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/'),
+              child: EntryPage(),
+            )),
 
-    '/signup' : RoutePath(
-      builder: (context, params) => FadeTransitionPage(
-        key: ValueKey('/signup'),
-        child: SignupPage(),
-      )
-    ),
+    '/entry': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/'),
+              child: EntryPage(),
+            )),
 
-    '/login' : RoutePath(
-      builder: (context, params) => FadeTransitionPage(
-        key: ValueKey('/login'),
-        child: LoginPage(),
-      )
-    ),
+    '/signup': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/signup'),
+              child: SignupPage(),
+            )),
 
-    '/mainpage' : RoutePath(
-      builder: (context, params) => FadeTransitionPage(
-        key: ValueKey('/mainpage'),
-        child: MainProfile(),
-      )
-    ),
+    '/login': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/login'),
+              child: LoginPage(),
+            )),
 
+    '/mainpage': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/mainpage'),
+              child: MainProfile(),
+            )),
+    // PARENT PAGES
+    // 1. parent entry page
+    '/parent': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/parent'),
+              child: ParentEntryPage(),
+            )),
+    '/parentLogin': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/parentLogin'),
+              child: ParentLoginPage(),
+            )),
+    '/parentSignup': RoutePath(
+        builder: (context, params) => FadeTransitionPage(
+              key: ValueKey('/parentSignup'),
+              child: ParentSignupPage(),
+            )),
   });
-
-
 
   // Set default `_initialized` and `_error` state to false
   bool _initialized = false;
   bool _error = false;
-  
+
   // Define an async function to initialize FlutterFire
   void initializeFlutterFire() async {
     try {
@@ -70,7 +84,7 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         _initialized = true;
       });
-    } catch(e) {
+    } catch (e) {
       // Set `_error` state to true if Firebase initialization fails
       setState(() {
         _error = true;
@@ -84,10 +98,9 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    if(_error) {
+    if (_error) {
       print("ERROR!");
     }
 
@@ -96,7 +109,8 @@ class _MyAppState extends State<MyApp> {
       future: Future.delayed(Duration(seconds: 3)),
       builder: (context, AsyncSnapshot snapshot) {
         // Show splash screen while waiting for app resources to load:
-        if (snapshot.connectionState == ConnectionState.waiting || !_initialized) {
+        if (snapshot.connectionState == ConnectionState.waiting ||
+            !_initialized) {
           return MaterialApp(home: Splash());
         } else {
           print(_initialized);
@@ -142,7 +156,7 @@ class Splash extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff581845),
       body: Center(
-        child:Icon(
+        child: Icon(
           Icons.donut_large,
           color: Color(0xffFFBA33),
           size: MediaQuery.of(context).size.width * 0.785,
