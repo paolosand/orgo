@@ -7,7 +7,7 @@ This is a course requirements for CS191/192 Software Engineering Courses of the 
 Paolo Sandejas
 Vitus Acabado
 Rafa Partosa
-Jomari Delgado
+Jomari Deligero
 
 Notes:
 
