@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -10,6 +12,12 @@ import 'package:encrypt/encrypt.dart' as en;
 import 'package:schedulers/schedulers.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_for_web/image_picker_for_web.dart';
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 // A constant body textstyle used in the view account popup
 const TextStyle kViewBody =
@@ -32,6 +40,9 @@ class MainProfile extends StatefulWidget {
 class _MainProfileState extends State<MainProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PanelController panelController = PanelController();
+  final picker = ImagePicker();
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   List<String> accounts = [];
@@ -39,6 +50,7 @@ class _MainProfileState extends State<MainProfile> {
   Map<String, dynamic> editaccData = {};
   String currentProfile = "";
   int currentClassColor = 0;
+  Uint8List image;
 
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
@@ -49,6 +61,31 @@ class _MainProfileState extends State<MainProfile> {
   // hide stuff if parent login. important to change
   bool isParent = false;
   String currUser = "";
+
+  void getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    image = await pickedFile.readAsBytes();
+    setState(() {
+      if (pickedFile != null) {
+        print("Image successfully uploaded");
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  // Future<Uri> uploadImageFile(html.File image, {String imageName}) async {
+  //   firebase_storage.Reference storageRef = storage.ref('images/$imageName');
+  //   String img64 = base64Encode(image);
+  //   try {
+  //   await firebase_storage.FirebaseStorage.instance
+  //       .ref('uploads/hello-world.text')
+  //       .putString(dataUrl, format: firebase_storage.PutStringFormat.dataUrl);
+  // } on firebase_core.FirebaseException catch (e) {
+  //   // e.g, e.code == 'canceled'
+  // }
+  //   return imageUri;
+  // }
 
   Future<void> isUserParent() {
     return FirebaseFirestore.instance
@@ -94,116 +131,172 @@ class _MainProfileState extends State<MainProfile> {
   //function to call to show the user the add account dialog entry
   Future<void> addAccountPopup() async {
     String addAccName, addEmail, addPass, addURL;
+    bool isUploaded = false;
 
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return SimpleDialog(
-          title: const Text(
-            'Add Account',
-            style: kHeading,
-            textAlign: TextAlign.center,
-          ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 10.0),
-              width: 300,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    InputAccountCard(
-                      hintText: "Account Name",
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        } else if (accounts.contains(value)) {
-                          return 'Account already exists';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        addAccName = text;
-                      },
-                    ),
-                    InputAccountCard(
-                      hintText: "Email",
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        addEmail = text;
-                      },
-                    ),
-                    InputAccountCard(
-                      hintText: "Password",
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        addPass = text;
-                      },
-                    ),
-                    InputAccountCard(
-                      hintText: "Site URL",
-                      validator: (String value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onChanged: (text) {
-                        addURL = text;
-                      },
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 20.0),
-                      height: 30,
-                      width: 90,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xff581845)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Color(0xff581845)),
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return SimpleDialog(
+              title: const Text(
+                'Add Account',
+                style: kHeading,
+                textAlign: TextAlign.center,
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(34)),
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: 300,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            border: Border.all(color: Colors.grey, width: 2.0),
+                          ),
+                          child: !isUploaded
+                              ? IconButton(
+                                  iconSize: 30.0,
+                                  icon: Icon(Icons.add_photo_alternate),
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Upload Photo",
+                                  onPressed: () {
+                                    getImage();
+                                    setState(() {
+                                      isUploaded = true;
+                                    });
+                                  },
+                                )
+                              : TextButton(
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                      EdgeInsets.all(0),
+                                    ),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(100)),
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    getImage();
+                                    setState(() {
+                                      isUploaded = true;
+                                    });
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: Image.memory(image).image,
+                                  ),
+                                ),
+                        ),
+                        SizedBox(height: 20.0),
+                        InputAccountCard(
+                          hintText: "Account Name",
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            } else if (accounts.contains(value)) {
+                              return 'Account already exists';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            addAccName = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          hintText: "Email",
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            addEmail = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          hintText: "Password",
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            addPass = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          hintText: "Site URL",
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            addURL = text;
+                          },
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 20.0),
+                          height: 30,
+                          width: 90,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff581845)),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Color(0xff581845)),
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                addAccount(currentProfile, addAccName, addEmail,
+                                    addPass, addURL);
+                                getClassList(currentProfile);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('Account data being added')));
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Account data successfully added')));
+                              }
+                            },
+                            child: Text(
+                              'Add',
+                              style: kButtonLabel,
                             ),
                           ),
-                        ),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            addAccount(currentProfile, addAccName, addEmail,
-                                addPass, addURL);
-                            getClassList(currentProfile);
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text('Account data being added')));
-                            Navigator.of(context).pop();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content:
-                                    Text('Account data successfully added')));
-                          }
-                        },
-                        child: Text(
-                          'Add',
-                          style: kButtonLabel,
-                        ),
-                      ),
-                    )
-                  ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         );
       },
     );
@@ -213,102 +306,153 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> editAccountPopup(
       String accName, accEmail, accPass, accURL) async {
     String editEmail, editPass, editURL;
+    bool isUploaded = false;
 
     await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text(
-              'Edit Account',
-              style: kHeading,
-              textAlign: TextAlign.center,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(34)),
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 10.0),
-                width: 300,
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      InputAccountCard(
-                        hintText: accEmail,
-                        validator: (String value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (text) {
-                          editEmail = text;
-                        },
-                      ),
-                      InputAccountCard(
-                        hintText: accPass,
-                        validator: (String value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (text) {
-                          editPass = text;
-                        },
-                      ),
-                      InputAccountCard(
-                        hintText: accURL,
-                        validator: (String value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        onChanged: (text) {
-                          editURL = text;
-                        },
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 20.0),
-                        height: 30,
-                        width: 90,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Color(0xff581845)),
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(color: Color(0xff581845)),
+          return StatefulBuilder(builder: (context, setState) {
+            return SimpleDialog(
+              title: const Text(
+                'Edit Account',
+                style: kHeading,
+                textAlign: TextAlign.center,
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(34)),
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 10.0),
+                  width: 300,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(100)),
+                            border: Border.all(color: Colors.grey, width: 2.0),
+                          ),
+                          child: !isUploaded
+                              ? IconButton(
+                                  iconSize: 30.0,
+                                  icon: Icon(Icons.add_photo_alternate),
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Upload Photo",
+                                  onPressed: () {
+                                    getImage();
+                                    setState(() {
+                                      isUploaded = true;
+                                    });
+                                  },
+                                )
+                              : TextButton(
+                                  style: ButtonStyle(
+                                    padding: MaterialStateProperty.all(
+                                      EdgeInsets.all(0),
+                                    ),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(100)),
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    getImage();
+                                    setState(() {
+                                      isUploaded = true;
+                                    });
+                                  },
+                                  child: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: Image.memory(image).image,
+                                  ),
+                                ),
+                        ),
+                        SizedBox(height: 20.0),
+                        InputAccountCard(
+                          hintText: accEmail,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editEmail = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          hintText: accPass,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editPass = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          hintText: accURL,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editURL = text;
+                          },
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 20.0),
+                          height: 30,
+                          width: 90,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff581845)),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Color(0xff581845)),
+                                ),
                               ),
                             ),
+                            onPressed: () {
+                              if (_formKey.currentState.validate()) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Account data successfully changed')));
+                                editAccount(currentProfile, accName, editEmail,
+                                    editPass, editURL);
+                                getClassList(currentProfile);
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text(
+                              'Save',
+                              style: kButtonLabel,
+                            ),
                           ),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                          'Account data successfully changed')));
-                              editAccount(currentProfile, accName, editEmail,
-                                  editPass, editURL);
-                              getClassList(currentProfile);
-                              Navigator.of(context).pop();
-                            }
-                          },
-                          child: Text(
-                            'Save',
-                            style: kButtonLabel,
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
+              ],
+            );
+          });
         });
   }
 
