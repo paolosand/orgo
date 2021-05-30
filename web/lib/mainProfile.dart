@@ -50,7 +50,6 @@ class _MainProfileState extends State<MainProfile> {
   Map<String, dynamic> editaccData = {};
   String currentProfile = "";
   int currentClassColor = 0;
-  Uint8List image;
 
   List<MaterialColor> colorList = Colors.primaries;
   int currentColorIndex = 0;
@@ -62,16 +61,14 @@ class _MainProfileState extends State<MainProfile> {
   bool isParent = false;
   String currUser = "";
 
-  void getImage() async {
+  Future<Uint8List> getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
-    image = await pickedFile.readAsBytes();
-    setState(() {
-      if (pickedFile != null) {
-        print("Image successfully uploaded");
-      } else {
-        print('No image selected.');
-      }
-    });
+    if (pickedFile != null) {
+      print('An image is selected.');
+      return await pickedFile.readAsBytes();
+    } else {
+      print('No image selected.');
+    }
   }
 
   // Future<Uri> uploadImageFile(html.File image, {String imageName}) async {
@@ -132,6 +129,7 @@ class _MainProfileState extends State<MainProfile> {
   Future<void> addAccountPopup() async {
     String addAccName, addEmail, addPass, addURL;
     bool isUploaded = false;
+    Uint8List image;
 
     await showDialog(
       context: context,
@@ -170,35 +168,33 @@ class _MainProfileState extends State<MainProfile> {
                                   splashColor: Colors.grey[400],
                                   hoverColor: Colors.grey[200],
                                   tooltip: "Upload Photo",
-                                  onPressed: () {
-                                    getImage();
+                                  onPressed: () async {
+                                    image = await getImage();
                                     setState(() {
-                                      isUploaded = true;
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
                                     });
                                   },
                                 )
-                              : TextButton(
-                                  style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                      EdgeInsets.all(0),
-                                    ),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                      ),
-                                    ),
+                              : IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  icon: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: MemoryImage(image),
                                   ),
-                                  onPressed: () {
-                                    getImage();
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Change Photo",
+                                  onPressed: () async {
+                                    image = await getImage();
                                     setState(() {
-                                      isUploaded = true;
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
                                     });
                                   },
-                                  child: CircleAvatar(
-                                    radius: 75.0,
-                                    backgroundImage: Image.memory(image).image,
-                                  ),
                                 ),
                         ),
                         SizedBox(height: 20.0),
@@ -307,6 +303,7 @@ class _MainProfileState extends State<MainProfile> {
       String accName, accEmail, accPass, accURL) async {
     String editEmail, editPass, editURL;
     bool isUploaded = false;
+    Uint8List image;
 
     await showDialog(
         context: context,
@@ -344,35 +341,33 @@ class _MainProfileState extends State<MainProfile> {
                                   splashColor: Colors.grey[400],
                                   hoverColor: Colors.grey[200],
                                   tooltip: "Upload Photo",
-                                  onPressed: () {
-                                    getImage();
+                                  onPressed: () async {
+                                    image = await getImage();
                                     setState(() {
-                                      isUploaded = true;
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
                                     });
                                   },
                                 )
-                              : TextButton(
-                                  style: ButtonStyle(
-                                    padding: MaterialStateProperty.all(
-                                      EdgeInsets.all(0),
-                                    ),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                      ),
-                                    ),
+                              : IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  icon: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: MemoryImage(image),
                                   ),
-                                  onPressed: () {
-                                    getImage();
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Change Photo",
+                                  onPressed: () async {
+                                    image = await getImage();
                                     setState(() {
-                                      isUploaded = true;
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
                                     });
                                   },
-                                  child: CircleAvatar(
-                                    radius: 75.0,
-                                    backgroundImage: Image.memory(image).image,
-                                  ),
                                 ),
                         ),
                         SizedBox(height: 20.0),
