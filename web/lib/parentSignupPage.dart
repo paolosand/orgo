@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+const Color kCardContentColor = Color(0xffC70039);
+
+enum CardName {
+  email,
+  studentUserID,
+  password,
+  confirmPassword,
+}
+
 class ParentSignupPage extends StatefulWidget {
   const ParentSignupPage({Key key}) : super(key: key);
   @override
@@ -20,30 +29,20 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
   String password = "";
   String confirmpass = "";
 
-  void _toggle1() {
-    setState(() {
-      _obscureText1 = !_obscureText1;
-    });
-  }
+  CardName selectedCard = CardName.email;
 
-  void _toggle2() {
-    setState(() {
-      _obscureText2 = !_obscureText2;
-    });
-  }
-
-  Icon _pwIcon(bool pwState) {
-    if (pwState == true) {
-      return Icon(
-        Icons.visibility_off,
-        color: Colors.grey,
-      );
-    } else {
-      return Icon(
-        Icons.visibility,
-        color: Colors.grey,
-      );
-    }
+  ShapeBorder getBorder(CardName cardName) {
+    return selectedCard == cardName
+        ? RoundedRectangleBorder(
+            side: BorderSide(
+              color: kCardContentColor,
+              width: 2.0,
+            ),
+          )
+        : RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.zero,
+          );
   }
 
   void signup(String email, String password, String studentUserID) async {
@@ -57,14 +56,6 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
           FirebaseFirestore.instance.collection(auth.currentUser.uid);
       print(auth.currentUser.uid);
       Future<void> addUser() {
-        // Call the user's CollectionReference to add a new user
-        // users
-        //     .doc('notifications')
-        //     .set({'data': [], 'data_count': 0, 'title_list': []})
-        //     .then((value) => print("User Notification data Added"))
-        //     .catchError((error) =>
-        //         print("Failed to add user notification data: $error"));
-
         return users
             .doc('data')
             .set({'student': studentUserID, 'isParent': true})
@@ -128,18 +119,26 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.email),
                     child: ListTile(
-                      leading: Icon(Icons.email),
+                      leading: Icon(
+                        Icons.email,
+                        color: selectedCard == CardName.email
+                            ? kCardContentColor
+                            : Colors.grey,
+                      ),
+                      selected: selectedCard == CardName.email,
                       title: TextFormField(
+                        autofocus: true,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Email",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -151,24 +150,37 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
                         onChanged: (text) {
                           email = text;
                         },
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.email;
+                          });
+                        },
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.studentUserID),
                     child: ListTile(
-                      leading: Icon(Icons.person),
+                      leading: Icon(
+                        Icons.person,
+                        color: selectedCard == CardName.studentUserID
+                            ? kCardContentColor
+                            : Colors.grey,
+                      ),
+                      selected: selectedCard == CardName.studentUserID,
                       title: TextFormField(
+                        autofocus: true,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Student User ID",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -180,25 +192,37 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
                         onChanged: (text) {
                           studentUserID = text;
                         },
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.studentUserID;
+                          });
+                        },
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.password),
                     child: ListTile(
-                      leading: Icon(Icons.lock),
+                      leading: Icon(
+                        Icons.lock,
+                        color: selectedCard == CardName.password
+                            ? kCardContentColor
+                            : Colors.grey,
+                      ),
+                      selected: selectedCard == CardName.password,
                       title: TextFormField(
                         obscureText: _obscureText1,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -210,31 +234,56 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
                         onChanged: (text) {
                           password = text;
                         },
-                      ),
-                      trailing: TextButton(
-                        onPressed: () {
-                          _toggle1();
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.password;
+                          });
                         },
-                        child: _pwIcon(_obscureText1),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscureText1 = !_obscureText1;
+                          });
+                        },
+                        tooltip: "Show/Hide Password",
+                        icon: _obscureText1
+                            ? Icon(
+                                Icons.visibility_off,
+                                color: selectedCard == CardName.password
+                                    ? kCardContentColor
+                                    : Colors.grey,
+                              )
+                            : Icon(
+                                Icons.visibility,
+                                color: selectedCard == CardName.password
+                                    ? kCardContentColor
+                                    : Colors.grey,
+                              ),
                       ),
                     ),
                   ),
                   Card(
                     margin:
                         EdgeInsets.symmetric(horizontal: 150.0, vertical: 10.0),
+                    shape: getBorder(CardName.confirmPassword),
                     child: ListTile(
-                      leading: Icon(Icons.lock),
+                      leading: Icon(Icons.lock,
+                          color: selectedCard == CardName.confirmPassword
+                              ? kCardContentColor
+                              : Colors.grey),
+                      selected: selectedCard == CardName.confirmPassword,
                       title: TextFormField(
                         obscureText: _obscureText2,
                         cursorColor: Colors.black,
-                        decoration: new InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           hintText: "Confirm Password",
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
@@ -243,12 +292,28 @@ class _ParentSignupPageState extends State<ParentSignupPage> {
                           confirmpass = value;
                           return null;
                         },
-                      ),
-                      trailing: TextButton(
-                        onPressed: () {
-                          _toggle2();
+                        onTap: () {
+                          setState(() {
+                            selectedCard = CardName.confirmPassword;
+                          });
                         },
-                        child: _pwIcon(_obscureText2),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _obscureText2 = !_obscureText2;
+                          });
+                        },
+                        tooltip: "Show/Hide Password",
+                        icon: _obscureText2
+                            ? Icon(Icons.visibility_off,
+                                color: selectedCard == CardName.confirmPassword
+                                    ? kCardContentColor
+                                    : Colors.grey)
+                            : Icon(Icons.visibility,
+                                color: selectedCard == CardName.confirmPassword
+                                    ? kCardContentColor
+                                    : Colors.grey),
                       ),
                     ),
                   ),
