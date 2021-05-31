@@ -10,6 +10,11 @@ import 'package:encrypt/encrypt.dart' as en;
 import 'package:schedulers/schedulers.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:universal_html/html.dart';
 
 // A constant body textstyle used in the view account popup
 const TextStyle kViewBody =
@@ -49,6 +54,30 @@ class _MainProfileState extends State<MainProfile> {
   // hide stuff if parent login. important to change
   bool isParent = false;
   String currUser = "";
+
+  Future<Uint8List> getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      print('An image is selected.');
+      return await pickedFile.readAsBytes();
+    } else {
+      print('No image selected.');
+    }
+    return null;
+  }
+
+  Future<String> uploadImageFile(Uint8List image, String profileName, String imageName) async {
+    firebase_storage.Reference storageRef = storage.ref('${auth.currentUser.uid}/$profileName/$imageName.png');
+    String downloadURL;
+    try {
+      await storageRef.putData(image);
+      downloadURL = await storage.refFromURL('gs://orgocs192.appspot.com/${auth.currentUser.uid}/$profileName').child('$imageName.png').getDownloadURL();
+    } on FirebaseException catch (e) {
+      print('Upload failed - $e');
+    }
+
+    return downloadURL;
+  }
 
   Future<void> isUserParent() {
     return FirebaseFirestore.instance
@@ -197,9 +226,48 @@ class _MainProfileState extends State<MainProfile> {
                           'Add',
                           style: kButtonLabel,
                         ),
-                      ),
-                    )
-                  ],
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 20.0),
+                          height: 30,
+                          width: 90,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff581845)),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Color(0xff581845)),
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                String imageUploadUrl = await uploadImageFile(image, currentProfile, addAccName);
+                                addAccount(currentProfile, addAccName, addEmail,
+                                    addPass, addURL, imageUploadUrl);
+                                getClassList(currentProfile);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('Account data being added')));
+                                Navigator.of(context).pop();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Account data successfully added')));
+                              }
+                            },
+                            child: Text(
+                              'Add',
+                              style: kButtonLabel,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -212,7 +280,15 @@ class _MainProfileState extends State<MainProfile> {
   // function to call when the user wants to edit the content of an account (class).
   Future<void> editAccountPopup(
       String accName, accEmail, accPass, accURL) async {
+<<<<<<< Updated upstream
     String editEmail, editPass, editURL;
+=======
+    String editEmail = accEmail;
+    String editPass = accPass;
+    String editURL = accURL;
+    bool isUploaded = false;
+    Uint8List image;
+>>>>>>> Stashed changes
 
     await showDialog(
         context: context,
@@ -285,21 +361,127 @@ class _MainProfileState extends State<MainProfile> {
                               ),
                             ),
                           ),
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                          'Account data successfully changed')));
-                              editAccount(currentProfile, accName, editEmail,
-                                  editPass, editURL);
-                              getClassList(currentProfile);
-                              Navigator.of(context).pop();
+                          child:!isUploaded
+                                ? IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: CircleAvatar(
+                                      radius: 75.0,
+                                      backgroundImage: NetworkImage(accData['accounts'][accounts.indexOf(accName)][accName]['image url']),
+                                    ),
+                                    splashRadius: 75.0,
+                                    splashColor: Colors.grey[400],
+                                    hoverColor: Colors.grey[200],
+                                    tooltip: "Upload Photo",
+                                    onPressed: () async {
+                                      image = await getImage();
+                                      setState(() {
+                                        if (image != null) {
+                                          isUploaded = true;
+                                        }
+                                      });
+                                    },
+                                  )
+                                : IconButton(
+                                    padding: EdgeInsets.all(0),
+                                    icon: CircleAvatar(
+                                      radius: 75.0,
+                                      backgroundImage: MemoryImage(image),
+                                    ),
+                                    splashRadius: 75.0,
+                                    splashColor: Colors.grey[400],
+                                    hoverColor: Colors.grey[200],
+                                    tooltip: "Change Photo",
+                                    onPressed: () async {
+                                      image = await getImage();
+                                      setState(() {
+                                        if (image != null) {
+                                          isUploaded = true;
+                                        }
+                                      });
+                                    },
+                                  ),
+                        ),
+                        SizedBox(height: 20.0),
+                        InputAccountCard(
+                          initialValue: accEmail,
+                          hintText: accEmail,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editEmail = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          initialValue: accPass,
+                          hintText: accPass,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          onChanged: (text) {
+                            editPass = text;
+                          },
+                        ),
+                        InputAccountCard(
+                          initialValue: accURL,
+                          hintText: accURL,
+                          validator: (String value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
                             }
                           },
-                          child: Text(
-                            'Save',
-                            style: kButtonLabel,
+                          onChanged: (text) {
+                            editURL = text;
+                          },
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 20.0),
+                          height: 30,
+                          width: 90,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xff581845)),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Color(0xff581845)),
+                                ),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                String imageUploadUrl;
+                                if (image == null)
+                                {
+                                  imageUploadUrl  = accData['accounts'][accounts.indexOf(accName)][accName]['image url'];
+                                }
+                                else
+                                {
+                                  imageUploadUrl = await uploadImageFile(image, currentProfile, accName);
+                                }
+                                 
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            'Account data successfully changed')));
+                                editAccount(currentProfile, accName, editEmail,
+                                    editPass, editURL,imageUploadUrl);
+                                getClassList(currentProfile);
+                                Navigator.of(context).pop();
+                              }
+                            },
+                            child: Text(
+                              'Save',
+                              style: kButtonLabel,
+                            ),
                           ),
                         ),
                       )
@@ -1307,7 +1489,7 @@ class _MainProfileState extends State<MainProfile> {
 
   // function to call when the user wants to add data to the database.
   Future<void> addAccount(String profileName, String addAccName,
-      String addEmail, String addPass, String addURL) {
+      String addEmail, String addPass, String addURL, String addImageUrl) {
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
         .collection(currUser)
@@ -1321,7 +1503,8 @@ class _MainProfileState extends State<MainProfile> {
                 addAccName: {
                   'email': addEmail,
                   'password': encryptPass(addPass).base64,
-                  'website url': addURL
+                  'website url': addURL,
+                  'image url': addImageUrl
                 }
               }
             ])
@@ -1333,13 +1516,16 @@ class _MainProfileState extends State<MainProfile> {
 
   // function to call when the user wants to edit data in the database.
   Future<void> editAccount(String profileName, String accName, String editEmail,
-      String editPass, String editURL) {
+      String editPass, String editURL, String editImageURL) {
     accData['accounts'][accounts.indexOf(accName)][accName]['password'] =
         encryptPass(editPass).base64;
     accData['accounts'][accounts.indexOf(accName)][accName]['email'] =
         editEmail;
     accData['accounts'][accounts.indexOf(accName)][accName]['website url'] =
         editURL;
+    accData['accounts'][accounts.indexOf(accName)][accName]['image url'] =
+        editImageURL;
+    
 
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
@@ -1996,7 +2182,9 @@ class _MainProfileState extends State<MainProfile> {
                                       accData['accounts']
                                               [accounts.indexOf(accName)]
                                           [accName]['website url'],
-                                      'https://i.insider.com/5abb9eb43216742a008b45cc?width=1200&format=jpeg');
+                                      accData['accounts']
+                                              [accounts.indexOf(accName)]
+                                          [accName]['image url']);
                                 },
                                 child: Center(
                                   child: Text(
@@ -2056,7 +2244,8 @@ class InputAccountCard extends StatelessWidget {
   final Function validator;
   final Function onChanged;
   final double width;
-  InputAccountCard({this.hintText, this.validator, this.onChanged, this.width});
+  final String initialValue;
+  InputAccountCard({this.hintText, this.validator, this.onChanged, this.width, this.initialValue});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -2066,6 +2255,7 @@ class InputAccountCard extends StatelessWidget {
           BoxDecoration(border: Border.all(color: Colors.grey, width: 1.0)),
       child: Center(
         child: TextFormField(
+          initialValue: initialValue,
           textAlign: TextAlign.center,
           cursorColor: Colors.black,
           decoration: new InputDecoration(
