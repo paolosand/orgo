@@ -71,12 +71,18 @@ class _MainProfileState extends State<MainProfile> {
     return null;
   }
 
-  Future<String> uploadImageFile(Uint8List image, String profileName, String imageName) async {
-    firebase_storage.Reference storageRef = storage.ref('${auth.currentUser.uid}/$profileName/$imageName.png');
+  Future<String> uploadImageFile(
+      Uint8List image, String profileName, String imageName) async {
+    firebase_storage.Reference storageRef =
+        storage.ref('${auth.currentUser.uid}/$profileName/$imageName.png');
     String downloadURL;
     try {
       await storageRef.putData(image);
-      downloadURL = await storage.refFromURL('gs://orgocs192.appspot.com/${auth.currentUser.uid}/$profileName').child('$imageName.png').getDownloadURL();
+      downloadURL = await storage
+          .refFromURL(
+              'gs://orgocs192.appspot.com/${auth.currentUser.uid}/$profileName')
+          .child('$imageName.png')
+          .getDownloadURL();
     } on FirebaseException catch (e) {
       print('Upload failed - $e');
     }
@@ -266,7 +272,8 @@ class _MainProfileState extends State<MainProfile> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                String imageUploadUrl = await uploadImageFile(image, currentProfile, addAccName);
+                                String imageUploadUrl = await uploadImageFile(
+                                    image, currentProfile, addAccName);
                                 addAccount(currentProfile, addAccName, addEmail,
                                     addPass, addURL, imageUploadUrl);
                                 getClassList(currentProfile);
@@ -336,45 +343,48 @@ class _MainProfileState extends State<MainProfile> {
                                 BorderRadius.all(Radius.circular(100)),
                             border: Border.all(color: Colors.grey, width: 2.0),
                           ),
-                          child:!isUploaded
-                                ? IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: CircleAvatar(
-                                      radius: 75.0,
-                                      backgroundImage: NetworkImage(accData['accounts'][accounts.indexOf(accName)][accName]['image url']),
-                                    ),
-                                    splashRadius: 75.0,
-                                    splashColor: Colors.grey[400],
-                                    hoverColor: Colors.grey[200],
-                                    tooltip: "Upload Photo",
-                                    onPressed: () async {
-                                      image = await getImage();
-                                      setState(() {
-                                        if (image != null) {
-                                          isUploaded = true;
-                                        }
-                                      });
-                                    },
-                                  )
-                                : IconButton(
-                                    padding: EdgeInsets.all(0),
-                                    icon: CircleAvatar(
-                                      radius: 75.0,
-                                      backgroundImage: MemoryImage(image),
-                                    ),
-                                    splashRadius: 75.0,
-                                    splashColor: Colors.grey[400],
-                                    hoverColor: Colors.grey[200],
-                                    tooltip: "Change Photo",
-                                    onPressed: () async {
-                                      image = await getImage();
-                                      setState(() {
-                                        if (image != null) {
-                                          isUploaded = true;
-                                        }
-                                      });
-                                    },
+                          child: !isUploaded
+                              ? IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  icon: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: NetworkImage(
+                                        accData['accounts']
+                                                [accounts.indexOf(accName)]
+                                            [accName]['image url']),
                                   ),
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Upload Photo",
+                                  onPressed: () async {
+                                    image = await getImage();
+                                    setState(() {
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
+                                    });
+                                  },
+                                )
+                              : IconButton(
+                                  padding: EdgeInsets.all(0),
+                                  icon: CircleAvatar(
+                                    radius: 75.0,
+                                    backgroundImage: MemoryImage(image),
+                                  ),
+                                  splashRadius: 75.0,
+                                  splashColor: Colors.grey[400],
+                                  hoverColor: Colors.grey[200],
+                                  tooltip: "Change Photo",
+                                  onPressed: () async {
+                                    image = await getImage();
+                                    setState(() {
+                                      if (image != null) {
+                                        isUploaded = true;
+                                      }
+                                    });
+                                  },
+                                ),
                         ),
                         SizedBox(height: 20.0),
                         InputAccountCard(
@@ -435,21 +445,21 @@ class _MainProfileState extends State<MainProfile> {
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
                                 String imageUploadUrl;
-                                if (image == null)
-                                {
-                                  imageUploadUrl  = accData['accounts'][accounts.indexOf(accName)][accName]['image url'];
+                                if (image == null) {
+                                  imageUploadUrl = accData['accounts']
+                                          [accounts.indexOf(accName)][accName]
+                                      ['image url'];
+                                } else {
+                                  imageUploadUrl = await uploadImageFile(
+                                      image, currentProfile, accName);
                                 }
-                                else
-                                {
-                                  imageUploadUrl = await uploadImageFile(image, currentProfile, accName);
-                                }
-                                 
+
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(
                                             'Account data successfully changed')));
                                 editAccount(currentProfile, accName, editEmail,
-                                    editPass, editURL,imageUploadUrl);
+                                    editPass, editURL, imageUploadUrl);
                                 getClassList(currentProfile);
                                 Navigator.of(context).pop();
                               }
@@ -1501,7 +1511,6 @@ class _MainProfileState extends State<MainProfile> {
         editURL;
     accData['accounts'][accounts.indexOf(accName)][accName]['image url'] =
         editImageURL;
-    
 
     // Call the user's CollectionReference to add a new user
     return FirebaseFirestore.instance
@@ -1678,7 +1687,7 @@ class _MainProfileState extends State<MainProfile> {
 
   // function to call to change preferred color.
   void toggleColor() {
-    if (currentColorIndex < colorList.length) {
+    if (currentColorIndex < colorList.length - 1) {
       currentColorIndex += 1;
     } else {
       currentColorIndex = 0;
@@ -1864,8 +1873,9 @@ class _MainProfileState extends State<MainProfile> {
                                               backgroundColor:
                                                   MaterialStateProperty.all(
                                                       (currentProfile == item)
-                                                          ? Colors.pink
-                                                          : Color(0xff43aa8b)),
+                                                          ? colorList[
+                                                              currentClassColor]
+                                                          : Color(0xff581845)),
                                               shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
@@ -1875,8 +1885,9 @@ class _MainProfileState extends State<MainProfile> {
                                                   side: BorderSide(
                                                       color: (currentProfile ==
                                                               item)
-                                                          ? Colors.pink
-                                                          : Color(0xff43aa8b)),
+                                                          ? colorList[
+                                                              currentClassColor]
+                                                          : Color(0xff581845)),
                                                 ),
                                               ),
                                             ),
@@ -1925,7 +1936,8 @@ class _MainProfileState extends State<MainProfile> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
+                              padding: EdgeInsets.only(
+                                  bottom: 30.0, top: 10.0, right: 9.0),
                               child: Center(
                                 child: IgnorePointer(
                                   ignoring: isParent,
@@ -2066,7 +2078,9 @@ class _MainProfileState extends State<MainProfile> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 30.0, top: 10.0),
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.only(
+                                  bottom: 30.0, top: 10.0, right: 9.0),
                               child: Center(
                                 child: IconButton(
                                   onPressed: () {
@@ -2103,7 +2117,7 @@ class _MainProfileState extends State<MainProfile> {
                     radius: 8,
                     spacing: 10,
                     activeDotColor: Color(0xff581845),
-                    fixedCenter: true,
+                    fixedCenter: false,
                   ),
                 ),
               ),
@@ -2111,7 +2125,10 @@ class _MainProfileState extends State<MainProfile> {
           );
         },
         collapsed: Center(
-          child: Icon(Icons.keyboard_arrow_up),
+          child: Icon(
+            Icons.keyboard_arrow_up,
+            size: 32.0,
+          ),
         ),
         minHeight: 70.0,
         maxHeight: 550.0,
@@ -2165,7 +2182,9 @@ class _MainProfileState extends State<MainProfile> {
                                 child: Center(
                                   child: Text(
                                     accName,
-                                    style: TextStyle(color: Colors.black),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -2221,7 +2240,12 @@ class InputAccountCard extends StatelessWidget {
   final Function onChanged;
   final double width;
   final String initialValue;
-  InputAccountCard({this.hintText, this.validator, this.onChanged, this.width, this.initialValue});
+  InputAccountCard(
+      {this.hintText,
+      this.validator,
+      this.onChanged,
+      this.width,
+      this.initialValue});
   @override
   Widget build(BuildContext context) {
     return Container(
